@@ -15,11 +15,13 @@ $ composer require scn/evalanche-soap-api-connector
 
 First create a connection with the access data provided by SCN-Networks.
 
-`$connection = \Scn\EvalancheSoapApiConnector\EvalancheConnection::create(
+```php
+$connection = \Scn\EvalancheSoapApiConnector\EvalancheConnection::create(
     'given host',
     'given username',
     'given password'
-);`
+);
+```
 
 Then create the client of your choice e.g. FormClient
 
