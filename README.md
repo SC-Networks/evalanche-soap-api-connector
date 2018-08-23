@@ -35,6 +35,9 @@ Work with the results
 
 `$statistic->getImpressions()`
 
+Most of the methods will require/return structs which are defined and
+described in [the struct repository](https://github.com/SC-Networks/evalanche-soap-api-struct).
+
 ### Methods (by client)
 
 ##### ACCOUNT
