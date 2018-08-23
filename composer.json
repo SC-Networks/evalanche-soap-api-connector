@@ -1,0 +1,46 @@
+{
+  "name": "scn/evalanche-soap-api-connector",
+  "homepage": "https://github.com/SC-Networks/evalanche-soap-api-connector",
+  "description": "Official PHP client for Evalanche SOAP API",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "evalanche",
+    "soap",
+    "email marketing",
+	"api",
+	"connector"
+  ],
+  "authors": [
+    {
+      "name": "Sascha Nützel",
+      "homepage": "https://www.sc-networks.com"
+    },
+	{
+	  "name": "Daniel Jakob",
+	  "homepage": "https://www.sc-networks.com"
+	}
+  ],
+  "require": {
+    "php": ">=7.2",
+    "ext-soap": "*",
+    "scn/evalanche-soap-api-struct": "dev-master",
+    "scn/hydrator": "^1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Scn\\EvalancheSoapApiConnector\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Scn\\EvalancheSoapApiConnector\\": "tests/"
+    }
+  },
+  "scripts": {
+    "tests": "vendor/bin/phpunit -c phpunit.xml.dist"
+  }
+}

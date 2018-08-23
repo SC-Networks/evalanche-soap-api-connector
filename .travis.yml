@@ -1,0 +1,15 @@
+language: php
+
+php:
+  - 7.2
+  - nightly
+
+matrix:
+  allow_failures:
+  - php: nightly
+
+script:
+  - composer tests
+
+install:
+  - travis_retry composer install --no-interaction --prefer-source
