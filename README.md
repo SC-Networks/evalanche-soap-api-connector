@@ -17,7 +17,7 @@ $ composer require scn/evalanche-soap-api-connector
 
 ### General
 
-First create a connection with the access data provided by SCN-Networks.
+First create a connection with the access credentials provided by SC-Networks.
 
 ```php
 $connection = \Scn\EvalancheSoapApiConnector\EvalancheConnection::create(
