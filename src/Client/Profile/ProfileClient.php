@@ -124,21 +124,21 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
 
     /**
      * @param int $id
-     * @param int $startTimestamp
-     * @param int $endTimestamp
      * @param string[] $poolAttributeList
+     * @param int $timestampStart
+     * @param int $timestampEnd
      *
      * @return ProfileBounceStatusInterface[]
      * @throws EmptyResultException
      */
-    public function getBounces(int $id, int $startTimestamp, int $endTimestamp, array $poolAttributeList): array
+    public function getBounces(int $id, array $poolAttributeList, int $timestampStart, int $timestampEnd): array
     {
         return $this->responseMapper->getObjects(
             $this->soapClient->getBounces(
                 [
                     'pool_id' => $id,
-                    'start_time' => $startTimestamp,
-                    'end_time' => $endTimestamp,
+                    'start_time' => $timestampStart,
+                    'end_time' => $timestampEnd,
                     'pool_attribute_list' => $poolAttributeList
                 ]
             ),
@@ -381,14 +381,14 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
 
     /**
      * @param int $id
+     * @param string[] $poolAttributeList
      * @param int $timestampStart
      * @param int $timestampEnd
-     * @param string[] $poolAttributeList
      *
      * @return HashMapInterface[]
      * @throws EmptyResultException
      */
-    public function getUnsubscriptions(int $id, int $timestampStart, int $timestampEnd, array $poolAttributeList): array
+    public function getUnsubscriptions(int $id, array $poolAttributeList, int $timestampStart, int $timestampEnd): array
     {
         return $this->responseMapper->getObjects(
             $this->soapClient->getUnsubscriptions(

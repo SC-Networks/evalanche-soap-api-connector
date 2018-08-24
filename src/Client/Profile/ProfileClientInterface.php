@@ -69,14 +69,14 @@ interface ProfileClientInterface extends ClientInterface
 
     /**
      * @param int $id
-     * @param int $startTimestamp
-     * @param int $endTimestamp
-     * @param array $poolAttributeList
+     * @param string[] $poolAttributeList
+     * @param int $timestampStart
+     * @param int $timestampEnd
      *
      * @return array
      * @throws EmptyResultException
      */
-    public function getBounces(int $id, int $startTimestamp, int $endTimestamp, array $poolAttributeList): array;
+    public function getBounces(int $id, array $poolAttributeList, int $timestampStart, int $timestampEnd): array;
 
     /**
      * @param int $id
@@ -180,18 +180,18 @@ interface ProfileClientInterface extends ClientInterface
 
     /**
      * @param int $id
+     * @param string[] $poolAttributeList
      * @param int $timestampStart
      * @param int $timestampEnd
-     * @param array $poolAttributeList
      *
      * @return HashMapInterface[]
      * @throws EmptyResultException
      */
     public function getUnsubscriptions(
         int $id,
+        array $poolAttributeList,
         int $timestampStart,
-        int $timestampEnd,
-        array $poolAttributeList
+        int $timestampEnd
     ): array;
 
     /**
