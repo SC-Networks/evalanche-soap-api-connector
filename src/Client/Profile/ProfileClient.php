@@ -125,20 +125,20 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     /**
      * @param int $id
      * @param string[] $poolAttributeList
-     * @param int $startTimestamp
-     * @param int $endTimestamp
+     * @param int $timestampStart
+     * @param int $timestampEnd
      *
      * @return ProfileBounceStatusInterface[]
      * @throws EmptyResultException
      */
-    public function getBounces(int $id, array $poolAttributeList, int $startTimestamp, int $endTimestamp): array
+    public function getBounces(int $id, array $poolAttributeList, int $timestampStart, int $timestampEnd): array
     {
         return $this->responseMapper->getObjects(
             $this->soapClient->getBounces(
                 [
                     'pool_id' => $id,
-                    'start_time' => $startTimestamp,
-                    'end_time' => $endTimestamp,
+                    'start_time' => $timestampStart,
+                    'end_time' => $timestampEnd,
                     'pool_attribute_list' => $poolAttributeList
                 ]
             ),

@@ -70,13 +70,13 @@ interface ProfileClientInterface extends ClientInterface
     /**
      * @param int $id
      * @param string[] $poolAttributeList
-     * @param int $startTimestamp
-     * @param int $endTimestamp
+     * @param int $timestampStart
+     * @param int $timestampEnd
      *
      * @return array
      * @throws EmptyResultException
      */
-    public function getBounces(int $id, array $poolAttributeList, int $startTimestamp, int $endTimestamp): array;
+    public function getBounces(int $id, array $poolAttributeList, int $timestampStart, int $timestampEnd): array;
 
     /**
      * @param int $id
