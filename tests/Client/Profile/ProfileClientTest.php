@@ -266,7 +266,7 @@ class ProfileClientTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(
             ProfileBounceStatusInterface::class,
-            $this->subject->getBounces($id, $timestampStart, $timestampEnd, $poolAttributeList)
+            $this->subject->getBounces($id, $poolAttributeList, $timestampStart, $timestampEnd)
         );
     }
 
