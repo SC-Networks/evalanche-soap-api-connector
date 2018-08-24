@@ -3,7 +3,7 @@
 ## Note ##
 
 This connector is work in progress, methods and parameter may change.
-Please do _NOT_ use it in production until the rist official release.
+Please do _NOT_ use it in production until the first official release.
 
 ## Install
 
