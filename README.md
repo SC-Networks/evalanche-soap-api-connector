@@ -1527,9 +1527,9 @@ Retrieve all bounces and their profile-data in a certain date range
 ```
 getBounces(
 	int <pool-id>,
-	int <timestamp-start>,
-	int <timestamp-end>,
 	string[] <pool-attribute-names>
+	int <timestamp-start>,
+	int <timestamp-end>
 ): ProfileBounceStatus[]
 ```
 
@@ -1577,7 +1577,7 @@ range
 
 
 ```
-getGrantedPermission(
+getGrantedPermissions(
 	int <pool-id>,
 	string[] <pool-attribute-names>,
 	int <timestamp-start>,
@@ -1644,9 +1644,9 @@ range
 ```
 getUnsubscriptions(
 	int <pool-id>,
-	int <timestamp-start>,
-	int <timestamp-end>,
 	string[] <pool-attribute-names>
+	int <timestamp-start>,
+	int <timestamp-end>
 ): HashMap[]
 ```
 
