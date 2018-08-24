@@ -381,14 +381,14 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
 
     /**
      * @param int $id
+     * @param string[] $poolAttributeList
      * @param int $timestampStart
      * @param int $timestampEnd
-     * @param string[] $poolAttributeList
      *
      * @return HashMapInterface[]
      * @throws EmptyResultException
      */
-    public function getUnsubscriptions(int $id, int $timestampStart, int $timestampEnd, array $poolAttributeList): array
+    public function getUnsubscriptions(int $id, array $poolAttributeList, int $timestampStart, int $timestampEnd): array
     {
         return $this->responseMapper->getObjects(
             $this->soapClient->getUnsubscriptions(

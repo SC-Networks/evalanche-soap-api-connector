@@ -180,18 +180,18 @@ interface ProfileClientInterface extends ClientInterface
 
     /**
      * @param int $id
+     * @param string[] $poolAttributeList
      * @param int $timestampStart
      * @param int $timestampEnd
-     * @param array $poolAttributeList
      *
      * @return HashMapInterface[]
      * @throws EmptyResultException
      */
     public function getUnsubscriptions(
         int $id,
+        array $poolAttributeList,
         int $timestampStart,
-        int $timestampEnd,
-        array $poolAttributeList
+        int $timestampEnd
     ): array;
 
     /**

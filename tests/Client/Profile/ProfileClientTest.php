@@ -303,7 +303,7 @@ class ProfileClientTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(
             HashMapInterface::class,
-            $this->subject->getUnsubscriptions($id, $timestampStart, $timestampEnd, $poolAttributeList)
+            $this->subject->getUnsubscriptions($id, $poolAttributeList, $timestampStart, $timestampEnd)
         );
     }
 
