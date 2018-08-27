@@ -1707,7 +1707,7 @@ Merge data of all profiles in a pool
 
 
 ```
-mergeByPool(
+mergeByPoolId(
 	int <pool-id>,
 	HashMap <data>
 ): bool
@@ -1717,7 +1717,7 @@ Merge data of all profiles in a targetgroup
 
 
 ```
-mergeByTargetGroup(
+mergeByTargetGroupId(
 	int <targetgroup-id>,
 	HashMap <data>
 ): bool

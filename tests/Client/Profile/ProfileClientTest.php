@@ -307,7 +307,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testMergeByTargetGroupCanReturnBoolean()
+    public function testMergeByTargetGroupIdCanReturnBoolean()
     {
         $id = 234;
         $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
@@ -333,7 +333,7 @@ class ProfileClientTest extends TestCase
         $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
             'mergeByTargetGroupResult')->willReturn($response->mergeByTargetGroupResult);
 
-        $this->assertTrue($this->subject->mergeByTargetGroup($id, $hashMap));
+        $this->assertTrue($this->subject->mergeByTargetGroupId($id, $hashMap));
     }
 
     public function testMergeByIdCanReturnBoolean()
@@ -846,7 +846,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testMergeByPool()
+    public function testMergeByPoolId()
     {
         $id = 234;
         $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
@@ -869,7 +869,7 @@ class ProfileClientTest extends TestCase
             'data' => $extractedData
         ])->willReturn($response);
 
-        $this->assertNull($this->subject->mergeByPool($id, $hashMap));
+        $this->assertNull($this->subject->mergeByPoolId($id, $hashMap));
     }
 
     public function testGetResultByJobIdCanReturnInstanceOfJobResult()
