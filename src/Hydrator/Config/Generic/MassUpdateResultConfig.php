@@ -29,8 +29,8 @@ class MassUpdateResultConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'updated' => Property\ArrayOfObjectValue::set('updated', new HashMapConfig()),
-            'created' => Property\ArrayOfObjectValue::set('created', new HashMapConfig()),
+            'updated' => Property\ObjectValue::set('updated', new HashMapConfig()),
+            'created' => Property\ObjectValue::set('created', new HashMapConfig()),
             'ignored' => Property\ArrayValue::set('ignored'),
             'error' => Property\ArrayValue::set('error'),
         ];
@@ -42,8 +42,8 @@ class MassUpdateResultConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'updated' => Property\ArrayOfObjectValue::get('updated', new HashMapConfig()),
-            'created' => Property\ArrayOfObjectValue::get('created', new HashMapConfig()),
+            'updated' => Property\ObjectValue::get('updated'),
+            'created' => Property\ObjectValue::get('created'),
             'ignored' => Property\ArrayValue::get('ignored'),
             'error' => Property\ArrayValue::get('error'),
         ];
