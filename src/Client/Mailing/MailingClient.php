@@ -770,7 +770,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
      * @param int $id
      * @param int[] $profileIds
      *
-     * @return array
+     * @return int[]
      * @throws EmptyResultException
      */
     public function sendToProfiles(int $id, array $profileIds): array
