@@ -355,7 +355,7 @@ interface MailingClientInterface extends ClientInterface
      * @param int $id
      * @param array $profileIds
      *
-     * @return array
+     * @return int[]
      * @throws EmptyResultException
      */
     public function sendToProfiles(int $id, array $profileIds): array;
