@@ -30,7 +30,7 @@ class ArrayOfObjectValue implements PropertyObjectInterface
      */
     private function createGetter(string $propertyName): \Closure
     {
-        return function () use ($propertyName): array {
+        return function () use ($propertyName): ?array {
             return $this->$propertyName;
         };
     }
