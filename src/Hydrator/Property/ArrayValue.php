@@ -27,7 +27,7 @@ final class ArrayValue implements PropertyInterface
      */
     private function createGetter(string $propertyName): \Closure
     {
-        return function () use ($propertyName): array {
+        return function () use ($propertyName): ?array {
             return $this->$propertyName;
         };
     }

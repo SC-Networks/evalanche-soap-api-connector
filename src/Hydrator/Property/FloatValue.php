@@ -26,7 +26,7 @@ final class FloatValue implements PropertyInterface
      */
     private function createGetter(string $propertyName): \Closure
     {
-        return function () use ($propertyName): float {
+        return function () use ($propertyName): ?float {
             return $this->$propertyName;
         };
     }

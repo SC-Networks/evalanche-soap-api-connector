@@ -43,12 +43,15 @@ class ExtractorTest extends TestCase
             ->willReturn([
                 'id' => 5,
                 'password' => 'something',
-                'somethingempty' => ''
+                'somethingempty' => '',
+                'somethingnull' => null,
+                'somethingfalse' => false,
             ]);
 
         $this->assertSame([
             'id' => 5,
-            'password' => 'something'
+            'password' => 'something',
+            'somethingempty' => '',
         ], $this->subject->extract(
             $config,
             $user
@@ -65,17 +68,21 @@ class ExtractorTest extends TestCase
             ->willReturn([
                 'id' => 5,
                 'password' => 'something',
-                'somethingempty' => ''
+                'somethingempty' => '',
+                'somethingnull' => null,
+                'somethingfalse' => false,
             ]);
 
         $expectedArray = [
             [
                 'id' => 5,
-                'password' => 'something'
+                'password' => 'something',
+                'somethingempty' => '',
             ],
             [
                 'id' => 5,
-                'password' => 'something'
+                'password' => 'something',
+                'somethingempty' => '',
             ]
         ];
 

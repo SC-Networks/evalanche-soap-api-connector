@@ -26,7 +26,7 @@ final class TextValue implements PropertyInterface
      */
     private function createGetter(string $propertyName): \Closure
     {
-        return function () use ($propertyName): string {
+        return function () use ($propertyName): ?string {
             return $this->$propertyName;
         };
     }

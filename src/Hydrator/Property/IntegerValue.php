@@ -26,7 +26,7 @@ final class IntegerValue implements PropertyInterface
      */
     private function createGetter(string $propertyName): \Closure
     {
-        return function () use ($propertyName): int {
+        return function () use ($propertyName): ?int {
             return (int)$this->$propertyName;
         };
     }

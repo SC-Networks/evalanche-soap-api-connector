@@ -34,7 +34,7 @@ final class Extractor implements ExtractorInterface
      */
     public function extract(HydratorConfigInterface $config, $object): array
     {
-        return array_filter($this->hydrator->extract($config, $object));
+        return $this->filterArray($this->hydrator->extract($config, $object));
     }
 
     /**
@@ -48,9 +48,21 @@ final class Extractor implements ExtractorInterface
         $extractedData = [];
 
         foreach ($arrayOfObjects as $arrayOfObject) {
-            $extractedData[] = array_filter($this->hydrator->extract($config, $arrayOfObject));
+            $extractedData[] = $this->filterArray($this->hydrator->extract($config, $arrayOfObject));
         }
 
-        return array_filter($extractedData);
+        return $this->filterArray($extractedData);
+    }
+
+    /**
+     * @param array $array
+     *
+     * @return array
+     */
+    private function filterArray(array $array): array
+    {
+        return array_filter($array, function ($value) {
+            return $value !== null && $value !== false;
+        });
     }
 }

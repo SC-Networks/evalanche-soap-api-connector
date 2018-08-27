@@ -27,7 +27,7 @@ final class BooleanValue implements PropertyInterface
      */
     private function createGetter(string $propertyName): \Closure
     {
-        return function () use ($propertyName): bool {
+        return function () use ($propertyName): ?bool {
             return $this->$propertyName;
         };
     }
