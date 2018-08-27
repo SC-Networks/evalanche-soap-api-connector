@@ -528,7 +528,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
      *
      * @return void
      */
-    public function mergeByPool(int $id, HashMapInterface $hashMap): void
+    public function mergeByPoolId(int $id, HashMapInterface $hashMap): void
     {
         $this->soapClient->mergeByPool(
             [
@@ -545,7 +545,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
      * @return bool
      * @throws EmptyResultException
      */
-    public function mergeByTargetGroup(int $id, HashMapInterface $hashMap): bool
+    public function mergeByTargetGroupId(int $id, HashMapInterface $hashMap): bool
     {
         return $this->responseMapper->getBoolean(
             $this->soapClient->mergeByTargetGroup(

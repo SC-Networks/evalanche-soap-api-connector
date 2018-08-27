@@ -258,7 +258,7 @@ interface ProfileClientInterface extends ClientInterface
      *
      * @return void
      */
-    public function mergeByPool(int $id, HashMapInterface $hashMap): void;
+    public function mergeByPoolId(int $id, HashMapInterface $hashMap): void;
 
     /**
      * @param int $id
@@ -267,7 +267,7 @@ interface ProfileClientInterface extends ClientInterface
      * @return bool
      * @throws EmptyResultException
      */
-    public function mergeByTargetGroup(int $id, HashMapInterface $hashMap): bool;
+    public function mergeByTargetGroupId(int $id, HashMapInterface $hashMap): bool;
 
     /**
      * @param int $id
