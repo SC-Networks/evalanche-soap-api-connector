@@ -95,11 +95,11 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateCategoryClientCanReturnInstanceOfCategoryClient()
+    public function testCreateFolderClientCanReturnInstanceOfCategoryClient()
     {
         $this->assertInstanceOf(
-            Client\Category\CategoryClientInterface::class,
-            $this->subject->createCategoryClient()
+            Client\Folder\FolderClientInterface::class,
+            $this->subject->createFolderClient()
         );
     }
 

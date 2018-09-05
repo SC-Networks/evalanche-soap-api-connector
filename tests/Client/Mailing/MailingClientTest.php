@@ -9,7 +9,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
-use Scn\EvalancheSoapStruct\Struct\Generic\CategoryInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
@@ -445,7 +445,7 @@ class MailingClientTest extends TestCase
     public function testMoveCanReturnInstanceOfResourceInformation()
     {
         $id = 456;
-        $categoryId = 34;
+        $folderId = 34;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
@@ -456,14 +456,14 @@ class MailingClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('move')->with([
             'resource_id' => $id,
-            'category_id' => $categoryId
+            'category_id' => $folderId
         ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'moveResult',
             $config)->willReturn($response->moveResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
-            $this->subject->move($id, $categoryId)
+            $this->subject->move($id, $folderId)
         );
     }
 
@@ -720,7 +720,7 @@ class MailingClientTest extends TestCase
     {
         $title = 'some title';
         $templateId = 32;
-        $categoryId = 23;
+        $folderId = 23;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
@@ -732,14 +732,14 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('createDraft')->with([
             'name' => $title,
             'template_id' => $templateId,
-            'category_id' => $categoryId,
+            'category_id' => $folderId,
         ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createDraftResult',
             $config)->willReturn($response->createDraftResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
-            $this->subject->createDraft($title, $templateId, $categoryId)
+            $this->subject->createDraft($title, $templateId, $folderId)
         );
     }
 
@@ -1272,7 +1272,7 @@ class MailingClientTest extends TestCase
     public function testCopyCanReturnInstanceOfResourceInformation()
     {
         $id = 456;
-        $categoryId = 123;
+        $folderId = 123;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
@@ -1283,14 +1283,14 @@ class MailingClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('copy')->with([
             'resource_id' => $id,
-            'category_id' => $categoryId
+            'category_id' => $folderId
         ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'copyResult',
             $config)->willReturn($response->copyResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
-            $this->subject->copy($id, $categoryId)
+            $this->subject->copy($id, $folderId)
         );
     }
 
@@ -1318,7 +1318,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetByCategoryIdCanReturnArrayOfResourceInformation()
+    public function testGetByFolderIdCanReturnArrayOfResourceInformation()
     {
         $id = 456;
 
@@ -1338,7 +1338,7 @@ class MailingClientTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
-            $this->subject->getByCategoryId($id)
+            $this->subject->getByFolderId($id)
         );
     }
 
@@ -1363,24 +1363,24 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetDefaultCategoryByCustomerIdCanReturnInstanceOfCategoryInformation()
+    public function testGetDefaultFolderByMandatorIdCanReturnInstanceOfFolderInformation()
     {
         $id = 456;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(CategoryInformationInterface::class)->getMock();
+        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
 
         $response = new \stdClass();
         $response->getResourceDefaultCategoryResult = $object;
 
-        $this->hydratorConfigFactory->expects($this->once())->method('createCategoryInformationConfig')->willReturn($config);
+        $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getResourceDefaultCategory')->with(['customer_id' => $id])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getResourceDefaultCategoryResult',
             $config)->willReturn($response->getResourceDefaultCategoryResult);
 
         $this->assertInstanceOf(
-            CategoryInformationInterface::class,
-            $this->subject->getDefaultCategoryByCustomerId($id)
+            FolderInformationInterface::class,
+            $this->subject->getDefaultFolderByMandatorId($id)
         );
     }
 

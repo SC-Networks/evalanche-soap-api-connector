@@ -31,8 +31,8 @@ class MailingDetailConfig implements HydratorConfigInterface
         return [
             'id' => Property\IntegerValue::set('id'),
             'name' => Property\TextValue::set('name'),
-            'customer_id' => Property\IntegerValue::set('customerId'),
-            'category_id' => Property\IntegerValue::set('categoryId'),
+            'customer_id' => Property\IntegerValue::set('mandatorId'),
+            'category_id' => Property\IntegerValue::set('folderId'),
             'type_id' => Property\IntegerValue::set('typeId'),
             'url' => Property\TextValue::set('url'),
             'send_start_time' => Property\IntegerValue::set('sendStartTime'),
@@ -56,8 +56,8 @@ class MailingDetailConfig implements HydratorConfigInterface
         return [
             'id' => Property\IntegerValue::get('id'),
             'name' => Property\TextValue::get('name'),
-            'customer_id' => Property\IntegerValue::get('customerId'),
-            'category_id' => Property\IntegerValue::get('categoryId'),
+            'customer_id' => Property\IntegerValue::get('mandatorId'),
+            'category_id' => Property\IntegerValue::get('folderId'),
             'type_id' => Property\IntegerValue::get('typeId'),
             'url' => Property\TextValue::get('url'),
             'send_start_time' => Property\IntegerValue::get('sendStartTime'),

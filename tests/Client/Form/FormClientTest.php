@@ -113,7 +113,7 @@ class FormClientTest extends TestCase
     {
         $id = 123;
         $title = 'some title';
-        $categoryId = 99;
+        $folderId = 99;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
@@ -125,14 +125,14 @@ class FormClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('createAlias')->with([
             'form_id' => $id,
             'name' => $title,
-            'category_id' => $categoryId
+            'category_id' => $folderId
         ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createAliasResult',
             $config)->willReturn($response->createAliasResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
-            $this->subject->createAlias($id, $title, $categoryId)
+            $this->subject->createAlias($id, $title, $folderId)
         );
     }
 

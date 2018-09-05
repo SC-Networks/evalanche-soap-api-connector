@@ -29,7 +29,7 @@ class BlackListConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'CustomerId' => Property\IntegerValue::set('customerId'),
+            'CustomerId' => Property\IntegerValue::set('mandatorId'),
             'Item' => Property\ArrayOfObjectValue::set('items', new BlackListItemConfig()),
         ];
     }
@@ -40,7 +40,7 @@ class BlackListConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'CustomerId' => Property\IntegerValue::get('customerId'),
+            'CustomerId' => Property\IntegerValue::get('mandatorId'),
             'Item' => Property\ArrayOfObjectValue::get('items'),
         ];
     }

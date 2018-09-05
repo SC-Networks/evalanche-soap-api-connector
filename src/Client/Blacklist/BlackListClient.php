@@ -18,16 +18,16 @@ final class BlackListClient extends AbstractClient implements BlackListClientInt
     const VERSION = ClientInterface::VERSION_V1;
 
     /**
-     * @param int $customerId
+     * @param int $mandatorId
      * @param string $email
      * @param string $description
      *
      * @return void
      */
-    public function add(int $customerId, string $email, string $description): void
+    public function add(int $mandatorId, string $email, string $description): void
     {
         $this->soapClient->add([
-            'CustomerId' => $customerId,
+            'CustomerId' => $mandatorId,
             'Item' => [
                 'Email' => $email,
                 'Description' => $description
@@ -36,26 +36,26 @@ final class BlackListClient extends AbstractClient implements BlackListClientInt
     }
 
     /**
-     * @param int $customerId
+     * @param int $mandatorId
      * @param string $email
      *
      * @return void
      */
-    public function remove(int $customerId, string $email): void
+    public function remove(int $mandatorId, string $email): void
     {
-        $this->soapClient->remove(['CustomerId' => $customerId, 'Email' => $email]);
+        $this->soapClient->remove(['CustomerId' => $mandatorId, 'Email' => $email]);
     }
 
     /**
-     * @param int $customerId
+     * @param int $mandatorId
      *
      * @return BlackListInterface
      * @throws EmptyResultException
      */
-    public function get(int $customerId): BlackListInterface
+    public function get(int $mandatorId): BlackListInterface
     {
         return $this->responseMapper->getObjectDirectly(
-            $this->soapClient->get(['CustomerId' => $customerId]),
+            $this->soapClient->get(['CustomerId' => $mandatorId]),
             $this->hydratorConfigFactory->createBlackListConfig()
         );
     }

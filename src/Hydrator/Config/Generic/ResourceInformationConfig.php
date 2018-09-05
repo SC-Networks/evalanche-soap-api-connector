@@ -31,8 +31,8 @@ class ResourceInformationConfig implements HydratorConfigInterface
         return [
             'url' => Property\TextValue::set('url'),
             'type_id' => Property\IntegerValue::set('typeId'),
-            'category_id' => Property\IntegerValue::set('categoryId'),
-            'customer_id' => Property\IntegerValue::set('customerId'),
+            'category_id' => Property\IntegerValue::set('folderId'),
+            'customer_id' => Property\IntegerValue::set('mandatorId'),
             'id' => Property\IntegerValue::set('id'),
             'name' => Property\TextValue::set('name')
         ];
@@ -46,8 +46,8 @@ class ResourceInformationConfig implements HydratorConfigInterface
         return [
             'url' => Property\TextValue::get('url'),
             'type_id' => Property\IntegerValue::get('typeId'),
-            'category_id' => Property\IntegerValue::get('categoryId'),
-            'customer_id' => Property\IntegerValue::get('customerId'),
+            'category_id' => Property\IntegerValue::get('folderId'),
+            'customer_id' => Property\IntegerValue::get('mandatorId'),
             'id' => Property\IntegerValue::get('id'),
             'name' => Property\TextValue::get('name')
         ];

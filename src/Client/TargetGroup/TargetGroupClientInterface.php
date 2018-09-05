@@ -19,7 +19,7 @@ interface TargetGroupClientInterface extends ClientInterface, ResourceTraitInter
      * @param int $id
      * @param int $attributeId
      * @param int $optionId
-     * @param int $categoryId
+     * @param int $folderId
      * @param string $title
      *
      * @return ResourceInformationInterface
@@ -29,7 +29,7 @@ interface TargetGroupClientInterface extends ClientInterface, ResourceTraitInter
         int $id,
         int $attributeId,
         int $optionId,
-        int $categoryId,
+        int $folderId,
         string $title
     ): ResourceInformationInterface;
 

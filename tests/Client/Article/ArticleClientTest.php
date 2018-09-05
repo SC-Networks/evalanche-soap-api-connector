@@ -67,7 +67,7 @@ class ArticleClientTest extends TestCase
     {
         $id = 456;
         $title = 'some title';
-        $categoryId = 123;
+        $folderId = 123;
         $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
@@ -89,7 +89,7 @@ class ArticleClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('create')->with([
             'article_preset_id' => $id,
             'name' => $title,
-            'category_id' => $categoryId,
+            'category_id' => $folderId,
             'data' => $expectedExtractor,
         ])->willReturn($response);
 
@@ -98,7 +98,7 @@ class ArticleClientTest extends TestCase
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
-            $this->subject->create($id, $title, $categoryId, $hashMap)
+            $this->subject->create($id, $title, $folderId, $hashMap)
         );
     }
 

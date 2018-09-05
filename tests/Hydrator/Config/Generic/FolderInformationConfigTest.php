@@ -2,19 +2,19 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Generic;
 
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\CategoryInformationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
 use Scn\EvalancheSoapApiConnector\TestCase;
-use Scn\EvalancheSoapStruct\Struct\Generic\CategoryInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 
 /**
- * Class CategoryInformationConfigTest
+ * Class FolderInformationConfigTest
  *
  * @package Scn\EvalancheSoapApiConnector\Hydrator\Generic
  */
-class CategoryInformationConfigTest extends TestCase
+class FolderInformationConfigTest extends TestCase
 {
     /**
-     * @var CategoryInformationConfig
+     * @var FolderInformationConfig
      */
     private $subject;
 
@@ -28,13 +28,13 @@ class CategoryInformationConfigTest extends TestCase
 
     public function setUp()
     {
-        $this->subject = new CategoryInformationConfig();
+        $this->subject = new FolderInformationConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfFolderInformation()
     {
         $this->assertInstanceOf(
-            CategoryInformationInterface::class,
+            FolderInformationInterface::class,
             $this->subject->getObject()
         );
     }

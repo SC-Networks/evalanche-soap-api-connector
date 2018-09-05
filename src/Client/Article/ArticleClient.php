@@ -24,7 +24,7 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
     /**
      * @param int $id
      * @param string $title
-     * @param int $categoryId
+     * @param int $folderId
      * @param HashMapInterface $hashMap
      *
      * @return ResourceInformationInterface
@@ -33,7 +33,7 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
     public function create(
         int $id,
         string $title,
-        int $categoryId,
+        int $folderId,
         HashMapInterface $hashMap
     ): ResourceInformationInterface {
         return $this->responseMapper->getObject(
@@ -41,7 +41,7 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
                 [
                     'article_preset_id' => $id,
                     'name' => $title,
-                    'category_id' => $categoryId,
+                    'category_id' => $folderId,
                     'data' => $this->extractor->extract(
                         $this->hydratorConfigFactory->createHashMapConfig(),
                         $hashMap

@@ -35,12 +35,12 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
     /**
      * @param int $id
      * @param string $title
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
      */
-    public function createAlias(int $id, string $title, int $categoryId): ResourceInformationInterface;
+    public function createAlias(int $id, string $title, int $folderId): ResourceInformationInterface;
 
     /**
      * @param int $id

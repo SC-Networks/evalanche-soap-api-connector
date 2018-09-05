@@ -79,7 +79,7 @@ class BlackListClientTest extends TestCase
 
     public function testGetCanReturnInstanceOfBlackList()
     {
-        $customerId = 523;
+        $mandatorId = 523;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(BlackListInterface::class)->getMock();
@@ -88,14 +88,14 @@ class BlackListClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createBlackListConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('get')->with([
-            'CustomerId' => $customerId
+            'CustomerId' => $mandatorId
             ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjectDirectly')->with($response,
             $config)->willReturn($response);
 
         $this->assertInstanceOf(
             BlackListInterface::class,
-            $this->subject->get($customerId)
+            $this->subject->get($mandatorId)
         );
     }
 }

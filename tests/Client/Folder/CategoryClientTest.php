@@ -1,6 +1,6 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Client\Category;
+namespace Scn\EvalancheSoapApiConnector\Client\Folder;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -9,17 +9,17 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
-use Scn\EvalancheSoapStruct\Struct\Generic\CategoryInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 
 /**
  * Class CategoryClientTest
  *
- * @package Scn\EvalancheSoapApiConnector\Client\Category
+ * @package Scn\EvalancheSoapApiConnector\Client\Folder
  */
 class CategoryClientTest extends TestCase
 {
     /**
-     * @var CategoryClient
+     * @var FolderClient
      */
     private $subject;
 
@@ -54,7 +54,7 @@ class CategoryClientTest extends TestCase
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
         $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
 
-        $this->subject = new CategoryClient(
+        $this->subject = new FolderClient(
             $this->soapClient,
             $this->responseMapper,
             $this->hydratorConfigFactory,
@@ -62,28 +62,28 @@ class CategoryClientTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnInstanceOfCategoryInformation()
+    public function testCreateCanReturnInstanceOfFolderInformation()
     {
         $title = 'some title';
-        $categoryId = 123;
+        $folderId = 123;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(CategoryInformationInterface::class)->getMock();
+        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
 
         $response = new \stdClass();
         $response->createResult = $object;
 
-        $this->hydratorConfigFactory->expects($this->once())->method('createCategoryInformationConfig')->willReturn($config);
+        $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('create')->with([
             'name' => $title,
-            'parent_category_id' => $categoryId
+            'parent_category_id' => $folderId
         ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createResult',
             $config)->willReturn($response->createResult);
 
         $this->assertInstanceOf(
-            CategoryInformationInterface::class,
-            $this->subject->create($title, $categoryId)
+            FolderInformationInterface::class,
+            $this->subject->create($title, $folderId)
         );
     }
 
@@ -99,13 +99,13 @@ class CategoryClientTest extends TestCase
         $this->assertNull($this->subject->delete($id));
     }
 
-    public function testGetSubCategoriesCanReturnArrayOfCategoryInformation()
+    public function testGetSubCategoriesCanReturnArrayOfFolderInformation()
     {
         $id = 523;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(CategoryInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(CategoryInformationInterface::class)->getMock();
+        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
+        $otherObject = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
 
         $response = new \stdClass();
         $response->getSubCategoriesResult = [
@@ -113,7 +113,7 @@ class CategoryClientTest extends TestCase
             $otherObject
         ];
 
-        $this->hydratorConfigFactory->expects($this->once())->method('createCategoryInformationConfig')->willReturn($config);
+        $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getSubCategories')->with([
             'category_id' => $id
         ])->willReturn($response);
@@ -122,7 +122,7 @@ class CategoryClientTest extends TestCase
 
 
         $this->assertContainsOnlyInstancesOf(
-            CategoryInformationInterface::class,
+            FolderInformationInterface::class,
             $this->subject->getSubCategories($id)
         );
     }

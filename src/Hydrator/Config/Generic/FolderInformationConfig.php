@@ -4,15 +4,15 @@ namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
-use Scn\EvalancheSoapStruct\Struct\Generic\CategoryInformation;
+use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformation;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 
 /**
- * Class CategoryInformationConfig
+ * Class FolderInformationConfig
  *
  * @package Scn\EvalancheSoapApiConnector\Hydrator\Generic
  */
-class CategoryInformationConfig implements HydratorConfigInterface
+class FolderInformationConfig implements HydratorConfigInterface
 {
 
     /**
@@ -20,7 +20,7 @@ class CategoryInformationConfig implements HydratorConfigInterface
      */
     public function getObject(): StructInterface
     {
-        return new CategoryInformation();
+        return new FolderInformation();
     }
 
     /**

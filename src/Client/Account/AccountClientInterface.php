@@ -19,5 +19,5 @@ interface AccountClientInterface extends ClientInterface
      * @return AccountInterface
      * @throws EmptyResultException
      */
-    public function getAccountByCustomerId(int $id): AccountInterface;
+    public function getAccountByMandatorId(int $id): AccountInterface;
 }

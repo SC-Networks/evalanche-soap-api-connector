@@ -60,9 +60,9 @@ class AccountClientTest extends TestCase
         );
     }
 
-    public function testGetCanReturnInstanceAccountInterface()
+    public function testGetAccountByMandatorIdCanReturnInstanceAccountInterface()
     {
-        $customerId = 523;
+        $mandatorId = 523;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(AccountInterface::class)->getMock();
@@ -71,14 +71,14 @@ class AccountClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createAccountConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getAccount')->with([
-            'CustomerId' => $customerId
+            'CustomerId' => $mandatorId
         ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjectDirectly')->with($response,
             $config)->willReturn($response);
 
         $this->assertInstanceOf(
             AccountInterface::class,
-            $this->subject->getAccountByCustomerId($customerId)
+            $this->subject->getAccountByMandatorId($mandatorId)
         );
     }
 

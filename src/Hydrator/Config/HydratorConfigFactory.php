@@ -9,7 +9,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeCo
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeGroupConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeOptionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeRoleTypeConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\CategoryInformationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobResultConfig;
@@ -176,9 +176,9 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
      *
      * @return HydratorConfigInterface
      */
-    public function createCategoryInformationConfig(): HydratorConfigInterface
+    public function createFolderInformationConfig(): HydratorConfigInterface
     {
-        return new CategoryInformationConfig();
+        return new FolderInformationConfig();
     }
 
     /**

@@ -14,10 +14,10 @@ interface CreateResourceTraitInterface
 {
     /**
      * @param string $title
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function create(string $title, int $categoryId): ResourceInformationInterface;
+    public function create(string $title, int $folderId): ResourceInformationInterface;
 }
