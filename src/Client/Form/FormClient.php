@@ -57,16 +57,16 @@ final class FormClient extends AbstractClient implements FormClientInterface
     /**
      * @param int $id
      * @param string $title
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
      */
-    public function createAlias(int $id, string $title, int $categoryId): ResourceInformationInterface
+    public function createAlias(int $id, string $title, int $folderId): ResourceInformationInterface
     {
         return $this->responseMapper->getObject(
             $this->soapClient->createAlias(
-                ['form_id' => $id, 'name' => $title, 'category_id' => $categoryId]
+                ['form_id' => $id, 'name' => $title, 'category_id' => $folderId]
             ),
             'createAliasResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()

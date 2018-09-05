@@ -3,7 +3,7 @@
 namespace Scn\EvalancheSoapApiConnector\Client\Image;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
-use Scn\EvalancheSoapStruct\Struct\Generic\CategoryInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatusInterface;
@@ -18,19 +18,19 @@ interface ImageClientInterface extends ClientInterface
     /**
      * @param string $image
      * @param string $title
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      */
-    public function create(string $image, string $title, int $categoryId): ResourceInformationInterface;
+    public function create(string $image, string $title, int $folderId): ResourceInformationInterface;
 
     /**
      * @param int $id
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      */
-    public function copy(int $id, int $categoryId): ResourceInformationInterface;
+    public function copy(int $id, int $folderId): ResourceInformationInterface;
 
     /**
      * @param int $id
@@ -51,7 +51,7 @@ interface ImageClientInterface extends ClientInterface
      *
      * @return ResourceInformationInterface[]
      */
-    public function getByCategoryId(int $id): array;
+    public function getByFolderId(int $id): array;
 
     /**
      * @param string $id
@@ -78,9 +78,9 @@ interface ImageClientInterface extends ClientInterface
     /**
      * @param int $id
      *
-     * @return CategoryInformationInterface
+     * @return FolderInformationInterface
      */
-    public function getDefaultCategoryByCustomerId(int $id): CategoryInformationInterface;
+    public function getDefaultFolderByMandatorId(int $id): FolderInformationInterface;
 
     /**
      *
@@ -90,11 +90,11 @@ interface ImageClientInterface extends ClientInterface
 
     /**
      * @param int $id
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      */
-    public function move(int $id, int $categoryId): ResourceInformationInterface;
+    public function move(int $id, int $folderId): ResourceInformationInterface;
 
     /**
      *

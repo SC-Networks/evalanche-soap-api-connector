@@ -95,7 +95,7 @@ interface HydratorConfigFactoryInterface
      *
      * @return HydratorConfigInterface
      */
-    public function createCategoryInformationConfig(): HydratorConfigInterface;
+    public function createFolderInformationConfig(): HydratorConfigInterface;
 
     /**
      *

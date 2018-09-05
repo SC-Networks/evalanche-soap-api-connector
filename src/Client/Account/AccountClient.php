@@ -23,7 +23,7 @@ final class AccountClient extends AbstractClient implements AccountClientInterfa
      * @return AccountInterface
      * @throws EmptyResultException
      */
-    public function getAccountByCustomerId(int $id): AccountInterface
+    public function getAccountByMandatorId(int $id): AccountInterface
     {
         return $this->responseMapper->getObjectDirectly(
             $this->soapClient->getAccount(['CustomerId' => $id]),

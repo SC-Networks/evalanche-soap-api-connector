@@ -30,7 +30,7 @@ class AccountingItemConfig implements HydratorConfigInterface
     {
         return [
             'Description' => Property\TextValue::set('description'),
-            'CustomerId' => Property\IntegerValue::set('customerId'),
+            'CustomerId' => Property\IntegerValue::set('mandatorId'),
             'AccountingDate' => Property\TextValue::set('accountingDate'),
             'ChargeCount' => Property\IntegerValue::set('chargeCount'),
         ];
@@ -43,7 +43,7 @@ class AccountingItemConfig implements HydratorConfigInterface
     {
         return [
             'Description' => Property\TextValue::get('description'),
-            'CustomerId' => Property\IntegerValue::get('customerId'),
+            'CustomerId' => Property\IntegerValue::get('mandatorId'),
             'AccountingDate' => Property\TextValue::get('accountingDate'),
             'ChargeCount' => Property\IntegerValue::get('chargeCount'),
         ];

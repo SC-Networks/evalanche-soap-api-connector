@@ -49,7 +49,7 @@ described in [the struct repository](https://github.com/SC-Networks/evalanche-so
 Get Customer Account Info
 
 ```
-getAccountByCustomerId(int <customer-id>): Account
+getAccountByMandatorId(int <mandator-id>): Account
 ```
 
 ##### ARTICLE
@@ -117,7 +117,7 @@ Retrieve all articles of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve an article by id
@@ -134,11 +134,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for articles
+Retrieve the default folder for articles
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -189,7 +189,7 @@ Retrieve all article-template of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve an article-template by id
@@ -206,11 +206,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for article-templates
+Retrieve the default folder for article-templates
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -392,7 +392,7 @@ Retrieve all article-type of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve an article-type by id
@@ -409,11 +409,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for article-type
+Retrieve the default folder for article-type
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -453,7 +453,7 @@ Retrieve the mandators blacklist
 get(int <mandator-id>): BlackList
 ```
 
-##### CATEGORY
+##### FOLDER
 
 Create a new folder
 
@@ -462,7 +462,7 @@ Create a new folder
 create(
 	string <name>,
 	int <parent-folder-id>
-): CategoryInformation
+): FolderInformation
 ```
 
 Delete an folder
@@ -478,7 +478,7 @@ Get Subfolders from Folder
 ```
 getSubCategories(
 	int <folder-id>
-): CategoryInformation[]
+): FolderInformation[]
 ```
 
 ##### CONTAINER
@@ -529,7 +529,7 @@ Retrieve all containers of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a container by id
@@ -546,11 +546,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for containers
+Retrieve the default folder for containers
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -714,7 +714,7 @@ Retrieve all container-types of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a container-type by id
@@ -731,11 +731,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for container-types
+Retrieve the default folder for container-types
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -786,7 +786,7 @@ Retrieve all documents of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a document by id
@@ -803,11 +803,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for documents
+Retrieve the default folder for documents
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -957,7 +957,7 @@ Retrieve all forms of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a form by id
@@ -974,11 +974,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for forms
+Retrieve the default folder for forms
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -1029,7 +1029,7 @@ Retrieve all targetgroups of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a targetgroup by id
@@ -1046,11 +1046,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for targetgroups
+Retrieve the default folder for targetgroups
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -1132,7 +1132,7 @@ Retrieve all images of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve an image by id
@@ -1149,11 +1149,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for images
+Retrieve the default folder for images
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -1209,7 +1209,7 @@ Retrieve all mailings of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a mailing by id
@@ -1226,11 +1226,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for mailings
+Retrieve the default folder for mailings
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -1594,7 +1594,7 @@ getListByMandatorId(int <mandator-id>): ResourceInformation[]
 Retrieve all mailings of a folder
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ``
 ```
 
@@ -1604,10 +1604,10 @@ Retrieve a mailing by id
 getById(int <mailing-template-id>): ResourceInformation
 ```
 
-Retrieve the default category for mailings
+Retrieve the default folder for mailings
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve a mailing by an external id
@@ -1660,7 +1660,7 @@ Retrieve all mailing-templates of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a mailing-template by id
@@ -1677,11 +1677,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for mailing-templates
+Retrieve the default folder for mailing-templates
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -1797,7 +1797,7 @@ Retrieve all pooldataminer of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve an pooldataminer by id
@@ -1814,11 +1814,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for pooldataminer
+Retrieve the default folder for pooldataminer
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -2226,7 +2226,7 @@ Retrieve all reports of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a report by id
@@ -2243,11 +2243,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for reports
+Retrieve the default folder for reports
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -2337,7 +2337,7 @@ Retrieve all smartlinks of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a smartlink by id
@@ -2354,11 +2354,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for smartlinks
+Retrieve the default folder for smartlinks
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids
@@ -2432,7 +2432,7 @@ Retrieve all workflows of a folder
 
 
 ```
-getByCategoryId(int <folder-id>): ResourceInformation[]
+getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
 Retrieve a workflow by id
@@ -2449,11 +2449,11 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default category for workflows
+Retrieve the default folder for workflows
 
 
 ```
-getDefaultCategoryByCustomerId(int <mandator-id>): CategoryInformation
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
 Retrieve all related object type ids

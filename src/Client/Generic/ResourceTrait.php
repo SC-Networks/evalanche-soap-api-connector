@@ -3,7 +3,7 @@
 namespace Scn\EvalancheSoapApiConnector\Client\Generic;
 
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
-use Scn\EvalancheSoapStruct\Struct\Generic\CategoryInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatusInterface;
@@ -17,15 +17,15 @@ trait ResourceTrait
 {
     /**
      * @param int $id
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function copy(int $id, int $categoryId): ResourceInformationInterface
+    public function copy(int $id, int $folderId): ResourceInformationInterface
     {
         return $this->responseMapper->getObject(
-            $this->soapClient->copy(['resource_id' => $id, 'category_id' => $categoryId]),
+            $this->soapClient->copy(['resource_id' => $id, 'category_id' => $folderId]),
             'copyResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );
@@ -66,7 +66,7 @@ trait ResourceTrait
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
      */
-    public function getByCategoryId(int $id): array
+    public function getByFolderId(int $id): array
     {
         return $this->responseMapper->getObjects(
             $this->soapClient->getByCategory(['category_id' => $id]),
@@ -124,15 +124,15 @@ trait ResourceTrait
     /**
      * @param int $id
      *
-     * @return CategoryInformationInterface
+     * @return FolderInformationInterface
      * @throws EmptyResultException
      */
-    public function getDefaultCategoryByCustomerId(int $id): CategoryInformationInterface
+    public function getDefaultFolderByMandatorId(int $id): FolderInformationInterface
     {
         return $this->responseMapper->getObject(
             $this->soapClient->getResourceDefaultCategory(['customer_id' => $id]),
             'getResourceDefaultCategoryResult',
-            $this->hydratorConfigFactory->createCategoryInformationConfig()
+            $this->hydratorConfigFactory->createFolderInformationConfig()
         );
     }
 
@@ -152,15 +152,15 @@ trait ResourceTrait
 
     /**
      * @param int $id
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function move(int $id, int $categoryId): ResourceInformationInterface
+    public function move(int $id, int $folderId): ResourceInformationInterface
     {
         return $this->responseMapper->getObject(
-            $this->soapClient->move(['resource_id' => $id, 'category_id' => $categoryId]),
+            $this->soapClient->move(['resource_id' => $id, 'category_id' => $folderId]),
             'moveResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );

@@ -4,7 +4,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
-use Scn\EvalancheSoapStruct\Struct\Generic\CategoryInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
@@ -48,12 +48,12 @@ interface MailingClientInterface extends ClientInterface
     /**
      * @param string $title
      * @param int $templateId
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function createDraft(string $title, int $templateId, int $categoryId): ResourceInformationInterface;
+    public function createDraft(string $title, int $templateId, int $folderId): ResourceInformationInterface;
 
     /**
      * @param int $id
@@ -318,12 +318,12 @@ interface MailingClientInterface extends ClientInterface
 
     /**
      * @param int $id
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function move(int $id, int $categoryId): ResourceInformationInterface;
+    public function move(int $id, int $folderId): ResourceInformationInterface;
 
     /**
      * @param int $id
@@ -411,12 +411,12 @@ interface MailingClientInterface extends ClientInterface
 
     /**
      * @param int $id
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function copy(int $id, int $categoryId): ResourceInformationInterface;
+    public function copy(int $id, int $folderId): ResourceInformationInterface;
 
     /**
      * @param int $id
@@ -432,7 +432,7 @@ interface MailingClientInterface extends ClientInterface
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
      */
-    public function getByCategoryId(int $id): array;
+    public function getByFolderId(int $id): array;
 
     /**
      * @param int $id
@@ -445,10 +445,10 @@ interface MailingClientInterface extends ClientInterface
     /**
      * @param int $id
      *
-     * @return CategoryInformationInterface
+     * @return FolderInformationInterface
      * @throws EmptyResultException
      */
-    public function getDefaultCategoryByCustomerId(int $id): CategoryInformationInterface;
+    public function getDefaultFolderByMandatorId(int $id): FolderInformationInterface;
 
     /**
      * @param string $id

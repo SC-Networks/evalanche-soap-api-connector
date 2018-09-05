@@ -25,7 +25,7 @@ final class TargetGroupClient extends AbstractClient implements TargetGroupClien
      * @param int $id
      * @param int $attributeId
      * @param int $optionId
-     * @param int $categoryId
+     * @param int $folderId
      * @param string $title
      *
      * @return ResourceInformationInterface
@@ -35,7 +35,7 @@ final class TargetGroupClient extends AbstractClient implements TargetGroupClien
         int $id,
         int $attributeId,
         int $optionId,
-        int $categoryId,
+        int $folderId,
         string $title
     ): ResourceInformationInterface {
         return $this->responseMapper->getObject(
@@ -43,7 +43,7 @@ final class TargetGroupClient extends AbstractClient implements TargetGroupClien
                 'pool_id' => $id,
                 'attribute_id' => $attributeId,
                 'option_id' => $optionId,
-                'category_id' => $categoryId,
+                'category_id' => $folderId,
                 'name' => $title
             ]),
             'createByOptionResult',

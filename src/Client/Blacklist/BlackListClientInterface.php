@@ -14,27 +14,27 @@ use Scn\EvalancheSoapStruct\Struct\Blacklist\BlackListInterface;
 interface BlackListClientInterface extends ClientInterface
 {
     /**
-     * @param int $customerId
+     * @param int $mandatorId
      * @param string $email
      * @param string $description
      *
      * @return void
      */
-    public function add(int $customerId, string $email, string $description): void;
+    public function add(int $mandatorId, string $email, string $description): void;
 
     /**
-     * @param int $customerId
+     * @param int $mandatorId
      * @param string $email
      *
      * @return void
      */
-    public function remove(int $customerId, string $email): void;
+    public function remove(int $mandatorId, string $email): void;
 
     /**
-     * @param int $customerId
+     * @param int $mandatorId
      *
      * @return BlackListInterface
      * @throws EmptyResultException
      */
-    public function get(int $customerId): BlackListInterface;
+    public function get(int $mandatorId): BlackListInterface;
 }

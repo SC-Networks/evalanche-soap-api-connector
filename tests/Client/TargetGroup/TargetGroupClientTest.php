@@ -67,7 +67,7 @@ class TargetGroupClientTest extends TestCase
         $id = 123;
         $attributeId = 556;
         $optionId = 7645;
-        $categoryId = 44523;
+        $folderId = 44523;
         $title = 'some title';
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
@@ -81,7 +81,7 @@ class TargetGroupClientTest extends TestCase
             'pool_id' => $id,
             'attribute_id' => $attributeId,
             'option_id' => $optionId,
-            'category_id' => $categoryId,
+            'category_id' => $folderId,
             'name' => $title,
         ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createByOptionResult',
@@ -89,7 +89,7 @@ class TargetGroupClientTest extends TestCase
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
-            $this->subject->createByOption($id, $attributeId, $optionId, $categoryId, $title)
+            $this->subject->createByOption($id, $attributeId, $optionId, $folderId, $title)
         );
     }
 

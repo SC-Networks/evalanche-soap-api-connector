@@ -14,15 +14,15 @@ trait CreateResourceTrait
 {
     /**
      * @param string $title
-     * @param int $categoryId
+     * @param int $folderId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function create(string $title, int $categoryId): ResourceInformationInterface
+    public function create(string $title, int $folderId): ResourceInformationInterface
     {
         return $this->responseMapper->getObject(
-            $this->soapClient->create(['name' => $title, 'category_id' => $categoryId]),
+            $this->soapClient->create(['name' => $title, 'category_id' => $folderId]),
             'createResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );

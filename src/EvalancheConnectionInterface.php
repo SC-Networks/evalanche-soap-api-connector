@@ -47,9 +47,9 @@ interface EvalancheConnectionInterface
 
     /**
      *
-     * @return Client\Category\CategoryClientInterface
+     * @return Client\Folder\FolderClientInterface
      */
-    public function createCategoryClient(): Client\Category\CategoryClientInterface;
+    public function createFolderClient(): Client\Folder\FolderClientInterface;
 
     /**
      *

@@ -1,35 +1,35 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Client\Category;
+namespace Scn\EvalancheSoapApiConnector\Client\Folder;
 
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
-use Scn\EvalancheSoapStruct\Struct\Generic\CategoryInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 
 /**
- * Class CategoryClient
+ * Class FolderClient
  *
- * @package Scn\EvalancheSoapApiConnector\Client\Category
+ * @package Scn\EvalancheSoapApiConnector\Client\Folder
  */
-final class CategoryClient extends AbstractClient implements CategoryClientInterface
+final class FolderClient extends AbstractClient implements FolderClientInterface
 {
     const PORTNAME = 'category';
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
      * @param string $title
-     * @param int $categoryId
+     * @param int $folderId
      *
-     * @return CategoryInformationInterface
+     * @return FolderInformationInterface
      * @throws EmptyResultException
      */
-    public function create(string $title, int $categoryId): CategoryInformationInterface
+    public function create(string $title, int $folderId): FolderInformationInterface
     {
         return $this->responseMapper->getObject(
-            $this->soapClient->create(['name' => $title, 'parent_category_id' => $categoryId]),
+            $this->soapClient->create(['name' => $title, 'parent_category_id' => $folderId]),
             'createResult',
-            $this->hydratorConfigFactory->createCategoryInformationConfig()
+            $this->hydratorConfigFactory->createFolderInformationConfig()
         );
     }
 
@@ -46,7 +46,7 @@ final class CategoryClient extends AbstractClient implements CategoryClientInter
     /**
      * @param int $id
      *
-     * @return CategoryInformationInterface[]
+     * @return FolderInformationInterface[]
      * @throws EmptyResultException
      */
     public function getSubCategories(int $id): array
@@ -54,7 +54,7 @@ final class CategoryClient extends AbstractClient implements CategoryClientInter
         return $this->responseMapper->getObjects(
             $this->soapClient->getSubCategories(['category_id' => $id]),
             'getSubCategoriesResult',
-            $this->hydratorConfigFactory->createCategoryInformationConfig()
+            $this->hydratorConfigFactory->createFolderInformationConfig()
         );
     }
 }

@@ -9,7 +9,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeCo
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeGroupConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeOptionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeRoleTypeConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\CategoryInformationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobResultConfig;
@@ -88,7 +88,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createContainerAttributeGroupConfig', ContainerAttributeGroupConfig::class],
             ['createContainerAttributeOptionConfig', ContainerAttributeOptionConfig::class],
             ['createContainerAttributeRoleTypeConfig', ContainerAttributeRoleTypeConfig::class],
-            ['createCategoryInformationConfig', CategoryInformationConfig::class],
+            ['createFolderInformationConfig', FolderInformationConfig::class],
             ['createTargetGroupDetailConfig', TargetGroupDetailConfig::class],
             ['createFormStatisticConfig', FormStatisticConfig::class],
             ['createServiceStatusConfig', ServiceStatusConfig::class],

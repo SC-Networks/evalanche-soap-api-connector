@@ -18,7 +18,7 @@ interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
     /**
      * @param int $id
      * @param string $title
-     * @param int $categoryId
+     * @param int $folderId
      * @param HashMapInterface $hashMap
      *
      * @return ResourceInformationInterface
@@ -27,7 +27,7 @@ interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
     public function create(
         int $id,
         string $title,
-        int $categoryId,
+        int $folderId,
         HashMapInterface $hashMap
     ): ResourceInformationInterface;
 
