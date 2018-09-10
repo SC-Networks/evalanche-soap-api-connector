@@ -12,11 +12,11 @@ use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 
 /**
- * Class CategoryClientTest
+ * Class FolderClientTest
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Folder
  */
-class CategoryClientTest extends TestCase
+class FolderClientTest extends TestCase
 {
     /**
      * @var FolderClient
@@ -123,7 +123,7 @@ class CategoryClientTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(
             FolderInformationInterface::class,
-            $this->subject->getSubCategories($id)
+            $this->subject->getSubFolderById($id)
         );
     }
 }

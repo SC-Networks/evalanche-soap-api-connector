@@ -476,7 +476,7 @@ Get Subfolders from Folder
 
 
 ```
-getSubCategories(
+getSubFolderById(
 	int <folder-id>
 ): FolderInformation[]
 ```
