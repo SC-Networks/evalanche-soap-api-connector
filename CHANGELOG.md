@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.6] - 2018-09-10
+### Changed
+- Renamed FolderClient/getSubCategories to getSubFolderById
+
 ## [0.1.5] - 2018-09-05
 ### Added
 - Changelog added

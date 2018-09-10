@@ -49,7 +49,7 @@ final class FolderClient extends AbstractClient implements FolderClientInterface
      * @return FolderInformationInterface[]
      * @throws EmptyResultException
      */
-    public function getSubCategories(int $id): array
+    public function getSubFolderById(int $id): array
     {
         return $this->responseMapper->getObjects(
             $this->soapClient->getSubCategories(['category_id' => $id]),
