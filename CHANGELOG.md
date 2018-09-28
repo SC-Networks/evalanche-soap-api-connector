@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.7] - 2018-09-28
+### Changed
+- Update Dependency Hydrator v2
+
 ## [0.1.6] - 2018-09-10
 ### Changed
 - Renamed FolderClient/getSubCategories to getSubFolderById
