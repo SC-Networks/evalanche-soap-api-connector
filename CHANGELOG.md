@@ -1,14 +1,14 @@
 # Changelog
 
-## [0.1.7] - 2018-09-28
+## [0.1.8] - 2018-09-29
 ### Changed
 - Update Dependency Hydrator v2
 
-## [0.1.6] - 2018-09-10
+## [0.1.7] - 2018-09-10
 ### Changed
 - Renamed FolderClient/getSubCategories to getSubFolderById
 
-## [0.1.5] - 2018-09-05
+## [0.1.6] - 2018-09-05
 ### Added
 - Changelog added
 
@@ -17,29 +17,29 @@
 - Clarify wording of API Methods / Parameter
 - Fixate the struct version to new Version
 
-## [0.1.4] - 2018-09-05
+## [0.1.5] - 2018-09-05
 ### Changed
 - Documentation updates
 - Fixate the struct version temporary
 
-## [0.1.3] - 2018-08-27
+## [0.1.4] - 2018-08-27
 ### Added
 - Add the possibility Hydrator Getter can return null values
 
 ### Fixed
 - Extractor removes '' values from array
 
-## [0.1.2] - 2018-08-27
+## [0.1.3] - 2018-08-27
 ### Changed 
 - Streamline update-/merge method names in the profile client
 
 ### Fixed
 - Error MassUpdateResultConfig Extractor/Hydrator Properties
 
-## [0.1.1] - 2018-08-24
+## [0.1.2] - 2018-08-24
 ### Changed 
 - Update struct version constraint
 
-## [0.1] - 2018-08-24
+## [0.1.1] - 2018-08-24
 ### Changed 
 - Bump struct version to 0.1
