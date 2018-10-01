@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.0] - 2018-10-01
+### Changed
+- Official release
+
 ## [0.1.8] - 2018-09-29
 ### Changed
 - Update Dependency Hydrator v2
