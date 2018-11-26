@@ -311,4 +311,11 @@ final class EvalancheConnection implements EvalancheConnectionInterface
     {
         return $this->createClient(Client\Blacklist\BlackListClient::class);
     }
+
+    /**
+     * @return Client\Webhook\WebhookClientInterface
+     */
+    public function createWebhookClient(): Client\Webhook\WebhookClientInterface {
+        return $this->createClient(Client\Webhook\WebhookClient::class);
+    }
 }
