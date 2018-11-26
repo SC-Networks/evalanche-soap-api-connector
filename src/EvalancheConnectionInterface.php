@@ -158,4 +158,9 @@ interface EvalancheConnectionInterface
      * @return Client\Blacklist\BlackListClientInterface
      */
     public function createBlackListClient(): Client\Blacklist\BlackListClientInterface;
+
+    /**
+     * @return Client\Webhook\WebhookClientInterface
+     */
+    public function createWebhookClient(): Client\Webhook\WebhookClientInterface;
 }

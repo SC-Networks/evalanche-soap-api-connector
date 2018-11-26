@@ -254,4 +254,12 @@ class EvalancheConnectionTest extends TestCase
             $this->subject->createBlackListClient()
         );
     }
+
+    public function testCreateWebhookClientCanReturnInstanceOfWebhookClient()
+    {
+        $this->assertInstanceOf(
+            Client\Webhook\WebhookClient::class,
+            $this->subject->createWebhookClient()
+        );
+    }
 }

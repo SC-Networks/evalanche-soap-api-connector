@@ -2393,6 +2393,14 @@ Update an user
 updateUser(User <user-data>): User
 ```
 
+##### WEBHOOK
+
+Trigger Webhook
+
+```
+trigger(int <webook-id>, int <profile-id>): void
+```
+
 ##### WORKFLOW
 
 Moves a workflow to a folder
