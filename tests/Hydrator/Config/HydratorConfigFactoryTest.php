@@ -17,6 +17,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\MassUpdateResultConfig
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceTypeInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ServiceStatusConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileTrackingHistoryConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupMemberShipConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingArticleConfig;
@@ -113,6 +114,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createBlackListConfig', BlackListConfig::class],
             ['createAccountConfig', AccountConfig::class],
             ['createDiscountConfig', DiscountConfig::class],
+            ['createProfileTrackingHistoryConfig', ProfileTrackingHistoryConfig::class],
         ];
     }
 }

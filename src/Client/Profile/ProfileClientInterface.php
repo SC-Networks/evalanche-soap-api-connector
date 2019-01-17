@@ -9,6 +9,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\MassUpdateResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileBounceStatusInterface;
+use Scn\EvalancheSoapStruct\Struct\Profile\ProfileTrackingHistoryInterface;
 use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupMemberShipInterface;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileActivityScoreInterface;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileGroupScoreInterface;
@@ -353,4 +354,18 @@ interface ProfileClientInterface extends ClientInterface
      * @throws EmptyResultException
      */
     public function updateByTargetGroupId(int $id, HashMapInterface $hashMap): bool;
+
+    /**
+     * @param int $profileId
+     * @param int $timestampStart
+     * @param int $timestampEnd
+     *
+     * @return ProfileTrackingHistoryInterface[]
+     * @throws EmptyResultException
+     */
+    public function getTrackingHistory(
+        int $profileId,
+        int $timestampStart,
+        int $timestampEnd
+    ): array;
 }

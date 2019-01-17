@@ -14,6 +14,7 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingStatusInterface;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileActivityScoreInterface;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileBounceStatusInterface;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileGroupScoreInterface;
+use Scn\EvalancheSoapStruct\Struct\Profile\ProfileTrackingHistoryInterface;
 use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupMemberShipInterface;
 
 /**
@@ -743,6 +744,32 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
                 ]
             ),
             'updateByTargetGroupResult'
+        );
+    }
+
+    /**
+     * @param int $profileId
+     * @param int $timestampStart
+     * @param int $timestampEnd
+     *
+     * @return ProfileTrackingHistoryInterface[]
+     * @throws EmptyResultException
+     */
+    public function getTrackingHistory(
+        int $profileId,
+        int $timestampStart,
+        int $timestampEnd
+    ): array {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getTrackingHistory(
+                [
+                    'profile_id' => $profileId,
+                    'from' => $timestampStart,
+                    'to' => $timestampEnd
+                ]
+            ),
+            'getTrackingHistoryResult',
+            $this->hydratorConfigFactory->createProfileTrackingHistoryConfig()
         );
     }
 }

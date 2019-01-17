@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0] - 2019-01-17
+### Added
+- Added ProfileClient/getTrackingHistory
+
 ## [1.0.0] - 2018-10-01
 ### Changed
 - Official release

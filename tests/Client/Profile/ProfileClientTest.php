@@ -14,6 +14,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\MassUpdateResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Profile\ProfileTrackingHistoryInterface;
 use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupMemberShipInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingStatusInterface;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileActivityScoreInterface;
@@ -88,7 +89,8 @@ class ProfileClientTest extends TestCase
             'updateById',
             'updateByKey',
             'updateByPool',
-            'updateByTargetGroup'
+            'updateByTargetGroup',
+            'getTrackingHistory'
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -1045,5 +1047,39 @@ class ProfileClientTest extends TestCase
             'tagWithOptionResult')->willReturn($response->tagWithOptionResult);
 
         $this->assertTrue($this->subject->tagWithOption($id, $values, $key, $doUpdate));
+    }
+
+    public function testGetTrackingHistoryCanReturnArrayOfProfileTrackingHistory()
+    {
+        $profileId = 333;
+        $timestampStart = 123456;
+        $timestampEnd = 234567;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ProfileTrackingHistoryInterface::class)->getMock();
+        $otherObject = $this->getMockBuilder(ProfileTrackingHistoryInterface::class)->getMock();
+
+        $response = new \stdClass();
+        $response->getTrackingHistoryResult = [
+            $object,
+            $otherObject
+        ];
+
+        $this->hydratorConfigFactory->expects($this->once())->method('createProfileTrackingHistoryConfig')->willReturn($config);
+        $this->soapClient->expects($this->once())->method('getTrackingHistory')->with(
+            [
+                'profile_id' => $profileId,
+                'from' => $timestampStart,
+                'to' => $timestampEnd
+            ]
+        )->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+            'getTrackingHistoryResult', $config)->willReturn($response->getTrackingHistoryResult);
+
+
+        $this->assertContainsOnlyInstancesOf(
+            ProfileTrackingHistoryInterface::class,
+            $this->subject->getTrackingHistory($profileId, $timestampStart, $timestampEnd)
+        );
     }
 }

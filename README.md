@@ -1991,6 +1991,17 @@ Retrieve all scoring values of a profile
 getScoresByProfileId(int <profile-id>): ProfileGroupScore[]
 ```
 
+Retrieve the tracking history of a profile in a certain date range
+
+
+```
+getTrackingHistory(
+	int <profile-id>,
+	int <timestamp-start>,
+	int <timestamp-end>
+): ProfileTrackingHistory[]
+```
+
 Retrieve all profiles which received a permission revocation in a certain date
 range
 
