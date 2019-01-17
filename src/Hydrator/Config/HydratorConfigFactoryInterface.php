@@ -240,4 +240,10 @@ interface HydratorConfigFactoryInterface
      * @return HydratorConfigInterface
      */
     public function createDiscountConfig(): HydratorConfigInterface;
+
+    /**
+     *
+     * @return HydratorConfigInterface
+     */
+    public function createProfileTrackingHistoryConfig(): HydratorConfigInterface;
 }
