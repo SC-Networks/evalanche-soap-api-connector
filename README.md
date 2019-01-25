@@ -2512,6 +2512,22 @@ Push existing profiles into a workflow
 pushProfilesIntoCampaign(int <workflow-id>, int[] <profile-ids>): bool
 ```
 
+
+Create a workflow by a JSON configuration
+
+
+```
+createConfigured(string <account-id>, int <schema-version>, string <workflow-configuration>): string
+```
+
+
+Export a specific workflow configuration as JSON string
+
+
+```
+export(string <workflow-id>): string
+```
+
 ## Testing
 
 ``` bash

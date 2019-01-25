@@ -101,4 +101,44 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
             'pushProfilesIntoCampaignResult'
         );
     }
+
+    /**
+     * Create a workflow by a JSON configuration
+     *
+     * @param string $accountId
+     * @param int $schemaVersion
+     * @param string $workflowConfiguration
+     *
+     * @return int
+     * @throws EmptyResultException
+     */
+    public function createConfigured(string $accountId, int $schemaVersion, string $workflowConfiguration): int
+    {
+        return $this->responseMapper->getInteger(
+            $this->soapClient->createConfigured([
+                'account_id' => $accountId,
+                'schema_version' => $schemaVersion,
+                'workflow_configuration' => $workflowConfiguration
+            ]),
+            'createResult'
+        );
+    }
+
+    /**
+     * Export a specific workflow configuration as JSON string
+     *
+     * @param string $workflowId
+     *
+     * @return string
+     * @throws EmptyResultException
+     */
+    public function export(string $workflowId): string
+    {
+        return $this->responseMapper->getString(
+            $this->soapClient->export([
+                'workflow_id' => $workflowId
+            ]),
+            'export'
+        );
+    }
 }
