@@ -50,7 +50,9 @@ class WorkflowClientTest extends TestCase
             'getByStartDateRange',
             'getByEndateRange',
             'getDetails',
-            'pushProfilesIntoCampaign'
+            'pushProfilesIntoCampaign',
+            'createConfigured',
+            'export'
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -162,6 +164,56 @@ class WorkflowClientTest extends TestCase
 
         $this->responseMapper->expects($this->once())->method('getBoolean')->with()->willReturn(true);
         $this->assertTrue($this->subject->pushProfilesIntoCampaign($id, $profileIds));
+    }
+
+    public function testCreateConfiguredReturnsInt()
+    {
+        $accountId = 123;
+        $schemaVersion = 1;
+        $workflowConfiguration = 'my config';
+
+        $result_int = 42;
+        $result = new \stdClass();
+        $result->createResult = $result_int;
+
+        $this->soapClient->expects($this->once())->method('createConfigured')->with([
+            'account_id' => $accountId,
+            'schema_version' => $schemaVersion,
+            'workflow_configuration' => $workflowConfiguration,
+        ])->willReturn($result);
+
+        $this->responseMapper
+            ->expects($this->once())
+            ->method('getInteger')
+            ->with($result, 'createResult')
+            ->willReturn($result_int);
+        $this->assertSame(
+            $result_int,
+            $this->subject->createConfigured($accountId, $schemaVersion, $workflowConfiguration)
+        );
+    }
+
+    public function testExportReturnString()
+    {
+        $workflowId = 'my workflow';
+
+        $result_string = 'my result';
+        $result = new \stdClass();
+        $result->createResult = $result_string;
+
+        $this->soapClient->expects($this->once())->method('export')->with([
+            'workflow_id' => $workflowId,
+        ])->willReturn($result);
+
+        $this->responseMapper
+            ->expects($this->once())
+            ->method('getString')
+            ->with($result)
+            ->willReturn($result_string);
+        $this->assertSame(
+            $result_string,
+            $this->subject->export($workflowId)
+        );
     }
 
 }
