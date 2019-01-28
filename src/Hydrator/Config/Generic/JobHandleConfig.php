@@ -35,8 +35,8 @@ class JobHandleConfig implements HydratorConfigInterface
             'status_description' => Property\TextValue::set('statusDescription'),
             'namespace' => Property\TextValue::set('namespace'),
             'method' => Property\TextValue::set('method'),
-            'resource_id' => Property\TextValue::set('resourceId'),
-            'result_chunks' => Property\TextValue::set('resultChunks'),
+            'resource_id' => Property\IntegerValue::set('resourceId'),
+            'result_chunks' => Property\IntegerValue::set('resultChunks'),
         ];
     }
 
@@ -51,8 +51,8 @@ class JobHandleConfig implements HydratorConfigInterface
             'status_description' => Property\TextValue::get('statusDescription'),
             'namespace' => Property\TextValue::get('namespace'),
             'method' => Property\TextValue::get('method'),
-            'resource_id' => Property\TextValue::get('resourceId'),
-            'result_chunks' => Property\TextValue::get('resultChunks'),
+            'resource_id' => Property\IntegerValue::get('resourceId'),
+            'result_chunks' => Property\IntegerValue::get('resultChunks'),
         ];
     }
 }
