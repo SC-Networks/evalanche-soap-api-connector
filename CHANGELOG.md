@@ -1,9 +1,5 @@
 # Changelog
 
-## [1.1.1] - 2019-01-28
-### Fixed
-- JobHandleConfig use wrong Property Setter/Getter
-
 ## [1.1.0] - 2019-01-17
 ### Added
 - Added ProfileClient/getTrackingHistory
