@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.1] - 2019-01-29
+### Fixed
+- Rename results for workflow methods export and createConfigured #37
+
 ## [1.1.0] - 2019-01-29
 ### Added
 - Add ProfileClient/getTrackingHistory to retrieve the tracking history of a
