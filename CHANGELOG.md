@@ -1,8 +1,14 @@
 # Changelog
 
-## [1.1.0] - 2019-01-17
+## [1.1.0] - 2019-01-29
 ### Added
-- Added ProfileClient/getTrackingHistory
+- Add ProfileClient/getTrackingHistory to retrieve the tracking history of a
+  single profile #24
+- Add methods to the workflow client to export/import workflow configurations
+  #28
+
+### Fixed
+- JobHandleConfig did not use the correct setter/getter methods #30
 
 ## [1.0.0] - 2018-10-01
 ### Changed
