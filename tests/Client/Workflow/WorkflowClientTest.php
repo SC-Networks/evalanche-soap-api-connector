@@ -185,7 +185,7 @@ class WorkflowClientTest extends TestCase
         $this->responseMapper
             ->expects($this->once())
             ->method('getInteger')
-            ->with($result, 'createResult')
+            ->with($result, 'createConfiguredResult')
             ->willReturn($result_int);
         $this->assertSame(
             $result_int,
@@ -208,7 +208,7 @@ class WorkflowClientTest extends TestCase
         $this->responseMapper
             ->expects($this->once())
             ->method('getString')
-            ->with($result)
+            ->with($result, 'exportResult')
             ->willReturn($result_string);
         $this->assertSame(
             $result_string,

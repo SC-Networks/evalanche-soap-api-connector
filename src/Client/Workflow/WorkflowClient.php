@@ -120,7 +120,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
                 'schema_version' => $schemaVersion,
                 'workflow_configuration' => $workflowConfiguration
             ]),
-            'createResult'
+            'createConfiguredResult'
         );
     }
 
@@ -138,7 +138,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
             $this->soapClient->export([
                 'workflow_id' => $workflowId
             ]),
-            'export'
+            'exportResult'
         );
     }
 }
