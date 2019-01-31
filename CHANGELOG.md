@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.2] - 2019-01-30
+### Fixed
+- Parameter count and naming of `createConfigured` was wrong #42
+
 ## [1.1.1] - 2019-01-29
 ### Fixed
 - Rename results for workflow methods export and createConfigured #37
