@@ -166,36 +166,45 @@ class WorkflowClientTest extends TestCase
         $this->assertTrue($this->subject->pushProfilesIntoCampaign($id, $profileIds));
     }
 
-    public function testCreateConfiguredReturnsInt()
+    public function testCreateConfiguredReturnsResourceInformation()
     {
-        $accountId = 123;
+        $name = 123;
         $schemaVersion = 1;
         $workflowConfiguration = 'my config';
+        $categoryId = 456;
 
-        $result_int = 42;
+        $resourceInformation = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $result = new \stdClass();
-        $result->createResult = $result_int;
+        $result->createResult = $resourceInformation;
 
         $this->soapClient->expects($this->once())->method('createConfigured')->with([
-            'account_id' => $accountId,
+            'name' => $name,
             'schema_version' => $schemaVersion,
-            'workflow_configuration' => $workflowConfiguration,
+            'configuration' => $workflowConfiguration,
+            'category_id' => $categoryId,
         ])->willReturn($result);
+
+        $resourceInformationConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $this->hydratorConfigFactory
+            ->expects($this->once())
+            ->method('createResourceInformationConfig')
+            ->with()
+            ->willReturn($resourceInformationConfig);
 
         $this->responseMapper
             ->expects($this->once())
-            ->method('getInteger')
-            ->with($result, 'createConfiguredResult')
-            ->willReturn($result_int);
+            ->method('getObject')
+            ->with($result, 'createConfiguredResult', $resourceInformationConfig)
+            ->willReturn($resourceInformation);
         $this->assertSame(
-            $result_int,
-            $this->subject->createConfigured($accountId, $schemaVersion, $workflowConfiguration)
+            $resourceInformation,
+            $this->subject->createConfigured($name, $schemaVersion, $workflowConfiguration, $categoryId)
         );
     }
 
     public function testExportReturnString()
     {
-        $workflowId = 'my workflow';
+        $workflowId = 42;
 
         $result_string = 'my result';
         $result = new \stdClass();

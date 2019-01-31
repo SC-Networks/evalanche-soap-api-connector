@@ -2476,7 +2476,7 @@ Create a workflow by a JSON configuration
 
 
 ```
-createConfigured(string <account-id>, int <schema-version>, string <workflow-configuration>): string
+createConfigured(string <name>, int <schema-version>, string <workflow-configuration>, int <category-id>): ResourceInformationInterface
 ```
 
 
@@ -2484,5 +2484,5 @@ Export a specific workflow configuration as JSON string
 
 
 ```
-export(string <workflow-id>): string
+export(int <workflow-id>): string
 ```

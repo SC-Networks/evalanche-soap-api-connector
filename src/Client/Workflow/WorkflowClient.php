@@ -105,34 +105,37 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Create a workflow by a JSON configuration
      *
-     * @param string $accountId
+     * @param string $name
      * @param int $schemaVersion
      * @param string $workflowConfiguration
+     * @param int $categoryId
      *
-     * @return int
+     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function createConfigured(string $accountId, int $schemaVersion, string $workflowConfiguration): int
+    public function createConfigured(string $name, int $schemaVersion, string $workflowConfiguration, int $categoryId = 0): ResourceInformationInterface
     {
-        return $this->responseMapper->getInteger(
+        return $this->responseMapper->getObject(
             $this->soapClient->createConfigured([
-                'account_id' => $accountId,
+                'name' => $name,
                 'schema_version' => $schemaVersion,
-                'workflow_configuration' => $workflowConfiguration
+                'configuration' => $workflowConfiguration,
+                'category_id' => $categoryId
             ]),
-            'createConfiguredResult'
+            'createConfiguredResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
         );
     }
 
     /**
      * Export a specific workflow configuration as JSON string
      *
-     * @param string $workflowId
+     * @param int $workflowId
      *
      * @return string
      * @throws EmptyResultException
      */
-    public function export(string $workflowId): string
+    public function export(int $workflowId): string
     {
         return $this->responseMapper->getString(
             $this->soapClient->export([

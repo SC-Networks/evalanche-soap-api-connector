@@ -53,21 +53,20 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     public function pushProfilesIntoCampaign(int $id, array $profileIds): bool;
 
     /**
-     * @param string $accountId
+     * @param string $name
      * @param int $schemaVersion
      * @param string $workflowConfiguration
+     * @param int $categoryId
      *
-     * @return int
-     * @throws EmptyResultException
+     * @return ResourceInformationInterface
      */
-    public function createConfigured(string $accountId, int $schemaVersion, string $workflowConfiguration): int;
+    public function createConfigured(string $name, int $schemaVersion, string $workflowConfiguration, int $categoryId = 0): ResourceInformationInterface;
 
     /**
-     * @param string $workflowId
+     * @param int $workflowId
      *
      * @return string
      * @throws EmptyResultException
      */
-    public function export(string $workflowId): string;
-
+    public function export(int $workflowId): string;
 }
