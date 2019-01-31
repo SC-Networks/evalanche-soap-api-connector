@@ -166,7 +166,7 @@ class WorkflowClientTest extends TestCase
         $this->assertTrue($this->subject->pushProfilesIntoCampaign($id, $profileIds));
     }
 
-    public function testCreateConfiguredReturnsInt()
+    public function testCreateConfiguredReturnsResourceInformation()
     {
         $name = 123;
         $schemaVersion = 1;
