@@ -31,7 +31,7 @@ class PoolAttributeConfigTest extends TestCase
         'type_id',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new PoolAttributeConfig();
     }

@@ -38,7 +38,7 @@ class BooleanValueTest extends TestCase
         $get = BooleanValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('bool', $dummy->getValue());
+        static::assertIsBool($dummy->getValue());
         static::assertSame($testValue, $dummy->getValue());
         static::assertFalse($get('value'));
     }
@@ -70,7 +70,7 @@ class BooleanValueTest extends TestCase
         $get = BooleanValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('bool', $dummy->getValue());
+        static::assertIsBool($dummy->getValue());
         static::assertSame($testValue, $dummy->getValue());
         static::assertTrue($get('value'));
     }

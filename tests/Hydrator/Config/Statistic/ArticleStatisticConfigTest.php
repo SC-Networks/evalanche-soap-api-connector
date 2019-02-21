@@ -33,7 +33,7 @@ class ArticleStatisticConfigTest extends TestCase
         'links',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ArticleStatisticConfig();
     }

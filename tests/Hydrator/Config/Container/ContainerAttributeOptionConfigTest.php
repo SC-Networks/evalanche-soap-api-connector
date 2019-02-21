@@ -28,7 +28,7 @@ class ContainerAttributeOptionConfigTest extends TestCase
         'order',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ContainerAttributeOptionConfig();
     }

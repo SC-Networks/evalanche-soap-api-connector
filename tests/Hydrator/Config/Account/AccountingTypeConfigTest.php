@@ -28,7 +28,7 @@ class AccountingTypeConfigTest extends TestCase
         'AccountingItems'
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new AccountingTypeConfig();
     }

@@ -27,7 +27,7 @@ class ClientStatisticConfigTest extends TestCase
         'devices',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ClientStatisticConfig();
     }

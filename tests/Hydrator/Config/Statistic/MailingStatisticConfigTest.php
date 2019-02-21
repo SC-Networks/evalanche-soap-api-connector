@@ -39,7 +39,7 @@ class MailingStatisticConfigTest extends TestCase
         'links',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MailingStatisticConfig();
     }

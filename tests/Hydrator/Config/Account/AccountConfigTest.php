@@ -25,7 +25,7 @@ class AccountConfigTest extends TestCase
         'Discount',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new AccountConfig();
     }

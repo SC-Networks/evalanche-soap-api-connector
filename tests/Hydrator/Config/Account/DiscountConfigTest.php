@@ -26,7 +26,7 @@ class DiscountConfigTest extends TestCase
         'Price'
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new DiscountConfig();
     }

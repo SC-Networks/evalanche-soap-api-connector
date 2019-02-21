@@ -26,7 +26,7 @@ class MailClientStatisticItemConfigTest extends TestCase
         'count',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MailClientStatisticItemConfig();
     }

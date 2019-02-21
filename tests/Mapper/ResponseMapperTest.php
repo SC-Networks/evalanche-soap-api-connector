@@ -26,7 +26,7 @@ class ResponseMapperTest extends TestCase
      */
     private $hydrator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->hydrator = $this->getMockBuilder(HydratorInterface::class)->getMock();
         $this->subject = new ResponseMapper(

@@ -33,7 +33,7 @@ class WorkflowDetailConfigTest extends TestCase
         'profile_count',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new WorkflowDetailConfig();
     }

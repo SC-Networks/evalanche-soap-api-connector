@@ -68,7 +68,7 @@ class MailingConfigurationConfigTest extends TestCase
         'htmlarea_9',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MailingConfigurationConfig();
     }

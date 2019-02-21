@@ -44,7 +44,7 @@ class ArrayOfObjectValueTest extends TestCase
         $get = ArrayOfObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('array', $dummy->getValue());
+        static::assertIsArray($dummy->getValue());
         static::assertSame($testValue->item, $dummy->getValue());
         static::assertSame($testValue->item, $get('value'));
     }
@@ -78,7 +78,7 @@ class ArrayOfObjectValueTest extends TestCase
         $get = ArrayOfObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('array', $dummy->getValue());
+        static::assertIsArray($dummy->getValue());
         static::assertSame([$testValue->item], $dummy->getValue());
         static::assertSame([$testValue->item], $get('value'));
     }
@@ -111,7 +111,7 @@ class ArrayOfObjectValueTest extends TestCase
         $get = ArrayOfObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('array', $dummy->getValue());
+        static::assertIsArray($dummy->getValue());
         static::assertSame([], $dummy->getValue());
         static::assertSame([], $get('value'));
     }
@@ -153,7 +153,7 @@ class ArrayOfObjectValueTest extends TestCase
         $get = ArrayOfObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('array', $dummy->getValue());
+        static::assertIsArray($dummy->getValue());
         static::assertContainsOnlyInstancesOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
 
@@ -193,7 +193,7 @@ class ArrayOfObjectValueTest extends TestCase
         $get = ArrayOfObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('array', $dummy->getValue());
+        static::assertIsArray($dummy->getValue());
         static::assertContainsOnlyInstancesOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
 }

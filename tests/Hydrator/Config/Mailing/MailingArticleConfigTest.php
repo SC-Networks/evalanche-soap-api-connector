@@ -34,7 +34,7 @@ class MailingArticleConfigTest extends TestCase
         'slot',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MailingArticleConfig();
     }

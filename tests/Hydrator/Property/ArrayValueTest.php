@@ -43,7 +43,7 @@ class ArrayValueTest extends TestCase
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('array', $dummy->getValue());
+        static::assertIsArray($dummy->getValue());
         static::assertSame($testValue->item, $dummy->getValue());
         static::assertSame($testValue->item, $get('value'));
     }
@@ -77,7 +77,7 @@ class ArrayValueTest extends TestCase
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('array', $dummy->getValue());
+        static::assertIsArray($dummy->getValue());
         static::assertSame([$testValue->item], $dummy->getValue());
         static::assertSame([$testValue->item], $get('value'));
     }
@@ -110,7 +110,7 @@ class ArrayValueTest extends TestCase
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('array', $dummy->getValue());
+        static::assertIsArray($dummy->getValue());
         static::assertSame([], $dummy->getValue());
         static::assertSame([], $get('value'));
     }

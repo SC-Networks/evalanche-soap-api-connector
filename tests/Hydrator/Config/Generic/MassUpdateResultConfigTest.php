@@ -28,7 +28,7 @@ class MassUpdateResultConfigTest extends TestCase
         'error',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MassUpdateResultConfig();
     }

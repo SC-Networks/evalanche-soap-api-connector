@@ -30,7 +30,7 @@ class ProfileActivityScoreConfigTest extends TestCase
         'resource_id',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ProfileActivityScoreConfig();
     }

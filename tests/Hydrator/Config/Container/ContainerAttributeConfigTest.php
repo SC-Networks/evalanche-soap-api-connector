@@ -34,7 +34,7 @@ class ContainerAttributeConfigTest extends TestCase
         'allows_options',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ContainerAttributeConfig();
     }

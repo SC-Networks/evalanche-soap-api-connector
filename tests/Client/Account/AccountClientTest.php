@@ -43,7 +43,7 @@ class AccountClientTest extends TestCase
      */
     private $extractor;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
             'getAccount',

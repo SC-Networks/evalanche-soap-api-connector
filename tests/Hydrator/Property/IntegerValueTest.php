@@ -39,7 +39,7 @@ class IntegerValueTest extends TestCase
         $get = IntegerValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('int', $dummy->getValue());
+        static::assertIsInt($dummy->getValue());
         static::assertSame($testValue, $dummy->getValue());
         static::assertSame($testValue, $get('value'));
     }
@@ -72,7 +72,7 @@ class IntegerValueTest extends TestCase
         $get = IntegerValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('int', $dummy->getValue());
+        static::assertIsInt($dummy->getValue());
         static::assertSame(0, $dummy->getValue());
         static::assertSame(0, $get('value'));
     }

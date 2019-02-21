@@ -30,7 +30,7 @@ class MailingStatusConfigTest extends TestCase
         'profile_data',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MailingStatusConfig();
     }

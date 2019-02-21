@@ -31,7 +31,7 @@ class JobHandleConfigTest extends TestCase
         'result_chunks',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new JobHandleConfig();
     }
