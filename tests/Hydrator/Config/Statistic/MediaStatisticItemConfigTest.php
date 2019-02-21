@@ -27,7 +27,7 @@ class MediaStatisticItemConfigTest extends TestCase
         'unique_clicks',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MediaStatisticItemConfig();
     }

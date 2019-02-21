@@ -27,7 +27,7 @@ class SmartLinkConfigTest extends TestCase
         'tracking_url',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new SmartLinkConfig();
     }

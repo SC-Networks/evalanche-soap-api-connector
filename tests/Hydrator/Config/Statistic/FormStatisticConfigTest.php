@@ -33,7 +33,7 @@ class FormStatisticConfigTest extends TestCase
         'mandatory_errors',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new FormStatisticConfig();
     }

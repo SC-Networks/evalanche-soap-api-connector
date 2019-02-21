@@ -30,7 +30,7 @@ class FormatStatisticItemConfigTest extends TestCase
         'multiple_clickrate_relative',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new FormatStatisticItemConfig();
     }

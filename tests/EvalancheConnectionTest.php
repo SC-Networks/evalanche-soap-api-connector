@@ -46,7 +46,7 @@ class EvalancheConnectionTest extends TestCase
      */
     private $extrator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->config = $this->getMockBuilder(EvalancheConfigInterface::class)->getMock();
         $this->soapClientFactory = $this->getMockBuilder(SoapClientFactoryInterface::class)->getMock();

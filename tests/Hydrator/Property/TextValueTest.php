@@ -40,7 +40,7 @@ class TextValueTest extends TestCase
         $get = TextValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('string', $dummy->getValue());
+        static::assertIsString($dummy->getValue());
         static::assertSame($testValue, $dummy->getValue());
         static::assertSame($testValue, $get('value'));
     }
@@ -73,7 +73,7 @@ class TextValueTest extends TestCase
         $get = TextValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('string', $dummy->getValue());
+        static::assertIsString($dummy->getValue());
         static::assertSame('' . $testValue, $dummy->getValue());
         static::assertSame('' . $testValue, $get('value'));
     }

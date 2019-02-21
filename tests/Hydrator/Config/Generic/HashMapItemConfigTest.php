@@ -25,7 +25,7 @@ class HashMapItemConfigTest extends TestCase
         'value'
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new HashMapItemConfig();
     }

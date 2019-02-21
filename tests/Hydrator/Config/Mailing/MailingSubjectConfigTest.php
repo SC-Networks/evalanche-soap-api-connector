@@ -26,7 +26,7 @@ class MailingSubjectConfigTest extends TestCase
         'subjectline',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MailingSubjectConfig();
     }

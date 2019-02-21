@@ -39,7 +39,7 @@ class FloatValueTest extends TestCase
         $get = FloatValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('float', $dummy->getValue());
+        static::assertIsFloat($dummy->getValue());
         static::assertSame($testValue, $dummy->getValue());
         static::assertSame($testValue, $get('value'));
     }
@@ -72,7 +72,7 @@ class FloatValueTest extends TestCase
         $get = FloatValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
         static::assertInstanceOf(\Closure::class, $get);
-        static::assertInternalType('float', $dummy->getValue());
+        static::assertIsFloat($dummy->getValue());
         static::assertSame(0.0, $dummy->getValue());
         static::assertSame(0.0, $get('value'));
     }

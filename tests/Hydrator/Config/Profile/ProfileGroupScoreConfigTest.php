@@ -29,7 +29,7 @@ class ProfileGroupScoreConfigTest extends TestCase
         'profile_score',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ProfileGroupScoreConfig();
     }

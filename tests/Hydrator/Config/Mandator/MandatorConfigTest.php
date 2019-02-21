@@ -27,7 +27,7 @@ class MandatorConfigTest extends TestCase
         'domain'
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new MandatorConfig();
     }

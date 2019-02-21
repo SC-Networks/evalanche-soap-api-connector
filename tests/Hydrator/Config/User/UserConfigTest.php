@@ -36,7 +36,7 @@ class UserConfigTest extends TestCase
         'password',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new UserConfig();
     }

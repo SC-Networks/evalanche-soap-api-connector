@@ -41,7 +41,7 @@ class ReportClientTest extends TestCase
      */
     private $extractor;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock(['addResourceToReport']);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();

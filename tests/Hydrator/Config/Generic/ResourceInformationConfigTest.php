@@ -30,7 +30,7 @@ class ResourceInformationConfigTest extends TestCase
         'name',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ResourceInformationConfig();
     }

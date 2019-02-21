@@ -36,7 +36,7 @@ class ProfileTrackingHistoryConfigTest extends TestCase
         'referrer_domain'
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ProfileTrackingHistoryConfig();
     }

@@ -27,7 +27,7 @@ class ContainerAttributeGroupConfigTest extends TestCase
         'sort_order',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new ContainerAttributeGroupConfig();
     }
