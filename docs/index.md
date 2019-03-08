@@ -1999,7 +1999,7 @@ massUpdate(
 	int <pool-id>,
 	string <key-pool-attribute-name>,
 	string[] <pool-attribute-names>,
-	HashMap[] <data>,
+	string[][] <data>,
 	bool <merge>,
 	bool <ignore-missing>
 ): MassUpdateResult
