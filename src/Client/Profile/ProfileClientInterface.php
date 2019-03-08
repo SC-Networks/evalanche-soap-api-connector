@@ -215,9 +215,9 @@ interface ProfileClientInterface extends ClientInterface
 
     /**
      * @param int $id
-     * @param string $keyAttributeName
+     * @param string $keyAttributeTitle
      * @param string[] $attributes
-     * @param string[] $data
+     * @param string[][] $data
      * @param bool $merge
      * @param bool $ignoreMissing
      *

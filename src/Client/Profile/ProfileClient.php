@@ -448,7 +448,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
      * @param int $id
      * @param string $keyAttributeTitle
      * @param string[] $attributes
-     * @param string[] $data
+     * @param string[][] $data
      * @param bool $merge
      * @param bool $ignoreMissing
      *
