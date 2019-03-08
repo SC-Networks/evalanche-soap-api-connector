@@ -47,6 +47,7 @@ class PoolClientTest extends TestCase
         $this->soapClient = $this->getWsdlMock([
             'addAttribute',
             'addAttributeOptions',
+            'deleteAttribute',
             'deleteAttributeOption',
             'getAttributes',
             'updateAttributeOption'
@@ -120,6 +121,28 @@ class PoolClientTest extends TestCase
             PoolAttributeInterface::class,
             $this->subject->addAttributeOptions($id, $attributeId, $label)
         );
+    }
+
+    public function testDeleteAttributeCanReturnBool() {
+        $id = 345;
+        $attributeId = 456;
+
+        $response = new \stdClass();
+        $response->deleteAttributeResult = true;
+
+        $this->soapClient->expects($this->once())
+            ->method('deleteAttribute')
+            ->with([
+                'pool_id' => $id,
+                'attribute_id' => $attributeId
+            ])->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getBoolean')
+            ->with($response, 'deleteAttributeResult')
+            ->willReturn($response->deleteAttributeResult);
+
+        $this->assertIsBool($this->subject->deleteAttribute($id, $attributeId));
     }
 
     public function testDeleteAttributeOptionCanReturnInstanceOfPoolAttribute()

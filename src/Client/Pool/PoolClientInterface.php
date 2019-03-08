@@ -37,6 +37,14 @@ interface PoolClientInterface extends ClientInterface, ResourceTraitInterface
     /**
      * @param int $id
      * @param int $attributeId
+     * @return bool
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function deleteAttribute(int $id, int $attributeId): bool;
+
+    /**
+     * @param int $id
+     * @param int $attributeId
      * @param int $optionId
      *
      * @return PoolAttributeInterface

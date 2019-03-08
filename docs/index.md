@@ -1686,6 +1686,13 @@ Adds options to an existing attribute
 addAttributeOption(int <pool-id>, int <attribute-id>, string[] <option-labels>): PoolAttribute
 ```
 
+Delete an existing attribute
+
+
+```
+deleteAttribute(int <pool-id>, int <attribute-id>): bool
+```
+
 Delete an existing attribute option
 
 
