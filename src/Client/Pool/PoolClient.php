@@ -66,6 +66,22 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
     /**
      * @param int $id
      * @param int $attributeId
+     * @return bool
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function deleteAttribute(int $id, int $attributeId): bool {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->deleteAttribute([
+                'pool_id' => $id,
+                'attribute_id' => $attributeId
+            ]),
+            'deleteAttributeResult'
+        );
+    }
+
+    /**
+     * @param int $id
+     * @param int $attributeId
      * @param int $optionId
      *
      * @return PoolAttributeInterface
