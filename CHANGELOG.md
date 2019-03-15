@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.0] - 2019-03-15
+### Added
+- Add PoolClient/deleteAttribute to delete Pool Attributes #45
+
+### Changed
+- Update PHPUnit
+
+### Fixed
+-  Documentation #46
+
 ## [1.1.2] - 2019-01-30
 ### Fixed
 - Parameter count and naming of `createConfigured` was wrong #42
