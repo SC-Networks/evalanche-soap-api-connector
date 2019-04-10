@@ -1207,7 +1207,7 @@ Add articles to a mailing
 ```
 addArticles(
 	int <mailing-id>,
-
+	MailingArticleInterface[] <mailing-article>
 ): MailingArticle
 ```
 
