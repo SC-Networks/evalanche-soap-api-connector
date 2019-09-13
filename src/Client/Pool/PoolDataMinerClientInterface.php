@@ -20,5 +20,4 @@ interface PoolDataMinerClientInterface extends ClientInterface, ResourceTraitInt
      * @return ResourceInformationInterface
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface;
-
 }

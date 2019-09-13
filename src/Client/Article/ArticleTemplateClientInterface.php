@@ -12,5 +12,4 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
  */
 interface ArticleTemplateClientInterface extends ClientInterface, ResourceTraitInterface
 {
-
 }

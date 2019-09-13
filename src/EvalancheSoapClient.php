@@ -65,8 +65,12 @@ class EvalancheSoapClient extends \SoapClient
                 throw new RequestException($exception->getMessage());
             } else {
                 throw new DebugRequestException(
-                    sprintf('Message: %s ' . PHP_EOL . 'Request: %s ' . PHP_EOL . 'Response: %s',
-                        $exception->getMessage(), $this->__getLastRequest(), $this->__getLastResponse())
+                    sprintf(
+                        'Message: %s ' . PHP_EOL . 'Request: %s ' . PHP_EOL . 'Response: %s',
+                        $exception->getMessage(),
+                        $this->__getLastRequest(),
+                        $this->__getLastResponse()
+                    )
                 );
             }
         }

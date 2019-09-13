@@ -11,13 +11,13 @@ use Scn\EvalancheSoapApiConnector\TestCase;
  */
 class TextValueTest extends TestCase
 {
-
     public function testEverything()
     {
-        $testValue = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            ceil(10 / strlen($x)))), 1, 10);
-        $dummy = new class
-        {
+        $testValue = substr(str_shuffle(str_repeat(
+            $x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            ceil(10 / strlen($x))
+        )), 1, 10);
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -49,8 +49,7 @@ class TextValueTest extends TestCase
     public function testEverythingInvalidInputType()
     {
         $testValue = mt_rand(1, PHP_INT_MAX);
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()

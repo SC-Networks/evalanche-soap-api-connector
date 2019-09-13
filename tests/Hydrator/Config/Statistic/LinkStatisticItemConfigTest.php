@@ -55,5 +55,4 @@ class LinkStatisticItemConfigTest extends TestCase
             $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
-
 }

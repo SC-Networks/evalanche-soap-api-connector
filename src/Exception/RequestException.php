@@ -9,5 +9,4 @@ namespace Scn\EvalancheSoapApiConnector\Exception;
  */
 final class RequestException extends EvalancheClientException
 {
-
 }

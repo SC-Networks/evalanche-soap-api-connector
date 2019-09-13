@@ -135,8 +135,11 @@ class MailingClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createClientStatisticConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getClientStatistics')->with(['mailing_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getClientStatisticsResult',
-            $config)->willReturn($response->getClientStatisticsResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getClientStatisticsResult',
+            $config
+        )->willReturn($response->getClientStatisticsResult);
 
         $this->assertInstanceOf(
             ClientStatisticInterface::class,
@@ -158,9 +161,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getStatistics')->with([
             'mailing_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getStatisticsResult',
-            $config)->willReturn($response->getStatisticsResult);
+            $config
+        )->willReturn($response->getStatisticsResult);
 
         $this->assertInstanceOf(
             MailingStatisticInterface::class,
@@ -193,8 +198,11 @@ class MailingClientTest extends TestCase
             'timeframe' => $timeFrame,
             'profile_attributes' => $profileAttributes,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getStatusResult',
-            $config)->willReturn($response->getStatusResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getStatusResult',
+            $config
+        )->willReturn($response->getStatusResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingStatusInterface::class,
@@ -224,8 +232,11 @@ class MailingClientTest extends TestCase
             'start_timestamp' => $timestampStart,
             'end_timestamp' => $timestampEnd,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getImpressionsResult',
-            $config)->willReturn($response->getImpressionsResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getImpressionsResult',
+            $config
+        )->willReturn($response->getImpressionsResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingImpressionInterface::class,
@@ -243,8 +254,11 @@ class MailingClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createServiceStatusConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('isAlive')->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'isAliveResult',
-            $config)->willReturn($response->isAliveResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'isAliveResult',
+            $config
+        )->willReturn($response->isAliveResult);
 
         $this->assertInstanceOf(
             ServiceStatusInterface::class,
@@ -273,9 +287,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'configuration' => $extractedData,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'setConfigurationResult',
-            $config)->willReturn($response->setConfigurationResult);
+            $config
+        )->willReturn($response->setConfigurationResult);
 
         $this->assertInstanceOf(
             MailingConfigurationInterface::class,
@@ -298,8 +314,10 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'subjects' => ['item' => $subjects],
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'setSubjectsResult')->willReturn($response->setSubjectsResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'setSubjectsResult'
+        )->willReturn($response->setSubjectsResult);
 
         $this->assertTrue($this->subject->setSubjects($id, $subjects));
     }
@@ -322,8 +340,11 @@ class MailingClientTest extends TestCase
             'type_id' => $id,
             'mandator_id' => $mandatorId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getByTypeIdResult',
-            $config)->willReturn($response->getByTypeIdResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getByTypeIdResult',
+            $config
+        )->willReturn($response->getByTypeIdResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingDetailInterface::class,
@@ -349,9 +370,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getSendableDrafts')->with([
             'unsent' => $unSent,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getSendableDraftsResult',
-            $config)->willReturn($response->getSendableDraftsResult);
+            $config
+        )->willReturn($response->getSendableDraftsResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -379,9 +402,11 @@ class MailingClientTest extends TestCase
             'send_time' => $sendTime,
             'speed' => $speed,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'sendToTargetgroupResult',
-            $config)->willReturn($response->sendToTargetgroupResult);
+            $config
+        )->willReturn($response->sendToTargetgroupResult);
 
         $this->assertInstanceOf(
             MailingDetailInterface::class,
@@ -408,9 +433,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getAllArticleImpressionProfilesResult',
-            $config)->willReturn($response->getAllArticleImpressionProfilesResult);
+            $config
+        )->willReturn($response->getAllArticleImpressionProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -432,9 +459,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getConfiguration')->with([
             'mailing_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getConfigurationResult',
-            $config)->willReturn($response->getConfigurationResult);
+            $config
+        )->willReturn($response->getConfigurationResult);
 
         $this->assertInstanceOf(
             MailingConfigurationInterface::class,
@@ -458,8 +487,11 @@ class MailingClientTest extends TestCase
             'resource_id' => $id,
             'category_id' => $folderId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'moveResult',
-            $config)->willReturn($response->moveResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'moveResult',
+            $config
+        )->willReturn($response->moveResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -486,8 +518,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getBounceProfilesResult',
-            $config)->willReturn($response->getBounceProfilesResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getBounceProfilesResult',
+            $config
+        )->willReturn($response->getBounceProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -513,9 +548,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getSubjects')->with([
             'mailing_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getSubjectsResult',
-            $config)->willReturn($response->getSubjectsResult);
+            $config
+        )->willReturn($response->getSubjectsResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingSubjectInterface::class,
@@ -548,9 +585,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'reference_ids' => $referenceIds,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'removeArticlesResult',
-            $config)->willReturn($response->removeArticlesResult);
+            $config
+        )->willReturn($response->removeArticlesResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingArticleInterface::class,
@@ -579,9 +618,11 @@ class MailingClientTest extends TestCase
             'link_id' => $linkId,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getLinkClickProfilesResult',
-            $config)->willReturn($response->getLinkClickProfilesResult);
+            $config
+        )->willReturn($response->getLinkClickProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -607,9 +648,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getArticles')->with([
             'mailing_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getArticlesResult',
-            $config)->willReturn($response->getArticlesResult);
+            $config
+        )->willReturn($response->getArticlesResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingArticleInterface::class,
@@ -636,8 +679,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getClickProfilesResult',
-            $config)->willReturn($response->getClickProfilesResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getClickProfilesResult',
+            $config
+        )->willReturn($response->getClickProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -663,9 +709,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getArticleStatistics')->with([
             'mailing_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getArticleStatisticsResult',
-            $config)->willReturn($response->getArticleStatisticsResult);
+            $config
+        )->willReturn($response->getArticleStatisticsResult);
 
         $this->assertContainsOnlyInstancesOf(
             ArticleStatisticInterface::class,
@@ -693,9 +741,11 @@ class MailingClientTest extends TestCase
             'mandator_id' => $id,
             'unsent' => $unSent,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getSendableDraftsByMandatorIdResult',
-            $config)->willReturn($response->getSendableDraftsByMandatorIdResult);
+            $config
+        )->willReturn($response->getSendableDraftsByMandatorIdResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -734,8 +784,11 @@ class MailingClientTest extends TestCase
             'template_id' => $templateId,
             'category_id' => $folderId,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createDraftResult',
-            $config)->willReturn($response->createDraftResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createDraftResult',
+            $config
+        )->willReturn($response->createDraftResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -762,9 +815,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getSoftbounceProfilesResult',
-            $config)->willReturn($response->getSoftbounceProfilesResult);
+            $config
+        )->willReturn($response->getSoftbounceProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -786,8 +841,10 @@ class MailingClientTest extends TestCase
                 'cursor' => $cursor,
             ]
         )->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'setResultCursorResult')->willReturn($response->setResultCursorResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'setResultCursorResult'
+        )->willReturn($response->setResultCursorResult);
 
         $this->assertFalse($this->subject->setResultCursor($id, $cursor));
     }
@@ -811,9 +868,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getImpressionProfilesResult',
-            $config)->willReturn($response->getImpressionProfilesResult);
+            $config
+        )->willReturn($response->getImpressionProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -840,9 +899,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getRecipientsProfilesResult',
-            $config)->willReturn($response->getRecipientsProfilesResult);
+            $config
+        )->willReturn($response->getRecipientsProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -864,8 +925,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getResults')->with([
             'job_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getResultsResult',
-            $config)->willReturn($response->getResultsResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getResultsResult',
+            $config
+        )->willReturn($response->getResultsResult);
 
         $this->assertInstanceOf(
             JobResultInterface::class,
@@ -892,9 +956,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getMultipleImpressionProfilesResult',
-            $config)->willReturn($response->getMultipleImpressionProfilesResult);
+            $config
+        )->willReturn($response->getMultipleImpressionProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -921,9 +987,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getAllLinkClickProfilesResult',
-            $config)->willReturn($response->getAllLinkClickProfilesResult);
+            $config
+        )->willReturn($response->getAllLinkClickProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -953,15 +1021,20 @@ class MailingClientTest extends TestCase
             ]
         ];
 
-        $this->extractor->expects($this->once())->method('extractArray')->with($config,
-            $articles)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extractArray')->with(
+            $config,
+            $articles
+        )->willReturn($extractedData);
         $this->hydratorConfigFactory->expects($this->exactly(2))->method('createMailingArticleConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('addArticles')->with([
             'mailing_id' => $id,
             'articles' => $extractedData
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'addArticlesResult',
-            $config)->willReturn($response->addArticlesResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'addArticlesResult',
+            $config
+        )->willReturn($response->addArticlesResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingArticleInterface::class,
@@ -988,9 +1061,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getHardbounceProfilesResult',
-            $config)->willReturn($response->getHardbounceProfilesResult);
+            $config
+        )->willReturn($response->getHardbounceProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -1017,9 +1092,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getMultipleClickProfilesResult',
-            $config)->willReturn($response->getMultipleClickProfilesResult);
+            $config
+        )->willReturn($response->getMultipleClickProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -1048,9 +1125,11 @@ class MailingClientTest extends TestCase
             'article_id' => $article_id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getArticleImpressionProfilesResult',
-            $config)->willReturn($response->getArticleImpressionProfilesResult);
+            $config
+        )->willReturn($response->getArticleImpressionProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -1077,9 +1156,11 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'attribute_names' => $attributeTitles,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getUnsubscriptionProfilesResult',
-            $config)->willReturn($response->getUnsubscriptionProfilesResult);
+            $config
+        )->willReturn($response->getUnsubscriptionProfilesResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -1103,8 +1184,10 @@ class MailingClientTest extends TestCase
             'mailing_id' => $id,
             'profile_ids' => $profileIds,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getArray')->with($response,
-            'sendToProfilesResult')->willReturn($response->sendToProfilesResult);
+        $this->responseMapper->expects($this->once())->method('getArray')->with(
+            $response,
+            'sendToProfilesResult'
+        )->willReturn($response->sendToProfilesResult);
 
         $this->assertSame(
             $profileIds,
@@ -1126,9 +1209,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getDetails')->with([
             'mailing_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getDetailsResult',
-            $config)->willReturn($response->getDetailsResult);
+            $config
+        )->willReturn($response->getDetailsResult);
 
         $this->assertInstanceOf(
             MailingDetailInterface::class,
@@ -1150,8 +1235,11 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getJobInformation')->with([
             'job_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getJobInformationResult',
-            $config)->willReturn($response->getJobInformationResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getJobInformationResult',
+            $config
+        )->willReturn($response->getJobInformationResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -1167,8 +1255,10 @@ class MailingClientTest extends TestCase
         $response->getResultCursorResult = 'some return string';
 
         $this->soapClient->expects($this->once())->method('getResultCursor')->with(['job_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getString')->with($response,
-            'getResultCursorResult')->willReturn($response->getResultCursorResult);
+        $this->responseMapper->expects($this->once())->method('getString')->with(
+            $response,
+            'getResultCursorResult'
+        )->willReturn($response->getResultCursorResult);
 
         $this->assertSame(
             'some return string',
@@ -1192,8 +1282,11 @@ class MailingClientTest extends TestCase
             'resource_id' => $id,
             'name' => $title,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'renameResult',
-            $config)->willReturn($response->renameResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'renameResult',
+            $config
+        )->willReturn($response->renameResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -1223,9 +1316,11 @@ class MailingClientTest extends TestCase
             'start_timestamp' => $timestampStart,
             'end_timestamp' => $timestampEnd,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getClicksResult',
-            $config)->willReturn($response->getClicksResult);
+            $config
+        )->willReturn($response->getClicksResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingClickInterface::class,
@@ -1246,8 +1341,11 @@ class MailingClientTest extends TestCase
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceTypeInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getTypeIds')->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getTypeIdsResult',
-            $config)->willReturn($response->getByTypeIdResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getTypeIdsResult',
+            $config
+        )->willReturn($response->getByTypeIdResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceTypeInformationInterface::class,
@@ -1263,8 +1361,10 @@ class MailingClientTest extends TestCase
         $response->deleteResult = true;
 
         $this->soapClient->expects($this->once())->method('delete')->with(['resource_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'deleteResult')->willReturn($response->deleteResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'deleteResult'
+        )->willReturn($response->deleteResult);
 
         $this->assertTrue($this->subject->delete($id));
     }
@@ -1285,8 +1385,11 @@ class MailingClientTest extends TestCase
             'resource_id' => $id,
             'category_id' => $folderId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'copyResult',
-            $config)->willReturn($response->copyResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'copyResult',
+            $config
+        )->willReturn($response->copyResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -1309,8 +1412,11 @@ class MailingClientTest extends TestCase
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getAll')->with(['mandator_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getAllResult',
-            $config)->willReturn($response->getAllResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAllResult',
+            $config
+        )->willReturn($response->getAllResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -1333,8 +1439,11 @@ class MailingClientTest extends TestCase
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getByCategory')->with(['category_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getByCategoryResult',
-            $config)->willReturn($response->getByCategoryResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getByCategoryResult',
+            $config
+        )->willReturn($response->getByCategoryResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -1354,8 +1463,11 @@ class MailingClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getById')->with(['resource_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getByIdResult',
-            $config)->willReturn($response->getByExternalIdResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getByIdResult',
+            $config
+        )->willReturn($response->getByExternalIdResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -1375,8 +1487,11 @@ class MailingClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getResourceDefaultCategory')->with(['customer_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getResourceDefaultCategoryResult',
-            $config)->willReturn($response->getResourceDefaultCategoryResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getResourceDefaultCategoryResult',
+            $config
+        )->willReturn($response->getResourceDefaultCategoryResult);
 
         $this->assertInstanceOf(
             FolderInformationInterface::class,
@@ -1396,8 +1511,11 @@ class MailingClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getByExternalId')->with(['external_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getByExternalIdResult',
-            $config)->willReturn($response->getByExternalIdResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getByExternalIdResult',
+            $config
+        )->willReturn($response->getByExternalIdResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,

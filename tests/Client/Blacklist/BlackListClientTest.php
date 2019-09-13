@@ -90,8 +90,10 @@ class BlackListClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('get')->with([
             'CustomerId' => $mandatorId
             ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjectDirectly')->with($response,
-            $config)->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObjectDirectly')->with(
+            $response,
+            $config
+        )->willReturn($response);
 
         $this->assertInstanceOf(
             BlackListInterface::class,

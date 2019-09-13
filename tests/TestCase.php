@@ -20,5 +20,4 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         return $this->getMockFromWsdl(__DIR__ . '/evalanche.wsdl', '', '', $wsdl_methods);
     }
-
 }

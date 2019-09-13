@@ -120,8 +120,10 @@ class ProfileClientTest extends TestCase
             'score' => $score,
             'name' => $title
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'addScoreResult')->willReturn($response->addScoreResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'addScoreResult'
+        )->willReturn($response->addScoreResult);
 
         $this->assertTrue($this->subject->addScore($profileId, $scoringGroupId, $score, $title));
     }
@@ -140,15 +142,19 @@ class ProfileClientTest extends TestCase
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('create')->with([
             'pool_id' => $id,
             'data' => $extractedData
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getInteger')->with($response,
-            'createResult')->willReturn($response->createResult);
+        $this->responseMapper->expects($this->once())->method('getInteger')->with(
+            $response,
+            'createResult'
+        )->willReturn($response->createResult);
 
         $this->assertSame(345, $this->subject->create($id, $hashMap));
     }
@@ -172,8 +178,11 @@ class ProfileClientTest extends TestCase
             'pool_id' => $id,
             'pool_attribute_list' => $poolAttributeList
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getByPoolResult',
-            $config)->willReturn($response->getByPoolResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getByPoolResult',
+            $config
+        )->willReturn($response->getByPoolResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -197,8 +206,11 @@ class ProfileClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createProfileGroupScoreConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getScores')->with(['profile_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getScoresResult',
-            $config)->willReturn($response->getScoresResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getScoresResult',
+            $config
+        )->willReturn($response->getScoresResult);
 
         $this->assertContainsOnlyInstancesOf(
             ProfileGroupScoreInterface::class,
@@ -221,16 +233,20 @@ class ProfileClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('updateByPool')->with([
             'pool_id' => $id,
             'data' => $extractedData
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'updateByPoolResult')->willReturn($response->updateByPoolResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'updateByPoolResult'
+        )->willReturn($response->updateByPoolResult);
 
         $this->assertTrue($this->subject->updateByPoolId($id, $hashMap));
     }
@@ -263,8 +279,11 @@ class ProfileClientTest extends TestCase
             'pool_attribute_list' => $poolAttributeList
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getBouncesResult',
-            $config)->willReturn($response->getBouncesResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getBouncesResult',
+            $config
+        )->willReturn($response->getBouncesResult);
 
         $this->assertContainsOnlyInstancesOf(
             ProfileBounceStatusInterface::class,
@@ -300,8 +319,11 @@ class ProfileClientTest extends TestCase
             'pool_attribute_list' => $poolAttributeList
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getUnsubscriptionsResult',
-            $config)->willReturn($response->getUnsubscriptionsResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getUnsubscriptionsResult',
+            $config
+        )->willReturn($response->getUnsubscriptionsResult);
 
         $this->assertContainsOnlyInstancesOf(
             HashMapInterface::class,
@@ -324,16 +346,20 @@ class ProfileClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('mergeByTargetGroup')->with([
             'target_group_id' => $id,
             'data' => $extractedData
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'mergeByTargetGroupResult')->willReturn($response->mergeByTargetGroupResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'mergeByTargetGroupResult'
+        )->willReturn($response->mergeByTargetGroupResult);
 
         $this->assertTrue($this->subject->mergeByTargetGroupId($id, $hashMap));
     }
@@ -353,16 +379,20 @@ class ProfileClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('mergeById')->with([
             'profile_id' => $id,
             'data' => $extractedData
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'mergeByIdResult')->willReturn($response->mergeByIdResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'mergeByIdResult'
+        )->willReturn($response->mergeByIdResult);
 
         $this->assertTrue($this->subject->mergeById($id, $hashMap));
     }
@@ -375,8 +405,10 @@ class ProfileClientTest extends TestCase
         $response->getResultCursorResult = 'some return string';
 
         $this->soapClient->expects($this->once())->method('getResultCursor')->with(['job_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getString')->with($response,
-            'getResultCursorResult')->willReturn($response->getResultCursorResult);
+        $this->responseMapper->expects($this->once())->method('getString')->with(
+            $response,
+            'getResultCursorResult'
+        )->willReturn($response->getResultCursorResult);
 
         $this->assertSame(
             'some return string',
@@ -407,8 +439,11 @@ class ProfileClientTest extends TestCase
             'profile_id' => $id,
             'targetgroup_ids' => $targetGroupIds
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'isInTargetgroupsResult',
-            $config)->willReturn($response->isInTargetgroupsResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'isInTargetgroupsResult',
+            $config
+        )->willReturn($response->isInTargetgroupsResult);
 
         $this->assertContainsOnlyInstancesOf(
             TargetGroupMemberShipInterface::class,
@@ -445,8 +480,11 @@ class ProfileClientTest extends TestCase
                 'end_time' => $timestampEnd,
             ]
         )->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
-            'getGrantedPermissionsResult', $config)->willReturn($response->getGrantedPermissionsResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getGrantedPermissionsResult',
+            $config
+        )->willReturn($response->getGrantedPermissionsResult);
 
 
         $this->assertContainsOnlyInstancesOf(
@@ -463,8 +501,10 @@ class ProfileClientTest extends TestCase
         $response->revokeTrackingResult = true;
 
         $this->soapClient->expects($this->once())->method('revokeTracking')->with(['profile_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'revokeTrackingResult')->willReturn($response->revokeTrackingResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'revokeTrackingResult'
+        )->willReturn($response->revokeTrackingResult);
 
         $this->assertTrue($this->subject->revokeTracking($id));
     }
@@ -488,8 +528,11 @@ class ProfileClientTest extends TestCase
             'targetgroup_id' => $id,
             'pool_attribute_list' => $poolAttributeList
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getByTargetGroupResult',
-            $config)->willReturn($response->getByTargetGroupResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getByTargetGroupResult',
+            $config
+        )->willReturn($response->getByTargetGroupResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -514,8 +557,10 @@ class ProfileClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('mergeByKey')->with([
             'pool_id' => $id,
@@ -524,8 +569,10 @@ class ProfileClientTest extends TestCase
             'data' => $extractedData
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'mergeByKeyResult')->willReturn($response->mergeByKeyResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'mergeByKeyResult'
+        )->willReturn($response->mergeByKeyResult);
 
         $this->assertTrue($this->subject->mergeByKey($id, $key, $value, $hashMap));
     }
@@ -544,8 +591,11 @@ class ProfileClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceTypeInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getTypeIds')->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getTypeIdsResult',
-            $config)->willReturn($response->getTypeIdsResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getTypeIdsResult',
+            $config
+        )->willReturn($response->getTypeIdsResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceTypeInformationInterface::class,
@@ -561,8 +611,10 @@ class ProfileClientTest extends TestCase
         $response->grantPermissionResult = true;
 
         $this->soapClient->expects($this->once())->method('grantPermission')->with(['profile_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'grantPermissionResult')->willReturn($response->grantPermissionResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'grantPermissionResult'
+        )->willReturn($response->grantPermissionResult);
 
         $this->assertTrue($this->subject->grantPermission($id));
     }
@@ -582,16 +634,20 @@ class ProfileClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('updateByTargetGroup')->with([
             'target_group_id' => $id,
             'data' => $extractedData
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'updateByTargetGroupResult')->willReturn($response->updateByTargetGroupResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'updateByTargetGroupResult'
+        )->willReturn($response->updateByTargetGroupResult);
 
         $this->assertTrue($this->subject->updateByTargetGroupId($id, $hashMap));
     }
@@ -629,8 +685,11 @@ class ProfileClientTest extends TestCase
             'ignore_missing' => $ignoreMissing
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'massUpdateResult',
-            $config)->willReturn($response->massUpdateResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'massUpdateResult',
+            $config
+        )->willReturn($response->massUpdateResult);
 
         $this->assertInstanceOf(
             MassUpdateResultInterface::class,
@@ -655,8 +714,10 @@ class ProfileClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('updateByKey')->with([
             'pool_id' => $id,
@@ -665,8 +726,10 @@ class ProfileClientTest extends TestCase
             'data' => $extractedData
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'updateByKeyResult')->willReturn($response->updateByKeyResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'updateByKeyResult'
+        )->willReturn($response->updateByKeyResult);
 
         $this->assertTrue($this->subject->updateByKey($id, $key, $value, $hashMap));
     }
@@ -685,8 +748,10 @@ class ProfileClientTest extends TestCase
                 'cursor' => $cursor,
             ]
         )->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'setResultCursorResult')->willReturn($response->setResultCursorResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'setResultCursorResult'
+        )->willReturn($response->setResultCursorResult);
 
         $this->assertFalse($this->subject->setResultCursor($id, $cursor));
     }
@@ -706,16 +771,20 @@ class ProfileClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('updateById')->with([
             'profile_id' => $id,
             'data' => $extractedData
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'updateByIdResult')->willReturn($response->updateByIdResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'updateByIdResult'
+        )->willReturn($response->updateByIdResult);
 
         $this->assertTrue($this->subject->updateById($id, $hashMap));
     }
@@ -748,8 +817,11 @@ class ProfileClientTest extends TestCase
             'pool_attribute_list' => $poolAttributeList
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getByKeyResult',
-            $config)->willReturn($response->getByKeyResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getByKeyResult',
+            $config
+        )->willReturn($response->getByKeyResult);
 
         $this->assertContainsOnlyInstancesOf(
             HashMapInterface::class,
@@ -777,8 +849,11 @@ class ProfileClientTest extends TestCase
             'profile_id' => $id,
             'mailing_id' => $mailingId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getMailingStatusResult',
-            $config)->willReturn($response->getMailingStatusResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getMailingStatusResult',
+            $config
+        )->willReturn($response->getMailingStatusResult);
 
         $this->assertContainsOnlyInstancesOf(
             MailingStatusInterface::class,
@@ -800,8 +875,11 @@ class ProfileClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getJobInformation')->with([
             'job_id' => $id
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getJobInformationResult',
-            $config)->willReturn($response->getJobInformationResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getJobInformationResult',
+            $config
+        )->willReturn($response->getJobInformationResult);
 
         $this->assertInstanceOf(
             JobHandleInterface::class,
@@ -838,8 +916,11 @@ class ProfileClientTest extends TestCase
                 'end_time' => $timestampEnd,
             ]
         )->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
-            'getModifiedProfilesResult', $config)->willReturn($response->getModifiedProfilesResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getModifiedProfilesResult',
+            $config
+        )->willReturn($response->getModifiedProfilesResult);
 
 
         $this->assertContainsOnlyInstancesOf(
@@ -863,8 +944,10 @@ class ProfileClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('mergeByPool')->with([
             'pool_id' => $id,
@@ -888,8 +971,11 @@ class ProfileClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getResults')->with([
             'job_id' => $id
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getResultsResult',
-            $config)->willReturn($response->getResultsResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getResultsResult',
+            $config
+        )->willReturn($response->getResultsResult);
 
         $this->assertInstanceOf(
             JobResultInterface::class,
@@ -905,8 +991,10 @@ class ProfileClientTest extends TestCase
         $response->revokePermissionResult = true;
 
         $this->soapClient->expects($this->once())->method('revokePermission')->with(['profile_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'revokePermissionResult')->willReturn($response->revokePermissionResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'revokePermissionResult'
+        )->willReturn($response->revokePermissionResult);
 
         $this->assertTrue($this->subject->revokePermission($id));
     }
@@ -925,8 +1013,10 @@ class ProfileClientTest extends TestCase
         $response->deleteResult = true;
 
         $this->soapClient->expects($this->once())->method('delete')->with(['profile_ids' => $profileIds])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'deleteResult')->willReturn($response->deleteResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'deleteResult'
+        )->willReturn($response->deleteResult);
 
         $this->assertTrue($this->subject->delete($profileIds));
     }
@@ -961,8 +1051,11 @@ class ProfileClientTest extends TestCase
                 'end_timestamp' => $timestampEnd,
             ]
         )->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
-            'getActivityScoringHistoryResult', $config)->willReturn($response->getActivityScoringHistoryResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getActivityScoringHistoryResult',
+            $config
+        )->willReturn($response->getActivityScoringHistoryResult);
 
 
         $this->assertContainsOnlyInstancesOf(
@@ -987,8 +1080,11 @@ class ProfileClientTest extends TestCase
                 'profile_id' => $id,
             ]
         )->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
-            'getByIdResult', $config)->willReturn($response->getByIdResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getByIdResult',
+            $config
+        )->willReturn($response->getByIdResult);
 
 
         $this->assertInstanceOf(
@@ -1017,8 +1113,10 @@ class ProfileClientTest extends TestCase
             'set_profile_edit_date_and_fire_update_event' => $doUpdate
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'untagWithOptionResult')->willReturn($response->untagWithOptionResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'untagWithOptionResult'
+        )->willReturn($response->untagWithOptionResult);
 
         $this->assertTrue($this->subject->unTagWithOption($id, $values, $key, $doUpdate));
     }
@@ -1043,8 +1141,10 @@ class ProfileClientTest extends TestCase
             'set_profile_edit_date_and_fire_update_event' => $doUpdate
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'tagWithOptionResult')->willReturn($response->tagWithOptionResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'tagWithOptionResult'
+        )->willReturn($response->tagWithOptionResult);
 
         $this->assertTrue($this->subject->tagWithOption($id, $values, $key, $doUpdate));
     }
@@ -1073,8 +1173,11 @@ class ProfileClientTest extends TestCase
                 'to' => $timestampEnd
             ]
         )->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
-            'getTrackingHistoryResult', $config)->willReturn($response->getTrackingHistoryResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getTrackingHistoryResult',
+            $config
+        )->willReturn($response->getTrackingHistoryResult);
 
 
         $this->assertContainsOnlyInstancesOf(

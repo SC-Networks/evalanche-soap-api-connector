@@ -98,8 +98,11 @@ class ArticleTypeClientTest extends TestCase
             'type_id' => $typeId,
             'group_id' => $groupId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'addAttributeResult',
-            $config)->willReturn($response->addAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'addAttributeResult',
+            $config
+        )->willReturn($response->addAttributeResult);
 
         $this->assertInstanceOf(
             ContainerAttributeInterface::class,
@@ -123,8 +126,11 @@ class ArticleTypeClientTest extends TestCase
             'resource_id' => $id,
             'name' => $title
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'addAttributeGroupResult',
-            $config)->willReturn($response->addAttributeGroupResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'addAttributeGroupResult',
+            $config
+        )->willReturn($response->addAttributeGroupResult);
 
         $this->assertInstanceOf(
             ContainerAttributeGroupInterface::class,
@@ -146,8 +152,10 @@ class ArticleTypeClientTest extends TestCase
             'attribute_id' => $attributeId,
             'role_type_id' => $roleTypeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'assignRoleToAttributeResult')->willReturn($response->assignRoleToAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'assignRoleToAttributeResult'
+        )->willReturn($response->assignRoleToAttributeResult);
 
         $this->assertTrue($this->subject->assignRoleToAttribute($id, $attributeId, $roleTypeId));
     }
@@ -166,8 +174,10 @@ class ArticleTypeClientTest extends TestCase
             'attribute_id' => $attributeId,
             'type_id' => $typeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'changeAttributeTypeResult')->willReturn($response->changeAttributeTypeResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'changeAttributeTypeResult'
+        )->willReturn($response->changeAttributeTypeResult);
 
         $this->assertTrue($this->subject->changeAttributeType($id, $attributeId, $typeId));
     }
@@ -190,8 +200,11 @@ class ArticleTypeClientTest extends TestCase
             'attribute_id' => $attributeId,
             'label' => $label
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
-            'createAttributeOptionResult', $config)->willReturn($response->createAttributeOptionResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createAttributeOptionResult',
+            $config
+        )->willReturn($response->createAttributeOptionResult);
 
         $this->assertInstanceOf(
             ContainerAttributeOptionInterface::class,
@@ -219,8 +232,10 @@ class ArticleTypeClientTest extends TestCase
             'resource_id' => $id,
             'attribute_id' => $attributeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
-            'getApplicableRoleTypesResult')->willReturn($response->getApplicableRoleTypeResults);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getApplicableRoleTypesResult'
+        )->willReturn($response->getApplicableRoleTypeResults);
 
         $this->assertContainsOnlyInstancesOf(
             ContainerAttributeRoleTypeInterface::class,
@@ -248,8 +263,10 @@ class ArticleTypeClientTest extends TestCase
             'resource_id' => $id,
             'attribute_id' => $attributeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
-            'getAssignedRoleTypesResult')->willReturn($response->getAssignedRoleTypesResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAssignedRoleTypesResult'
+        )->willReturn($response->getAssignedRoleTypesResult);
 
         $this->assertContainsOnlyInstancesOf(
             ContainerAttributeRoleTypeInterface::class,
@@ -273,8 +290,11 @@ class ArticleTypeClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeGroupConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getAttributeGroups')->with(['resource_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getAttributeGroupsResult',
-            $config)->willReturn($response->getAttributeGroupsResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAttributeGroupsResult',
+            $config
+        )->willReturn($response->getAttributeGroupsResult);
 
         $this->assertContainsOnlyInstancesOf(
             ContainerAttributeGroupInterface::class,
@@ -302,9 +322,11 @@ class ArticleTypeClientTest extends TestCase
             'resource_id' => $id,
             'attribute_id' => $attributeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getAttributeOptionsResult',
-            $config)->willReturn($response->getAttributeOptionsResult);
+            $config
+        )->willReturn($response->getAttributeOptionsResult);
 
         $this->assertContainsOnlyInstancesOf(
             ContainerAttributeOptionInterface::class,
@@ -330,9 +352,11 @@ class ArticleTypeClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getAttributes')->with([
             'resource_id' => $id
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getAttributesResult',
-            $config)->willReturn($response->getAttributesResult);
+            $config
+        )->willReturn($response->getAttributesResult);
 
         $this->assertContainsOnlyInstancesOf(
             ContainerAttributeInterface::class,
@@ -352,8 +376,10 @@ class ArticleTypeClientTest extends TestCase
             'resource_id' => $id,
             'attribute_id' => $attributeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'removeAttributeResult')->willReturn($response->removeAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'removeAttributeResult'
+        )->willReturn($response->removeAttributeResult);
 
         $this->assertTrue(
             $this->subject->removeAttribute($id, $attributeId)
@@ -372,8 +398,10 @@ class ArticleTypeClientTest extends TestCase
             'resource_id' => $id,
             'attribute_group_id' => $attributeGroupId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'removeAttributeGroupResult')->willReturn($response->removeAttributeGroupResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'removeAttributeGroupResult'
+        )->willReturn($response->removeAttributeGroupResult);
 
         $this->assertTrue(
             $this->subject->removeAttributeGroup($id, $attributeGroupId)
@@ -394,8 +422,10 @@ class ArticleTypeClientTest extends TestCase
             'attribute_id' => $attributeId,
             'option_id' => $optionId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'removeAttributeOptionResult')->willReturn($response->removeAttributeOptionResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'removeAttributeOptionResult'
+        )->willReturn($response->removeAttributeOptionResult);
 
         $this->assertTrue(
             $this->subject->removeAttributeOption($id, $attributeId, $optionId)

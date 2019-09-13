@@ -13,5 +13,4 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
  */
 interface DocumentClientInterface extends ClientInterface, ResourceTraitInterface, CreateResourceTraitInterface
 {
-
 }

@@ -826,8 +826,10 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
             $this->soapClient->setConfiguration(
                 [
                     'mailing_id' => $id,
-                    'configuration' => $this->extractor->extract($this->hydratorConfigFactory->createMailingConfigurationConfig(),
-                        $configuration),
+                    'configuration' => $this->extractor->extract(
+                        $this->hydratorConfigFactory->createMailingConfigurationConfig(),
+                        $configuration
+                    ),
                 ]
             ),
             'setConfigurationResult',

@@ -74,8 +74,11 @@ class ContainerClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getData')->with(['container_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getDataResult',
-            $config)->willReturn($response->getDataResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getDataResult',
+            $config
+        )->willReturn($response->getDataResult);
 
         $this->assertInstanceOf(
             HashMapInterface::class,
@@ -101,15 +104,20 @@ class ContainerClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('update')->with([
             'container_id' => $id,
             'data' => $extractedData
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'updateResult',
-            $config)->willReturn($response->getDataResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'updateResult',
+            $config
+        )->willReturn($response->getDataResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,

@@ -29,5 +29,4 @@ interface SmartLinkClientInterface extends ClientInterface, ResourceTraitInterfa
      * @return SmartLinkInterface[]
      */
     public function getTrackingUrls(int $id): array;
-
 }

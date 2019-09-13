@@ -25,5 +25,4 @@ interface MandatorClientInterface extends ClientInterface
      * @return MandatorInterface[]
      */
     public function getList(): array;
-
 }

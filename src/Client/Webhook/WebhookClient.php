@@ -12,7 +12,6 @@ use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
  */
 final class WebhookClient extends AbstractClient implements WebhookClientInterface
 {
-
     const PORTNAME = 'webhook/wsdl';
     const VERSION = ClientInterface::VERSION_V1;
 
@@ -22,8 +21,9 @@ final class WebhookClient extends AbstractClient implements WebhookClientInterfa
      *
      * @return void
      */
-    public function trigger(int $id, int $profileId): void {
-       $this->soapClient->trigger(['webhookId' => $id, 'profileId' => $profileId]);
+    public function trigger(int $id, int $profileId): void
+    {
+        $this->soapClient->trigger(['webhookId' => $id, 'profileId' => $profileId]);
     }
 
     /**

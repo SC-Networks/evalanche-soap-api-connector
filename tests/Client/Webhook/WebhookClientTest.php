@@ -68,5 +68,4 @@ class WebhookClientTest extends TestCase
 
         $this->assertNull($this->subject->trigger($hookId, $profileId));
     }
-
 }

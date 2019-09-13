@@ -73,8 +73,10 @@ class AccountClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getAccount')->with([
             'CustomerId' => $mandatorId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjectDirectly')->with($response,
-            $config)->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObjectDirectly')->with(
+            $response,
+            $config
+        )->willReturn($response);
 
         $this->assertInstanceOf(
             AccountInterface::class,
@@ -86,5 +88,4 @@ class AccountClientTest extends TestCase
     {
         $this->assertSame('api/soap/v1/accounting/wsdl', $this->subject->getWsdlUri());
     }
-
 }

@@ -15,7 +15,6 @@ use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
  */
 final class UserClient extends AbstractClient implements UserClientInterface
 {
-
     const PORTNAME = 'user';
     const VERSION = ClientInterface::VERSION_V0;
 

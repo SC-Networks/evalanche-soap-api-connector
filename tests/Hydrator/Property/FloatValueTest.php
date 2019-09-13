@@ -11,12 +11,10 @@ use Scn\EvalancheSoapApiConnector\TestCase;
  */
 class FloatValueTest extends TestCase
 {
-
     public function testEverything()
     {
         $testValue = round(mt_rand(1, PHP_INT_MAX), 2);
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -46,10 +44,11 @@ class FloatValueTest extends TestCase
 
     public function testEverythingInvalidInputType()
     {
-        $testValue = substr(str_shuffle(str_repeat($x = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-            ceil(10 / strlen($x)))), 1, 10);
-        $dummy = new class
-        {
+        $testValue = substr(str_shuffle(str_repeat(
+            $x = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            ceil(10 / strlen($x))
+        )), 1, 10);
+        $dummy = new class {
             private $value;
 
             public function getValue()

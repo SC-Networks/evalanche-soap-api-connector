@@ -84,8 +84,11 @@ class TargetGroupClientTest extends TestCase
             'category_id' => $folderId,
             'name' => $title,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createByOptionResult',
-            $config)->willReturn($response->createByOptionResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createByOptionResult',
+            $config
+        )->willReturn($response->createByOptionResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -107,8 +110,11 @@ class TargetGroupClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getInformation')->with([
             'targetgroup_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getInformationResult',
-            $config)->willReturn($response->createByOptionResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getInformationResult',
+            $config
+        )->willReturn($response->createByOptionResult);
 
 
         $this->assertInstanceOf(

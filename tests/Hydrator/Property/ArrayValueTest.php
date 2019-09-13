@@ -11,7 +11,6 @@ use Scn\EvalancheSoapApiConnector\TestCase;
  */
 class ArrayValueTest extends TestCase
 {
-
     public function testEverything()
     {
         $testValue = new \stdClass();
@@ -19,8 +18,7 @@ class ArrayValueTest extends TestCase
             'some thing' => 'fine'
         ];
 
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -53,8 +51,7 @@ class ArrayValueTest extends TestCase
         $testValue = new \stdClass();
         $testValue->item = 'fine';
 
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -86,8 +83,7 @@ class ArrayValueTest extends TestCase
     public function testEverythingInvalidInputType()
     {
         $testValue = mt_rand(1, PHP_INT_MAX);
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()

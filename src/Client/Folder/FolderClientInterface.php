@@ -37,5 +37,4 @@ interface FolderClientInterface extends ClientInterface
      * @throws EmptyResultException
      */
     public function getSubFolderById(int $id): array;
-
 }

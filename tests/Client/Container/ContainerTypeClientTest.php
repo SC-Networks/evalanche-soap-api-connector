@@ -96,8 +96,11 @@ class ContainerTypeClientTest extends TestCase
             'type_id' => $typeId,
             'group_id' => $groupId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'addAttributeResult',
-            $config)->willReturn($response->addAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'addAttributeResult',
+            $config
+        )->willReturn($response->addAttributeResult);
 
         $this->assertInstanceOf(
             ContainerAttributeInterface::class,
@@ -121,8 +124,11 @@ class ContainerTypeClientTest extends TestCase
             'resource_id' => $id,
             'name' => $title
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'addAttributeGroupResult',
-            $config)->willReturn($response->addAttributeGroupResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'addAttributeGroupResult',
+            $config
+        )->willReturn($response->addAttributeGroupResult);
 
         $this->assertInstanceOf(
             ContainerAttributeGroupInterface::class,
@@ -144,8 +150,10 @@ class ContainerTypeClientTest extends TestCase
             'attribute_id' => $attributeId,
             'type_id' => $typeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'changeAttributeTypeResult')->willReturn($response->changeAttributeTypeResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'changeAttributeTypeResult'
+        )->willReturn($response->changeAttributeTypeResult);
 
 
         $this->assertFalse($this->subject->updateAttributeType($id, $attributeId, $typeId));
@@ -169,9 +177,11 @@ class ContainerTypeClientTest extends TestCase
             'attribute_id' => $attributeId,
             'label' => $label
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'createAttributeOptionResult',
-            $config)->willReturn($response->createAttributeOptionResult);
+            $config
+        )->willReturn($response->createAttributeOptionResult);
 
         $this->assertInstanceOf(
             ContainerAttributeOptionInterface::class,
@@ -197,8 +207,11 @@ class ContainerTypeClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getAttributeGroups')->with([
             'resource_id' => $id
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getAttributeGroupsResult',
-            $config)->willReturn($response->getAttributeGroupsResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAttributeGroupsResult',
+            $config
+        )->willReturn($response->getAttributeGroupsResult);
 
         $this->assertContainsOnlyInstancesOf(
             ContainerAttributeOptionInterface::class,
@@ -226,9 +239,11 @@ class ContainerTypeClientTest extends TestCase
             'resource_id' => $id,
             'attribute_id' => $attributeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
             'getAttributeOptionsResult',
-            $config)->willReturn($response->getAttributeOptionsResult);
+            $config
+        )->willReturn($response->getAttributeOptionsResult);
 
         $this->assertContainsOnlyInstancesOf(
             ContainerAttributeOptionInterface::class,
@@ -254,8 +269,11 @@ class ContainerTypeClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getAttributes')->with([
             'resource_id' => $id
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getAttributesResult',
-            $config)->willReturn($response->getAttributesResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAttributesResult',
+            $config
+        )->willReturn($response->getAttributesResult);
 
         $this->assertContainsOnlyInstancesOf(
             ContainerAttributeInterface::class,
@@ -275,8 +293,10 @@ class ContainerTypeClientTest extends TestCase
             'resource_id' => $id,
             'attribute_id' => $attributeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'removeAttributeResult')->willReturn($response->removeAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'removeAttributeResult'
+        )->willReturn($response->removeAttributeResult);
 
         $this->assertTrue($this->subject->removeAttribute($id, $attributeId));
     }
@@ -293,8 +313,10 @@ class ContainerTypeClientTest extends TestCase
             'resource_id' => $id,
             'attribute_group_id' => $attributeGroupId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'removeAttributeGroupResult')->willReturn($response->removeAttributeGroupResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'removeAttributeGroupResult'
+        )->willReturn($response->removeAttributeGroupResult);
 
         $this->assertTrue($this->subject->removeAttributeGroup($id, $attributeGroupId));
     }
@@ -313,8 +335,10 @@ class ContainerTypeClientTest extends TestCase
             'attribute_id' => $attributeId,
             'option_id' => $optionId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'removeAttributeOptionResult')->willReturn($response->removeAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'removeAttributeOptionResult'
+        )->willReturn($response->removeAttributeResult);
 
         $this->assertTrue($this->subject->removeAttributeOption($id, $attributeId, $optionId));
     }
@@ -337,8 +361,10 @@ class ContainerTypeClientTest extends TestCase
         $response->updateAttributeResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
         $this->soapClient->expects($this->once())->method('updateAttribute')->with([
             'resource_id' => $id,
             'attribute_id' => $attributeId,

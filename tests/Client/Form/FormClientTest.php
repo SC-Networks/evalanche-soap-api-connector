@@ -82,8 +82,10 @@ class FormClientTest extends TestCase
             'form_id' => $id,
             'pool_attribute_id' => $poolAttributeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getInteger')->with($response,
-            'addAttributeResult')->willReturn($response->addAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getInteger')->with(
+            $response,
+            'addAttributeResult'
+        )->willReturn($response->addAttributeResult);
 
         $this->assertSame(
             $response->addAttributeResult,
@@ -103,8 +105,10 @@ class FormClientTest extends TestCase
             'form_id' => $id,
             'option_id' => $optionId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'addAttributeOptionResult')->willReturn($response->addAttributeOptionResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'addAttributeOptionResult'
+        )->willReturn($response->addAttributeOptionResult);
 
         $this->assertTrue($this->subject->addAttributeOption($id, $optionId));
     }
@@ -127,8 +131,11 @@ class FormClientTest extends TestCase
             'name' => $title,
             'category_id' => $folderId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createAliasResult',
-            $config)->willReturn($response->createAliasResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createAliasResult',
+            $config
+        )->willReturn($response->createAliasResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -154,8 +161,11 @@ class FormClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getAliases')->with([
             'form_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getAliasesResult',
-            $config)->willReturn($response->getAliasesResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAliasesResult',
+            $config
+        )->willReturn($response->getAliasesResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -177,8 +187,11 @@ class FormClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getFormByAlias')->with([
             'formalias_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getFormByAliasResult',
-            $config)->willReturn($response->getFormByAliasResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getFormByAliasResult',
+            $config
+        )->willReturn($response->getFormByAliasResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -206,8 +219,11 @@ class FormClientTest extends TestCase
             'formular_id' => $id,
             'with_aliases' => $includeAliases
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getStatisticsResult',
-            $config)->willReturn($response->getStatisticsResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getStatisticsResult',
+            $config
+        )->willReturn($response->getStatisticsResult);
 
         $this->assertContainsOnlyInstancesOf(
             FormStatisticInterface::class,
@@ -227,8 +243,10 @@ class FormClientTest extends TestCase
             'form_id' => $id,
             'form_attribute_id' => $formAttributeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'removeAttributeResult')->willReturn($response->removeAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'removeAttributeResult'
+        )->willReturn($response->removeAttributeResult);
 
         $this->assertFalse($this->subject->removeAttribute($id, $formAttributeId));
     }
@@ -245,8 +263,10 @@ class FormClientTest extends TestCase
             'form_id' => $id,
             'option_id' => $optionId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'removeAttributeOptionResult')->willReturn($response->removeAttributeOptionResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'removeAttributeOptionResult'
+        )->willReturn($response->removeAttributeOptionResult);
 
         $this->assertFalse($this->subject->removeAttributeOption($id, $optionId));
     }
@@ -267,8 +287,11 @@ class FormClientTest extends TestCase
             'resource_id' => $id,
             'name' => $title,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'renameResult',
-            $config)->willReturn($response->renameResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'renameResult',
+            $config
+        )->willReturn($response->renameResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -292,8 +315,11 @@ class FormClientTest extends TestCase
             'form_id' => $id,
             'source' => $templateHtml
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'updateTemplateResult',
-            $config)->willReturn($response->updateTemplateResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'updateTemplateResult',
+            $config
+        )->willReturn($response->updateTemplateResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,

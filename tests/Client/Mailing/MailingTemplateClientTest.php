@@ -76,8 +76,11 @@ class MailingTemplateClientTest extends TestCase
             'resource_id' => $id,
             'name' => $title,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'renameResult',
-            $config)->willReturn($response->renameResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'renameResult',
+            $config
+        )->willReturn($response->renameResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
