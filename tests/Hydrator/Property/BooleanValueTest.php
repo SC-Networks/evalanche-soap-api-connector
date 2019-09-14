@@ -14,8 +14,7 @@ class BooleanValueTest extends TestCase
     public function testEverythingFalse()
     {
         $testValue = false;
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -46,8 +45,7 @@ class BooleanValueTest extends TestCase
     public function testEverythingTrue()
     {
         $testValue = true;
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -74,5 +72,4 @@ class BooleanValueTest extends TestCase
         static::assertSame($testValue, $dummy->getValue());
         static::assertTrue($get('value'));
     }
-
 }

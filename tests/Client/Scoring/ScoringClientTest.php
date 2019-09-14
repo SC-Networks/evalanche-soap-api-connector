@@ -69,8 +69,11 @@ class ScoringClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createScoringGroupDetailConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getGroups')->with(['mandator_id' => 5])->willReturn($result);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($result, 'getGroupsResult',
-            $config)->willReturn([
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $result,
+            'getGroupsResult',
+            $config
+        )->willReturn([
             $object,
             $otherObject
         ]);
@@ -80,5 +83,4 @@ class ScoringClientTest extends TestCase
             $this->subject->getListByMandatorId(5)
         );
     }
-
 }

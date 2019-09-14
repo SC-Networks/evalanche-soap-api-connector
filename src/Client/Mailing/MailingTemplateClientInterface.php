@@ -21,5 +21,4 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface;
-
 }

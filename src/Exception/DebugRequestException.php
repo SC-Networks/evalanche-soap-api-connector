@@ -9,5 +9,4 @@ namespace Scn\EvalancheSoapApiConnector\Exception;
  */
 final class DebugRequestException extends EvalancheClientException
 {
-
 }

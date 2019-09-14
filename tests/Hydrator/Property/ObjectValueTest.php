@@ -13,7 +13,6 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\MailClientStatisticItemInterface;
  */
 class ObjectValueTest extends TestCase
 {
-
     public function testEverything()
     {
         $testValue = new \stdClass();
@@ -21,8 +20,7 @@ class ObjectValueTest extends TestCase
             'some thing' => 'fine'
         ];
 
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -55,8 +53,7 @@ class ObjectValueTest extends TestCase
         $testValue->description = 'some thing';
         $testValue->count = 456;
 
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -87,8 +84,7 @@ class ObjectValueTest extends TestCase
         $testValue = new \stdClass();
         $testValue->item = 'fine';
 
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -119,8 +115,7 @@ class ObjectValueTest extends TestCase
     public function testEverythingInvalidInputType()
     {
         $testValue = mt_rand(1, PHP_INT_MAX);
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()
@@ -153,8 +148,7 @@ class ObjectValueTest extends TestCase
         $testValue->description = 'some thing';
         $testValue->count = 456;
 
-        $dummy = new class
-        {
+        $dummy = new class {
             private $value;
 
             public function getValue()

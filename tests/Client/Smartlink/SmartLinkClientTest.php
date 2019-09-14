@@ -74,8 +74,10 @@ class SmartLinkClientTest extends TestCase
             'link_name' => $title,
             'link_url' => $url
         ])->willReturn($result);
-        $this->responseMapper->expects($this->once())->method('getString')->with($result,
-            'createLinkResult')->willReturn($result_string);
+        $this->responseMapper->expects($this->once())->method('getString')->with(
+            $result,
+            'createLinkResult'
+        )->willReturn($result_string);
 
         $this->assertSame($result_string, $this->subject->createLink($id, $title, $url));
     }
@@ -96,8 +98,11 @@ class SmartLinkClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createSmartLinkConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getTrackingUrls')->with(['smartlink_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getTrackingUrlsResult',
-            $config)->willReturn([$object, $otherObject]);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getTrackingUrlsResult',
+            $config
+        )->willReturn([$object, $otherObject]);
 
         $this->assertContainsOnlyInstancesOf(
             SmartLinkInterface::class,

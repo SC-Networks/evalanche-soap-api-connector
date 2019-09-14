@@ -67,8 +67,11 @@ class UserClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createUserConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getByUsername')->with(['username' => 'some username'])->willReturn($result);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($result, 'getByUsernameResult',
-            $config)->willReturn($object);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $result,
+            'getByUsernameResult',
+            $config
+        )->willReturn($object);
 
         $this->assertSame(
             $object,
@@ -116,8 +119,10 @@ class UserClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createUserConfig')->willReturn($config);
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $object)->willReturn($expectedExtractor);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $object
+        )->willReturn($expectedExtractor);
         $this->soapClient->expects($this->once())->method('update')->with(['user' => $expectedExtractor])->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObject')
             ->with($result, 'updateResult', $config)

@@ -20,5 +20,4 @@ interface ReportClientInterface extends ClientInterface, ResourceTraitInterface,
      * @return bool
      */
     public function addResourceIdToReport(int $id, int $reportId): bool;
-
 }

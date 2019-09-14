@@ -37,5 +37,4 @@ final class ReportClient extends AbstractClient implements ReportClientInterface
             'addResourceToReportResult'
         );
     }
-
 }

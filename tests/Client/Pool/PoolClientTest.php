@@ -84,8 +84,11 @@ class PoolClientTest extends TestCase
             'label' => $label,
             'type_id' => $typeId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'addAttributeResult',
-            $config)->willReturn($response->addAttributeResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'addAttributeResult',
+            $config
+        )->willReturn($response->addAttributeResult);
 
         $this->assertInstanceOf(
             PoolAttributeInterface::class,
@@ -114,8 +117,11 @@ class PoolClientTest extends TestCase
             'attribute_id' => $attributeId,
             'labels' => $label,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'addAttributeOptionsResult',
-            $config)->willReturn($response->addAttributeOptionsResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'addAttributeOptionsResult',
+            $config
+        )->willReturn($response->addAttributeOptionsResult);
 
         $this->assertInstanceOf(
             PoolAttributeInterface::class,
@@ -123,7 +129,8 @@ class PoolClientTest extends TestCase
         );
     }
 
-    public function testDeleteAttributeCanReturnBool() {
+    public function testDeleteAttributeCanReturnBool()
+    {
         $id = 345;
         $attributeId = 456;
 
@@ -163,9 +170,11 @@ class PoolClientTest extends TestCase
             'attribute_id' => $attributeId,
             'option_id' => $optionId,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'deleteAttributeOptionResult',
-            $config)->willReturn($response->deleteAttributeOptionResult);
+            $config
+        )->willReturn($response->deleteAttributeOptionResult);
 
         $this->assertInstanceOf(
             PoolAttributeInterface::class,
@@ -191,8 +200,11 @@ class PoolClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getAttributes')->with([
             'pool_id' => $id,
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getAttributesResult',
-            $config)->willReturn($response->getAttributesResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAttributesResult',
+            $config
+        )->willReturn($response->getAttributesResult);
 
         $this->assertContainsOnlyInstancesOf(
             PoolAttributeInterface::class,
@@ -220,9 +232,11 @@ class PoolClientTest extends TestCase
             'option_id' => $optionId,
             'label' => $label
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'updateAttributeOptionResult',
-            $config)->willReturn($response->updateAttributeOptionResult);
+            $config
+        )->willReturn($response->updateAttributeOptionResult);
 
         $this->assertInstanceOf(
             PoolAttributeInterface::class,

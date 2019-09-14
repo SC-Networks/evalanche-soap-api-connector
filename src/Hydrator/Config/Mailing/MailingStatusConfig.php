@@ -36,7 +36,6 @@ class MailingStatusConfig implements HydratorConfigInterface
             'preview_url' => Property\TextValue::set('previewUrl'),
             'profile_data' => Property\ArrayValue::set('profileData'),
         ];
-
     }
 
     /**
@@ -47,6 +46,5 @@ class MailingStatusConfig implements HydratorConfigInterface
         return [
 
         ];
-
     }
 }

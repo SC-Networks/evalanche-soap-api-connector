@@ -7,7 +7,6 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeOption;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 
-
 /**
  * Class ContainerAttributeOptionConfig
  *

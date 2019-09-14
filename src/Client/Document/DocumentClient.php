@@ -19,5 +19,4 @@ final class DocumentClient extends AbstractClient implements DocumentClientInter
 
     const PORTNAME = 'document';
     const VERSION = ClientInterface::VERSION_V0;
-
 }

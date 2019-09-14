@@ -68,8 +68,10 @@ class ReportClientTest extends TestCase
             'resource_id' => $id,
             'report_id' => $reportId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'addResourceToReportResult')->willReturn($response->addResourceToReportResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'addResourceToReportResult'
+        )->willReturn($response->addResourceToReportResult);
 
         $this->assertTrue($this->subject->addResourceIdToReport($id, $reportId));
     }

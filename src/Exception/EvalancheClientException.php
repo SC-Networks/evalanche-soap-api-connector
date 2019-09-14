@@ -9,5 +9,4 @@ namespace Scn\EvalancheSoapApiConnector\Exception;
  */
 class EvalancheClientException extends \Exception
 {
-
 }

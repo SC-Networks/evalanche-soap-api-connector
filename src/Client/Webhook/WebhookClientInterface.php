@@ -11,7 +11,5 @@ use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
  */
 interface WebhookClientInterface extends ClientInterface
 {
-
     public function trigger(int $id, int $profileId): void;
-
 }

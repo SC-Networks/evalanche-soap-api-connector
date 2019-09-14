@@ -46,5 +46,4 @@ final class MandatorClient extends AbstractClient implements MandatorClientInter
             $this->hydratorConfigFactory->createMandatorConfig()
         );
     }
-
 }

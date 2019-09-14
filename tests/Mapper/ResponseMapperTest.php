@@ -119,7 +119,9 @@ class ResponseMapperTest extends TestCase
         $this->assertInstanceOf(
             UserInterface::class,
             $this->subject->getObject(
-                $response, $responseProperty, $hydratorConfig
+                $response,
+                $responseProperty,
+                $hydratorConfig
             )
         );
     }
@@ -127,8 +129,11 @@ class ResponseMapperTest extends TestCase
     public function testGetObjectCanThrowException()
     {
         $this->expectException(EmptyResultException::class);
-        $this->subject->getObject(new \stdClass(), 'something',
-            $this->getMockBuilder(HydratorConfigInterface::class)->getMock());
+        $this->subject->getObject(
+            new \stdClass(),
+            'something',
+            $this->getMockBuilder(HydratorConfigInterface::class)->getMock()
+        );
     }
 
     public function testGetObjectsCanReturnObjects()
@@ -158,13 +163,17 @@ class ResponseMapperTest extends TestCase
             ->willReturn($someUser);
 
         $this->hydrator->expects($this->exactly(2))->method('hydrate')
-            ->withConsecutive([$hydratorConfig, $someUser, (array)$firstResponseObject],
-                [$hydratorConfig, $someUser, (array)$secondResponseObject]);
+            ->withConsecutive(
+                [$hydratorConfig, $someUser, (array)$firstResponseObject],
+                [$hydratorConfig, $someUser, (array)$secondResponseObject]
+            );
 
         $this->containsOnlyInstancesOf(
             UserInterface::class,
             $this->subject->getObjects(
-                $response, $responseProperty, $hydratorConfig
+                $response,
+                $responseProperty,
+                $hydratorConfig
             )
         );
     }
@@ -194,7 +203,9 @@ class ResponseMapperTest extends TestCase
         $this->assertEquals(
             [],
             $this->subject->getObjects(
-                $response, $responseProperty, $hydratorConfig
+                $response,
+                $responseProperty,
+                $hydratorConfig
             )
         );
     }
@@ -228,7 +239,9 @@ class ResponseMapperTest extends TestCase
         $this->assertContainsOnlyInstancesOf(
             UserInterface::class,
             $this->subject->getObjects(
-                $response, $responseProperty, $hydratorConfig
+                $response,
+                $responseProperty,
+                $hydratorConfig
             )
         );
     }
@@ -236,8 +249,11 @@ class ResponseMapperTest extends TestCase
     public function testGetObjectsCanThrowException()
     {
         $this->expectException(EmptyResultException::class);
-        $this->subject->getObjects(new \stdClass(), 'something',
-            $this->getMockBuilder(HydratorConfigInterface::class)->getMock());
+        $this->subject->getObjects(
+            new \stdClass(),
+            'something',
+            $this->getMockBuilder(HydratorConfigInterface::class)->getMock()
+        );
     }
 
     public function testGetObjectDirectlyCanReturnObject()
@@ -260,7 +276,8 @@ class ResponseMapperTest extends TestCase
         $this->assertInstanceOf(
             UserInterface::class,
             $this->subject->getObjectDirectly(
-                $response, $hydratorConfig
+                $response,
+                $hydratorConfig
             )
         );
     }

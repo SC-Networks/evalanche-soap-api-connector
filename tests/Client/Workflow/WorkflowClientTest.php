@@ -87,8 +87,11 @@ class WorkflowClientTest extends TestCase
             'from' => $timestampStart,
             'to' => $timestampEnd
         ])->willReturn($result);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($result, 'getByStartDateRangeResult',
-            $config)->willReturn([$object, $otherObject]);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $result,
+            'getByStartDateRangeResult',
+            $config
+        )->willReturn([$object, $otherObject]);
 
         $this->containsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -117,8 +120,11 @@ class WorkflowClientTest extends TestCase
             'from' => $timestampStart,
             'to' => $timestampEnd
         ])->willReturn($result);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($result, 'getByEndateRangeResult',
-            $config)->willReturn([$object, $otherObject]);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $result,
+            'getByEndateRangeResult',
+            $config
+        )->willReturn([$object, $otherObject]);
 
         $this->containsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -224,5 +230,4 @@ class WorkflowClientTest extends TestCase
             $this->subject->export($workflowId)
         );
     }
-
 }

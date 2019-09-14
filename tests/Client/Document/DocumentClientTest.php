@@ -90,8 +90,11 @@ class DocumentClientTest extends TestCase
             'name' => $title,
             'category_id' => $folderId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createResult',
-            $config)->willReturn($response->createResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createResult',
+            $config
+        )->willReturn($response->createResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -115,8 +118,11 @@ class DocumentClientTest extends TestCase
             'resource_id' => $id,
             'category_id' => $folderId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'copyResult',
-            $config)->willReturn($response->copyResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'copyResult',
+            $config
+        )->willReturn($response->copyResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -132,8 +138,10 @@ class DocumentClientTest extends TestCase
         $response->deleteResult = true;
 
         $this->soapClient->expects($this->once())->method('delete')->with(['resource_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with($response,
-            'deleteResult')->willReturn($response->deleteResult);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'deleteResult'
+        )->willReturn($response->deleteResult);
 
         $this->assertTrue($this->subject->delete($id));
     }
@@ -153,8 +161,11 @@ class DocumentClientTest extends TestCase
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getAll')->with(['mandator_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getAllResult',
-            $config)->willReturn($response->getAllResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAllResult',
+            $config
+        )->willReturn($response->getAllResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -177,8 +188,11 @@ class DocumentClientTest extends TestCase
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getByCategory')->with(['category_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getByCategoryResult',
-            $config)->willReturn($response->getByCategoryResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getByCategoryResult',
+            $config
+        )->willReturn($response->getByCategoryResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -198,8 +212,11 @@ class DocumentClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getByExternalId')->with(['external_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getByExternalIdResult',
-            $config)->willReturn($response->getByExternalIdResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getByExternalIdResult',
+            $config
+        )->willReturn($response->getByExternalIdResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -219,8 +236,11 @@ class DocumentClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getById')->with(['resource_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getByIdResult',
-            $config)->willReturn($response->getByExternalIdResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getByIdResult',
+            $config
+        )->willReturn($response->getByExternalIdResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -247,8 +267,11 @@ class DocumentClientTest extends TestCase
             'type_id' => $id,
             'mandator_id' => $mandatorId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getByTypeIdResult',
-            $config)->willReturn($response->getByTypeIdResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getByTypeIdResult',
+            $config
+        )->willReturn($response->getByTypeIdResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
@@ -268,9 +291,11 @@ class DocumentClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getResourceDefaultCategory')->with(['customer_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response,
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
             'getResourceDefaultCategoryResult',
-            $config)->willReturn($response->getResourceDefaultCategoryResult);
+            $config
+        )->willReturn($response->getResourceDefaultCategoryResult);
 
         $this->assertInstanceOf(
             FolderInformationInterface::class,
@@ -291,8 +316,11 @@ class DocumentClientTest extends TestCase
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceTypeInformationConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getTypeIds')->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getTypeIdsResult',
-            $config)->willReturn($response->getByTypeIdResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getTypeIdsResult',
+            $config
+        )->willReturn($response->getByTypeIdResult);
 
         $this->assertContainsOnlyInstancesOf(
             ResourceTypeInformationInterface::class,
@@ -316,8 +344,11 @@ class DocumentClientTest extends TestCase
             'resource_id' => $id,
             'category_id' => $folderId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'moveResult',
-            $config)->willReturn($response->moveResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'moveResult',
+            $config
+        )->willReturn($response->moveResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -335,8 +366,11 @@ class DocumentClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createServiceStatusConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('isAlive')->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'isAliveResult',
-            $config)->willReturn($response->isAliveResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'isAliveResult',
+            $config
+        )->willReturn($response->isAliveResult);
 
         $this->assertInstanceOf(
             ServiceStatusInterface::class,

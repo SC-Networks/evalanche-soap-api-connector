@@ -83,8 +83,10 @@ class ArticleClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
 
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($expectedExtractor);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($expectedExtractor);
 
         $this->soapClient->expects($this->once())->method('create')->with([
             'article_preset_id' => $id,
@@ -93,8 +95,11 @@ class ArticleClientTest extends TestCase
             'data' => $expectedExtractor,
         ])->willReturn($response);
 
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createResult',
-            $config)->willReturn($response->createResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createResult',
+            $config
+        )->willReturn($response->createResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
@@ -114,8 +119,11 @@ class ArticleClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getData')->with(['article_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'getDataResult',
-            $config)->willReturn($response->getDataResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getDataResult',
+            $config
+        )->willReturn($response->getDataResult);
 
         $this->assertInstanceOf(
             HashMapInterface::class,
@@ -142,15 +150,20 @@ class ArticleClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
 
-        $this->extractor->expects($this->once())->method('extract')->with($config,
-            $hashMap)->willReturn($extractedData);
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($extractedData);
 
         $this->soapClient->expects($this->once())->method('update')->with([
             'article_id' => $id,
             'data' => $extractedData
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'updateResult',
-            $config)->willReturn($response->updateResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'updateResult',
+            $config
+        )->willReturn($response->updateResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,

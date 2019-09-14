@@ -38,13 +38,14 @@ class EvalancheConfigTest extends TestCase
     {
         $wsdlUri = 'some wsdl uri';
 
-        $this->assertSame(sprintf('https://%s/%s', 'some hostname', $wsdlUri),
-            $this->subject->getWsdlServiceUrl($wsdlUri));
+        $this->assertSame(
+            sprintf('https://%s/%s', 'some hostname', $wsdlUri),
+            $this->subject->getWsdlServiceUrl($wsdlUri)
+        );
     }
 
     public function testGetDebugModeCanReturnBoolean()
     {
         $this->assertTrue($this->subject->getDebugMode());
     }
-
 }

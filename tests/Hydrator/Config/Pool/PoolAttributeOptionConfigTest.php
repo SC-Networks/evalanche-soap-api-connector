@@ -2,7 +2,6 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Pool;
 
-
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Pool\PoolAttributeOptionInterface;
 

@@ -112,7 +112,6 @@ final class ResponseMapper implements ResponseMapperInterface
         string $responseProperty,
         HydratorConfigInterface $hydratorConfig
     ): StructInterface {
-
         if (isset($response->$responseProperty)) {
             return $this->mapSingleObject($response->$responseProperty, $hydratorConfig);
         }

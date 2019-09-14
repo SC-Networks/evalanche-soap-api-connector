@@ -78,8 +78,11 @@ class FolderClientTest extends TestCase
             'name' => $title,
             'parent_category_id' => $folderId
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($response, 'createResult',
-            $config)->willReturn($response->createResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createResult',
+            $config
+        )->willReturn($response->createResult);
 
         $this->assertInstanceOf(
             FolderInformationInterface::class,
@@ -117,8 +120,11 @@ class FolderClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getSubCategories')->with([
             'category_id' => $id
         ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with($response, 'getSubCategoriesResult',
-            $config)->willReturn($response->getSubCategoriesResult);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getSubCategoriesResult',
+            $config
+        )->willReturn($response->getSubCategoriesResult);
 
 
         $this->assertContainsOnlyInstancesOf(

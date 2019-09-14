@@ -74,8 +74,11 @@ class PoolDataMinerClientTest extends TestCase
             'resource_id' => $id,
             'name' => $title
         ])->willReturn($resonse);
-        $this->responseMapper->expects($this->once())->method('getObject')->with($resonse, 'renameResult',
-            $config)->willReturn($resonse->renameResult);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $resonse,
+            'renameResult',
+            $config
+        )->willReturn($resonse->renameResult);
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,

@@ -54,7 +54,6 @@ class ObjectValue implements PropertyObjectInterface
     private function createSetter(string $propertyName, HydratorConfigInterface $hydratorConfig = null): \Closure
     {
         return function ($value) use ($propertyName, $hydratorConfig): void {
-
             if ($hydratorConfig instanceof HydratorConfigInterface) {
                 $hydrator = new Hydrator();
 
