@@ -6,6 +6,9 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Pool\PoolAttribute;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\BooleanValue;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class PoolAttributeConfig
@@ -29,13 +32,13 @@ class PoolAttributeConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'label' => Property\TextValue::set('label'),
-            'has_options' => Property\BooleanValue::set('hasOptions'),
-            'can_add_options' => Property\BooleanValue::set('addOptions'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'label' => StringValue::set('label'),
+            'has_options' => BooleanValue::set('hasOptions'),
+            'can_add_options' => BooleanValue::set('addOptions'),
             'options' => Property\ArrayOfObjectValue::set('options', new PoolAttributeOptionConfig()),
-            'type_id' => Property\IntegerValue::set('typeId')
+            'type_id' => IntegerValue::set('typeId')
         ];
     }
 
@@ -45,13 +48,13 @@ class PoolAttributeConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'label' => Property\TextValue::get('label'),
-            'has_options' => Property\BooleanValue::get('hasOptions'),
-            'can_add_options' => Property\BooleanValue::get('addOptions'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'label' => StringValue::get('label'),
+            'has_options' => BooleanValue::get('hasOptions'),
+            'can_add_options' => BooleanValue::get('addOptions'),
             'options' => Property\ArrayOfObjectValue::get('options'),
-            'type_id' => Property\IntegerValue::get('typeId')
+            'type_id' => IntegerValue::get('typeId')
         ];
     }
 }

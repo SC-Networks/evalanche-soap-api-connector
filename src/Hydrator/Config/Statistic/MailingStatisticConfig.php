@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\MailingStatistic;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 /**
  * Class MailingStatisticConfig
@@ -29,18 +30,18 @@ class MailingStatisticConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'addressees' => Property\IntegerValue::set('addresses'),
-            'recipients' => Property\IntegerValue::set('recipients'),
-            'duplicates' => Property\IntegerValue::set('duplicateCount'),
-            'blacklisted' => Property\IntegerValue::set('blackListedCount'),
-            'robinsonlisted' => Property\IntegerValue::set('robinsonListedCount'),
-            'hardbounces' => Property\IntegerValue::set('hardBounceCount'),
-            'softbounces' => Property\IntegerValue::set('softBounceCount'),
-            'unsubscribes' => Property\IntegerValue::set('unSubscribeCount'),
-            'impressions' => Property\IntegerValue::set('impressionCount'),
-            'unique_impressions' => Property\IntegerValue::set('uniqueImpressionCount'),
-            'clicks' => Property\IntegerValue::set('clickCount'),
-            'unique_clicks' => Property\IntegerValue::set('uniqueClickCount'),
+            'addressees' => IntegerValue::set('addresses'),
+            'recipients' => IntegerValue::set('recipients'),
+            'duplicates' => IntegerValue::set('duplicateCount'),
+            'blacklisted' => IntegerValue::set('blackListedCount'),
+            'robinsonlisted' => IntegerValue::set('robinsonListedCount'),
+            'hardbounces' => IntegerValue::set('hardBounceCount'),
+            'softbounces' => IntegerValue::set('softBounceCount'),
+            'unsubscribes' => IntegerValue::set('unSubscribeCount'),
+            'impressions' => IntegerValue::set('impressionCount'),
+            'unique_impressions' => IntegerValue::set('uniqueImpressionCount'),
+            'clicks' => IntegerValue::set('clickCount'),
+            'unique_clicks' => IntegerValue::set('uniqueClickCount'),
             'media' => Property\ArrayValue::set('media'),
             'articles' => Property\ArrayValue::set('articles'),
             'links' => Property\ArrayValue::set('links'),
@@ -53,18 +54,18 @@ class MailingStatisticConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'addressees' => Property\IntegerValue::get('addresses'),
-            'recipients' => Property\IntegerValue::get('recipients'),
-            'duplicates' => Property\IntegerValue::get('duplicateCount'),
-            'blacklisted' => Property\IntegerValue::get('blackListedCount'),
-            'robinsonlisted' => Property\IntegerValue::get('robinsonListedCount'),
-            'hardbounces' => Property\IntegerValue::get('hardBounceCount'),
-            'softbounces' => Property\IntegerValue::get('softBounceCount'),
-            'unsubscribes' => Property\IntegerValue::get('unSubscribeCount'),
-            'impressions' => Property\IntegerValue::get('impressionCount'),
-            'unique_impressions' => Property\IntegerValue::get('uniqueImpressionCount'),
-            'clicks' => Property\IntegerValue::get('clickCount'),
-            'unique_clicks' => Property\IntegerValue::get('uniqueClickCount'),
+            'addressees' => IntegerValue::get('addresses'),
+            'recipients' => IntegerValue::get('recipients'),
+            'duplicates' => IntegerValue::get('duplicateCount'),
+            'blacklisted' => IntegerValue::get('blackListedCount'),
+            'robinsonlisted' => IntegerValue::get('robinsonListedCount'),
+            'hardbounces' => IntegerValue::get('hardBounceCount'),
+            'softbounces' => IntegerValue::get('softBounceCount'),
+            'unsubscribes' => IntegerValue::get('unSubscribeCount'),
+            'impressions' => IntegerValue::get('impressionCount'),
+            'unique_impressions' => IntegerValue::get('uniqueImpressionCount'),
+            'clicks' => IntegerValue::get('clickCount'),
+            'unique_clicks' => IntegerValue::get('uniqueClickCount'),
             'media' => Property\ArrayValue::get('media'),
             'articles' => Property\ArrayValue::get('articles'),
             'links' => Property\ArrayValue::get('links'),

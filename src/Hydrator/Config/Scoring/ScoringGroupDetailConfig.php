@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Scoring;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Scoring\ScoringGroupDetail;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ScoringGroupDetailConfig
@@ -29,9 +30,9 @@ class ScoringGroupDetailConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'mandator_id' => Property\IntegerValue::set('mandatorId'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'mandator_id' => IntegerValue::set('mandatorId'),
         ];
     }
 
@@ -41,9 +42,9 @@ class ScoringGroupDetailConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'mandator_id' => Property\IntegerValue::get('mandatorId'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'mandator_id' => IntegerValue::get('mandatorId'),
         ];
     }
 }

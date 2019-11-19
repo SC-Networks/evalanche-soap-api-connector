@@ -3,9 +3,9 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapItem;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class HashMapItemConfig
@@ -29,8 +29,8 @@ class HashMapItemConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'key' => Property\TextValue::set('key'),
-            'value' => Property\TextValue::set('value'),
+            'key' => StringValue::set('key'),
+            'value' => StringValue::set('value'),
         ];
     }
 
@@ -40,8 +40,8 @@ class HashMapItemConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'key' => Property\TextValue::get('key'),
-            'value' => Property\TextValue::get('value'),
+            'key' => StringValue::get('key'),
+            'value' => StringValue::get('value'),
         ];
     }
 }

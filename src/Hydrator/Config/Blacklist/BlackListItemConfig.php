@@ -3,9 +3,9 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Blacklist;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Blacklist\BlackListItem;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class BlackListItemConfig
@@ -29,8 +29,8 @@ class BlackListItemConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'Email' => Property\TextValue::set('email'),
-            'Description' => Property\TextValue::set('description'),
+            'Email' => StringValue::set('email'),
+            'Description' => StringValue::set('description'),
         ];
     }
 
@@ -40,8 +40,8 @@ class BlackListItemConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'Email' => Property\TextValue::get('email'),
-            'Description' => Property\TextValue::get('description'),
+            'Email' => StringValue::get('email'),
+            'Description' => StringValue::get('description'),
         ];
     }
 }

@@ -3,9 +3,9 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingImpression;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 /**
  * Class MailingImpressionConfig
@@ -29,9 +29,9 @@ class MailingImpressionConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'profile_id' => Property\IntegerValue::set('profileId'),
-            'timestamp' => Property\IntegerValue::set('timestamp'),
+            'id' => IntegerValue::set('id'),
+            'profile_id' => IntegerValue::set('profileId'),
+            'timestamp' => IntegerValue::set('timestamp'),
         ];
     }
 
@@ -41,9 +41,9 @@ class MailingImpressionConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'profile_id' => Property\IntegerValue::get('profileId'),
-            'timestamp' => Property\IntegerValue::get('timestamp'),
+            'id' => IntegerValue::get('id'),
+            'profile_id' => IntegerValue::get('profileId'),
+            'timestamp' => IntegerValue::get('timestamp'),
         ];
     }
 }

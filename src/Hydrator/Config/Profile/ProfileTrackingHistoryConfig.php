@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileTrackingHistory;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ProfileTrackingHistoryConfig
@@ -29,18 +30,18 @@ class ProfileTrackingHistoryConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'resource_id' => Property\IntegerValue::set('resourceId'),
-            'resource_name' => Property\TextValue::set('resourceName'),
-            'resource_type_id' => Property\IntegerValue::set('resourceTypeId'),
-            'sub_resource_id' => Property\IntegerValue::set('subResourceId'),
-            'sub_resource_name' => Property\TextValue::set('subResourceName'),
-            'sub_resource_type_id' => Property\IntegerValue::set('subResourceTypeId'),
-            'sub_url' => Property\TextValue::set('subUrl'),
-            'profile_id' => Property\IntegerValue::set('profileId'),
-            'type' => Property\IntegerValue::set('type'),
-            'timestamp' => Property\IntegerValue::set('timestamp'),
-            'referrer_domain' => Property\TextValue::set('referrerDomain'),
+            'id' => IntegerValue::set('id'),
+            'resource_id' => IntegerValue::set('resourceId'),
+            'resource_name' => StringValue::set('resourceName'),
+            'resource_type_id' => IntegerValue::set('resourceTypeId'),
+            'sub_resource_id' => IntegerValue::set('subResourceId'),
+            'sub_resource_name' => StringValue::set('subResourceName'),
+            'sub_resource_type_id' => IntegerValue::set('subResourceTypeId'),
+            'sub_url' => StringValue::set('subUrl'),
+            'profile_id' => IntegerValue::set('profileId'),
+            'type' => IntegerValue::set('type'),
+            'timestamp' => IntegerValue::set('timestamp'),
+            'referrer_domain' => StringValue::set('referrerDomain'),
         ];
     }
 
@@ -50,18 +51,18 @@ class ProfileTrackingHistoryConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'resource_id' => Property\IntegerValue::get('resourceId'),
-            'resource_name' => Property\TextValue::get('resourceName'),
-            'resource_type_id' => Property\IntegerValue::get('resourceTypeId'),
-            'sub_resource_id' => Property\IntegerValue::get('subResourceId'),
-            'sub_resource_name' => Property\TextValue::get('subResourceName'),
-            'sub_resource_type_id' => Property\IntegerValue::get('subResourceTypeId'),
-            'sub_url' => Property\TextValue::get('subUrl'),
-            'profile_id' => Property\IntegerValue::get('profileId'),
-            'type' => Property\IntegerValue::get('type'),
-            'timestamp' => Property\IntegerValue::get('timestamp'),
-            'referrer_domain' => Property\TextValue::get('referrerDomain'),
+            'id' => IntegerValue::get('id'),
+            'resource_id' => IntegerValue::get('resourceId'),
+            'resource_name' => StringValue::get('resourceName'),
+            'resource_type_id' => IntegerValue::get('resourceTypeId'),
+            'sub_resource_id' => IntegerValue::get('subResourceId'),
+            'sub_resource_name' => StringValue::get('subResourceName'),
+            'sub_resource_type_id' => IntegerValue::get('subResourceTypeId'),
+            'sub_url' => StringValue::get('subUrl'),
+            'profile_id' => IntegerValue::get('profileId'),
+            'type' => IntegerValue::get('type'),
+            'timestamp' => IntegerValue::get('timestamp'),
+            'referrer_domain' => StringValue::get('referrerDomain'),
         ];
     }
 }

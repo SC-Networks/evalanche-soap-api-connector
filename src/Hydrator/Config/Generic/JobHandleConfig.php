@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandle;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class JobHandleConfig
@@ -29,13 +30,13 @@ class JobHandleConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\TextValue::set('id'),
-            'status' => Property\IntegerValue::set('status'),
-            'status_description' => Property\TextValue::set('statusDescription'),
-            'namespace' => Property\TextValue::set('namespace'),
-            'method' => Property\TextValue::set('method'),
-            'resource_id' => Property\IntegerValue::set('resourceId'),
-            'result_chunks' => Property\IntegerValue::set('resultChunks'),
+            'id' => StringValue::set('id'),
+            'status' => IntegerValue::set('status'),
+            'status_description' => StringValue::set('statusDescription'),
+            'namespace' => StringValue::set('namespace'),
+            'method' => StringValue::set('method'),
+            'resource_id' => IntegerValue::set('resourceId'),
+            'result_chunks' => IntegerValue::set('resultChunks'),
         ];
     }
 
@@ -45,13 +46,13 @@ class JobHandleConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\TextValue::get('id'),
-            'status' => Property\IntegerValue::get('status'),
-            'status_description' => Property\TextValue::get('statusDescription'),
-            'namespace' => Property\TextValue::get('namespace'),
-            'method' => Property\TextValue::get('method'),
-            'resource_id' => Property\IntegerValue::get('resourceId'),
-            'result_chunks' => Property\IntegerValue::get('resultChunks'),
+            'id' => StringValue::get('id'),
+            'status' => IntegerValue::get('status'),
+            'status_description' => StringValue::get('statusDescription'),
+            'namespace' => StringValue::get('namespace'),
+            'method' => StringValue::get('method'),
+            'resource_id' => IntegerValue::get('resourceId'),
+            'result_chunks' => IntegerValue::get('resultChunks'),
         ];
     }
 }

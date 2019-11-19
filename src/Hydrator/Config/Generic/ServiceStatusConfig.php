@@ -3,9 +3,9 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatus;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ServiceStatusConfig
@@ -29,8 +29,8 @@ class ServiceStatusConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'status' => Property\TextValue::set('status'),
-            'message' => Property\TextValue::set('message')
+            'status' => StringValue::set('status'),
+            'message' => StringValue::set('message')
         ];
     }
 
@@ -40,8 +40,8 @@ class ServiceStatusConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'status' => Property\TextValue::get('status'),
-            'message' => Property\TextValue::get('message')
+            'status' => StringValue::get('status'),
+            'message' => StringValue::get('message')
         ];
     }
 }

@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\ArticleStatisticItem;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ArticleStatisticItemConfig
@@ -29,10 +30,10 @@ class ArticleStatisticItemConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'clicks' => Property\IntegerValue::set('clickCount'),
-            'unique_clicks' => Property\IntegerValue::set('uniqueClickCount'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'clicks' => IntegerValue::set('clickCount'),
+            'unique_clicks' => IntegerValue::set('uniqueClickCount'),
         ];
     }
 
@@ -42,10 +43,10 @@ class ArticleStatisticItemConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'clicks' => Property\IntegerValue::get('clickCount'),
-            'unique_clicks' => Property\IntegerValue::get('uniqueClickCount'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'clicks' => IntegerValue::get('clickCount'),
+            'unique_clicks' => IntegerValue::get('uniqueClickCount'),
         ];
     }
 }

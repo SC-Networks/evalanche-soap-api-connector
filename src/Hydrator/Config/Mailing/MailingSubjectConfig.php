@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSubject;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class MailingSubjectConfig
@@ -29,8 +30,8 @@ class MailingSubjectConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'targetgroup_id' => Property\IntegerValue::set('targetGroupId'),
-            'subjectline' => Property\TextValue::set('subject'),
+            'targetgroup_id' => IntegerValue::set('targetGroupId'),
+            'subjectline' => StringValue::set('subject'),
         ];
     }
 
@@ -40,8 +41,8 @@ class MailingSubjectConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'targetgroup_id' => Property\IntegerValue::get('targetGroupId'),
-            'subjectline' => Property\TextValue::get('subject'),
+            'targetgroup_id' => IntegerValue::get('targetGroupId'),
+            'subjectline' => StringValue::get('subject'),
         ];
     }
 }

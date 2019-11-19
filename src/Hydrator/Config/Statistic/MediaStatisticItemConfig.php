@@ -3,9 +3,9 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\MediaStatisticItem;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 /**
  * Class MediaStatisticItemConfig
@@ -29,9 +29,9 @@ class MediaStatisticItemConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'clicks' => Property\IntegerValue::set('clickCount'),
-            'unique_clicks' => Property\IntegerValue::set('uniqueClickCount'),
+            'id' => IntegerValue::set('id'),
+            'clicks' => IntegerValue::set('clickCount'),
+            'unique_clicks' => IntegerValue::set('uniqueClickCount'),
         ];
     }
 
@@ -41,9 +41,9 @@ class MediaStatisticItemConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'clicks' => Property\IntegerValue::get('clickCount'),
-            'unique_clicks' => Property\IntegerValue::get('uniqueClickCount'),
+            'id' => IntegerValue::get('id'),
+            'clicks' => IntegerValue::get('clickCount'),
+            'unique_clicks' => IntegerValue::get('uniqueClickCount'),
         ];
     }
 }

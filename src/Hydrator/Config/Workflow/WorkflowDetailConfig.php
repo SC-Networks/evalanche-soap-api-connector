@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowDetail;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class WorkflowDetailConfig
@@ -29,15 +30,15 @@ final class WorkflowDetailConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'date_start' => Property\IntegerValue::set('dateStart'),
-            'date_end' => Property\IntegerValue::set('dateEnd'),
-            'external_id' => Property\TextValue::set('externalId'),
-            'category_id' => Property\IntegerValue::set('folderId'),
-            'description' => Property\TextValue::set('description'),
-            'state' => Property\IntegerValue::set('state'),
-            'profile_count' => Property\IntegerValue::set('profileCount'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'date_start' => IntegerValue::set('dateStart'),
+            'date_end' => IntegerValue::set('dateEnd'),
+            'external_id' => StringValue::set('externalId'),
+            'category_id' => IntegerValue::set('folderId'),
+            'description' => StringValue::set('description'),
+            'state' => IntegerValue::set('state'),
+            'profile_count' => IntegerValue::set('profileCount'),
         ];
     }
 
@@ -47,15 +48,15 @@ final class WorkflowDetailConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'date_start' => Property\IntegerValue::get('dateStart'),
-            'date_end' => Property\IntegerValue::get('dateEnd'),
-            'external_id' => Property\TextValue::get('externalId'),
-            'category_id' => Property\IntegerValue::get('folderId'),
-            'description' => Property\TextValue::get('description'),
-            'state' => Property\IntegerValue::get('state'),
-            'profile_count' => Property\IntegerValue::get('profileCount'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'date_start' => IntegerValue::get('dateStart'),
+            'date_end' => IntegerValue::get('dateEnd'),
+            'external_id' => StringValue::get('externalId'),
+            'category_id' => IntegerValue::get('folderId'),
+            'description' => StringValue::get('description'),
+            'state' => IntegerValue::get('state'),
+            'profile_count' => IntegerValue::get('profileCount'),
         ];
     }
 }
