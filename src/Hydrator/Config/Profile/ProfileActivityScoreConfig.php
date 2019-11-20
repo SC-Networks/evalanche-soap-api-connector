@@ -3,9 +3,9 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileActivityScore;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 /**
  * Class ProfileActivityScoreConfig
@@ -29,12 +29,12 @@ class ProfileActivityScoreConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'scoring_group_id' => Property\IntegerValue::set('scoringGroupId'),
-            'scoring_type_id' => Property\IntegerValue::set('scoringTypeId'),
-            'timestamp' => Property\IntegerValue::set('timestamp'),
-            'value' => Property\IntegerValue::set('score'),
-            'resource_id' => Property\IntegerValue::set('resourceId'),
+            'id' => IntegerValue::set('id'),
+            'scoring_group_id' => IntegerValue::set('scoringGroupId'),
+            'scoring_type_id' => IntegerValue::set('scoringTypeId'),
+            'timestamp' => IntegerValue::set('timestamp'),
+            'value' => IntegerValue::set('score'),
+            'resource_id' => IntegerValue::set('resourceId'),
         ];
     }
 
@@ -44,12 +44,12 @@ class ProfileActivityScoreConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'scoring_group_id' => Property\IntegerValue::get('scoringGroupId'),
-            'scoring_type_id' => Property\IntegerValue::get('scoringTypeId'),
-            'timestamp' => Property\IntegerValue::get('timestamp'),
-            'value' => Property\IntegerValue::get('score'),
-            'resource_id' => Property\IntegerValue::get('resourceId'),
+            'id' => IntegerValue::get('id'),
+            'scoring_group_id' => IntegerValue::get('scoringGroupId'),
+            'scoring_type_id' => IntegerValue::get('scoringTypeId'),
+            'timestamp' => IntegerValue::get('timestamp'),
+            'value' => IntegerValue::get('score'),
+            'resource_id' => IntegerValue::get('resourceId'),
         ];
     }
 }

@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\MailClientStatisticItem;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class MailClientStatisticItemConfig
@@ -29,8 +30,8 @@ class MailClientStatisticItemConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'description' => Property\TextValue::set('description'),
-            'count' => Property\IntegerValue::set('count'),
+            'description' => StringValue::set('description'),
+            'count' => IntegerValue::set('count'),
         ];
     }
 
@@ -40,8 +41,8 @@ class MailClientStatisticItemConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'description' => Property\TextValue::get('description'),
-            'count' => Property\IntegerValue::get('count'),
+            'description' => StringValue::get('description'),
+            'count' => IntegerValue::get('count'),
         ];
     }
 }

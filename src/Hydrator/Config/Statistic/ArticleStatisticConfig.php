@@ -6,6 +6,8 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\ArticleStatistic;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ArticleStatisticConfig
@@ -29,9 +31,9 @@ class ArticleStatisticConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'reference_id' => Property\IntegerValue::set('referenceId'),
-            'name' => Property\TextValue::set('name'),
+            'id' => IntegerValue::set('id'),
+            'reference_id' => IntegerValue::set('referenceId'),
+            'name' => StringValue::set('name'),
             'overall' => Property\ObjectValue::set('overall', new FormatStatisticItemConfig()),
             'landingpage' => Property\ObjectValue::set('landingPage', new FormatStatisticItemConfig()),
             'print' => Property\ObjectValue::set('print', new FormatStatisticItemConfig()),
@@ -47,9 +49,9 @@ class ArticleStatisticConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'reference_id' => Property\IntegerValue::get('referenceId'),
-            'name' => Property\TextValue::get('name'),
+            'id' => IntegerValue::get('id'),
+            'reference_id' => IntegerValue::get('referenceId'),
+            'name' => StringValue::get('name'),
             'overall' => Property\ObjectValue::get('overall'),
             'landingpage' => Property\ObjectValue::get('landingPage'),
             'print' => Property\ObjectValue::get('print'),

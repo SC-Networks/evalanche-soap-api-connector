@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\BrowserStatisticItem;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class BrowserStatisticItemConfig
@@ -29,9 +30,9 @@ class BrowserStatisticItemConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'description' => Property\TextValue::set('description'),
-            'version' => Property\TextValue::set('version'),
-            'count' => Property\IntegerValue::set('count'),
+            'description' => StringValue::set('description'),
+            'version' => StringValue::set('version'),
+            'count' => IntegerValue::set('count'),
         ];
     }
 
@@ -41,9 +42,9 @@ class BrowserStatisticItemConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'description' => Property\TextValue::get('description'),
-            'version' => Property\TextValue::get('version'),
-            'count' => Property\IntegerValue::get('count'),
+            'description' => StringValue::get('description'),
+            'version' => StringValue::get('version'),
+            'count' => IntegerValue::get('count'),
         ];
     }
 }

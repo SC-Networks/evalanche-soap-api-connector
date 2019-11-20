@@ -3,10 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property\IntegerValue;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property\TextValue;
 use Scn\EvalancheSoapStruct\Struct\SmartLink\SmartLink;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class SmartLinkConfig
@@ -31,8 +31,8 @@ class SmartLinkConfig implements HydratorConfigInterface
     {
         return [
             'id' => IntegerValue::set('id'),
-            'name' => TextValue::set('name'),
-            'tracking_url' => TextValue::set('trackingUrl')
+            'name' => StringValue::set('name'),
+            'tracking_url' => StringValue::set('trackingUrl')
         ];
     }
 
@@ -43,8 +43,8 @@ class SmartLinkConfig implements HydratorConfigInterface
     {
         return [
             'id' => IntegerValue::get('id'),
-            'name' => TextValue::get('name'),
-            'tracking_url' => TextValue::get('trackingUrl')
+            'name' => StringValue::get('name'),
+            'tracking_url' => StringValue::get('trackingUrl')
         ];
     }
 }

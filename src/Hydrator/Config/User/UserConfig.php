@@ -6,6 +6,9 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\EvalancheSoapStruct\Struct\User\User;
+use Scn\HydratorPropertyValues\Property\BooleanValue;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class UserConfig
@@ -29,18 +32,18 @@ class UserConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'mandator_id' => Property\IntegerValue::set('mandatorId'),
-            'username' => Property\TextValue::set('username'),
-            'email' => Property\TextValue::set('email'),
-            'salutation' => Property\IntegerValue::set('salutation'),
-            'firstname' => Property\TextValue::set('firstName'),
-            'name' => Property\TextValue::set('name'),
-            'description' => Property\TextValue::set('description'),
-            'security_guideline_id' => Property\IntegerValue::set('securityGuidelineId'),
+            'id' => IntegerValue::set('id'),
+            'mandator_id' => IntegerValue::set('mandatorId'),
+            'username' => StringValue::set('username'),
+            'email' => StringValue::set('email'),
+            'salutation' => IntegerValue::set('salutation'),
+            'firstname' => StringValue::set('firstName'),
+            'name' => StringValue::set('name'),
+            'description' => StringValue::set('description'),
+            'security_guideline_id' => IntegerValue::set('securityGuidelineId'),
             'role_ids' => Property\ArrayValue::set('roleIds'),
-            'disabled' => Property\BooleanValue::set('disabled'),
-            'password' => Property\TextValue::set('password'),
+            'disabled' => BooleanValue::set('disabled'),
+            'password' => StringValue::set('password'),
         ];
     }
 
@@ -50,18 +53,18 @@ class UserConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'mandator_id' => Property\IntegerValue::get('mandatorId'),
-            'username' => Property\TextValue::get('username'),
-            'email' => Property\TextValue::get('email'),
-            'salutation' => Property\IntegerValue::get('salutation'),
-            'firstname' => Property\TextValue::get('firstName'),
-            'name' => Property\TextValue::get('name'),
-            'description' => Property\TextValue::get('description'),
-            'security_guideline_id' => Property\IntegerValue::get('securityGuidelineId'),
+            'id' => IntegerValue::get('id'),
+            'mandator_id' => IntegerValue::get('mandatorId'),
+            'username' => StringValue::get('username'),
+            'email' => StringValue::get('email'),
+            'salutation' => IntegerValue::get('salutation'),
+            'firstname' => StringValue::get('firstName'),
+            'name' => StringValue::get('name'),
+            'description' => StringValue::get('description'),
+            'security_guideline_id' => IntegerValue::get('securityGuidelineId'),
             'role_ids' => Property\ArrayValue::get('roleIds'),
-            'disabled' => Property\BooleanValue::get('disabled'),
-            'password' => Property\TextValue::get('password'),
+            'disabled' => BooleanValue::get('disabled'),
+            'password' => StringValue::get('password'),
         ];
     }
 }

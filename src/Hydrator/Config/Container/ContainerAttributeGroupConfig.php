@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Container;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeGroup;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ContainerAttributeGroupConfig
@@ -29,9 +30,9 @@ class ContainerAttributeGroupConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'sort_order' => Property\TextValue::set('sortOrder'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'sort_order' => StringValue::set('sortOrder'),
         ];
     }
 
@@ -41,9 +42,9 @@ class ContainerAttributeGroupConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'sort_order' => Property\TextValue::get('sortOrder'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'sort_order' => StringValue::get('sortOrder'),
         ];
     }
 }

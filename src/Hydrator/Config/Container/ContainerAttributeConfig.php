@@ -3,9 +3,11 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Container;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttribute;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\BooleanValue;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ContainerAttributeConfig
@@ -29,17 +31,17 @@ class ContainerAttributeConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'label' => Property\TextValue::set('label'),
-            'type_id' => Property\IntegerValue::set('typeId'),
-            'group_id' => Property\IntegerValue::set('groupId'),
-            'help_text' => Property\TextValue::set('helpText'),
-            'input_help_text' => Property\TextValue::set('inputHelpText'),
-            'mandatory' => Property\BooleanValue::set('mandatory'),
-            'visible' => Property\BooleanValue::set('visible'),
-            'replacement_variable' => Property\TextValue::set('replacementVariable'),
-            'allows_options' => Property\BooleanValue::set('allowOptions'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'label' => StringValue::set('label'),
+            'type_id' => IntegerValue::set('typeId'),
+            'group_id' => IntegerValue::set('groupId'),
+            'help_text' => StringValue::set('helpText'),
+            'input_help_text' => StringValue::set('inputHelpText'),
+            'mandatory' => BooleanValue::set('mandatory'),
+            'visible' => BooleanValue::set('visible'),
+            'replacement_variable' => StringValue::set('replacementVariable'),
+            'allows_options' => BooleanValue::set('allowOptions'),
         ];
     }
 
@@ -49,17 +51,17 @@ class ContainerAttributeConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'label' => Property\TextValue::get('label'),
-            'type_id' => Property\IntegerValue::get('typeId'),
-            'group_id' => Property\IntegerValue::get('groupId'),
-            'help_text' => Property\TextValue::get('helpText'),
-            'input_help_text' => Property\TextValue::get('inputHelpText'),
-            'mandatory' => Property\BooleanValue::get('mandatory'),
-            'visible' => Property\BooleanValue::get('visible'),
-            'replacement_variable' => Property\TextValue::get('replacementVariable'),
-            'allows_options' => Property\BooleanValue::get('allowOptions'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'label' => StringValue::get('label'),
+            'type_id' => IntegerValue::get('typeId'),
+            'group_id' => IntegerValue::get('groupId'),
+            'help_text' => StringValue::get('helpText'),
+            'input_help_text' => StringValue::get('inputHelpText'),
+            'mandatory' => BooleanValue::get('mandatory'),
+            'visible' => BooleanValue::get('visible'),
+            'replacement_variable' => StringValue::get('replacementVariable'),
+            'allows_options' => BooleanValue::get('allowOptions'),
         ];
     }
 }

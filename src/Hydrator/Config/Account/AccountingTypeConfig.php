@@ -6,6 +6,9 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Account\AccountingType;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\FloatValue;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class AccountingTypeConfig
@@ -29,10 +32,10 @@ class AccountingTypeConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'TypeId' => Property\IntegerValue::set('typeId'),
-            'Amount' => Property\IntegerValue::set('amount'),
-            'Price' => Property\FloatValue::set('price'),
-            'Currency' => Property\TextValue::set('currency'),
+            'TypeId' => IntegerValue::set('typeId'),
+            'Amount' => IntegerValue::set('amount'),
+            'Price' => FloatValue::set('price'),
+            'Currency' => StringValue::set('currency'),
             'AccountingItems' => Property\ArrayOfObjectValue::set('accountingItems', new AccountingItemConfig())
         ];
     }
@@ -43,10 +46,10 @@ class AccountingTypeConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'TypeId' => Property\IntegerValue::get('typeId'),
-            'Amount' => Property\IntegerValue::get('amount'),
-            'Price' => Property\FloatValue::get('price'),
-            'Currency' => Property\TextValue::get('currency'),
+            'TypeId' => IntegerValue::get('typeId'),
+            'Amount' => IntegerValue::get('amount'),
+            'Price' => FloatValue::get('price'),
+            'Currency' => StringValue::get('currency'),
             'AccountingItems' => Property\ArrayOfObjectValue::get('accountingItems')
         ];
     }

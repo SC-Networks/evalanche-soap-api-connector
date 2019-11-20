@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Blacklist\BlackList;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 /**
  * Class BlackListConfig
@@ -29,7 +30,7 @@ class BlackListConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'CustomerId' => Property\IntegerValue::set('mandatorId'),
+            'CustomerId' => IntegerValue::set('mandatorId'),
             'Item' => Property\ArrayOfObjectValue::set('items', new BlackListItemConfig()),
         ];
     }
@@ -40,7 +41,7 @@ class BlackListConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'CustomerId' => Property\IntegerValue::get('mandatorId'),
+            'CustomerId' => IntegerValue::get('mandatorId'),
             'Item' => Property\ArrayOfObjectValue::get('items'),
         ];
     }

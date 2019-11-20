@@ -3,9 +3,11 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatistic;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\BooleanValue;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class FormStatisticConfig
@@ -29,15 +31,15 @@ class FormStatisticConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'is_alias' => Property\BooleanValue::set('isAlias'),
-            'impressions' => Property\IntegerValue::set('impressions'),
-            'succeeded' => Property\IntegerValue::set('succeeded'),
-            'identity_errors' => Property\IntegerValue::set('identityErrorCount'),
-            'duplication_errors' => Property\IntegerValue::set('duplicationErrorĆount'),
-            'validation_errors' => Property\IntegerValue::set('validationErrorCount'),
-            'mandatory_errors' => Property\IntegerValue::set('mandatoryErrorCount'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'is_alias' => BooleanValue::set('isAlias'),
+            'impressions' => IntegerValue::set('impressions'),
+            'succeeded' => IntegerValue::set('succeeded'),
+            'identity_errors' => IntegerValue::set('identityErrorCount'),
+            'duplication_errors' => IntegerValue::set('duplicationErrorĆount'),
+            'validation_errors' => IntegerValue::set('validationErrorCount'),
+            'mandatory_errors' => IntegerValue::set('mandatoryErrorCount'),
         ];
     }
 
@@ -47,15 +49,15 @@ class FormStatisticConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'is_alias' => Property\BooleanValue::get('isAlias'),
-            'impressions' => Property\IntegerValue::get('impressions'),
-            'succeeded' => Property\IntegerValue::get('succeeded'),
-            'identity_errors' => Property\IntegerValue::get('identityErrorCount'),
-            'duplication_errors' => Property\IntegerValue::get('duplicationErrorĆount'),
-            'validation_errors' => Property\IntegerValue::get('validationErrorCount'),
-            'mandatory_errors' => Property\IntegerValue::get('mandatoryErrorCount'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'is_alias' => BooleanValue::get('isAlias'),
+            'impressions' => IntegerValue::get('impressions'),
+            'succeeded' => IntegerValue::get('succeeded'),
+            'identity_errors' => IntegerValue::get('identityErrorCount'),
+            'duplication_errors' => IntegerValue::get('duplicationErrorĆount'),
+            'validation_errors' => IntegerValue::get('validationErrorCount'),
+            'mandatory_errors' => IntegerValue::get('mandatoryErrorCount'),
         ];
     }
 }

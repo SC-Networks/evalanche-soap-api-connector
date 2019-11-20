@@ -3,9 +3,9 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupMemberShip;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 /**
  * Class TargetGroupMemberShipConfig
@@ -29,8 +29,8 @@ class TargetGroupMemberShipConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'profile_id' => Property\IntegerValue::set('profileId'),
-            'targetgroup_id' => Property\IntegerValue::set('targetGroupId'),
+            'profile_id' => IntegerValue::set('profileId'),
+            'targetgroup_id' => IntegerValue::set('targetGroupId'),
         ];
     }
 
@@ -40,8 +40,8 @@ class TargetGroupMemberShipConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'profile_id' => Property\IntegerValue::get('profileId'),
-            'targetgroup_id' => Property\IntegerValue::get('targetGroupId'),
+            'profile_id' => IntegerValue::get('profileId'),
+            'targetgroup_id' => IntegerValue::get('targetGroupId'),
         ];
     }
 }

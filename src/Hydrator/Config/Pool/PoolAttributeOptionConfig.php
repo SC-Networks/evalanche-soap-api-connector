@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Pool;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Pool\PoolAttributeOption;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class PoolAttributeOptionConfig
@@ -29,8 +30,8 @@ class PoolAttributeOptionConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'value' => Property\TextValue::set('value'),
+            'id' => IntegerValue::set('id'),
+            'value' => StringValue::set('value'),
         ];
     }
 
@@ -40,8 +41,8 @@ class PoolAttributeOptionConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'value' => Property\TextValue::get('value'),
+            'id' => IntegerValue::get('id'),
+            'value' => StringValue::get('value'),
         ];
     }
 }

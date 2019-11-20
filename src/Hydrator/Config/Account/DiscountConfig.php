@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Account;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Account\Discount;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\FloatValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class DiscountConfig
@@ -29,9 +30,9 @@ class DiscountConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'Description' => Property\TextValue::set('description'),
-            'Percent' => Property\FloatValue::set('percent'),
-            'Price' => Property\FloatValue::set('price'),
+            'Description' => StringValue::set('description'),
+            'Percent' => FloatValue::set('percent'),
+            'Price' => FloatValue::set('price'),
         ];
     }
 
@@ -41,9 +42,9 @@ class DiscountConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'Description' => Property\TextValue::get('description'),
-            'Percent' => Property\FloatValue::get('percent'),
-            'Price' => Property\FloatValue::get('price'),
+            'Description' => StringValue::get('description'),
+            'Percent' => FloatValue::get('percent'),
+            'Price' => FloatValue::get('price'),
         ];
     }
 }

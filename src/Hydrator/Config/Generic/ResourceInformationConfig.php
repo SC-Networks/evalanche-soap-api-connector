@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformation;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ResourceInformationConfig
@@ -29,12 +30,12 @@ class ResourceInformationConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'url' => Property\TextValue::set('url'),
-            'type_id' => Property\IntegerValue::set('typeId'),
-            'category_id' => Property\IntegerValue::set('folderId'),
-            'customer_id' => Property\IntegerValue::set('mandatorId'),
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name')
+            'url' => StringValue::set('url'),
+            'type_id' => IntegerValue::set('typeId'),
+            'category_id' => IntegerValue::set('folderId'),
+            'customer_id' => IntegerValue::set('mandatorId'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name')
         ];
     }
 
@@ -44,12 +45,12 @@ class ResourceInformationConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'url' => Property\TextValue::get('url'),
-            'type_id' => Property\IntegerValue::get('typeId'),
-            'category_id' => Property\IntegerValue::get('folderId'),
-            'customer_id' => Property\IntegerValue::get('mandatorId'),
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name')
+            'url' => StringValue::get('url'),
+            'type_id' => IntegerValue::get('typeId'),
+            'category_id' => IntegerValue::get('folderId'),
+            'customer_id' => IntegerValue::get('mandatorId'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name')
         ];
     }
 }

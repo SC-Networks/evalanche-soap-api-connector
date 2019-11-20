@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileBounceStatus;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 /**
  * Class ProfileBounceStatusConfig
@@ -29,10 +30,10 @@ class ProfileBounceStatusConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'profile_id' => Property\IntegerValue::set('profileId'),
-            'mailing_id' => Property\IntegerValue::set('mailingId'),
-            'status' => Property\IntegerValue::set('status'),
-            'timestamp' => Property\IntegerValue::set('timestamp'),
+            'profile_id' => IntegerValue::set('profileId'),
+            'mailing_id' => IntegerValue::set('mailingId'),
+            'status' => IntegerValue::set('status'),
+            'timestamp' => IntegerValue::set('timestamp'),
             'profile_data' => Property\ArrayValue::set('profileData'),
         ];
     }
@@ -43,10 +44,10 @@ class ProfileBounceStatusConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'profile_id' => Property\IntegerValue::get('profileId'),
-            'mailing_id' => Property\IntegerValue::get('mailingId'),
-            'status' => Property\IntegerValue::get('status'),
-            'timestamp' => Property\IntegerValue::get('timestamp'),
+            'profile_id' => IntegerValue::get('profileId'),
+            'mailing_id' => IntegerValue::get('mailingId'),
+            'status' => IntegerValue::get('status'),
+            'timestamp' => IntegerValue::get('timestamp'),
             'profile_data' => Property\ArrayValue::get('profileData'),
         ];
     }

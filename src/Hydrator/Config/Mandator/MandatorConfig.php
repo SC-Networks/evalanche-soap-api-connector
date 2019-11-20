@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Mandator;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Mandator\Mandator;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class MandatorConfig
@@ -29,9 +30,9 @@ class MandatorConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'domain' => Property\TextValue::set('domain')
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'domain' => StringValue::set('domain')
         ];
     }
 
@@ -41,9 +42,9 @@ class MandatorConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'domain' => Property\TextValue::get('domain')
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'domain' => StringValue::get('domain')
         ];
     }
 }

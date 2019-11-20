@@ -3,9 +3,10 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Container;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeOption;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\IntegerValue;
+use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
  * Class ContainerAttributeOptionConfig
@@ -29,10 +30,10 @@ class ContainerAttributeOptionConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::set('id'),
-            'name' => Property\TextValue::set('name'),
-            'label' => Property\TextValue::set('label'),
-            'order' => Property\TextValue::set('order'),
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
+            'label' => StringValue::set('label'),
+            'order' => StringValue::set('order'),
         ];
     }
 
@@ -42,10 +43,10 @@ class ContainerAttributeOptionConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
-            'id' => Property\IntegerValue::get('id'),
-            'name' => Property\TextValue::get('name'),
-            'label' => Property\TextValue::get('label'),
-            'order' => Property\TextValue::get('order'),
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
+            'label' => StringValue::get('label'),
+            'order' => StringValue::get('order'),
         ];
     }
 }
