@@ -163,4 +163,9 @@ interface EvalancheConnectionInterface
      * @return Client\Webhook\WebhookClientInterface
      */
     public function createWebhookClient(): Client\Webhook\WebhookClientInterface;
+
+    /**
+     * @return Client\Milestone\MilestoneClientInterface
+     */
+    public function createMilestoneClient(): Client\Milestone\MilestoneClientInterface;
 }
