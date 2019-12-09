@@ -90,7 +90,10 @@ class ProfileClientTest extends TestCase
             'updateByKey',
             'updateByPool',
             'updateByTargetGroup',
-            'getTrackingHistory'
+            'getTrackingHistory',
+            'setMilestone',
+            'hasMilestone',
+            'getByMilestone'
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -1183,6 +1186,94 @@ class ProfileClientTest extends TestCase
         $this->assertContainsOnlyInstancesOf(
             ProfileTrackingHistoryInterface::class,
             $this->subject->getTrackingHistory($profileId, $timestampStart, $timestampEnd)
+        );
+    }
+
+    public function testSetMilestoneCanReturnBoolean()
+    {
+        $profileId = 333;
+        $milestoneId = 444;
+
+        $response = new \stdClass();
+        $response->setMilestoneResult = true;
+
+        $this->soapClient->expects($this->once())->method('setMilestone')->with(
+            [
+                'profile_id' => $profileId,
+                'milestone_id' => $milestoneId
+            ]
+        )->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'setMilestoneResult'
+        )->willReturn($response->setMilestoneResult);
+
+
+        $this->assertTrue($this->subject->setMilestone($profileId, $milestoneId));
+    }
+
+    public function testHasMilestoneCanReturnBoolean()
+    {
+        $profileId = 333;
+        $milestoneId = 444;
+        $timestampStart = 123456;
+        $timestampEnd = 234567;
+
+        $response = new \stdClass();
+        $response->hasMilestoneResult = true;
+
+        $this->soapClient->expects($this->once())->method('hasMilestone')->with(
+            [
+                'profile_id' => $profileId,
+                'milestone_id' => $milestoneId,
+                'from' => $timestampStart,
+                'to' => $timestampEnd
+            ]
+        )->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'hasMilestoneResult'
+        )->willReturn($response->hasMilestoneResult);
+
+
+        $this->assertTrue($this->subject->hasMilestone($profileId, $milestoneId, $timestampStart, $timestampEnd));
+    }
+
+    public function testGetByMilestoneCanReturnInstanceOfHashMap() {
+        $milestoneId = 444;
+        $poolAttributeList = [
+            'some',
+            'data',
+        ];
+        $timestampStart = 123456;
+        $timestampEnd = 234567;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $otherObject = $this->getMockBuilder(HashMapInterface::class)->getMock();
+
+        $response = new \stdClass();
+        $response->getByMilestoneResult = [$object, $otherObject];
+
+        $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
+
+        $this->soapClient->expects($this->once())->method('getByMilestone')->with(
+            [
+                'milestone_id' => $milestoneId,
+                'pool_attribute_list' => $poolAttributeList,
+                'from' => $timestampStart,
+                'to' => $timestampEnd
+            ]
+        )->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getByMilestoneResult',
+            $config
+        )->willReturn($response->getByMilestoneResult);
+
+        $this->assertContainsOnlyInstancesOf(
+            HashMapInterface::class,
+            $this->subject->getByMilestone($milestoneId, $poolAttributeList, $timestampStart, $timestampEnd)
         );
     }
 }

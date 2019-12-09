@@ -1872,6 +1872,18 @@ getByKey(
 ): HashMap[]
 ```
 
+Retrieve all profiles of a milestone in a certain date
+
+
+```
+public function getByMilestone(
+	int <milestone-id>,
+	string[] <pool-attribute-names>,
+	int <timestamp-start>,
+	int <$timestamp-end>
+): HashMap[]
+```
+
 Retrieve all profiles of a pool
 
 
@@ -1988,6 +2000,19 @@ Grant permission to a certain profile
 grantPermission(int <profile-id>): bool
 ```
 
+Check whether a certain profile is in a specific milestone within a certain
+date range
+
+
+```
+hasMilestone(
+	int <profile-id>,
+	int <milestone-id>,
+	int <timestamp-start>,
+	int <timestamp-end>
+): bool
+```
+
 Check whether a certain profile is in a list of targetgroups
 
 
@@ -2066,6 +2091,13 @@ Revoke a profiles tracking permission
 
 ```
 revokeTracking(int <profile-id>): bool
+```
+
+Set milestone of a profile
+
+
+```
+setMilestone(int <profile-id>, int <milestone-id>): bool
 ```
 
 Set the result cursor of an async job

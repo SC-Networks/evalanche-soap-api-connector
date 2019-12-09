@@ -772,4 +772,77 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
             $this->hydratorConfigFactory->createProfileTrackingHistoryConfig()
         );
     }
+
+    /**
+     * @param int $profileId
+     * @param int $milestoneId
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function setMilestone(int $profileId, int $milestoneId): bool
+    {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->setMilestone([
+                'profile_id' => $profileId,
+                'milestone_id' => $milestoneId
+            ]),
+            'setMilestoneResult'
+        );
+    }
+
+    /**
+     * @param int $profileId
+     * @param int $milestoneId
+     * @param int $timestampStart
+     * @param int $timestampEnd
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function hasMilestone(
+        int $profileId,
+        int $milestoneId,
+        int $timestampStart,
+        int $timestampEnd
+    ): bool {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->hasMilestone([
+                'profile_id' => $profileId,
+                'milestone_id' => $milestoneId,
+                'from' => $timestampStart,
+                'to' => $timestampEnd
+            ]),
+            'hasMilestoneResult'
+        );
+    }
+
+    /**
+     * @param int $milestoneId
+     * @param array $poolAttributeList
+     * @param int $timestampStart
+     * @param int $timestampEnd
+     *
+     * @return HashMapInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByMilestone(
+        int $milestoneId,
+        array $poolAttributeList,
+        int $timestampStart,
+        int $timestampEnd
+    ): array {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getByMilestone(
+                [
+                    'milestone_id' => $milestoneId,
+                    'pool_attribute_list' => $poolAttributeList,
+                    'from' => $timestampStart,
+                    'to' => $timestampEnd
+                ]
+            ),
+            'getByMilestoneResult',
+            $this->hydratorConfigFactory->createHashMapConfig()
+        );
+    }
 }
