@@ -368,4 +368,45 @@ interface ProfileClientInterface extends ClientInterface
         int $timestampStart,
         int $timestampEnd
     ): array;
+
+    /**
+     * @param int $profileId
+     * @param int $milestoneId
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function setMilestone(int $profileId, int $milestoneId): bool;
+
+    /**
+     * @param int $profileId
+     * @param int $milestoneId
+     * @param int $timestampStart
+     * @param int $timestampEnd
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function hasMilestone(
+        int $profileId,
+        int $milestoneId,
+        int $timestampStart,
+        int $timestampEnd
+    ): bool;
+
+    /**
+     * @param int $milestoneId
+     * @param array $poolAttributeList
+     * @param int $timestampStart
+     * @param int $timestampEnd
+     *
+     * @return HashMapInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByMilestone(
+        int $milestoneId,
+        array $poolAttributeList,
+        int $timestampStart,
+        int $timestampEnd
+    ): array;
 }
