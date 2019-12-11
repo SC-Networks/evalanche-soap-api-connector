@@ -1239,7 +1239,8 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->hasMilestone($profileId, $milestoneId, $timestampStart, $timestampEnd));
     }
 
-    public function testGetByMilestoneCanReturnInstanceOfHashMap() {
+    public function testGetByMilestoneCanReturnInstanceJobHandleInterface(): void
+    {
         $milestoneId = 444;
         $poolAttributeList = [
             'some',
@@ -1249,30 +1250,36 @@ class ProfileClientTest extends TestCase
         $timestampEnd = 234567;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
         $response = new \stdClass();
-        $response->getByMilestoneResult = [$object, $otherObject];
+        $response->getByMilestoneResult = $object;
 
-        $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createJobHandleConfig')
+            ->willReturn($config);
 
-        $this->soapClient->expects($this->once())->method('getByMilestone')->with(
-            [
-                'milestone_id' => $milestoneId,
-                'pool_attribute_list' => $poolAttributeList,
-                'from' => $timestampStart,
-                'to' => $timestampEnd
-            ]
-        )->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with(
-            $response,
-            'getByMilestoneResult',
-            $config
-        )->willReturn($response->getByMilestoneResult);
+        $this->soapClient->expects($this->once())
+            ->method('getByMilestone')
+            ->with(
+                [
+                    'milestone_id' => $milestoneId,
+                    'pool_attribute_list' => $poolAttributeList,
+                    'from' => $timestampStart,
+                    'to' => $timestampEnd
+                ]
+            )->willReturn($response);
 
-        $this->assertContainsOnlyInstancesOf(
-            HashMapInterface::class,
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'getByMilestoneResult',
+                $config
+            )->willReturn($response->getByMilestoneResult);
+
+        $this->assertInstanceOf(
+            JobHandleInterface::class,
             $this->subject->getByMilestone($milestoneId, $poolAttributeList, $timestampStart, $timestampEnd)
         );
     }
