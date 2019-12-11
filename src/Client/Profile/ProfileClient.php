@@ -823,7 +823,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
      * @param int $timestampStart
      * @param int $timestampEnd
      *
-     * @return HashMapInterface[]
+     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getByMilestone(
@@ -831,8 +831,8 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
         array $poolAttributeList,
         int $timestampStart,
         int $timestampEnd
-    ): array {
-        return $this->responseMapper->getObjects(
+    ): JobHandleInterface {
+        return $this->responseMapper->getObject(
             $this->soapClient->getByMilestone(
                 [
                     'milestone_id' => $milestoneId,
@@ -842,7 +842,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
                 ]
             ),
             'getByMilestoneResult',
-            $this->hydratorConfigFactory->createHashMapConfig()
+            $this->hydratorConfigFactory->createJobHandleConfig()
         );
     }
 }

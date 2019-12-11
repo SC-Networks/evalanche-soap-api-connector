@@ -400,7 +400,7 @@ interface ProfileClientInterface extends ClientInterface
      * @param int $timestampStart
      * @param int $timestampEnd
      *
-     * @return HashMapInterface[]
+     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getByMilestone(
@@ -408,5 +408,5 @@ interface ProfileClientInterface extends ClientInterface
         array $poolAttributeList,
         int $timestampStart,
         int $timestampEnd
-    ): array;
+    ): JobHandleInterface;
 }

@@ -1963,7 +1963,7 @@ public function getByMilestone(
 	string[] <pool-attribute-names>,
 	int <timestamp-start>,
 	int <$timestamp-end>
-): HashMap[]
+): JobHandle
 ```
 
 Retrieve all profiles of a pool
