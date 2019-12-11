@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0] - 2019-12-11
+### Added
+- Support for new milestone related methods in ProfileClient #62
+- Add MilestoneClient to support the new milestone object #61
+
+### Fixed
+- Internal beautifications #57
+
 ## [1.2.0] - 2019-03-15
 ### Added
 - Add PoolClient/deleteAttribute to delete Pool Attributes #45
