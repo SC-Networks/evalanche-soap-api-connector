@@ -262,4 +262,12 @@ class EvalancheConnectionTest extends TestCase
             $this->subject->createWebhookClient()
         );
     }
+
+    public function testCreateMilestoneClientCanReturnInstanceOfMileStoneClient()
+    {
+        $this->assertInstanceOf(
+            Client\Milestone\MilestoneClient::class,
+            $this->subject->createMilestoneClient()
+        );
+    }
 }
