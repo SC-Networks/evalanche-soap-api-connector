@@ -93,7 +93,7 @@ class WorkflowClientTest extends TestCase
             $config
         )->willReturn([$object, $otherObject]);
 
-        $this->containsOnlyInstancesOf(
+        $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
             $this->subject->getByStartDateRange($timestampStart, $timestampEnd)
         );
@@ -126,7 +126,7 @@ class WorkflowClientTest extends TestCase
             $config
         )->willReturn([$object, $otherObject]);
 
-        $this->containsOnlyInstancesOf(
+        $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
             $this->subject->getByEndDateRange($timestampStart, $timestampEnd)
         );

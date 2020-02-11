@@ -61,11 +61,14 @@ class ScoringClientTest extends TestCase
     public function testgetListByMandatorIdCanReturnArrayOfScoringInstance()
     {
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ScoringGroupDetailInterface::class);
-        $otherObject = $this->getMockBuilder(ScoringGroupDetailInterface::class);
+        $object = $this->getMockBuilder(ScoringGroupDetailInterface::class)->getMock();
+        $otherObject = $this->getMockBuilder(ScoringGroupDetailInterface::class)->getMock();
 
         $result = new \stdClass();
-        $result->getGroupsResult = $object;
+        $result->getGroupsResult = [
+            $object,
+            $otherObject
+        ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createScoringGroupDetailConfig')->willReturn($config);
         $this->soapClient->expects($this->once())->method('getGroups')->with(['mandator_id' => 5])->willReturn($result);
@@ -78,7 +81,7 @@ class ScoringClientTest extends TestCase
             $otherObject
         ]);
 
-        $this->containsOnlyInstancesOf(
+        $this->assertContainsOnlyInstancesOf(
             ScoringGroupDetailInterface::class,
             $this->subject->getListByMandatorId(5)
         );

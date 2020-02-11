@@ -168,7 +168,7 @@ class ResponseMapperTest extends TestCase
                 [$hydratorConfig, $someUser, (array)$secondResponseObject]
             );
 
-        $this->containsOnlyInstancesOf(
+        $this->assertContainsOnlyInstancesOf(
             UserInterface::class,
             $this->subject->getObjects(
                 $response,
