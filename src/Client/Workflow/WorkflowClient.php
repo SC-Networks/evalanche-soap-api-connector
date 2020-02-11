@@ -56,11 +56,11 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     public function getByEndDateRange(int $timestampStart, int $timestampEnd): array
     {
         return $this->responseMapper->getObjects(
-            $this->soapClient->getByEndateRange([
+            $this->soapClient->getByEndDateRange([
                 'from' => $timestampStart,
                 'to' => $timestampEnd
             ]),
-            'getByEndateRangeResult',
+            'getByEndDateRangeResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );
     }

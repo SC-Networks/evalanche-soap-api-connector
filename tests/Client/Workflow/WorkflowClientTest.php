@@ -48,7 +48,7 @@ class WorkflowClientTest extends TestCase
     {
         $this->soapClient = $this->getWsdlMock([
             'getByStartDateRange',
-            'getByEndateRange',
+            'getByEndDateRange',
             'getDetails',
             'pushProfilesIntoCampaign',
             'createConfigured',
@@ -109,20 +109,20 @@ class WorkflowClientTest extends TestCase
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
         $result = new \stdClass();
-        $result->getByEndateRangeResult = [
+        $result->getByEndDateRangeResult = [
             $object,
             $otherObject
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')
             ->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByEndateRange')->with([
+        $this->soapClient->expects($this->once())->method('getByEndDateRange')->with([
             'from' => $timestampStart,
             'to' => $timestampEnd
         ])->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $result,
-            'getByEndateRangeResult',
+            'getByEndDateRangeResult',
             $config
         )->willReturn([$object, $otherObject]);
 
