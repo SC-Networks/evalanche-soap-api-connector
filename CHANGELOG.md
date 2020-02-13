@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.4.0] - 2020-02-13
+### Added
+- Missing Test for createMilestoneClient #71
+
+### Changed
+- Split up documentation #70
+
+### Fixed
+- Fix Typo WorkflowClient #73
+- Fix Github Workflow #75
+
 ## [1.3.0] - 2019-12-11
 ### Added
 - Support for new milestone related methods in ProfileClient #62
