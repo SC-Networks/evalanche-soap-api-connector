@@ -323,7 +323,8 @@ final class EvalancheConnection implements EvalancheConnectionInterface
     /**
      * @return Client\Milestone\MilestoneClientInterface
      */
-    public function createMilestoneClient(): Client\Milestone\MilestoneClientInterface {
+    public function createMilestoneClient(): Client\Milestone\MilestoneClientInterface
+    {
         return $this->createClient(Client\Milestone\MilestoneClient::class);
     }
 }

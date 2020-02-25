@@ -1,5 +1,28 @@
 ##### ARTICLE-TEMPLATE
 
+Create an article-template  
+Template should be a valid (x)html string, and will be tidy up on save
+
+
+```
+create(
+    string <title>,
+    int <type-id>
+    string <template>, 
+    int <folder-id>
+): ResourceInformation
+```
+
+Update an article-template Template
+
+
+```
+updateTemplate(
+    int <template-id>
+    string <template>
+): ResourceInformation
+```
+
 Moves an article-template to a folder
 
 
