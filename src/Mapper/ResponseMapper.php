@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Mapper;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\Hydrator\Hydrator;
 use Scn\Hydrator\HydratorInterface;
 
 /**
@@ -143,7 +144,8 @@ final class ResponseMapper implements ResponseMapperInterface
         $this->hydrator->hydrate(
             $hydratorConfig,
             $object,
-            (array)$objectResponse
+            (array)$objectResponse,
+            Hydrator::NO_STRICT_KEYS
         );
 
         return $object;
