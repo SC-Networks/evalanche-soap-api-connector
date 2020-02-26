@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.1] - 2020-02-26
+### Changed
+- Enable NoStrictKeys Hydrator Config (#85)
+
 ## [1.4.0] - 2020-02-13
 ### Added
 - Missing Test for createMilestoneClient #71
