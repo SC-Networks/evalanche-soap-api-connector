@@ -1,6 +1,6 @@
-##### POOL-DATA-MINER
+##### POOLDATAMINER
 
-Updates the title of a pooldataminer
+Update the title of a pooldataminer
 
 
 ```
@@ -10,42 +10,42 @@ updateTitle(
 ): ResourceInformation
 ```
 
-Moves an pooldataminer to a folder
+Move a pooldataminer to a folder
 
 
 ```
 move(int <pooldataminer-id>, int <folder-id>): ResourceInformation
 ```
 
-Copy an pooldataminer to a folder
+Copy a pooldataminer to a folder
 
 
 ```
 copy(int <pooldataminer-id>, int <folder-id>): ResourceInformation
 ```
 
-Delete an pooldataminer
+Delete a pooldataminer
 
 
 ```
 delete(int <pooldataminer-id>): bool
 ```
 
-Retrieve all pooldataminer of a mandator
+Retrieve all pooldataminers of a mandator
 
 
 ```
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all pooldataminer of a folder
+Retrieve all pooldataminer in a folder
 
 
 ```
 getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
-Retrieve an pooldataminer by id
+Retrieve a pooldataminer by id
 
 
 ```
@@ -59,7 +59,7 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default folder for pooldataminer
+Retrieve the default folder for pooldataminers
 
 
 ```
@@ -73,7 +73,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the pooldataminer by an external id
+Retrieve a pooldataminer by its external id
 
 
 ```

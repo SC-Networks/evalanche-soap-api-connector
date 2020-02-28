@@ -1,6 +1,6 @@
-##### CONTAINER-TYPE
+##### CONTAINER TYPE
 
-Add an attribute to a container-type
+Add an attribute to a container type
 
 
 ```
@@ -13,17 +13,17 @@ addAttribute(
 ): ContainerAttribute
 ```
 
-Add an attribute group to a container-type
+Add an attribute group to a container type
 
 
 ```
-addAttribute(
+addAttributeGroup(
     int <container-type-id>,
     string <title>
 ): ContainerAttributeGroup
 ```
 
-Update a attribute-type of a container-type
+Update an attribute type of a container type
 
 
 ```
@@ -34,7 +34,7 @@ updateAttributeType(
 ): bool
 ```
 
-Add an option to attribute of a container-type
+Add an option to an attribute of a container type
 
 
 ```
@@ -45,14 +45,14 @@ addAttributeOption(
 ): ContainerAttributeOption
 ```
 
-Retrieve all attribute-groups of a container-type
+Retrieve all attribute groups of a container type
 
 
 ```
 getAttributeGroupsByResourceId(int <container-type-id>): ContainerAttributeGroup[]
 ```
 
-Retrieve all attribute-options of a container-type
+Retrieve all attribute options of a container type
 
 
 ```
@@ -62,7 +62,7 @@ getAttributeOptionsByResourceIdAndAttributeId(
 ): ContainerAttributeOption[]
 ```
 
-Retrieve all attributes of a container-type
+Retrieve all attributes of a container type
 
 
 ```
@@ -71,7 +71,7 @@ getAttributesByResourceId(
 ): ContainerAttribute[]
 ```
 
-Removes a attribute of a container-type
+Remove an attribute of a container type
 
 
 ```
@@ -81,7 +81,7 @@ removeAttribute(
 ): bool
 ```
 
-Removes a attribute-group of a container-type
+Remove an attribute group of a container type
 
 
 ```
@@ -91,7 +91,7 @@ removeAttribute(
 ): bool
 ```
 
-Removes a attribute-option from an attribute of a container-type
+Remove an attribute option from an attribute of a container type
 
 
 ```
@@ -102,7 +102,7 @@ removeAttributeOption(
 ): bool
 ```
 
-Updates an Attribute of a container-type
+Update an attribute of a container type
 
 
 ```
@@ -113,42 +113,42 @@ updateAttribute(
 ): ContainerAttribute
 ```
 
-Moves a container-type to a folder
+Move a container type to a folder
 
 
 ```
 move(int <container-type-id>, int <folder-id>): ResourceInformation
 ```
 
-Copy a container-type to a folder
+Copy a container type to a folder
 
 
 ```
 copy(int <container-type-id>, int <folder-id>): ResourceInformation
 ```
 
-Delete a container-type
+Delete a container type
 
 
 ```
 delete(int <container-type-id>): bool
 ```
 
-Retrieve all container-types of a mandator
+Retrieve all container types of a mandator
 
 
 ```
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all container-types of a folder
+Retrieve all container types in a folder
 
 
 ```
 getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
-Retrieve a container-type by id
+Retrieve a container type by id
 
 
 ```
@@ -162,7 +162,7 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default folder for container-types
+Retrieve the default folder for container types
 
 
 ```
@@ -176,7 +176,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the container-type by an external id
+Retrieve a container type by its external id
 
 
 ```

@@ -1,6 +1,6 @@
 ##### PROFILE
 
-Add a specific score value to a profiles activity scoring
+Add a specific score value to a profile's activity scoring
 
 
 ```
@@ -12,7 +12,7 @@ addScore(
 ): bool
 ```
 
-Create a profile and return the profile id
+Create a profile and return its id
 
 
 ```
@@ -128,7 +128,7 @@ getJobInformationByJobId(
 ): JobHandle
 ```
 
-Retrieve a profiles status in a certain mailing
+Retrieve a profile's status in a certain mailing
 
 
 ```
@@ -225,7 +225,7 @@ isInTargetgroups(
 ): TargetGroupMemberShip[]
 ```
 
-Updates data of a set of profiles
+Update data of a set of profiles
 
 
 ```
@@ -281,14 +281,14 @@ mergeByTargetGroupId(
 ): bool
 ```
 
-Revoke a profiles permission
+Revoke a profile's permission
 
 
 ```
 revokePermission(int <profile-id>): bool
 ```
 
-Revoke a profiles tracking permission
+Revoke a profile's tracking permission
 
 
 ```

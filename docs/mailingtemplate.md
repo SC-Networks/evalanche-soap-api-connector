@@ -1,6 +1,6 @@
-##### MAILING-TEMPLATE
+##### MAILING TEMPLATE
 
-Updates the title of a mailing-template
+Update the title of a mailing template
 
 
 ```
@@ -10,42 +10,42 @@ updateTitle(
 ): ResourceInformation
 ```
 
-Moves a mailing-template to a folder
+Move a mailing template to a folder
 
 
 ```
 move(int <mailing-template-id>, int <folder-id>): ResourceInformation
 ```
 
-Copy a mailing-template to a folder
+Copy a mailing template to a folder
 
 
 ```
 copy(int <mailing-template-id>, int <folder-id>): ResourceInformation
 ```
 
-Delete a mailing-template
+Delete a mailing template
 
 
 ```
 delete(int <mailing-template-id>): bool
 ```
 
-Retrieve all mailing-templates of a mandator
+Retrieve all mailing templates of a mandator
 
 
 ```
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all mailing-templates of a folder
+Retrieve all mailing templates in a folder
 
 
 ```
 getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
-Retrieve a mailing-template by id
+Retrieve a mailing template by id
 
 
 ```
@@ -59,7 +59,7 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default folder for mailing-templates
+Retrieve the default folder for mailing templates
 
 
 ```
@@ -73,7 +73,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the mailing-template by an external id
+Retrieve a mailing template by its external id
 
 
 ```

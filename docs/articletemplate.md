@@ -1,7 +1,6 @@
-##### ARTICLE-TEMPLATE
+##### ARTICLE TEMPLATE
 
-Create an article-template  
-Template should be a valid (x)html string, and will be tidy up on save
+Create an article template. Template should be a valid (x)html string, and will be tidied up on save
 
 
 ```
@@ -13,7 +12,7 @@ create(
 ): ResourceInformation
 ```
 
-Update an article-template Template
+Update an article template's template
 
 
 ```
@@ -23,14 +22,14 @@ updateTemplate(
 ): ResourceInformation
 ```
 
-Moves an article-template to a folder
+Move an article template to a folder
 
 
 ```
 move(int <article-id>, int <folder-id>): ResourceInformation
 ```
 
-Copy an article-template to a folder
+Copy an article template to a folder
 
 
 ```
@@ -44,21 +43,21 @@ Delete an article-template
 delete(int <article-id>): bool
 ```
 
-Retrieve all article-template of a mandator
+Retrieve all article templates of a mandator
 
 
 ```
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all article-template of a folder
+Retrieve all article templates in a folder
 
 
 ```
 getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
-Retrieve an article-template by id
+Retrieve an article template by id
 
 
 ```
@@ -72,7 +71,7 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default folder for article-templates
+Retrieve the default folder for article templates
 
 
 ```
@@ -86,7 +85,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the article-template by an external id
+Retrieve an article template by its external id
 
 
 ```

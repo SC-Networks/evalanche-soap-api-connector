@@ -1,13 +1,13 @@
 ##### POOL
 
-Copy an pool to a folder
+Copy a pool to a folder
 
 
 ```
 copy(int <pool-id>, int <folder-id>): ResourceInformation
 ```
 
-Delete an pool
+Delete a pool
 
 
 ```
@@ -21,21 +21,21 @@ Retrieve all pools of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all pools of a folder
+Retrieve all pools in a folder
 
 
 ```
 getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
-Retrieve the pool by an external id
+Retrieve a pool by its external id
 
 
 ```
 getByExternalId(string <external-id>): ResourceInformation
 ```
 
-Retrieve an article-type by id
+Retrieve pool by id
 
 
 ```
@@ -49,7 +49,7 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default folder for pool
+Retrieve the default folder for pools
 
 
 ```
@@ -63,7 +63,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Moves an pool to a folder
+Move a pool to a folder
 
 
 ```
@@ -78,7 +78,7 @@ Add an attribute to a pool
 addAttribute(int <pool-id>, string <name>, string <label>, int <type-id>): PoolAttribute
 ```
 
-Adds options to an existing attribute
+Add an option to an existing attribute
 
 
 ```

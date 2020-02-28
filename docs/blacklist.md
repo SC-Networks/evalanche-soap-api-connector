@@ -1,20 +1,20 @@
 ##### BLACKLIST
 
-Add an entry to a mandators blacklist
+Add an entry to a mandator's blacklist
 
 
 ```
-add(int <mandator-id>, string <email address>, string <comment>): bool
+add(int <mandator-id>, string <email-address>, string <comment>): bool
 ```
 
-Remove an entry from a mandators blacklist
+Remove an entry from a mandator's blacklist
 
 
 ```
-remove(int <mandator-id>, string <email address>): bool
+remove(int <mandator-id>, string <email-address>): bool
 ```
 
-Retrieve the mandators blacklist
+Retrieve the mandator's blacklist
 
 
 ```

@@ -1,6 +1,6 @@
-##### ARTICLE-TYPE
+##### ARTICLE TYPE
 
-Add a attribute to an article-type
+Add an attribute to an article type
 
 
 ```
@@ -9,11 +9,11 @@ addAttribute(
     string <title>,
     string <label>,
     int <attribute-type-id>,
-    int <$groupId>
+    int <groupId>
 ): ContainerAttribute
 ```
 
-Remove a attribute of an article-type
+Remove an attribute of an article type
 
 
 ```
@@ -23,7 +23,7 @@ removeAttribute(
 ): bool
 ```
 
-Change a attribute-type of attribute from article-type
+Change an attribute type of an attribute from an article type
 
 
 ```
@@ -34,7 +34,7 @@ changeAttributeType(
 ): bool
 ```
 
-Assign a role to an attribute of article-type
+Assign a role to an attribute of an article type
 
 
 ```
@@ -45,7 +45,7 @@ assignRoleToAttribute(
 ): bool
 ```
 
-Add a attribute-group to an article-type
+Add an attribute group to an article type
 
 
 ```
@@ -55,7 +55,7 @@ addAttributeGroup(
 ): ContainerAttributeGroup
 ```
 
-Remove a attribute-group of an article-type
+Remove an attribute group of an article type
 
 
 ```
@@ -65,7 +65,7 @@ removeAttributeGroup(
 ): ContainerAttributeGroup
 ```
 
-Add a attribute-option to an attribute of article-type
+Add an attribute option to an attribute of an article type
 
 
 ```
@@ -76,7 +76,7 @@ createAttributeOption(
 ): ContainerAttributeOption
 ```
 
-Remove a attribute-option from an attribute of article-type
+Remove an attribute option from an attribute of an article type
 
 
 ```
@@ -87,14 +87,14 @@ removeAttributeOption(
 ): bool
 ```
 
-Retrieve all attributes of a article-type
+Retrieve all attributes of an article type
 
 
 ```
 getAttributes(int <article-type-id>): ContainerAttribute[]
 ```
 
-Retrieve all attribute-options of a attribute of article-type
+Retrieve all attribute options of an attribute of an article type
 
 
 ```
@@ -104,14 +104,14 @@ getAttributeOptions(
 ): ContainerAttributeOption[]
 ```
 
-Retrieve all attribute-groups of article-type
+Retrieve all attribute groups of an article type
 
 
 ```
 getAttributeGroups(int <article-type-id>): ContainerAttributeGroup[]
 ```
 
-Retrieve all applicable role types of a attribute of article-type
+Retrieve all applicable role types of an attribute of an article type
 
 
 ```
@@ -121,7 +121,7 @@ getApplicableRoleTypes(
 ): ContainerAttributeRoleType[]
 ```
 
-Retrieve all assigned role types of a attribute of article-type
+Retrieve all assigned role types of an attribute of an article type
 
 
 ```
@@ -131,42 +131,42 @@ getAssignedRoleTypes(
 ): ContainerAttributeRoleType[]
 ```
 
-Moves an article-type to a folder
+Move an article type to a folder
 
 
 ```
 move(int <article-id>, int <folder-id>): ResourceInformation
 ```
 
-Copy an article-type to a folder
+Copy an article type to a folder
 
 
 ```
 copy(int <article-id>, int <folder-id>): ResourceInformation
 ```
 
-Delete an article-type
+Delete an article type
 
 
 ```
 delete(int <article-id>): bool
 ```
 
-Retrieve all article-type of a mandator
+Retrieve all article types of a mandator
 
 
 ```
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all article-type of a folder
+Retrieve all article types in a folder
 
 
 ```
 getByFolderId(int <folder-id>): ResourceInformation[]
 ```
 
-Retrieve an article-type by id
+Retrieve an article type by id
 
 
 ```
@@ -180,7 +180,7 @@ Retrieve all related objects by type id
 getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve the default folder for article-type
+Retrieve the default folder for article types
 
 
 ```
@@ -194,7 +194,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the article-type by an external id
+Retrieve an article type by its external id
 
 
 ```

@@ -1,6 +1,6 @@
 ##### TARGETGROUP
 
-Moves a targetgroup to a folder
+Move a targetgroup to a folder
 
 
 ```
@@ -28,7 +28,7 @@ Retrieve all targetgroups of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all targetgroups of a folder
+Retrieve all targetgroups in a folder
 
 
 ```
@@ -63,7 +63,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the targetgroup by an external id
+Retrieve a targetgroup by its external id
 
 
 ```
