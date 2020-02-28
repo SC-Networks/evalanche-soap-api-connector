@@ -1,5 +1,76 @@
 ##### POOL
 
+Copy an pool to a folder
+
+
+```
+copy(int <pool-id>, int <folder-id>): ResourceInformation
+```
+
+Delete an pool
+
+
+```
+delete(int <pool-id>): bool
+```
+
+Retrieve all pools of a mandator
+
+
+```
+getListByMandatorId(int <mandator-id>): ResourceInformation[]
+```
+
+Retrieve all pools of a folder
+
+
+```
+getByFolderId(int <folder-id>): ResourceInformation[]
+```
+
+Retrieve the pool by an external id
+
+
+```
+getByExternalId(string <external-id>): ResourceInformation
+```
+
+Retrieve an article-type by id
+
+
+```
+getById(int <pool-id>): ResourceInformation
+```
+
+Retrieve all related objects by type id
+
+
+```
+getByTypeId(int <type-id>, int <mandator-id>): ResourceInformation[]
+```
+
+Retrieve the default folder for pool
+
+
+```
+getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
+```
+
+Retrieve all related object type ids
+
+
+```
+getTypeIds(): ResourceTypeInformation[]
+```
+
+Moves an pool to a folder
+
+
+```
+move(int <pool-id>, int <folder-id>): ResourceInformation
+```
+
+
 Add an attribute to a pool
 
 
