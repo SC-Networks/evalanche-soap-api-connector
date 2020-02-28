@@ -1,15 +1,15 @@
 ##### MANDATOR
 
-Gets a list of customers by given customer id
+Retrieve a mandator by id
 
 
 ```
 getById(
-	int <customer-id>
+	int <mandator-id>
 ): Mandator
 ```
 
-Gets a list of customers for your Account
+Retrieve a list of mandators for your cccount
 
 
 ```

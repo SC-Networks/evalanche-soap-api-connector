@@ -1,6 +1,6 @@
 ##### DOCUMENT
 
-Moves a document to a folder
+Move a document to a folder
 
 
 ```
@@ -14,7 +14,7 @@ Copy a document to a folder
 copy(int <document-id>, int <folder-id>): ResourceInformation
 ```
 
-Delete n document
+Delete a document
 
 
 ```
@@ -28,7 +28,7 @@ Retrieve all documents of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all documents of a folder
+Retrieve all documents in a folder
 
 
 ```
@@ -63,7 +63,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the document by an external id
+Retrieve a document by its external id
 
 
 ```

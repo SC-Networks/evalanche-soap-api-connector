@@ -1,6 +1,6 @@
 ##### ARTICLE
 
-Creates a article
+Create an article
 
 
 ```
@@ -31,7 +31,7 @@ update(
 ): HashMap
 ```
 
-Moves an article to a folder
+Move an article to a folder
 
 
 ```
@@ -59,7 +59,7 @@ Retrieve all articles of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all articles of a folder
+Retrieve all articles in a folder
 
 
 ```
@@ -94,7 +94,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the article by an external id
+Retrieve an article by its external id
 
 
 ```

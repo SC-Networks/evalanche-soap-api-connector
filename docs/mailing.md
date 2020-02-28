@@ -2,10 +2,10 @@
 
 *Note*
 The statistics related methods won't work with mailing types which don't
-provide statistical data. Also method which modify the object won't work with
+provide statistical data. Also methods which modify the object won't work with
 read-only mailing types like sent mailings.
 
-Moves a mailing to a folder
+Move a mailing to a folder
 
 
 ```
@@ -33,7 +33,7 @@ Retrieve all mailings of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all mailings of a folder
+Retrieve all mailings in a folder
 
 
 ```
@@ -68,7 +68,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the mailing by an external id
+Retrieve a mailing by its external id
 
 
 ```
@@ -216,7 +216,7 @@ getImpressions(
 ): MailingImpression[]
 ```
 
-Retrieve status information about an async job
+Retrieve status information of an async job
 
 
 ```
@@ -255,7 +255,7 @@ getMultipleImpressionProfiles(
 ): JobHandle
 ```
 
-Retrieve all profiles which a recipients of a mailing
+Retrieve all profiles which are recipients of a mailing
 
 ```
 getRecipientsProfiles(
@@ -333,7 +333,7 @@ Retrieve the list of supported mailing type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve all profiles which have a unsubscription in a mailing
+Retrieve all profiles which have an unsubscription in a mailing
 
 ```
 getUnsubscriptionProfiles(
@@ -357,7 +357,7 @@ removeArticle(
 ): MailingArticle[]
 ```
 
-Updates the title of a mailing
+Update the title of a mailing
 
 ```
 updateTitle(
@@ -419,7 +419,7 @@ Retrieve all mailings of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all mailings of a folder
+Retrieve all mailings in a folder
 
 ```
 getByFolderId(int <folder-id>): ResourceInformation[]
@@ -438,7 +438,7 @@ Retrieve the default folder for mailings
 getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
 ```
 
-Retrieve a mailing by an external id
+Retrieve a mailing by its external id
 
 ```
 getByExternalId(string <external-id>): ResourceInformation

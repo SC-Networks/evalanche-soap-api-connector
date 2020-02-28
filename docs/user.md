@@ -1,6 +1,6 @@
 ##### USER
 
-Retrieve an user by its name;
+Retrieve a user by its name;
 
 
 ```
@@ -14,7 +14,7 @@ Retrieve all users of a mandator
 getListByMandatorId(int <mandator-id>): User[]
 ```
 
-Update an user
+Update a user
 
 
 ```

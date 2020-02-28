@@ -10,7 +10,7 @@ create(
 ): ResourceInformation
 ```
 
-Moves a milestone to a folder
+Move a milestone to a folder
 
 
 ```
@@ -38,7 +38,7 @@ Retrieve all milestones of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all milestones of a folder
+Retrieve all milestones in a folder
 
 
 ```
@@ -73,7 +73,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the milestone by an external id
+Retrieve a milestone by its external id
 
 
 ```

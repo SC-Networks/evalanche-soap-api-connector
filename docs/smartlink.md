@@ -10,7 +10,7 @@ create(
 ): ResourceInformation
 ```
 
-Appends a new Tracking Link to an existing smartlink object
+Append a new tracking link to an existing smartlink
 
 
 ```
@@ -21,7 +21,7 @@ createLink(
 ): string <link-short-url>
 ```
 
-Get all Tracking Links from a smartlink object
+Get all tracking links from a smartlink
 
 
 ```
@@ -30,7 +30,7 @@ getTrackingUrls(
 ): SmartLink[]
 ```
 
-Moves a smartlink to a folder
+Move a smartlink to a folder
 
 
 ```
@@ -58,7 +58,7 @@ Retrieve all smartlinks of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all smartlinks of a folder
+Retrieve all smartlinks in a folder
 
 
 ```
@@ -93,7 +93,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the smartlink by an external id
+Retrieve a smartlink by its external id
 
 
 ```

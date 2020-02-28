@@ -10,14 +10,14 @@ create(
 ): FolderInformation
 ```
 
-Delete an folder
+Delete a folder
 
 
 ```
 delete(int <folder-id>): bool
 ```
 
-Get Subfolders from Folder
+Get a folder's subfolders
 
 
 ```

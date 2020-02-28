@@ -1,6 +1,6 @@
 ##### FORM
 
-Updates the title of a form
+Update the title of a form
 
 
 ```
@@ -10,7 +10,7 @@ updateTitle(
 ): ResourceInformation
 ```
 
-Updates the template of a form
+Update the template of a form
 
 
 ```
@@ -20,7 +20,7 @@ updateTemplate(
 ): ResourceInformation
 ```
 
-Creates a alias of a form
+Create an alias of a form
 
 
 ```
@@ -31,7 +31,7 @@ createAlias(
 ): ResourceInformation
 ```
 
-Adds a attribute to a form
+Add an attribute to a form
 
 
 ```
@@ -41,7 +41,7 @@ addAttribute(
 ): bool
 ```
 
-Removes a attribute from a form
+Remove an attribute from a form
 
 
 ```
@@ -51,7 +51,7 @@ removeAttribute(
 ): bool
 ```
 
-Adds a attribute option to a form
+Add an attribute option to a form
 
 
 ```
@@ -61,7 +61,7 @@ addAttributeOption(
 ): bool
 ```
 
-Removes a attribute option from a form
+Remove an attribute option from a form
 
 
 ```
@@ -81,7 +81,7 @@ getStatistics(
 ): FormStatisticInterface
 ```
 
-Retrieve a form by alias
+Retrieve a form by its alias
 
 
 ```
@@ -99,7 +99,7 @@ getAliases(
 ): ResourceInformation[]
 ```
 
-Moves a form to a folder
+Move a form to a folder
 
 
 ```
@@ -127,7 +127,7 @@ Retrieve all forms of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all forms of a folder
+Retrieve all forms in a folder
 
 
 ```
@@ -162,7 +162,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the form by an external id
+Retrieve a form by its external id
 
 
 ```

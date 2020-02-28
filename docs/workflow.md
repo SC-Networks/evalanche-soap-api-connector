@@ -1,6 +1,6 @@
 ##### WORKFLOW
 
-Moves a workflow to a folder
+Move a workflow to a folder
 
 
 ```
@@ -28,7 +28,7 @@ Retrieve all workflows of a mandator
 getListByMadatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all workflows of a folder
+Retrieve all workflows in a folder
 
 
 ```
@@ -63,7 +63,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the workflow by an external id
+Retrieve a workflow by its external id
 
 
 ```

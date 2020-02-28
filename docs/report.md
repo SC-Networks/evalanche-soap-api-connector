@@ -10,7 +10,7 @@ create(
 ): ResourceInformation
 ```
 
-Attaches an object to an existing report object
+Attach an object to an existing report object
 
 
 ```
@@ -20,7 +20,7 @@ addResourceIdToReport(
 ): bool
 ```
 
-Moves a report to a folder
+Move a report to a folder
 
 
 ```
@@ -48,7 +48,7 @@ Retrieve all reports of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all reports of a folder
+Retrieve all reports in a folder
 
 
 ```
@@ -83,7 +83,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the report by an external id
+Retrieve a report by its external id
 
 
 ```

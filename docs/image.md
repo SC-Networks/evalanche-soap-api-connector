@@ -11,7 +11,7 @@ create(
 ): ResourceInformation
 ```
 
-Moves an image to a folder
+Move an image to a folder
 
 
 ```
@@ -39,7 +39,7 @@ Retrieve all images of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all images of a folder
+Retrieve all images in a folder
 
 
 ```
@@ -74,7 +74,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the image by an external id
+Retrieve an image by its external id
 
 
 ```

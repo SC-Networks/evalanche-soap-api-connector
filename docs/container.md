@@ -1,20 +1,20 @@
 ##### CONTAINER
 
-Retrieve the details of a Container
+Retrieve the details of a container
 
 
 ```
 getDetailById(int <container-id>): HashMap
 ```
 
-Update a Container
+Update a container
 
 
 ```
 update(int <container-id>, HashMap <hash-map>): ResourceInformation
 ```
 
-Moves a container to a folder
+Move a container to a folder
 
 
 ```
@@ -42,7 +42,7 @@ Retrieve all containers of a mandator
 getListByMandatorId(int <mandator-id>): ResourceInformation[]
 ```
 
-Retrieve all containers of a folder
+Retrieve all containers in a folder
 
 
 ```
@@ -77,7 +77,7 @@ Retrieve all related object type ids
 getTypeIds(): ResourceTypeInformation[]
 ```
 
-Retrieve the container by an external id
+Retrieve a container by its external id
 
 
 ```
