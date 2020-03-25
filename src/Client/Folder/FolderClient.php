@@ -14,6 +14,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
  */
 final class FolderClient extends AbstractClient implements FolderClientInterface
 {
+
     const PORTNAME = 'category';
     const VERSION = ClientInterface::VERSION_V0;
 
@@ -54,6 +55,21 @@ final class FolderClient extends AbstractClient implements FolderClientInterface
         return $this->responseMapper->getObjects(
             $this->soapClient->getSubCategories(['category_id' => $id]),
             'getSubCategoriesResult',
+            $this->hydratorConfigFactory->createFolderInformationConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return FolderInformationInterface
+     * @throws EmptyResultException
+     */
+    public function get(int $id): FolderInformationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getDetails(['category_id' => $id]),
+            'getDetailsResult',
             $this->hydratorConfigFactory->createFolderInformationConfig()
         );
     }
