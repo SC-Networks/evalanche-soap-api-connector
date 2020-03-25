@@ -32,6 +32,7 @@ class FolderInformationConfig implements HydratorConfigInterface
         return [
             'id' => IntegerValue::set('id'),
             'name' => StringValue::set('name'),
+            'parent_id' => IntegerValue::set('parentId'),
         ];
     }
 
@@ -43,6 +44,7 @@ class FolderInformationConfig implements HydratorConfigInterface
         return [
             'id' => IntegerValue::get('id'),
             'name' => StringValue::get('name'),
+            'parent_id' => IntegerValue::get('parentId'),
         ];
     }
 }

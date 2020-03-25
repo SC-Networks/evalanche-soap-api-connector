@@ -24,6 +24,7 @@ class FolderInformationConfigTest extends TestCase
     private $arrayKeys = [
         'id',
         'name',
+        'parent_id'
     ];
 
     public function setUp(): void

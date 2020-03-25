@@ -48,7 +48,8 @@ class FolderClientTest extends TestCase
         $this->soapClient = $this->getWsdlMock([
             'create',
             'delete',
-            'getSubCategories'
+            'getSubCategories',
+            'getDetails',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -130,6 +131,33 @@ class FolderClientTest extends TestCase
         $this->assertContainsOnlyInstancesOf(
             FolderInformationInterface::class,
             $this->subject->getSubFolderById($id)
+        );
+    }
+
+    public function testGetCanReturnInstanceOfFolderInformation()
+    {
+        $id = 123;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
+
+        $response = new \stdClass();
+        $response->getDetailsResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
+        $this->soapClient->expects($this->once())->method('getDetails')->with([
+            'category_id' => $id
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getDetailsResult',
+            $config
+        )->willReturn($response->getDetailsResult);
+
+
+        $this->assertInstanceOf(
+            FolderInformationInterface::class,
+            $this->subject->get($id)
         );
     }
 }

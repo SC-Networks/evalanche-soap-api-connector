@@ -25,3 +25,12 @@ getSubFolderById(
 	int <folder-id>
 ): FolderInformation[]
 ```
+
+Get a folder
+
+
+```
+get(
+	int <folder-id>
+): FolderInformation
+```
