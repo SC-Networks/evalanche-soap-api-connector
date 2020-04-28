@@ -18,10 +18,41 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 final class ContainerClient extends AbstractClient implements ContainerClientInterface
 {
     use ResourceTrait;
-    use CreateResourceTrait;
 
     const PORTNAME = 'container';
     const VERSION = ClientInterface::VERSION_V0;
+
+    /**
+     * @param int $id
+     * @param string $title
+     * @param int $folderId
+     * @param HashMapInterface $hashMap
+     *
+     * @return ResourceInformationInterface
+     * @throws EmptyResultException
+     */
+    public function create(
+        int $id,
+        string $title,
+        int $folderId,
+        HashMapInterface $hashMap
+    ): ResourceInformationInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->create(
+                [
+                    'container_preset_id' => $id,
+                    'name' => $title,
+                    'category_id' => $folderId,
+                    'data' => $this->extractor->extract(
+                        $this->hydratorConfigFactory->createHashMapConfig(),
+                        $hashMap
+                    ),
+                ]
+            ),
+            'createResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
 
     /**
      * @param int $id

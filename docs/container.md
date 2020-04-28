@@ -1,5 +1,17 @@
 ##### CONTAINER
 
+Create a new container
+
+
+```
+create(
+    int <container-preset-id>,
+    string <title>,
+    int <folder-id>,
+    HashMap <hash-map>
+): ResourceInformation
+```
+
 Retrieve the details of a container
 
 

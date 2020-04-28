@@ -47,6 +47,7 @@ class ContainerClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'create',
             'getData',
             'update',
         ]);
@@ -59,6 +60,50 @@ class ContainerClientTest extends TestCase
             $this->responseMapper,
             $this->hydratorConfigFactory,
             $this->extractor
+        );
+    }
+
+    public function testCreateCanReturnInstanceOfResourceInformation()
+    {
+        $id = 456;
+        $title = 'some title';
+        $folderId = 123;
+        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+
+        $expectedExtractor = [
+            'some' => 'value'
+        ];
+
+        $response = new \stdClass();
+        $response->createResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
+        $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
+
+        $this->extractor->expects($this->once())->method('extract')->with(
+            $config,
+            $hashMap
+        )->willReturn($expectedExtractor);
+
+        $this->soapClient->expects($this->once())->method('create')->with([
+            'container_preset_id' => $id,
+            'name' => $title,
+            'category_id' => $folderId,
+            'data' => $expectedExtractor,
+        ])->willReturn($response);
+
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createResult',
+            $config
+        )->willReturn($response->createResult);
+
+        $this->assertInstanceOf(
+            ResourceInformationInterface::class,
+            $this->subject->create($id, $title, $folderId, $hashMap)
         );
     }
 
