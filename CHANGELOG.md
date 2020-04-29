@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.2] - 2020-04-29
+### FIXED
+- ContainerClient - wrong Parameter for Create (#98)
+
 ## [1.4.1] - 2020-02-26
 ### Changed
 - Enable NoStrictKeys Hydrator Config (#85)
