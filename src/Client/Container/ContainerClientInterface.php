@@ -14,8 +14,24 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Container
  */
-interface ContainerClientInterface extends ClientInterface, ResourceTraitInterface, CreateResourceTraitInterface
+interface ContainerClientInterface extends ClientInterface, ResourceTraitInterface
 {
+    /**
+     * @param int $id
+     * @param string $title
+     * @param int $folderId
+     * @param HashMapInterface $hashMap
+     *
+     * @return ResourceInformationInterface
+     * @throws EmptyResultException
+     */
+    public function create(
+        int $id,
+        string $title,
+        int $folderId,
+        HashMapInterface $hashMap
+    ): ResourceInformationInterface;
+
     /**
      * @param int $id
      *
