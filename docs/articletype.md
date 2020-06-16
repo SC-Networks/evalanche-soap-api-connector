@@ -1,5 +1,15 @@
 ##### ARTICLE TYPE
 
+Create a new article type object
+
+
+```
+create(
+	string <name>,
+	int <folder-id>
+): ResourceInformation
+```
+
 Add an attribute to an article type
 
 

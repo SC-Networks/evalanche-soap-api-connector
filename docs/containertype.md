@@ -1,5 +1,15 @@
 ##### CONTAINER TYPE
 
+Create a new container type object
+
+
+```
+create(
+	string <name>,
+	int <folder-id>
+): ResourceInformation
+```
+
 Add an attribute to a container type
 
 
