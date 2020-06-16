@@ -4,6 +4,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Container;
 
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Generic\CreateResourceTrait;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeGroupInterface;
@@ -19,6 +20,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 final class ContainerTypeClient extends AbstractClient implements ContainerTypeClientInterface
 {
     use ResourceTrait;
+    use CreateResourceTrait;
 
     const PORTNAME = 'containertype';
     const VERSION = ClientInterface::VERSION_V0;
