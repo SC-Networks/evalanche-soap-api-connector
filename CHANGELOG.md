@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.3] - 2020-06-16
+### FIXED
+- ArticleType / ContainerType missing Create Method (#101)
+
 ## [1.4.2] - 2020-04-29
 ### FIXED
 - ContainerClient - wrong Parameter for Create (#98)
