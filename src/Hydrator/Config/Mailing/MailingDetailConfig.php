@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingDetail;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
+use Scn\HydratorPropertyValues\Property\BooleanValue;
 use Scn\HydratorPropertyValues\Property\IntegerValue;
 use Scn\HydratorPropertyValues\Property\StringValue;
 
@@ -40,7 +41,7 @@ class MailingDetailConfig implements HydratorConfigInterface
             'send_end_time' => IntegerValue::set('sendEndTime'),
             'timestamp' => IntegerValue::set('timestamp'),
             'recipients' => IntegerValue::set('recipients'),
-            'sent' => IntegerValue::set('sent'),
+            'sent' => BooleanValue::set('sent'),
             'preview_url' => StringValue::set('previewUrl'),
             'report_url' => StringValue::set('reportUrl'),
             'admin_url' => StringValue::set('adminUrl'),
@@ -65,7 +66,7 @@ class MailingDetailConfig implements HydratorConfigInterface
             'send_end_time' => IntegerValue::get('sendEndTime'),
             'timestamp' => IntegerValue::get('timestamp'),
             'recipients' => IntegerValue::get('recipients'),
-            'sent' => IntegerValue::get('sent'),
+            'sent' => BooleanValue::get('sent'),
             'preview_url' => StringValue::get('previewUrl'),
             'report_url' => StringValue::get('reportUrl'),
             'admin_url' => StringValue::get('adminUrl'),
