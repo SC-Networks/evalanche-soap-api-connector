@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.4] - 2020-07-13
+### FIXED
+- MailingDetail::getSent() must be of the type boolean (#104) (thx @NickHatBoecker)
+
 ## [1.4.3] - 2020-06-16
 ### FIXED
 - ArticleType / ContainerType missing Create Method (#101)
