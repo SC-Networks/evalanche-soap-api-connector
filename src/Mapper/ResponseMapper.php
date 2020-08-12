@@ -8,11 +8,6 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\Hydrator\Hydrator;
 use Scn\Hydrator\HydratorInterface;
 
-/**
- * Class ResponseMapper
- *
- * @package Scn\EvalancheSoapApiConnector\Mapper
- */
 final class ResponseMapper implements ResponseMapperInterface
 {
     /**
@@ -129,6 +124,17 @@ final class ResponseMapper implements ResponseMapperInterface
     public function getObjectDirectly(object $response, HydratorConfigInterface $hydratorConfig)
     {
         return $this->mapSingleObject($response, $hydratorConfig);
+    }
+
+    /**
+     * @param object $response
+     * @param HydratorConfigInterface $hydratorConfig
+     *
+     * @return StructInterface[]
+     */
+    public function getObjectsDirectly(object $response, HydratorConfigInterface  $hydratorConfig)
+    {
+        return $this->mapListOfObjects($this->getListFromResponse($response), $hydratorConfig);
     }
 
     /**
