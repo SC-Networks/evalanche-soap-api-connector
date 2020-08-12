@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.0] - 2020-08-12
+### Added
+- Marketplace client #58
+
 ## [1.4.4] - 2020-07-13
 ### FIXED
 - MailingDetail::getSent() must be of the type boolean (#104) (thx @NickHatBoecker)
