@@ -14,7 +14,6 @@ use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
  */
 final class FolderClient extends AbstractClient implements FolderClientInterface
 {
-
     const PORTNAME = 'category';
     const VERSION = ClientInterface::VERSION_V0;
 

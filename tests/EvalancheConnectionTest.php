@@ -8,11 +8,6 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 
-/**
- * Class EvalancheConnectionTest
- *
- * @package Scn\EvalancheSoapApiConnector
- */
 class EvalancheConnectionTest extends TestCase
 {
 
@@ -268,6 +263,14 @@ class EvalancheConnectionTest extends TestCase
         $this->assertInstanceOf(
             Client\Milestone\MilestoneClient::class,
             $this->subject->createMilestoneClient()
+        );
+    }
+
+    public function testCreateMarketplaceClientCanReturnInstanceOfMarketplaceClient()
+    {
+        $this->assertInstanceOf(
+            Client\Marketplace\MarketplaceClient::class,
+            $this->subject->createMarketplaceClient()
         );
     }
 }

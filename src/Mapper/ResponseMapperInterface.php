@@ -38,6 +38,14 @@ interface ResponseMapperInterface
 
     /**
      * @param object $response
+     * @param HydratorConfigInterface $hydratorConfig
+     *
+     * @return StructInterface[]
+     */
+    public function getObjectsDirectly(object $response, HydratorConfigInterface  $hydratorConfig);
+
+    /**
+     * @param object $response
      * @param string $responseProperty
      * @param HydratorConfigInterface $hydratorConfig
      *

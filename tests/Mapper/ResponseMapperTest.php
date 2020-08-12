@@ -9,11 +9,6 @@ use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
 use Scn\Hydrator\HydratorInterface;
 
-/**
- * Class ResponseMapperTest
- *
- * @package Scn\EvalancheSoapApiConnector\Mapper
- */
 class ResponseMapperTest extends TestCase
 {
     /**
@@ -276,6 +271,43 @@ class ResponseMapperTest extends TestCase
         $this->assertInstanceOf(
             UserInterface::class,
             $this->subject->getObjectDirectly(
+                $response,
+                $hydratorConfig
+            )
+        );
+    }
+
+    public function testGetObjectsDirectyCanReturnArrayOfObjects()
+    {
+        $firstResponseObject = new \stdClass();
+        $firstResponseObject->id = 1;
+        $firstResponseObject->demo = 55;
+
+        $secondResponseObject = new \stdClass();
+        $secondResponseObject->id = 1;
+        $secondResponseObject->demo = 55;
+
+        $response = new \stdClass();
+        $response->item = [
+            $firstResponseObject,
+            $secondResponseObject
+        ];
+
+        $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
+
+        $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $hydratorConfig->expects($this->exactly(2))->method('getObject')
+            ->willReturn($someUser);
+
+        $this->hydrator->expects($this->exactly(2))->method('hydrate')
+            ->withConsecutive(
+                [$hydratorConfig, $someUser, (array)$firstResponseObject],
+                [$hydratorConfig, $someUser, (array)$secondResponseObject]
+            );
+
+        $this->containsOnlyInstancesOf(
+            UserInterface::class,
+            $this->subject->getObjectsDirectly(
                 $response,
                 $hydratorConfig
             )
