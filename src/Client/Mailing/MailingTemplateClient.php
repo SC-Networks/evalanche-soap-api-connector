@@ -5,7 +5,9 @@ namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 
 /**
  * Class MailingTemplateClient
@@ -32,6 +34,84 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
             $this->soapClient->rename(['resource_id' => $id, 'name' => $title]),
             'renameResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     * @param array $articles
+     *
+     * @return MailingArticleInterface[]
+     * @throws EmptyResultException
+     */
+    public function addArticles(int $id, array $articles): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->addArticles(
+                [
+                    'mailing_template_id' => $id,
+                    'articles' => $this->extractor->extractArray(
+                        $this->hydratorConfigFactory->createMailingArticleConfig(),
+                        $articles
+                    )
+                ]
+            ),
+            'addArticlesResult',
+            $this->hydratorConfigFactory->createMailingArticleConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function removeAllArticles(int $id): bool
+    {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->removeAllArticles([
+                'mailing_template_id' => $id
+            ]),
+            'removeAllArticlesResult'
+        );
+    }
+
+    /**
+     * @param int $id
+     * @param int[] $referenceIds
+     *
+     * @return MailingArticleInterface[]
+     * @throws EmptyResultException
+     */
+    public function removeArticles(int $id, array $referenceIds): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->removeArticles(
+                [
+                    'mailing_template_id' => $id,
+                    'reference_ids' => $referenceIds,
+                ]
+            ),
+            'removeArticlesResult',
+            $this->hydratorConfigFactory->createMailingArticleConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return MailingArticleInterface[]
+     * @throws EmptyResultException
+     */
+    public function getArticlesByMailingTemplateId(int $id): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getArticles([
+                'mailing_template_id' => $id
+            ]),
+            'getArticlesResult',
+            $this->hydratorConfigFactory->createMailingArticleConfig()
         );
     }
 }
