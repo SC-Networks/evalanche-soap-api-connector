@@ -11,6 +11,9 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
+use stdClass;
 
 /**
  * Class MailingTemplateClientTest
@@ -53,6 +56,8 @@ class MailingTemplateClientTest extends TestCase
             'removeAllArticles',
             'removeArticles',
             'applyTemplate',
+            'getConfiguration',
+            'setConfiguration',
         ]);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
@@ -74,7 +79,7 @@ class MailingTemplateClientTest extends TestCase
         $config = $this->createMock(HydratorConfigInterface::class);
         $object = $this->createMock(ResourceInformationInterface::class);
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->renameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())
@@ -118,7 +123,7 @@ class MailingTemplateClientTest extends TestCase
         $object = $this->createMock(MailingArticleInterface::class);
         $otherObject = $this->createMock(MailingArticleInterface::class);
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeArticlesResult = [
             $object,
             $otherObject
@@ -160,7 +165,7 @@ class MailingTemplateClientTest extends TestCase
 
         $config = $this->createMock(HydratorConfigInterface::class);
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addArticlesResult = $articles;
 
         $extractedData = [
@@ -215,7 +220,7 @@ class MailingTemplateClientTest extends TestCase
         $object = $this->createMock(MailingArticleInterface::class);
         $otherObject = $this->createMock(MailingArticleInterface::class);
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getArticlesResult = [
             $object,
             $otherObject
@@ -251,7 +256,7 @@ class MailingTemplateClientTest extends TestCase
     {
         $id = 123;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAllArticlesResult = true;
 
         $this->soapClient->expects($this->once())
@@ -271,7 +276,7 @@ class MailingTemplateClientTest extends TestCase
         $id = 123;
         $mailingId = 666;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->applyTemplateResult = true;
 
         $this->soapClient->expects($this->once())
@@ -284,5 +289,87 @@ class MailingTemplateClientTest extends TestCase
             ->willReturn($response->applyTemplateResult);
 
         $this->assertTrue($this->subject->applyTemplate($id, [$mailingId]));
+    }
+
+
+    public function testGetConfigurationCanReturnsMailingTemplateConfiguration(): void
+    {
+        $id = 1234;
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingTemplateConfigurationInterface::class);
+
+        $response = new stdClass();
+        $response->getConfigurationResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createMailingTemplateConfigurationConfig')
+            ->willReturn($config);
+        
+        $this->soapClient->expects($this->once())
+            ->method('getConfiguration')
+            ->with([
+                'mailing_template_id' => $id,
+            ])
+            ->willReturn($response);
+        
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'getConfigurationResult',
+                $config
+            )
+            ->willReturn($response->getConfigurationResult);
+
+        $this->assertInstanceOf(
+            MailingTemplateConfigurationInterface::class,
+            $this->subject->getConfiguration($id)
+        );
+    }
+
+    public function testSetConfigurationReturnsMailingTemplateConfiguration(): void
+    {
+        $id = 123;
+        $configuration = $this->createMock(MailingTemplateConfigurationInterface::class);
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingTemplateConfigurationInterface::class);
+
+        $extractedData = [
+            'some ' => 'data',
+        ];
+
+        $response = new \stdClass();
+        $response->setConfigurationResult = $object;
+
+        $this->extractor->expects($this->once())
+            ->method('extract')
+            ->with($config, $configuration)
+            ->willReturn($extractedData);
+        
+        $this->hydratorConfigFactory->expects($this->exactly(2))
+            ->method('createMailingTemplateConfigurationConfig')
+            ->willReturn($config);
+        
+        $this->soapClient->expects($this->once())
+            ->method('setConfiguration')->with([
+                'mailing_template_id' => $id,
+                'configuration' => $extractedData,
+            ])
+            ->willReturn($response);
+        
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'setConfigurationResult',
+                $config
+            )
+            ->willReturn($response->setConfigurationResult);
+
+        $this->assertInstanceOf(
+            MailingTemplateConfigurationInterface::class,
+            $this->subject->setConfiguration($id, $configuration)
+        );
     }
 }

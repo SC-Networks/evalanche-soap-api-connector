@@ -17,6 +17,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\MassUpdateResultConfig
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceTypeInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ServiceStatusConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\CategoryConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\ProductConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileTrackingHistoryConfig;
@@ -255,5 +256,10 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createMarketplaceProductConfig(): HydratorConfigInterface
     {
         return new ProductConfig();
+    }
+    
+    public function createMailingTemplateConfigurationConfig(): HydratorConfigInterface
+    {
+        return new MailingTemplateConfigurationConfig();
     }
 }
