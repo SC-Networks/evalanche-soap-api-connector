@@ -114,4 +114,25 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
             $this->hydratorConfigFactory->createMailingArticleConfig()
         );
     }
+
+    /**
+     * @param int $id
+     * @param array $mailingIds
+     * 
+     * @return bool
+     * 
+     * @throws EmptyResultException
+     */
+    public function applyTemplate(int $id, array $mailingIds): bool
+    {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->applyTemplate(
+                [
+                    'mailing_template_id' => $id,
+                    'mailing_ids' => $mailingIds,
+                ]
+            ),
+            'applyTemplateResult'
+        );
+    }
 }

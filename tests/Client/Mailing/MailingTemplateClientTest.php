@@ -52,6 +52,7 @@ class MailingTemplateClientTest extends TestCase
             'getArticles',
             'removeAllArticles',
             'removeArticles',
+            'applyTemplate',
         ]);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
@@ -263,5 +264,25 @@ class MailingTemplateClientTest extends TestCase
             ->willReturn($response->removeAllArticlesResult);
 
         $this->assertTrue($this->subject->removeAllArticles($id));
+    }
+    
+    public function testApplyTemplateApplies(): void
+    {
+        $id = 123;
+        $mailingId = 666;
+
+        $response = new \stdClass();
+        $response->applyTemplateResult = true;
+
+        $this->soapClient->expects($this->once())
+            ->method('applyTemplate')
+            ->with(['mailing_template_id' => $id, 'mailing_ids' => [$mailingId]])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getBoolean')
+            ->willReturn($response->applyTemplateResult);
+
+        $this->assertTrue($this->subject->applyTemplate($id, [$mailingId]));
     }
 }

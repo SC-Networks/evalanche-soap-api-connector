@@ -58,4 +58,14 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @throws EmptyResultException
      */
     public function getArticlesByMailingTemplateId(int $id): array;
+
+    /**
+     * Applies an mailing template to existing mailing objects
+     * 
+     * @param int $id
+     * @param int[] $mailingIds
+     * 
+     * @return bool
+     */
+    public function applyTemplate(int $id, array $mailingIds): bool;
 }
