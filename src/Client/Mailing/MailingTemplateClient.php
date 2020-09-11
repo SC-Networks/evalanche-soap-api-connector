@@ -8,6 +8,7 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 
 /**
  * Class MailingTemplateClient
@@ -133,6 +134,51 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
                 ]
             ),
             'applyTemplateResult'
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return MailingTemplateConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getConfiguration(int $id): MailingTemplateConfigurationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getConfiguration(
+                [
+                    'mailing_template_id' => $id,
+                ]
+            ),
+            'getConfigurationResult',
+            $this->hydratorConfigFactory->createMailingTemplateConfigurationConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     * @param MailingTemplateConfigurationInterface $configuration
+     *
+     * @return MailingTemplateConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function setConfiguration(
+        int $id,
+        MailingTemplateConfigurationInterface $configuration
+    ): MailingTemplateConfigurationInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->setConfiguration(
+                [
+                    'mailing_template_id' => $id,
+                    'configuration' => $this->extractor->extract(
+                        $this->hydratorConfigFactory->createMailingTemplateConfigurationConfig(),
+                        $configuration
+                    ),
+                ]
+            ),
+            'setConfigurationResult',
+            $this->hydratorConfigFactory->createMailingTemplateConfigurationConfig()
         );
     }
 }

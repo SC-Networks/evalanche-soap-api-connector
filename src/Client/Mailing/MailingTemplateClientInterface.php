@@ -7,6 +7,7 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 
 /**
  * Interface MailingTemplateClientInterface
@@ -20,7 +21,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @param string $title
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface;
 
@@ -68,4 +69,26 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @return bool
      */
     public function applyTemplate(int $id, array $mailingIds): bool;
+
+    /**
+     * Retrieve the configuration of a mailing template
+     * 
+     * @param int $id
+     *
+     * @return MailingTemplateConfigurationInterface
+     */
+    public function getConfiguration(int $id): MailingTemplateConfigurationInterface;
+
+    /**
+     * Sets the configuration of a mailing template
+     * 
+     * @param int $id
+     * @param MailingTemplateConfigurationInterface $configuration
+     *
+     * @return MailingTemplateConfigurationInterface
+     */
+    public function setConfiguration(
+        int $id,
+        MailingTemplateConfigurationInterface $configuration
+    ): MailingTemplateConfigurationInterface;
 }
