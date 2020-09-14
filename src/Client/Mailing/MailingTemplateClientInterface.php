@@ -17,6 +17,19 @@ use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterf
  */
 interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitInterface
 {
+
+    /**
+     * @param string $title
+     * @param int $folderId
+     *
+     * @return ResourceInformationInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function create(
+        string $title,
+        int $folderId
+    ): ResourceInformationInterface;
+    
     /**
      * @param int $id
      * @param string $title

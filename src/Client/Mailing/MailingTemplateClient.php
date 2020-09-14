@@ -24,6 +24,29 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
+     * @param string $title
+     * @param int $folderId
+     *
+     * @return ResourceInformationInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function create(
+        string $title,
+        int $folderId
+    ): ResourceInformationInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->create(
+                [
+                    'name' => $title,
+                    'category_id' => $folderId,
+                ]
+            ),
+            'createResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
+
+    /**
      * @param int $id
      * @param string $title
      *

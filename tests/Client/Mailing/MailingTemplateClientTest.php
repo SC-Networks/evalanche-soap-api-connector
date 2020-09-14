@@ -50,6 +50,7 @@ class MailingTemplateClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'create',
             'rename',
             'addArticles',
             'getArticles',
@@ -70,6 +71,44 @@ class MailingTemplateClientTest extends TestCase
             $this->responseMapper,
             $this->hydratorConfigFactory,
             $this->extractor
+        );
+    }
+    
+    public function testCreateReturnsResourceInformationInterface(): void
+    {
+        $folderId = 123;
+        $title = 'some title';
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(ResourceInformationInterface::class);
+
+        $response = new stdClass();
+        $response->createResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createResourceInformationConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('create')
+            ->with([
+                'name' => $title,
+                'category_id' => $folderId,
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'createResult',
+                $config
+            )
+            ->willReturn($response->createResult);
+
+        $this->assertInstanceOf(
+            ResourceInformationInterface::class,
+            $this->subject->create($title, $folderId)
         );
     }
 
