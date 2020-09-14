@@ -1,8 +1,8 @@
 ## Usage
 
-### General
+### First steps
 
-First create a connection with the access credentials provided by SC-Networks.
+First create a connection using your credentials
 
 ```php
 require 'vendor/autoload.php';
@@ -52,3 +52,21 @@ described in [the struct repository](https://github.com/SC-Networks/evalanche-so
 ##### [USER](user.md)
 ##### [WEBHOOK](webhook.md)
 ##### [WORKFLOW](workflow.md)
+
+## HashMaps
+
+Dict-like, untyped datatypes are transmitted using a `HashMap` and `HashMapItem`.
+
+In example, this command will update some attribute content of all profiles having a certain email-address.
+
+```php
+$connection->createProfileClient()->updateByKey(
+    666, // your pool id
+    'EMAIL', // name of the key to search for
+    'hjs@compuglobalhypermega.net', // value to search for
+    new \Scn\EvalancheSoapStruct\Struct\Generic\HashMap([
+        new \Scn\EvalancheSoapStruct\Struct\Generic\HashMapItem('STREET', '123 Fake Street'),
+        new \Scn\EvalancheSoapStruct\Struct\Generic\HashMapItem('CITY', 'Springfield'),
+    ])
+);
+```
