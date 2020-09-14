@@ -11,8 +11,8 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
-use Scn\EvalancheSoapStruct\Struct\Mailing\MailingConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 use stdClass;
 
 /**
@@ -58,6 +58,8 @@ class MailingTemplateClientTest extends TestCase
             'applyTemplate',
             'getConfiguration',
             'setConfiguration',
+            'setSources',
+            'getSources',
         ]);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
@@ -290,8 +292,7 @@ class MailingTemplateClientTest extends TestCase
 
         $this->assertTrue($this->subject->applyTemplate($id, [$mailingId]));
     }
-
-
+    
     public function testGetConfigurationCanReturnsMailingTemplateConfiguration(): void
     {
         $id = 1234;
@@ -370,6 +371,89 @@ class MailingTemplateClientTest extends TestCase
         $this->assertInstanceOf(
             MailingTemplateConfigurationInterface::class,
             $this->subject->setConfiguration($id, $configuration)
+        );
+    }
+
+    public function testGetSourcesReturnsSources(): void
+    {
+        $id = 1234;
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingTemplatesSourcesInterface::class);
+
+        $response = new stdClass();
+        $response->getSourcesResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createMailingTemplateSourcesConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('getSources')
+            ->with([
+                'mailing_template_id' => $id,
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'getSourcesResult',
+                $config
+            )
+            ->willReturn($response->getSourcesResult);
+
+        $this->assertSame(
+            $object,
+            $this->subject->getSources($id)
+        );
+    }
+
+    public function testSetSourcesReturnsSources(): void
+    {
+        $id = 123;
+        $configuration = $this->createMock(MailingTemplatesSourcesInterface::class);
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingTemplatesSourcesInterface::class);
+        $overwrite = true;
+
+        $extractedData = [
+            'some ' => 'data',
+        ];
+
+        $response = new \stdClass();
+        $response->setSourcesResult = $object;
+
+        $this->extractor->expects($this->once())
+            ->method('extract')
+            ->with($config, $configuration)
+            ->willReturn($extractedData);
+
+        $this->hydratorConfigFactory->expects($this->exactly(2))
+            ->method('createMailingTemplateSourcesConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('setSources')->with([
+                'mailing_template_id' => $id,
+                'sources' => $extractedData,
+                'overwrite' => $overwrite
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'setSourcesResult',
+                $config
+            )
+            ->willReturn($response->setSourcesResult);
+
+        $this->assertSame(
+            $object,
+            $this->subject->setSources($id, $configuration, $overwrite)
         );
     }
 }

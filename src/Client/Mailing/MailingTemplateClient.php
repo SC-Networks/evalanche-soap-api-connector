@@ -9,6 +9,7 @@ use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 
 /**
  * Class MailingTemplateClient
@@ -179,6 +180,53 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
             ),
             'setConfigurationResult',
             $this->hydratorConfigFactory->createMailingTemplateConfigurationConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return MailingTemplateConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getSources(int $id): MailingTemplatesSourcesInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getSources(
+                [
+                    'mailing_template_id' => $id,
+                ]
+            ),
+            'getSourcesResult',
+            $this->hydratorConfigFactory->createMailingTemplateSourcesConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     * @param MailingTemplatesSourcesInterface $configuration
+     *
+     * @return MailingTemplatesSourcesInterface
+     * @throws EmptyResultException
+     */
+    public function setSources(
+        int $id,
+        MailingTemplatesSourcesInterface $configuration,
+        bool $overwrite = false
+    ): MailingTemplatesSourcesInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->setSources(
+                [
+                    'mailing_template_id' => $id,
+                    'sources' => $this->extractor->extract(
+                        $this->hydratorConfigFactory->createMailingTemplateSourcesConfig(),
+                        $configuration
+                    ),
+                    'overwrite' => $overwrite
+                ]
+            ),
+            'setSourcesResult',
+            $this->hydratorConfigFactory->createMailingTemplateSourcesConfig()
         );
     }
 }
