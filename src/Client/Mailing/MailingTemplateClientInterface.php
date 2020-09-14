@@ -8,6 +8,7 @@ use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 
 /**
  * Interface MailingTemplateClientInterface
@@ -91,4 +92,29 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
         int $id,
         MailingTemplateConfigurationInterface $configuration
     ): MailingTemplateConfigurationInterface;
+
+    /**
+     * Retrieves the source codes of a mailing template
+     * 
+     * @param int $id
+     *
+     * @return MailingTemplateConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getSources(int $id): MailingTemplatesSourcesInterface;
+
+    /**
+     * Sets the source codes of a mailing template
+     * 
+     * @param int $id
+     * @param MailingTemplatesSourcesInterface $configuration
+     *
+     * @return MailingTemplatesSourcesInterface
+     * @throws EmptyResultException
+     */
+    public function setSources(
+        int $id,
+        MailingTemplatesSourcesInterface $configuration,
+        bool $overwrite = false
+    ): MailingTemplatesSourcesInterface;
 }

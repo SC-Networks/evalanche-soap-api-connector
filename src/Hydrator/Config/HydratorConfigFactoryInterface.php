@@ -89,4 +89,6 @@ interface HydratorConfigFactoryInterface
     public function createMarketplaceProductConfig(): HydratorConfigInterface;
 
     public function createMailingTemplateConfigurationConfig(): HydratorConfigInterface;
+
+    public function createMailingTemplateSourcesConfig(): HydratorConfigInterface;
 }
