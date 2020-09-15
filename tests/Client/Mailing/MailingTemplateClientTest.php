@@ -9,9 +9,12 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotItemInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 use stdClass;
@@ -65,6 +68,10 @@ class MailingTemplateClientTest extends TestCase
             'removeSlot',
             'removeTemplateFromSlot',
             'getSlotConfiguration',
+            'addSlot',
+            'updateSlot',
+            'addTemplatesToSlot',
+            'updateSlotTemplates',
         ]);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
@@ -590,6 +597,191 @@ class MailingTemplateClientTest extends TestCase
         $this->assertSame(
             $object,
             $this->subject->getSlotConfiguration($id)
+        );
+    }
+    
+    public function testAddSlotAddsSlots(): void
+    {
+        $id = 1234;
+        $slotNumber = 666;
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingSlotInterface::class);
+
+        $response = new stdClass();
+        $response->addSlotResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createMailingSlotConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('addSlot')
+            ->with([
+                'mailing_template_id' => $id,
+                'slot_number' => $slotNumber
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'addSlotResult',
+                $config
+            )
+            ->willReturn($response->addSlotResult);
+
+        $this->assertSame(
+            $object,
+            $this->subject->addSlot($id, $slotNumber)
+        );
+    }
+
+    public function testUpdateSlotUpdatesSlot(): void
+    {
+        $id = 1234;
+        $slotNumber = 666;
+        $slotId = 555;
+        $name = 'some-name';
+        $sortTypeId = 444;
+        $sortValue = 333;
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingSlotInterface::class);
+
+        $response = new stdClass();
+        $response->updateSlotResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createMailingSlotConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('updateSlot')
+            ->with([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+                'slot_number' => $slotNumber,
+                'name' => $name,
+                'sort_type_id' => $sortTypeId,
+                'sort_value' => $sortValue
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'updateSlotResult',
+                $config
+            )
+            ->willReturn($response->updateSlotResult);
+
+        $this->assertSame(
+            $object,
+            $this->subject->updateSlot(
+                $id,
+                $slotId,
+                $slotNumber,
+                $name,
+                $sortTypeId,
+                $sortValue
+            )
+        );
+    }
+    
+    public function testAddTemplatesToSlotAdds(): void
+    {
+        $id = 1234;
+        $slotId = 555;
+        $data = $this->createMock(HashMapInterface::class);
+        $articleTypeId = 666;
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingSlotItemInterface::class);
+
+        $response = new stdClass();
+        $response->addTemplatesToSlotResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createMailingSlotItemConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('addTemplatesToSlot')
+            ->with([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+                'data' => $data,
+                'article_type_id' => $articleTypeId
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'addTemplatesToSlotResult',
+                $config
+            )
+            ->willReturn($response->addTemplatesToSlotResult);
+
+        $this->assertSame(
+            $object,
+            $this->subject->addTemplatesToSlot(
+                $id,
+                $slotId,
+                $data,
+                $articleTypeId
+            )
+        );
+    }
+
+    public function testUpdateSlotTemplatesUpdates(): void
+    {
+        $id = 1234;
+        $slotId = 555;
+        $data = $this->createMock(HashMapInterface::class);
+        $articleTypeId = 666;
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingSlotItemInterface::class);
+
+        $response = new stdClass();
+        $response->updateSlotTemplatesResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createMailingSlotItemConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('updateSlotTemplates')
+            ->with([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+                'data' => $data,
+                'article_type_id' => $articleTypeId
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'updateSlotTemplatesResult',
+                $config
+            )
+            ->willReturn($response->updateSlotTemplatesResult);
+
+        $this->assertSame(
+            $object,
+            $this->subject->updateSlotTemplates(
+                $id,
+                $slotId,
+                $data,
+                $articleTypeId
+            )
         );
     }
 }
