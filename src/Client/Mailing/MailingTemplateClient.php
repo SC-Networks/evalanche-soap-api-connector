@@ -8,6 +8,7 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 
@@ -298,6 +299,21 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
                 'article_type_id' => $articleTypeId
             ]),
             'removeTemplateFromSlotResult'
+        );
+    }
+
+    /**
+     * @param int $id
+     * 
+     * @return MailingSlotConfigurationInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function getSlotConfiguration(int $id): MailingSlotConfigurationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getSlotConfiguration(['mailing_template_id' => $id]),
+            'getSlotConfigurationResult',
+            $this->hydratorConfigFactory->createMailingSlotConfigurationConfig()
         );
     }
 }
