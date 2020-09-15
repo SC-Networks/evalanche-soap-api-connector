@@ -6,9 +6,12 @@ use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotItemInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 
@@ -314,6 +317,122 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
             $this->soapClient->getSlotConfiguration(['mailing_template_id' => $id]),
             'getSlotConfigurationResult',
             $this->hydratorConfigFactory->createMailingSlotConfigurationConfig()
+        );
+    }
+
+    /**
+     * Adds a slot to the mailing template
+     * 
+     * @param int $id
+     * @param int $slotNumber
+     *
+     * @return MailingSlotInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function addSlot(
+        int $id,
+        int $slotNumber
+    ): MailingSlotInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->addSlot([
+                'mailing_template_id' => $id,
+                'slot_number' => $slotNumber,
+            ]),
+            'addSlotResult',
+            $this->hydratorConfigFactory->createMailingSlotConfig()
+        );
+    }
+
+    /**
+     * Update a slot of the mailing template
+     *
+     * @param int $id
+     * @param int $slotId
+     * @param int $slotNumber
+     * @param string $name
+     * @param int $sortTypeId
+     * @param int $sortValue
+     *
+     * @return MailingSlotInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function updateSlot(
+        int $id,
+        int $slotId,
+        int $slotNumber,
+        string $name,
+        int $sortTypeId,
+        int $sortValue
+    ): MailingSlotInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->updateSlot([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+                'slot_number' => $slotNumber,
+                'name' => $name,
+                'sort_type_id' => $sortTypeId,
+                'sort_value' => $sortValue
+            ]),
+            'updateSlotResult',
+            $this->hydratorConfigFactory->createMailingSlotConfig()
+        );
+    }
+
+    /**
+     * Adds a template config to an existing slot
+     *
+     * @param int $id
+     * @param int $slotId
+     * @param HashMapInterface $config
+     * @param int $articleTypeId
+     *
+     * @return MailingSlotItemInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function addTemplatesToSlot(
+        int $id,
+        int $slotId,
+        HashMapInterface $config,
+        int $articleTypeId = 0
+    ): MailingSlotItemInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->addTemplatesToSlot([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+                'data' => $config,
+                'article_type_id' => $articleTypeId
+            ]),
+            'addTemplatesToSlotResult',
+            $this->hydratorConfigFactory->createMailingSlotItemConfig()
+        );
+    }
+
+    /**
+     * Updates an existing template config of a slot
+     *
+     * @param int $id
+     * @param int $slotId
+     * @param HashMapInterface $config
+     * @param int $articleTypeId
+     *
+     * @return MailingSlotItemInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function updateSlotTemplates(
+        int $id,
+        int $slotId,
+        HashMapInterface $config,
+        int $articleTypeId = 0
+    ): MailingSlotItemInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->updateSlotTemplates([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+                'data' => $config,
+                'article_type_id' => $articleTypeId
+            ]),
+            'updateSlotTemplatesResult',
+            $this->hydratorConfigFactory->createMailingSlotItemConfig()
         );
     }
 }
