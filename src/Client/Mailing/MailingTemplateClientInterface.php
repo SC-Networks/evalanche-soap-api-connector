@@ -7,6 +7,7 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 
@@ -29,7 +30,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
         string $title,
         int $folderId
     ): ResourceInformationInterface;
-    
+
     /**
      * @param int $id
      * @param string $title
@@ -76,17 +77,17 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
 
     /**
      * Applies an mailing template to existing mailing objects
-     * 
+     *
      * @param int $id
      * @param int[] $mailingIds
-     * 
+     *
      * @return bool
      */
     public function applyTemplate(int $id, array $mailingIds): bool;
 
     /**
      * Retrieve the configuration of a mailing template
-     * 
+     *
      * @param int $id
      *
      * @return MailingTemplateConfigurationInterface
@@ -95,7 +96,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
 
     /**
      * Sets the configuration of a mailing template
-     * 
+     *
      * @param int $id
      * @param MailingTemplateConfigurationInterface $configuration
      *
@@ -108,7 +109,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
 
     /**
      * Retrieves the source codes of a mailing template
-     * 
+     *
      * @param int $id
      *
      * @return MailingTemplateConfigurationInterface
@@ -118,7 +119,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
 
     /**
      * Sets the source codes of a mailing template
-     * 
+     *
      * @param int $id
      * @param MailingTemplatesSourcesInterface $configuration
      *
@@ -133,7 +134,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
 
     /**
      * Removes an existing slot from a mailing template
-     * 
+     *
      * @param int $id
      * @param int $slotId
      *
@@ -159,4 +160,10 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
         int $templateType,
         int $articleTypeId = 0
     ): bool;
+
+    /**
+     * @return MailingSlotConfigurationInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function getSlotConfiguration(int $id): MailingSlotConfigurationInterface;
 }

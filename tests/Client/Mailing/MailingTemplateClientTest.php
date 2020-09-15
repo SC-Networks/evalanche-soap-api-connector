@@ -11,6 +11,7 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 use stdClass;
@@ -63,6 +64,7 @@ class MailingTemplateClientTest extends TestCase
             'getSources',
             'removeSlot',
             'removeTemplateFromSlot',
+            'getSlotConfiguration',
         ]);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
@@ -552,6 +554,42 @@ class MailingTemplateClientTest extends TestCase
                 $templateType,
                 $articleTypeId
             )
+        );
+    }
+
+    public function testGetSlotConfigurationReturnsResult(): void
+    {
+        $id = 1234;
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(MailingSlotConfigurationInterface::class);
+
+        $response = new stdClass();
+        $response->getSlotConfigurationResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createMailingSlotConfigurationConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('getSlotConfiguration')
+            ->with([
+                'mailing_template_id' => $id,
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'getSlotConfigurationResult',
+                $config
+            )
+            ->willReturn($response->getSlotConfigurationResult);
+
+        $this->assertSame(
+            $object,
+            $this->subject->getSlotConfiguration($id)
         );
     }
 }
