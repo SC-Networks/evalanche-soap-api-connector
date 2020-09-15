@@ -252,4 +252,52 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
             $this->hydratorConfigFactory->createMailingTemplateSourcesConfig()
         );
     }
+
+    /**
+     * Removes an existing slot from a mailing template
+     * 
+     * @param int $id
+     * @param int $slotId
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function removeSlot(int $id, int $slotId): bool
+    {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->removeSlot([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId
+            ]),
+            'removeSlotResult'
+        );
+    }
+
+    /**
+     * Removes an article template configuration for a certain template type from an existing slot
+     * 
+     * @param int $id
+     * @param int $slotId
+     * @param int $templateType
+     * @param int $articleTypeId
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function removeTemplateFromSlot(
+        int $id,
+        int $slotId,
+        int $templateType,
+        int $articleTypeId = 0
+    ): bool {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->removeTemplateFromSlot([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+                'template_type' => $templateType,
+                'article_type_id' => $articleTypeId
+            ]),
+            'removeTemplateFromSlotResult'
+        );
+    }
 }
