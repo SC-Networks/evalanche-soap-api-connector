@@ -61,6 +61,8 @@ class MailingTemplateClientTest extends TestCase
             'setConfiguration',
             'setSources',
             'getSources',
+            'removeSlot',
+            'removeTemplateFromSlot',
         ]);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
@@ -493,6 +495,63 @@ class MailingTemplateClientTest extends TestCase
         $this->assertSame(
             $object,
             $this->subject->setSources($id, $configuration, $overwrite)
+        );
+    }
+
+    public function testRemoveSlotRemoves(): void
+    {
+        $id = 123;
+        $slotId = 666;
+
+        $response = new stdClass();
+        $response->removeSlotResult = true;
+
+        $this->soapClient->expects($this->once())
+            ->method('removeSlot')
+            ->with([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getBoolean')
+            ->willReturn($response->removeSlotResult);
+
+        $this->assertTrue($this->subject->removeSlot($id, $slotId));
+    }
+
+    public function testRemoveTemplateFromSlotRemoves(): void
+    {
+        $id = 123;
+        $slotId = 666;
+        $templateType = 444;
+        $articleTypeId = 333;
+
+        $response = new stdClass();
+        $response->removeTemplateFromSlotResult = true;
+
+        $this->soapClient->expects($this->once())
+            ->method('removeTemplateFromSlot')
+            ->with([
+                'mailing_template_id' => $id,
+                'slot_id' => $slotId,
+                'template_type' => $templateType,
+                'article_type_id' => $articleTypeId
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getBoolean')
+            ->willReturn($response->removeTemplateFromSlotResult);
+
+        $this->assertTrue(
+            $this->subject->removeTemplateFromSlot(
+                $id,
+                $slotId,
+                $templateType,
+                $articleTypeId
+            )
         );
     }
 }

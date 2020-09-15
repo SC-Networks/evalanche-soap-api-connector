@@ -130,4 +130,33 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
         MailingTemplatesSourcesInterface $configuration,
         bool $overwrite = false
     ): MailingTemplatesSourcesInterface;
+
+    /**
+     * Removes an existing slot from a mailing template
+     * 
+     * @param int $id
+     * @param int $slotId
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function removeSlot(int $id, int $slotId): bool;
+
+    /**
+     * Removes an article template configuration for a certain template type from an existing slot
+     *
+     * @param int $id
+     * @param int $slotId
+     * @param int $templateType
+     * @param int $articleTypeId
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function removeTemplateFromSlot(
+        int $id,
+        int $slotId,
+        int $templateType,
+        int $articleTypeId = 0
+    ): bool;
 }
