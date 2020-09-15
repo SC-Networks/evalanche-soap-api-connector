@@ -93,4 +93,8 @@ interface HydratorConfigFactoryInterface
     public function createMailingTemplateSourcesConfig(): HydratorConfigInterface;
 
     public function createMailingSlotConfigurationConfig(): HydratorConfigInterface;
+
+    public function createMailingSlotConfig(): HydratorConfigInterface;
+
+    public function createMailingSlotItemConfig(): HydratorConfigInterface;
 }

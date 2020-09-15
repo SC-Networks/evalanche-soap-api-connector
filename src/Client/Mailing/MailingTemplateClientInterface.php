@@ -5,9 +5,12 @@ namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotInterface;
+use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotItemInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 
@@ -166,4 +169,76 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
      */
     public function getSlotConfiguration(int $id): MailingSlotConfigurationInterface;
+
+    /**
+     * Adds a slot to the mailing template
+     * 
+     * @param int $id
+     * @param int $slotNumber
+     *
+     * @return MailingSlotInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function addSlot(
+        int $id,
+        int $slotNumber
+    ): MailingSlotInterface;
+
+    /**
+     * Update a slot of the mailing template
+     *
+     * @param int $id
+     * @param int $slotId
+     * @param int $slotNumber
+     * @param string $name
+     * @param int $sortTypeId
+     * @param int $sortValue
+     *
+     * @return MailingSlotInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function updateSlot(
+        int $id,
+        int $slotId,
+        int $slotNumber,
+        string $name,
+        int $sortTypeId,
+        int $sortValue
+    ): MailingSlotInterface;
+
+    /**
+     * Adds a template config to an existing slot
+     *
+     * @param int $id
+     * @param int $slotId
+     * @param HashMapInterface $config
+     * @param int $articleTypeId
+     *
+     * @return MailingSlotItemInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function addTemplatesToSlot(
+        int $id,
+        int $slotId,
+        HashMapInterface $config,
+        int $articleTypeId = 0
+    ): MailingSlotItemInterface;
+
+    /**
+     * Updates an existing template config of a slot
+     *
+     * @param int $id
+     * @param int $slotId
+     * @param HashMapInterface $config
+     * @param int $articleTypeId
+     *
+     * @return MailingSlotItemInterface
+     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     */
+    public function updateSlotTemplates(
+        int $id,
+        int $slotId,
+        HashMapInterface $config,
+        int $articleTypeId = 0
+    ): MailingSlotItemInterface;
 }
