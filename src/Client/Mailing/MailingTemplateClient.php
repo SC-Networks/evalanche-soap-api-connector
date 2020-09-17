@@ -32,7 +32,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param int $folderId
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function create(
         string $title,
@@ -55,7 +55,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param string $title
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface
     {
@@ -309,7 +309,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param int $id
      * 
      * @return MailingSlotConfigurationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getSlotConfiguration(int $id): MailingSlotConfigurationInterface
     {
@@ -327,7 +327,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param int $slotNumber
      *
      * @return MailingSlotInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addSlot(
         int $id,
@@ -354,7 +354,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param int $sortValue
      *
      * @return MailingSlotInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateSlot(
         int $id,
@@ -387,7 +387,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param int $articleTypeId
      *
      * @return MailingSlotItemInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addTemplatesToSlot(
         int $id,
@@ -416,7 +416,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param int $articleTypeId
      *
      * @return MailingSlotItemInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateSlotTemplates(
         int $id,

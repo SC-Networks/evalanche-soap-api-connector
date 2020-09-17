@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Form;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -11,6 +13,7 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
+use stdClass;
 
 /**
  * Class FormClientTest
@@ -75,7 +78,7 @@ class FormClientTest extends TestCase
         $id = 123;
         $poolAttributeId = 653;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addAttributeResult = 1;
 
         $this->soapClient->expects($this->once())->method('addAttribute')->with([
@@ -98,7 +101,7 @@ class FormClientTest extends TestCase
         $id = 45;
         $optionId = 555;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addAttributeOptionResult = true;
 
         $this->soapClient->expects($this->once())->method('addAttributeOption')->with([
@@ -122,7 +125,7 @@ class FormClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createAliasResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -151,7 +154,7 @@ class FormClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAliasesResult = [
             $object,
             $otherObject
@@ -180,7 +183,7 @@ class FormClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getFormByAliasResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -208,7 +211,7 @@ class FormClientTest extends TestCase
         $object = $this->getMockBuilder(FormStatisticInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(FormStatisticInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getStatisticsResult = [
             $object,
             $otherObject
@@ -236,7 +239,7 @@ class FormClientTest extends TestCase
         $id = 123;
         $formAttributeId = 44;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAttributeResult = false;
 
         $this->soapClient->expects($this->once())->method('removeAttribute')->with([
@@ -256,7 +259,7 @@ class FormClientTest extends TestCase
         $id = 123;
         $optionId = 44;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAttributeOptionResult = false;
 
         $this->soapClient->expects($this->once())->method('removeAttributeOption')->with([
@@ -279,7 +282,7 @@ class FormClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->renameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -307,7 +310,7 @@ class FormClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->updateTemplateResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);

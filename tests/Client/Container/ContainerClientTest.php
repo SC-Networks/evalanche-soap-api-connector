@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Container;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -11,6 +13,7 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use stdClass;
 
 /**
  * Class ContainerClientTest
@@ -77,7 +80,7 @@ class ContainerClientTest extends TestCase
             'some' => 'value'
         ];
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -114,7 +117,7 @@ class ContainerClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getDataResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
@@ -139,7 +142,7 @@ class ContainerClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getDataResult = $object;
 
         $extractedData = [

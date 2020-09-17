@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -25,6 +27,7 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSubjectInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\ArticleStatisticInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\ClientStatisticInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\MailingStatisticInterface;
+use stdClass;
 
 /**
  * Class MailingClientTest
@@ -130,7 +133,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ClientStatisticInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getClientStatisticsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createClientStatisticConfig')->willReturn($config);
@@ -154,7 +157,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(MailingStatisticInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getStatisticsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingStatisticConfig')->willReturn($config);
@@ -186,7 +189,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(MailingStatusInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(MailingStatusInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getStatusResult = [
             $object,
             $otherObject
@@ -220,7 +223,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(MailingImpressionInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(MailingImpressionInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getImpressionsResult = [
             $object,
             $otherObject
@@ -249,7 +252,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ServiceStatusInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->isAliveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createServiceStatusConfig')->willReturn($config);
@@ -278,7 +281,7 @@ class MailingClientTest extends TestCase
             'some ' => 'data',
         ];
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->setConfigurationResult = $object;
 
         $this->extractor->expects($this->once())->method('extract')->with($config, $configuration)->willReturn($extractedData);
@@ -307,7 +310,7 @@ class MailingClientTest extends TestCase
             'some other subject'
         ];
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->setSubjectsResult = true;
 
         $this->soapClient->expects($this->once())->method('setSubjects')->with([
@@ -330,7 +333,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(MailingDetailInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByTypeIdResult = [
             $object
         ];
@@ -360,7 +363,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getSendableDraftsResult = [
             $object,
             $otherObject
@@ -392,7 +395,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(MailingDetailInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->sendToTargetgroupResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingDetailConfig')->willReturn($config);
@@ -425,7 +428,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAllArticleImpressionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -452,7 +455,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(MailingConfigurationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getConfigurationResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingConfigurationConfig')->willReturn($config);
@@ -479,7 +482,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->moveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -510,7 +513,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getBounceProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -538,7 +541,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(MailingSubjectInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(MailingSubjectInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getSubjectsResult = [
             $object,
             $otherObject
@@ -574,7 +577,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(MailingArticleInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(MailingArticleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeArticlesResult = [
             $object,
             $otherObject
@@ -609,7 +612,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getLinkClickProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -638,7 +641,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(MailingArticleInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(MailingArticleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getArticlesResult = [
             $object,
             $otherObject
@@ -671,7 +674,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getClickProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -699,7 +702,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(ArticleStatisticInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ArticleStatisticInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getArticleStatisticsResult = [
             $object,
             $otherObject
@@ -730,7 +733,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getSendableDraftsByMandatorIdResult = [
             $object,
             $otherObject
@@ -757,7 +760,7 @@ class MailingClientTest extends TestCase
     {
         $id = 123;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAllArticlesResult = true;
 
         $this->soapClient->expects($this->once())->method('removeAllArticles')->with(['mailing_id' => $id])->willReturn($response);
@@ -775,7 +778,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createDraftResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -807,7 +810,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getSoftbounceProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -832,7 +835,7 @@ class MailingClientTest extends TestCase
         $id = 'some Id';
         $cursor = 5;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->setResultCursorResult = false;
 
         $this->soapClient->expects($this->once())->method('setResultCursor')->with(
@@ -860,7 +863,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getImpressionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -891,7 +894,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getRecipientsProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -918,7 +921,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobResultInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getResultsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobResultConfig')->willReturn($config);
@@ -948,7 +951,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getMultipleImpressionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -979,7 +982,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAllLinkClickProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -1009,7 +1012,7 @@ class MailingClientTest extends TestCase
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addArticlesResult = $articles;
 
         $extractedData = [
@@ -1053,7 +1056,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getHardbounceProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -1084,7 +1087,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getMultipleClickProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -1116,7 +1119,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getArticleImpressionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -1148,7 +1151,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getUnsubscriptionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -1177,7 +1180,7 @@ class MailingClientTest extends TestCase
             4,
         ];
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->sendToProfilesResult = $profileIds;
 
         $this->soapClient->expects($this->once())->method('sendToProfiles')->with([
@@ -1202,7 +1205,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(MailingDetailInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getDetailsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingDetailConfig')->willReturn($config);
@@ -1228,7 +1231,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getJobInformationResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
@@ -1251,7 +1254,7 @@ class MailingClientTest extends TestCase
     {
         $id = '234';
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getResultCursorResult = 'some return string';
 
         $this->soapClient->expects($this->once())->method('getResultCursor')->with(['job_id' => $id])->willReturn($response);
@@ -1274,7 +1277,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->renameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -1304,7 +1307,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(MailingClickInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(MailingClickInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getClicksResult = [
             $object,
             $otherObject
@@ -1334,7 +1337,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByTypeIdResult = [
             $object,
             $otherObject
@@ -1357,7 +1360,7 @@ class MailingClientTest extends TestCase
     {
         $id = 56;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->deleteResult = true;
 
         $this->soapClient->expects($this->once())->method('delete')->with(['resource_id' => $id])->willReturn($response);
@@ -1377,7 +1380,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->copyResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -1405,7 +1408,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAllResult = [
             $object,
             $otherObject
@@ -1432,7 +1435,7 @@ class MailingClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByCategoryResult = [
             $object,
             $otherObject
@@ -1458,7 +1461,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -1482,7 +1485,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getResourceDefaultCategoryResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
@@ -1506,7 +1509,7 @@ class MailingClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);

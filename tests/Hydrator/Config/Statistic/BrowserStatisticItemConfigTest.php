@@ -1,8 +1,9 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Hydrator\Statistic;
+declare(strict_types=1);
 
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\BrowserStatisticItemConfig;
+namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
+
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Statistic\BrowserStatisticItemInterface;
 

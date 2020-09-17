@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector;
+
+use SoapClient;
+use SoapFault;
 
 /**
  * Class SoapClientFactoryTest
@@ -26,7 +31,7 @@ class SoapClientFactoryTest extends TestCase
         $config = $this->getMockBuilder(EvalancheConfigInterface::class)->getMock();
         $config->expects($this->once())->method('getWsdlServiceUrl')->with($portname)->willReturn('something wrong');
 
-        $this->expectException(\SoapFault::class);
+        $this->expectException(SoapFault::class);
         $this->subject->create($config, $portname);
     }
 
@@ -40,7 +45,7 @@ class SoapClientFactoryTest extends TestCase
 
 
         $this->assertInstanceOf(
-            \SoapClient::class,
+            SoapClient::class,
             $this->subject->create($config, $portname)
         );
     }
@@ -55,7 +60,7 @@ class SoapClientFactoryTest extends TestCase
         $config->expects($this->once())->method('getWsdlServiceUrl')->with($portname)->willReturn(__DIR__ . '/' . $portname);
 
         $this->assertInstanceOf(
-            \SoapClient::class,
+            SoapClient::class,
             $this->subject->create($config, $portname)
         );
     }

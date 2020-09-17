@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Container;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -13,6 +15,7 @@ use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeGroupInterface;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeInterface;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeOptionInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
+use stdClass;
 
 /**
  * Class ContainerTypeClientTest
@@ -85,7 +88,7 @@ class ContainerTypeClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addAttributeResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeConfig')->willReturn($config);
@@ -116,7 +119,7 @@ class ContainerTypeClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ContainerAttributeGroupInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addAttributeGroupResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeGroupConfig')->willReturn($config);
@@ -142,7 +145,7 @@ class ContainerTypeClientTest extends TestCase
         $attributeId = 55;
         $typeId = 88;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->changeAttributeTypeResult = false;
 
         $this->soapClient->expects($this->once())->method('changeAttributeType')->with([
@@ -168,7 +171,7 @@ class ContainerTypeClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createAttributeOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeOptionConfig')->willReturn($config);
@@ -197,7 +200,7 @@ class ContainerTypeClientTest extends TestCase
         $object = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAttributeGroupsResult = [
             $object,
             $otherObject
@@ -228,7 +231,7 @@ class ContainerTypeClientTest extends TestCase
         $object = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAttributeOptionsResult = [
             $object,
             $otherObject
@@ -259,7 +262,7 @@ class ContainerTypeClientTest extends TestCase
         $object = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAttributesResult = [
             $object,
             $otherObject
@@ -286,7 +289,7 @@ class ContainerTypeClientTest extends TestCase
         $id = 123;
         $attributeId = 543;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAttributeResult = true;
 
         $this->soapClient->expects($this->once())->method('removeAttribute')->with([
@@ -306,7 +309,7 @@ class ContainerTypeClientTest extends TestCase
         $id = 123;
         $attributeGroupId = 543;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAttributeGroupResult = true;
 
         $this->soapClient->expects($this->once())->method('removeAttributeGroup')->with([
@@ -327,7 +330,7 @@ class ContainerTypeClientTest extends TestCase
         $attributeId = 543;
         $optionId = 234;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAttributeResult = true;
 
         $this->soapClient->expects($this->once())->method('removeAttributeOption')->with([
@@ -357,7 +360,7 @@ class ContainerTypeClientTest extends TestCase
             'some other key' => 'some other value'
         ];
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->updateAttributeResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);

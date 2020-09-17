@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -390,7 +392,7 @@ class MailingTemplateClientTest extends TestCase
             'some ' => 'data',
         ];
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->setConfigurationResult = $object;
 
         $this->extractor->expects($this->once())
@@ -472,7 +474,7 @@ class MailingTemplateClientTest extends TestCase
             'some ' => 'data',
         ];
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->setSourcesResult = $object;
 
         $this->extractor->expects($this->once())

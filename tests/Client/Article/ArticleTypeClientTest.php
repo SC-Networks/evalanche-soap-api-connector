@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Article;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -13,6 +15,7 @@ use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeGroupInterface;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeInterface;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeOptionInterface;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeRoleTypeInterface;
+use stdClass;
 
 /**
  * Class ArticleTypeClientTest
@@ -87,7 +90,7 @@ class ArticleTypeClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addAttributeResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeConfig')->willReturn($config);
@@ -118,7 +121,7 @@ class ArticleTypeClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ContainerAttributeGroupInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addAttributeGroupResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeGroupConfig')->willReturn($config);
@@ -144,7 +147,7 @@ class ArticleTypeClientTest extends TestCase
         $attributeId = 456;
         $roleTypeId = 234;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->assignRoleToAttributeResult = true;
 
         $this->soapClient->expects($this->once())->method('assignRoleToAttribute')->with([
@@ -166,7 +169,7 @@ class ArticleTypeClientTest extends TestCase
         $attributeId = 23;
         $typeId = 234;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->changeAttributeTypeResult = true;
 
         $this->soapClient->expects($this->once())->method('changeAttributeType')->with([
@@ -191,7 +194,7 @@ class ArticleTypeClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createAttributeOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeOptionConfig')->willReturn($config);
@@ -221,7 +224,7 @@ class ArticleTypeClientTest extends TestCase
         $object = $this->getMockBuilder(ContainerAttributeRoleTypeInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ContainerAttributeRoleTypeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getApplicableRoleTypeResults = [
             $object,
             $otherObject
@@ -252,7 +255,7 @@ class ArticleTypeClientTest extends TestCase
         $object = $this->getMockBuilder(ContainerAttributeRoleTypeInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ContainerAttributeRoleTypeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAssignedRoleTypesResult = [
             $object,
             $otherObject
@@ -282,7 +285,7 @@ class ArticleTypeClientTest extends TestCase
         $object = $this->getMockBuilder(ContainerAttributeGroupInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ContainerAttributeGroupInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAttributeGroupsResult = [
             $object,
             $otherObject
@@ -311,7 +314,7 @@ class ArticleTypeClientTest extends TestCase
         $object = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAttributeOptionsResult = [
             $object,
             $otherObject
@@ -342,7 +345,7 @@ class ArticleTypeClientTest extends TestCase
         $object = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAttributesResult = [
             $object,
             $otherObject
@@ -369,7 +372,7 @@ class ArticleTypeClientTest extends TestCase
         $id = 234;
         $attributeId = 334;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAttributeResult = true;
 
         $this->soapClient->expects($this->once())->method('removeAttribute')->with([
@@ -391,7 +394,7 @@ class ArticleTypeClientTest extends TestCase
         $id = 234;
         $attributeGroupId = 334;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAttributeGroupResult = true;
 
         $this->soapClient->expects($this->once())->method('removeAttributeGroup')->with([
@@ -414,7 +417,7 @@ class ArticleTypeClientTest extends TestCase
         $attributeId = 556;
         $optionId = 334;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->removeAttributeOptionResult = true;
 
         $this->soapClient->expects($this->once())->method('removeAttributeOption')->with([

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\TargetGroup;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -11,6 +13,7 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupDetailInterface;
+use stdClass;
 
 /**
  * Class TargetGroupClientTest
@@ -73,7 +76,7 @@ class TargetGroupClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createByOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -103,7 +106,7 @@ class TargetGroupClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(TargetGroupDetailInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createByOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createTargetGroupDetailConfig')->willReturn($config);
