@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Property;
 
+use Closure;
 use Scn\EvalancheSoapApiConnector\TestCase;
+use stdClass;
 
 /**
  * Class ArrayValueTest
@@ -13,7 +17,7 @@ class ArrayValueTest extends TestCase
 {
     public function testEverything()
     {
-        $testValue = new \stdClass();
+        $testValue = new stdClass();
         $testValue->item = [
             'some thing' => 'fine'
         ];
@@ -34,13 +38,13 @@ class ArrayValueTest extends TestCase
 
         $set = ArrayValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(\Closure::class, $set);
+        static::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(\Closure::class, $get);
+        static::assertInstanceOf(Closure::class, $get);
         static::assertIsArray($dummy->getValue());
         static::assertSame($testValue->item, $dummy->getValue());
         static::assertSame($testValue->item, $get('value'));
@@ -48,7 +52,7 @@ class ArrayValueTest extends TestCase
 
     public function testEverythingIfItemNotArray()
     {
-        $testValue = new \stdClass();
+        $testValue = new stdClass();
         $testValue->item = 'fine';
 
         $dummy = new class {
@@ -67,13 +71,13 @@ class ArrayValueTest extends TestCase
 
         $set = ArrayValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(\Closure::class, $set);
+        static::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(\Closure::class, $get);
+        static::assertInstanceOf(Closure::class, $get);
         static::assertIsArray($dummy->getValue());
         static::assertSame([$testValue->item], $dummy->getValue());
         static::assertSame([$testValue->item], $get('value'));
@@ -99,13 +103,13 @@ class ArrayValueTest extends TestCase
 
         $set = ArrayValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(\Closure::class, $set);
+        static::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(\Closure::class, $get);
+        static::assertInstanceOf(Closure::class, $get);
         static::assertIsArray($dummy->getValue());
         static::assertSame([], $dummy->getValue());
         static::assertSame([], $get('value'));

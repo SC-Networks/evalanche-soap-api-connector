@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Report;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
+use stdClass;
 
 /**
  * Class ReportClientTest
@@ -22,7 +26,7 @@ class ReportClientTest extends TestCase
     private $subject;
 
     /**
-     * @var \Scn\EvalancheSoapApiConnector\EvalancheSoapClient|MockObject
+     * @var EvalancheSoapClient|MockObject
      */
     private $soapClient;
 
@@ -61,7 +65,7 @@ class ReportClientTest extends TestCase
         $id = 123;
         $reportId = 555;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addResourceToReportResult = true;
 
         $this->soapClient->expects($this->once())->method('addResourceToReport')->with([

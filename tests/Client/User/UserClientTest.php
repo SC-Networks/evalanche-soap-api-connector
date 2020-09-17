@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\User;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
+use stdClass;
 
 /**
  * Class UserClientTest
@@ -23,7 +27,7 @@ class UserClientTest extends TestCase
     private $subject;
 
     /**
-     * @var \Scn\EvalancheSoapApiConnector\EvalancheSoapClient|MockObject
+     * @var EvalancheSoapClient|MockObject
      */
     private $soapClient;
 
@@ -62,7 +66,7 @@ class UserClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(UserInterface::class)->getMock();
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->getByUsernameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createUserConfig')->willReturn($config);
@@ -85,13 +89,13 @@ class UserClientTest extends TestCase
         $object = $this->getMockBuilder(UserInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(UserInterface::class)->getMock();
 
-        $list = new \stdClass();
+        $list = new stdClass();
         $list->item = [
             $object,
             $otherObject
         ];
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->getAllResult = $list;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createUserConfig')->willReturn($config);
@@ -111,7 +115,7 @@ class UserClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(UserInterface::class)->getMock();
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->updateResult = $object;
 
         $expectedExtractor = [

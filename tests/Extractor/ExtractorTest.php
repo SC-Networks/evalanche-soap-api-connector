@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Extractor;
 
 use PHPUnit\Framework\MockObject\MockObject;

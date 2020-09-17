@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Milestone;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -10,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use stdClass;
 
 /**
  * Class MilestoneClientTest
@@ -79,7 +82,7 @@ class MilestoneClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createResult = $object;
 
         $this->hydratorConfigFactory

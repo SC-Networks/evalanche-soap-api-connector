@@ -1,8 +1,9 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Hydrator\Mailing;
+declare(strict_types=1);
 
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingDetailConfig;
+namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing;
+
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingDetailInterface;
 

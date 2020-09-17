@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Blacklist;
 
 use PHPUnit\Framework\MockObject\MockObject;

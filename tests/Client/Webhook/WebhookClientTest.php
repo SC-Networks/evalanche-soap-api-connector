@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Webhook;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
@@ -21,7 +24,7 @@ class WebhookClientTest extends TestCase
     private $subject;
 
     /**
-     * @var \Scn\EvalancheSoapApiConnector\EvalancheSoapClient|MockObject
+     * @var EvalancheSoapClient|MockObject
      */
     private $soapClient;
 

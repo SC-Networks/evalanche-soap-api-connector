@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Scoring;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -10,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Scoring\ScoringGroupDetailInterface;
+use stdClass;
 
 /**
  * Class ScoringClientTest
@@ -64,7 +67,7 @@ class ScoringClientTest extends TestCase
         $object = $this->getMockBuilder(ScoringGroupDetailInterface::class);
         $otherObject = $this->getMockBuilder(ScoringGroupDetailInterface::class);
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->getGroupsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createScoringGroupDetailConfig')->willReturn($config);

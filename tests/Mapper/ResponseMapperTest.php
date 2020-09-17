@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Mapper;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -8,6 +10,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
 use Scn\Hydrator\HydratorInterface;
+use stdClass;
 
 class ResponseMapperTest extends TestCase
 {
@@ -32,7 +35,7 @@ class ResponseMapperTest extends TestCase
     public function testGetIntegerCanReturnInteger()
     {
         $responseProperty = 'someThing';
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->$responseProperty = 5;
 
         $this->assertSame(5, $this->subject->getInteger($response, $responseProperty));
@@ -41,13 +44,13 @@ class ResponseMapperTest extends TestCase
     public function testGetIntegerCanThrowException()
     {
         $this->expectException(EmptyResultException::class);
-        $this->subject->getInteger(new \stdClass(), 'something');
+        $this->subject->getInteger(new stdClass(), 'something');
     }
 
     public function testGetBooleanCanReturnBool()
     {
         $responseProperty = 'someThing';
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->$responseProperty = true;
 
         $this->assertTrue($this->subject->getBoolean($response, $responseProperty));
@@ -56,13 +59,13 @@ class ResponseMapperTest extends TestCase
     public function testGetBooleanCanThrowException()
     {
         $this->expectException(EmptyResultException::class);
-        $this->subject->getBoolean(new \stdClass(), 'something');
+        $this->subject->getBoolean(new stdClass(), 'something');
     }
 
     public function testGetStringCanReturnString()
     {
         $responseProperty = 'someThing';
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->$responseProperty = 'some string';
 
         $this->assertSame('some string', $this->subject->getString($response, $responseProperty));
@@ -71,13 +74,13 @@ class ResponseMapperTest extends TestCase
     public function testGetStringCanThrowException()
     {
         $this->expectException(EmptyResultException::class);
-        $this->subject->getString(new \stdClass(), 'something');
+        $this->subject->getString(new stdClass(), 'something');
     }
 
     public function testGetArrayCanReturnArray()
     {
         $responseProperty = 'someThing';
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->$responseProperty = [
             'soem' => 'array',
             'key' => 'value',
@@ -89,17 +92,17 @@ class ResponseMapperTest extends TestCase
     public function testGetArrayCanThrowException()
     {
         $this->expectException(EmptyResultException::class);
-        $this->subject->getArray(new \stdClass(), 'something');
+        $this->subject->getArray(new stdClass(), 'something');
     }
 
     public function testGetObjectCanReturnObject()
     {
-        $responseObject = new \stdClass();
+        $responseObject = new stdClass();
         $responseObject->id = 1;
         $responseObject->demo = 55;
 
         $responseProperty = 'someThing';
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->$responseProperty = $responseObject;
 
         $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
@@ -125,7 +128,7 @@ class ResponseMapperTest extends TestCase
     {
         $this->expectException(EmptyResultException::class);
         $this->subject->getObject(
-            new \stdClass(),
+            new stdClass(),
             'something',
             $this->getMockBuilder(HydratorConfigInterface::class)->getMock()
         );
@@ -133,22 +136,22 @@ class ResponseMapperTest extends TestCase
 
     public function testGetObjectsCanReturnObjects()
     {
-        $firstResponseObject = new \stdClass();
+        $firstResponseObject = new stdClass();
         $firstResponseObject->id = 1;
         $firstResponseObject->demo = 55;
 
-        $secondResponseObject = new \stdClass();
+        $secondResponseObject = new stdClass();
         $secondResponseObject->id = 1;
         $secondResponseObject->demo = 55;
 
-        $collection = new \stdClass();
+        $collection = new stdClass();
         $collection->item = [
             $firstResponseObject,
             $secondResponseObject
         ];
 
         $responseProperty = 'someThing';
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->$responseProperty = $collection;
 
         $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
@@ -175,22 +178,22 @@ class ResponseMapperTest extends TestCase
 
     public function testGetObjectsCanReturnEmptyArray()
     {
-        $firstResponseObject = new \stdClass();
+        $firstResponseObject = new stdClass();
         $firstResponseObject->id = 1;
         $firstResponseObject->demo = 55;
 
-        $secondResponseObject = new \stdClass();
+        $secondResponseObject = new stdClass();
         $secondResponseObject->id = 1;
         $secondResponseObject->demo = 55;
 
-        $collection = new \stdClass();
+        $collection = new stdClass();
         $collection->items = [
             $firstResponseObject,
             $secondResponseObject
         ];
 
         $responseProperty = 'someThing';
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->$responseProperty = $collection;
 
         $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
@@ -207,19 +210,19 @@ class ResponseMapperTest extends TestCase
 
     public function testGetObjectsCanReturnSingleObject()
     {
-        $firstResponseObject = new \stdClass();
+        $firstResponseObject = new stdClass();
         $firstResponseObject->id = 1;
         $firstResponseObject->demo = 55;
 
-        $secondResponseObject = new \stdClass();
+        $secondResponseObject = new stdClass();
         $secondResponseObject->id = 1;
         $secondResponseObject->demo = 55;
 
-        $collection = new \stdClass();
+        $collection = new stdClass();
         $collection->item = $firstResponseObject;
 
         $responseProperty = 'someThing';
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->$responseProperty = $collection;
 
         $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
@@ -245,7 +248,7 @@ class ResponseMapperTest extends TestCase
     {
         $this->expectException(EmptyResultException::class);
         $this->subject->getObjects(
-            new \stdClass(),
+            new stdClass(),
             'something',
             $this->getMockBuilder(HydratorConfigInterface::class)->getMock()
         );
@@ -253,7 +256,7 @@ class ResponseMapperTest extends TestCase
 
     public function testGetObjectDirectlyCanReturnObject()
     {
-        $responseObject = new \stdClass();
+        $responseObject = new stdClass();
         $responseObject->id = 1;
         $responseObject->demo = 55;
 
@@ -279,15 +282,15 @@ class ResponseMapperTest extends TestCase
 
     public function testGetObjectsDirectyCanReturnArrayOfObjects()
     {
-        $firstResponseObject = new \stdClass();
+        $firstResponseObject = new stdClass();
         $firstResponseObject->id = 1;
         $firstResponseObject->demo = 55;
 
-        $secondResponseObject = new \stdClass();
+        $secondResponseObject = new stdClass();
         $secondResponseObject->id = 1;
         $secondResponseObject->demo = 55;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->item = [
             $firstResponseObject,
             $secondResponseObject

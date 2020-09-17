@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Smartlink;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\SmartLink\SmartLinkInterface;
+use stdClass;
 
 /**
  * Class SmartLinkClientTest
@@ -24,7 +28,7 @@ class SmartLinkClientTest extends TestCase
     private $subject;
 
     /**
-     * @var \Scn\EvalancheSoapApiConnector\EvalancheSoapClient|MockObject
+     * @var EvalancheSoapClient|MockObject
      */
     private $soapClient;
 
@@ -66,7 +70,7 @@ class SmartLinkClientTest extends TestCase
 
         $result_string = 'some string';
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->createLinkResult = $result_string;
 
         $this->soapClient->expects($this->once())->method('createLink')->with([
@@ -90,7 +94,7 @@ class SmartLinkClientTest extends TestCase
         $object = $this->getMockBuilder(SmartLinkInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(SmartLinkInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getTrackingUrlsResult = [
             $object,
             $otherObject

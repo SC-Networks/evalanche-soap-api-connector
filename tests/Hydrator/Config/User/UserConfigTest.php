@@ -1,8 +1,9 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Hydrator\User;
+declare(strict_types=1);
 
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\User\UserConfig;
+namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\User;
+
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
 

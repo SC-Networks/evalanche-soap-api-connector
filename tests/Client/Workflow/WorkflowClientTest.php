@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Workflow;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -11,6 +13,7 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowDetailInterface;
+use stdClass;
 
 /**
  * Class WorkflowClientTest
@@ -75,7 +78,7 @@ class WorkflowClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->getByEndateRangeResult = [
             $object,
             $otherObject
@@ -108,7 +111,7 @@ class WorkflowClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->getByEndDateRangeResult = [
             $object,
             $otherObject
@@ -138,7 +141,7 @@ class WorkflowClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(WorkflowDetailInterface::class)->getMock();
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->getDetailsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createWorkflowDetailConfig')->willReturn($config);
@@ -160,7 +163,7 @@ class WorkflowClientTest extends TestCase
             6
         ];
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->pushProfilesIntoCampaignResult = true;
 
         $this->soapClient->expects($this->once())->method('pushProfilesIntoCampaign')->with([
@@ -174,13 +177,13 @@ class WorkflowClientTest extends TestCase
 
     public function testCreateConfiguredReturnsResourceInformation()
     {
-        $name = 123;
+        $name = 'some-name';
         $schemaVersion = 1;
         $workflowConfiguration = 'my config';
         $categoryId = 456;
 
         $resourceInformation = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->createResult = $resourceInformation;
 
         $this->soapClient->expects($this->once())->method('createConfigured')->with([
@@ -213,7 +216,7 @@ class WorkflowClientTest extends TestCase
         $workflowId = 42;
 
         $result_string = 'my result';
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->createResult = $result_string;
 
         $this->soapClient->expects($this->once())->method('export')->with([

@@ -1,8 +1,9 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Hydrator\Generic;
+declare(strict_types=1);
 
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
+namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
+
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Hydrator\Profile;
+declare(strict_types=1);
 
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileBounceStatusConfig;
+namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile;
+
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileBounceStatusInterface;
 

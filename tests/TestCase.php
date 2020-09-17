@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector;
+
+use PHPUnit\Framework\MockObject\MockObject;
+use ReflectionException;
 
 /**
  * Class TestCase
@@ -13,8 +18,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param array $wsdl_methods
      *
-     * @return \PHPUnit\Framework\MockObject\MockObject
-     * @throws \ReflectionException
+     * @return MockObject
+     * @throws ReflectionException
      */
     public function getWsdlMock(array $wsdl_methods = [])
     {

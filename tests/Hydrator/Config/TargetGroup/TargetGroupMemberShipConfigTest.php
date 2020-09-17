@@ -1,8 +1,9 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Hydrator\TargetGroup;
+declare(strict_types=1);
 
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupMemberShipConfig;
+namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup;
+
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupMemberShipInterface;
 

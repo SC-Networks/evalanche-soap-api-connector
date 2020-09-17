@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Blacklist;
 
 use Scn\EvalancheSoapApiConnector\TestCase;

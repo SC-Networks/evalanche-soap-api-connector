@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Article;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -9,8 +11,8 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
-use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use stdClass;
 
 class ArticleTemplateClientTest extends TestCase
 {
@@ -70,7 +72,7 @@ class ArticleTemplateClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())
@@ -106,7 +108,7 @@ class ArticleTemplateClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())

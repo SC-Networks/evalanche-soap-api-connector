@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Mandator;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -10,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Mandator\MandatorInterface;
+use stdClass;
 
 /**
  * Class MandatorClientTest
@@ -63,7 +66,7 @@ class MandatorClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(MandatorInterface::class)->getMock();
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->getByIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMandatorConfig')
@@ -93,13 +96,13 @@ class MandatorClientTest extends TestCase
         $object = $this->getMockBuilder(MandatorInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(MandatorInterface::class)->getMock();
 
-        $list = new \stdClass();
+        $list = new stdClass();
         $list->item = [
             $object,
             $otherObject
         ];
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->getListResult = $list;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMandatorConfig')

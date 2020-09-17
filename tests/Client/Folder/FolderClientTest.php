@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Folder;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -10,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
+use stdClass;
 
 /**
  * Class FolderClientTest
@@ -71,7 +74,7 @@ class FolderClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
@@ -95,7 +98,7 @@ class FolderClientTest extends TestCase
     {
         $id = 56;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->deleteResult = true;
 
         $this->soapClient->expects($this->once())->method('delete')->with(['category_id' => $id])->willReturn($response);
@@ -111,7 +114,7 @@ class FolderClientTest extends TestCase
         $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getSubCategoriesResult = [
             $object,
             $otherObject
@@ -141,7 +144,7 @@ class FolderClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getDetailsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);

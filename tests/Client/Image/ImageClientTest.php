@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Image;
 
 use PHPUnit\Framework\MockObject\MockObject;
@@ -13,6 +15,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatusInterface;
+use stdClass;
 
 /**
  * Class ImageClientTest
@@ -83,7 +86,7 @@ class ImageClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -112,7 +115,7 @@ class ImageClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->copyResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -136,7 +139,7 @@ class ImageClientTest extends TestCase
     {
         $id = 56;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->deleteResult = true;
 
         $this->soapClient->expects($this->once())->method('delete')->with(['resource_id' => $id])->willReturn($response);
@@ -156,7 +159,7 @@ class ImageClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAllResult = [
             $object,
             $otherObject
@@ -183,7 +186,7 @@ class ImageClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByCategoryResult = [
             $object,
             $otherObject
@@ -209,7 +212,7 @@ class ImageClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -233,7 +236,7 @@ class ImageClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -259,7 +262,7 @@ class ImageClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByTypeIdResult = [
             $object,
             $otherObject
@@ -288,7 +291,7 @@ class ImageClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getResourceDefaultCategoryResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
@@ -311,7 +314,7 @@ class ImageClientTest extends TestCase
         $object = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getByTypeIdResult = [
             $object,
             $otherObject
@@ -338,7 +341,7 @@ class ImageClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->moveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
@@ -360,7 +363,7 @@ class ImageClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ServiceStatusInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->isAliveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createServiceStatusConfig')->willReturn($config);

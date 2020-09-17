@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Pool;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Pool\PoolAttributeInterface;
+use stdClass;
 
 /**
  * Class PoolClientTest
@@ -23,7 +27,7 @@ class PoolClientTest extends TestCase
     private $subject;
 
     /**
-     * @var \Scn\EvalancheSoapApiConnector\EvalancheSoapClient|MockObject
+     * @var EvalancheSoapClient|MockObject
      */
     private $soapClient;
 
@@ -74,7 +78,7 @@ class PoolClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addAttributeResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);
@@ -108,7 +112,7 @@ class PoolClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->addAttributeOptionsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);
@@ -134,7 +138,7 @@ class PoolClientTest extends TestCase
         $id = 345;
         $attributeId = 456;
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->deleteAttributeResult = true;
 
         $this->soapClient->expects($this->once())
@@ -161,7 +165,7 @@ class PoolClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->deleteAttributeOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);
@@ -190,7 +194,7 @@ class PoolClientTest extends TestCase
         $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
         $otherObject = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->getAttributesResult = [
             $object,
             $otherObject
@@ -222,7 +226,7 @@ class PoolClientTest extends TestCase
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
 
-        $response = new \stdClass();
+        $response = new stdClass();
         $response->updateAttributeOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);

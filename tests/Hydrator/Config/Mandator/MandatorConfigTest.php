@@ -1,8 +1,9 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Hydrator\Mandator;
+declare(strict_types=1);
 
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mandator\MandatorConfig;
+namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Mandator;
+
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Mandator\MandatorInterface;
 

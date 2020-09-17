@@ -11,10 +11,12 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
+use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Marketplace\CategoryInterface;
 use Scn\EvalancheSoapStruct\Struct\Marketplace\ProductInterface;
+use stdClass;
 
-class MarketplaceClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
+class MarketplaceClientTest extends TestCase
 {
 
     /**
@@ -65,7 +67,7 @@ class MarketplaceClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $languageId = LanguageEnum::ES;
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->items = [
             $this->getMockBuilder(CategoryInterface::class)->getMock(),
         ];
@@ -98,7 +100,7 @@ class MarketplaceClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         $categoryId = 123;
         $languageId = LanguageEnum::ES;
 
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->items = [
             $this->getMockBuilder(ProductInterface::class)->getMock(),
         ];
@@ -136,7 +138,7 @@ class MarketplaceClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         $languageId = LanguageEnum::EN;
 
         $result_string = 'my result';
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->RecipeId = $result_string;
 
         $this->soapClient->expects($this->once())->method('purchaseProduct')

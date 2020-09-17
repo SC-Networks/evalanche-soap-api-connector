@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Account;
 
 use Scn\EvalancheSoapApiConnector\TestCase;
