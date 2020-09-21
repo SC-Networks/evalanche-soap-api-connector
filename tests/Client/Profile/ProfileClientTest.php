@@ -75,7 +75,6 @@ class ProfileClientTest extends TestCase
             'getResultCursor',
             'getResults',
             'getScores',
-            'getTypeIds',
             'getUnsubscriptions',
             'grantPermission',
             'isInTargetgroups',
@@ -581,32 +580,6 @@ class ProfileClientTest extends TestCase
         )->willReturn($response->mergeByKeyResult);
 
         $this->assertTrue($this->subject->mergeByKey($id, $key, $value, $hashMap));
-    }
-
-    public function testGetTypeIdsCanReturnArrayOfResourceTypeInformation()
-    {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
-
-        $response = new stdClass();
-        $response->getTypeIdsResult = [
-            $object,
-            $otherObject
-        ];
-
-        $this->hydratorConfigFactory->expects($this->once())->method('createResourceTypeInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getTypeIds')->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with(
-            $response,
-            'getTypeIdsResult',
-            $config
-        )->willReturn($response->getTypeIdsResult);
-
-        $this->assertContainsOnlyInstancesOf(
-            ResourceTypeInformationInterface::class,
-            $this->subject->getTypeIds()
-        );
     }
 
     public function testGrantPermission()
