@@ -4,7 +4,6 @@ namespace Scn\EvalancheSoapApiConnector\Client\Profile;
 
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
-use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
@@ -24,8 +23,6 @@ use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupMemberShipInterface;
  */
 final class ProfileClient extends AbstractClient implements ProfileClientInterface
 {
-    use ResourceTrait;
-
     const PORTNAME = 'profile';
     const VERSION = ClientInterface::VERSION_V0;
 
