@@ -351,7 +351,7 @@ removeAllArticles(int <mailing-id>): bool
 Remove certain articles of a mailing
 
 ```
-removeArticle(
+removeArticles(
 	int <mailing-id>,
 	int[] <article-reference-ids>
 ): MailingArticle[]
@@ -390,7 +390,8 @@ Set the detail configuration of a mailing
 
 ```
 setConfiguration(
-	MailingConfiguration <mailing-configuration>
+    int <mailing-id>
+    MailingConfiguration <mailing-configuration>
 ): MailingConfiguration
 ```
 
