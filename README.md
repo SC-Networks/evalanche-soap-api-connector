@@ -2,7 +2,7 @@
 
 [![Monthly Downloads](https://poser.pugx.org/scn/evalanche-soap-api-connector/d/monthly)](https://packagist.org/packages/scn/evalanche-soap-api-connector)
 [![License](https://poser.pugx.org/scn/evalanche-soap-api-connector/license)](LICENSE)
-[![Build Status](https://travis-ci.org/SC-Networks/evalanche-soap-api-connector.svg?branch=master)](https://travis-ci.org/SC-Networks/evalanche-soap-api-connector)
+![tests](https://github.com/SC-Networks/evalanche-soap-api-connector/workflows/tests/badge.svg)
 
 ## Install
 
