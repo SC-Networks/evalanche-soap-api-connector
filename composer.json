@@ -43,6 +43,6 @@
     }
   },
   "scripts": {
-    "tests": "vendor/bin/phpunit -c phpunit.xml.dist"
+    "test": "vendor/bin/phpunit -c phpunit.xml.dist"
   }
 }

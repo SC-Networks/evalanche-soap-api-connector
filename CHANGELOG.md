@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.6.0] - 2020-09-29
+### Added
+- MailingTempalte client #60
+
 ## [1.5.0] - 2020-08-12
 ### Added
 - Marketplace client #58
