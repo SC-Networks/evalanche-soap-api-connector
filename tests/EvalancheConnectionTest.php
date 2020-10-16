@@ -275,4 +275,12 @@ class EvalancheConnectionTest extends TestCase
             $this->subject->createMarketplaceClient()
         );
     }
+    
+    public function testCreateCouponListClientReturnsInstance(): void
+    {
+        $this->assertInstanceOf(
+            Client\CouponList\CouponListClient::class,
+            $this->subject->createCouponListClient()
+        );
+    }
 }

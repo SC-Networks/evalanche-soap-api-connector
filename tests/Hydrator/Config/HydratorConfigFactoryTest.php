@@ -11,6 +11,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeCo
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeGroupConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeOptionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeRoleTypeConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\CouponList\CouponListProfileCouponConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
@@ -126,6 +127,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createMailingSlotConfigurationConfig', MailingSlotConfigurationConfig::class],
             ['createMailingSlotConfig', MailingSlotConfig::class],
             ['createMailingSlotItemConfig', MailingSlotItemConfig::class],
+            ['createCouponListProfileCouponConfig', CouponListProfileCouponConfig::class],
         ];
     }
 }
