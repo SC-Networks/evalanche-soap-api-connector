@@ -59,4 +59,6 @@ interface EvalancheConnectionInterface
     public function createMilestoneClient(): Client\Milestone\MilestoneClientInterface;
 
     public function createMarketplaceClient(): Client\Marketplace\MarketplaceClientInterface;
+
+    public function createCouponListClient(): Client\CouponList\CouponListClientInterface;
 }

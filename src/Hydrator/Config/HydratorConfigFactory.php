@@ -9,6 +9,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeCo
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeGroupConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeOptionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeRoleTypeConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\CouponList\CouponListProfileCouponConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
@@ -285,5 +286,10 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createMailingSlotItemConfig(): HydratorConfigInterface
     {
         return new MailingSlotItemConfig();
+    }
+    
+    public function createCouponListProfileCouponConfig(): HydratorConfigInterface
+    {
+        return new CouponListProfileCouponConfig();
     }
 }

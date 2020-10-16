@@ -194,4 +194,9 @@ final class EvalancheConnection implements EvalancheConnectionInterface
     {
         return $this->createClient(Client\Marketplace\MarketplaceClient::class);
     }
+    
+    public function createCouponListClient(): Client\CouponList\CouponListClientInterface
+    {
+        return $this->createClient(Client\CouponList\CouponListClient::class);
+    }
 }
