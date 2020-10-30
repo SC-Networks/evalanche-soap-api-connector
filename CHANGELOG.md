@@ -1,8 +1,12 @@
 # Changelog
 
+## [1.7.0] - 2020-10-30
+### Added
+- CouponList client client
+
 ## [1.6.0] - 2020-09-29
 ### Added
-- MailingTempalte client #60
+- MailingTemplate client #60
 
 ## [1.5.0] - 2020-08-12
 ### Added
