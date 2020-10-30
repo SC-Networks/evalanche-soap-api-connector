@@ -35,6 +35,7 @@ described in [the struct repository](https://github.com/SC-Networks/evalanche-so
 ##### [FOLDER](folder.md)
 ##### [CONTAINER](container.md)
 ##### [CONTAINER TYPE](containertype.md)
+##### [COUPON LIST](couponlist.md)
 ##### [DOCUMENT](document.md)
 ##### [FORM](form.md)
 ##### [TARGETGROUP](targetgroup.md)
