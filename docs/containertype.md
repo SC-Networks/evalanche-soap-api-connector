@@ -95,7 +95,7 @@ Remove an attribute group of a container type
 
 
 ```
-removeAttribute(
+removeAttributeGroup(
     int <container-type-id>
     int <attribute-group-id>
 ): bool
