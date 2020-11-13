@@ -78,7 +78,7 @@ Retrieve all profiles of a milestone in a certain date
 
 
 ```
-public function getByMilestone(
+getByMilestone(
 	int <milestone-id>,
 	string[] <pool-attribute-names>,
 	int <timestamp-start>,
