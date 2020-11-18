@@ -148,15 +148,6 @@ getBounceProfiles(
 ): JobHandle
 ```
 
-Retrieve all mailings of a certain type within a mandator
-
-```
-getByTypeId(
-	int <mailing-id>,
-	int <mandator-id>
-): MailingDetail
-```
-
 Retrieve all profiles which have clicked in a mailing
 
 ```
@@ -327,12 +318,6 @@ Retrieve all configured subject variants of a mailing
 getSubjectsByMailingId(int <mailing-id>): MailingSubjec[]
 ```
 
-Retrieve the list of supported mailing type ids
-
-```
-getTypeIds(): ResourceTypeInformation[]
-```
-
 Retrieve all profiles which have an unsubscription in a mailing
 
 ```
@@ -412,35 +397,4 @@ setSubjects(
 	int <mailing-id>,
 	array <subject-lines-and-targetgroup-id>
 ): bool
-```
-
-Retrieve all mailings of a mandator
-
-```
-getListByMandatorId(int <mandator-id>): ResourceInformation[]
-```
-
-Retrieve all mailings in a folder
-
-```
-getByFolderId(int <folder-id>): ResourceInformation[]
-``
-```
-
-Retrieve a mailing by id
-
-```
-getById(int <mailing-template-id>): ResourceInformation
-```
-
-Retrieve the default folder for mailings
-
-```
-getDefaultFolderByMandatorId(int <mandator-id>): FolderInformation
-```
-
-Retrieve a mailing by its external id
-
-```
-getByExternalId(string <external-id>): ResourceInformation
 ```
