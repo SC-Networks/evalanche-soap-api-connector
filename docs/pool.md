@@ -82,7 +82,7 @@ Add an option to an existing attribute
 
 
 ```
-addAttributeOption(int <pool-id>, int <attribute-id>, string[] <option-labels>): PoolAttribute
+addAttributeOptions(int <pool-id>, int <attribute-id>, string[] <option-labels>): PoolAttribute
 ```
 
 Delete an existing attribute
