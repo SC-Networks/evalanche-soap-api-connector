@@ -28,7 +28,7 @@ interface FolderClientInterface extends ClientInterface
      *
      * @return void
      */
-    public function delete(int $id): void;
+    public function delete(int $id): bool;
 
     /**
      * @param int $id

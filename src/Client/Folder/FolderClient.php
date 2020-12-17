@@ -36,11 +36,14 @@ final class FolderClient extends AbstractClient implements FolderClientInterface
     /**
      * @param int $id
      *
-     * @return void
+     * @return bool
      */
-    public function delete(int $id): void
+    public function delete(int $id): bool
     {
-        $this->soapClient->delete(['category_id' => $id]);
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->delete(['category_id' => $id]),
+            'deleteResult'
+        );
     }
 
     /**

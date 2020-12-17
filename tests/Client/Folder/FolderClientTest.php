@@ -101,9 +101,20 @@ class FolderClientTest extends TestCase
         $response = new stdClass();
         $response->deleteResult = true;
 
-        $this->soapClient->expects($this->once())->method('delete')->with(['category_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())
+            ->method('delete')
+            ->with(['category_id' => $id])
+            ->willReturn($response);
 
-        $this->assertNull($this->subject->delete($id));
+        $this->responseMapper->expects($this->once())
+            ->method('getBoolean')
+            ->with(
+                $response,
+                'deleteResult'
+            )
+            ->willReturn($response->deleteResult);
+
+        $this->assertTrue($this->subject->delete($id));
     }
 
     public function testGetSubCategoriesCanReturnArrayOfFolderInformation()
