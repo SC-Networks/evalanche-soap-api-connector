@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.1] - 2020-12-17
+### FIXED
+- Folder delete() doesn't return a boolean (#138) (thx @danielneubert)
+
 ## [1.7.0] - 2020-10-30
 ### Added
 - CouponList client client
