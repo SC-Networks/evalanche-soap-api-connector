@@ -3,6 +3,7 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileBounceStatus;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
