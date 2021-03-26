@@ -24,7 +24,7 @@ final class SoapClientFactory implements SoapClientFactoryInterface
             'use' => SOAP_LITERAL,
             'soap_version' => SOAP_1_1,
             'cache_wsdl' => WSDL_CACHE_NONE,
-            'keep_alive' => true,
+            'keep_alive' => false,
         ];
 
         $debug = $config->getDebugMode();
