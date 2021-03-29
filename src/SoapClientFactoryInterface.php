@@ -15,5 +15,8 @@ interface SoapClientFactoryInterface
      *
      * @return EvalancheSoapClient
      */
-    public function create(EvalancheConfigInterface $config, string $wsdlUri): EvalancheSoapClient;
+    public function create(
+        EvalancheConfigInterface $config,
+        string $wsdlUri
+    ): EvalancheSoapClient;
 }

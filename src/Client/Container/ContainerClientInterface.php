@@ -3,7 +3,6 @@
 namespace Scn\EvalancheSoapApiConnector\Client\Container;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
-use Scn\EvalancheSoapApiConnector\Client\Generic\CreateResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;

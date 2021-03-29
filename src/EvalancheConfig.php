@@ -30,21 +30,29 @@ class EvalancheConfig implements EvalancheConfigInterface
     private $debugMode;
 
     /**
+     * @var array<string, mixed>
+     */
+    private $soapClientOptions;
+
+    /**
      * @param string $hostname
      * @param string $username
      * @param string $password
      * @param bool $debugMode
+     * @param array<string, mixed> $soapClientOptions
      */
     public function __construct(
         string $hostname,
         string $username,
         string $password,
-        bool $debugMode = false
+        bool $debugMode = false,
+        array $soapClientOptions = []
     ) {
         $this->hostname = $hostname;
         $this->username = $username;
         $this->password = $password;
         $this->debugMode = $debugMode;
+        $this->soapClientOptions = $soapClientOptions;
     }
 
     /**
@@ -82,6 +90,14 @@ class EvalancheConfig implements EvalancheConfigInterface
     public function getDebugMode(): bool
     {
         return $this->debugMode;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSoapClientOptions(): array
+    {
+        return $this->soapClientOptions;
     }
 
     /**

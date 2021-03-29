@@ -37,14 +37,20 @@ final class EvalancheConnection implements EvalancheConnectionInterface
         $this->extractor = $extractor;
     }
 
-    public static function create(string $hostname, string $username, string $password, $debugMode = false): EvalancheConnectionInterface
-    {
+    public static function create(
+        string $hostname,
+        string $username,
+        string $password,
+        bool $debugMode = false,
+        array $soapClientOptions = []
+    ): EvalancheConnectionInterface {
         return new EvalancheConnection(
             new EvalancheConfig(
                 $hostname,
                 $username,
                 $password,
-                $debugMode
+                $debugMode,
+                $soapClientOptions
             ),
             new SoapClientFactory(),
             new ResponseMapper(

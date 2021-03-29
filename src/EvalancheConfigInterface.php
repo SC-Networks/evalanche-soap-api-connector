@@ -33,4 +33,9 @@ interface EvalancheConfigInterface
      * @return bool
      */
     public function getDebugMode(): bool;
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getSoapClientOptions(): array;
 }

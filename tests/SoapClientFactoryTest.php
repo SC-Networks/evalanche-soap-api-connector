@@ -54,7 +54,7 @@ class SoapClientFactoryTest extends TestCase
     {
         $portname = 'evalanche.wsdl';
         $config = $this->getMockBuilder(EvalancheConfigInterface::class)->getMock();
-        $config->expects($this->once())->method('getDebugMode')->willReturn(true);
+        $config->expects($this->exactly(2))->method('getDebugMode')->willReturn(true);
         $config->expects($this->once())->method('getUsername')->willReturn('some username');
         $config->expects($this->once())->method('getPassword')->willReturn('some password');
         $config->expects($this->once())->method('getWsdlServiceUrl')->with($portname)->willReturn(__DIR__ . '/' . $portname);
