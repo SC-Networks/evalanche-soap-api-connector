@@ -11,10 +11,11 @@ namespace Scn\EvalancheSoapApiConnector;
  */
 class EvalancheConfigTest extends TestCase
 {
-    /**
-     * @var EvalancheConfig
-     */
+    /** @var EvalancheConfig */
     private $subject;
+
+    /** @var array<string, mixed> */
+    private $soapSettings = ['some' => 'setting'];
 
     public function setUp(): void
     {
@@ -22,7 +23,8 @@ class EvalancheConfigTest extends TestCase
             'some hostname',
             'some username',
             'some password',
-            true
+            true,
+            $this->soapSettings
         );
     }
 
@@ -49,5 +51,13 @@ class EvalancheConfigTest extends TestCase
     public function testGetDebugModeCanReturnBoolean()
     {
         $this->assertTrue($this->subject->getDebugMode());
+    }
+
+    public function testGetSoapSettingsReturnsData(): void
+    {
+        $this->assertSame(
+            $this->soapSettings,
+            $this->subject->getSoapClientOptions()
+        );
     }
 }
