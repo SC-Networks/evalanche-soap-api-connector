@@ -37,6 +37,8 @@ final class FolderClient extends AbstractClient implements FolderClientInterface
      * @param int $id
      *
      * @return bool
+     *
+     * @throws EmptyResultException
      */
     public function delete(int $id): bool
     {

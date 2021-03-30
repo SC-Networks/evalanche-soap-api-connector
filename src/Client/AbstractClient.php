@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
+use SoapClient;
 
 /**
  * Class AbstractClient
@@ -17,7 +18,7 @@ abstract class AbstractClient
     const VERSION = '';
 
     /**
-     * @var \SoapClient
+     * @var SoapClient
      */
     protected $soapClient;
 
@@ -37,13 +38,13 @@ abstract class AbstractClient
     protected $extractor;
 
     /**
-     * @param \SoapClient $soapClient
+     * @param SoapClient $soapClient
      * @param ResponseMapperInterface $responseMapper
      * @param HydratorConfigFactoryInterface $hydratorConfigFactory
      * @param ExtractorInterface $extractor
      */
     final public function __construct(
-        \SoapClient $soapClient,
+        SoapClient $soapClient,
         ResponseMapperInterface $responseMapper,
         HydratorConfigFactoryInterface $hydratorConfigFactory,
         ExtractorInterface $extractor

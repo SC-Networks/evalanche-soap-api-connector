@@ -91,8 +91,8 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
      * @param int $scoringGroupId
      * @param int $scoringTypeId
      * @param int $resourceId
-     * @param int $timestampStart
-     * @param int $timestampEnd
+     * @param int $startTimestamp
+     * @param int $endTimestamp
      * @return ProfileActivityScoreInterface[]
      * @throws EmptyResultException
      */
@@ -101,8 +101,8 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
         int $scoringGroupId,
         int $scoringTypeId,
         int $resourceId,
-        int $timestampStart,
-        int $timestampEnd
+        int $startTimestamp,
+        int $endTimestamp
     ): array {
         return $this->responseMapper->getObjects(
             $this->soapClient->getActivityScoringHistory(
@@ -111,8 +111,8 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
                     'scoring_group_id' => $scoringGroupId,
                     'scoring_type_id' => $scoringTypeId,
                     'resource_id' => $resourceId,
-                    'start_timestamp' => $timestampStart,
-                    'end_timestamp' => $timestampEnd
+                    'start_timestamp' => $startTimestamp,
+                    'end_timestamp' => $endTimestamp
                 ]
             ),
             'getActivityScoringHistoryResult',

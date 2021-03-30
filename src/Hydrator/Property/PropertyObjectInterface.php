@@ -2,6 +2,7 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Property;
 
+use Closure;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 
 /**
@@ -14,15 +15,15 @@ interface PropertyObjectInterface
     /**
      * @param string $propertyName
      *
-     * @return \Closure
+     * @return Closure
      */
-    public static function get(string $propertyName): \Closure;
+    public static function get(string $propertyName): Closure;
 
     /**
      * @param string $propertyName
      *
      * @param HydratorConfigInterface $hydratorConfig
-     * @return \Closure
+     * @return Closure
      */
-    public static function set(string $propertyName, HydratorConfigInterface $hydratorConfig = null): \Closure;
+    public static function set(string $propertyName, HydratorConfigInterface $hydratorConfig = null): Closure;
 }

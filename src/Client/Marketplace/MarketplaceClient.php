@@ -6,6 +6,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Marketplace;
 
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 
 final class MarketplaceClient extends AbstractClient implements MarketplaceClientInterface
 {
@@ -28,6 +29,9 @@ final class MarketplaceClient extends AbstractClient implements MarketplaceClien
         );
     }
 
+    /**
+     * @throws EmptyResultException
+     */
     public function purchaseProduct(string $productId, int $mandatorId, int $languageId): string
     {
         return $this->responseMapper->getString(

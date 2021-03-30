@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Form;
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
 
@@ -25,7 +26,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param int $poolAttributeId
      *
      * @return int
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addAttribute(int $id, int $poolAttributeId): int
     {
@@ -42,7 +43,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param int $optionId
      *
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addAttributeOption(int $id, int $optionId): bool
     {
@@ -60,7 +61,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param int $folderId
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function createAlias(int $id, string $title, int $folderId): ResourceInformationInterface
     {
@@ -77,7 +78,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param int $id
      *
      * @return ResourceInformationInterface[]
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getAliases(int $id): array
     {
@@ -94,7 +95,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param int $id
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getFormByAlias(int $id): ResourceInformationInterface
     {
@@ -112,7 +113,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param bool $includeAliases
      *
      * @return FormStatisticInterface[]
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getStatistics(int $id, bool $includeAliases): array
     {
@@ -130,7 +131,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param int $formAttributeId
      *
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function removeAttribute(int $id, int $formAttributeId): bool
     {
@@ -147,7 +148,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param int $optionId
      *
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function removeAttributeOption(int $id, int $optionId): bool
     {
@@ -164,7 +165,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param string $title
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface
     {
@@ -182,7 +183,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
      * @param string $templateHtml
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateTemplate(int $id, string $templateHtml): ResourceInformationInterface
     {

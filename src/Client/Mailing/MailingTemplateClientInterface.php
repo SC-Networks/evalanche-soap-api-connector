@@ -27,7 +27,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @param int $folderId
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function create(
         string $title,
@@ -166,7 +166,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
 
     /**
      * @return MailingSlotConfigurationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getSlotConfiguration(int $id): MailingSlotConfigurationInterface;
 
@@ -177,7 +177,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @param int $slotNumber
      *
      * @return MailingSlotInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addSlot(
         int $id,
@@ -195,7 +195,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @param int $sortValue
      *
      * @return MailingSlotInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateSlot(
         int $id,
@@ -215,7 +215,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @param int $articleTypeId
      *
      * @return MailingSlotItemInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addTemplatesToSlot(
         int $id,
@@ -233,7 +233,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @param int $articleTypeId
      *
      * @return MailingSlotItemInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateSlotTemplates(
         int $id,
