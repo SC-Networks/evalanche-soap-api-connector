@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Pool;
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Pool\PoolAttributeInterface;
 
 /**
@@ -26,7 +27,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
      * @param int $typeId
      *
      * @return PoolAttributeInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addAttribute(int $id, string $title, string $label, int $typeId): PoolAttributeInterface
     {
@@ -48,7 +49,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
      * @param string[] $labels
      *
      * @return PoolAttributeInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addAttributeOptions(int $id, int $attributeId, array $labels): PoolAttributeInterface
     {
@@ -67,7 +68,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
      * @param int $id
      * @param int $attributeId
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function deleteAttribute(int $id, int $attributeId): bool
     {
@@ -86,7 +87,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
      * @param int $optionId
      *
      * @return PoolAttributeInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function deleteAttributeOption(int $id, int $attributeId, int $optionId): PoolAttributeInterface
     {
@@ -105,7 +106,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
      * @param int $id
      *
      * @return PoolAttributeInterface[]
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getAttributesByPool(int $id): array
     {
@@ -123,7 +124,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
      * @param string $label
      *
      * @return PoolAttributeInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateAttributeOption(
         int $id,

@@ -4,13 +4,15 @@ namespace Scn\EvalancheSoapApiConnector;
 
 use Scn\EvalancheSoapApiConnector\Exception\DebugRequestException;
 use Scn\EvalancheSoapApiConnector\Exception\RequestException;
+use SoapClient;
+use SoapFault;
 
 /**
  * Class EvalancheSoapClient
  *
  * @package Scn\EvalancheSoapApiConnector\Client
  */
-class EvalancheSoapClient extends \SoapClient
+class EvalancheSoapClient extends SoapClient
 {
     /**
      * @var bool
@@ -21,6 +23,8 @@ class EvalancheSoapClient extends \SoapClient
      * @param string $wsdl
      * @param array $options
      * @param bool $debugMode
+     *
+     * @throws SoapFault
      */
     public function __construct(string $wsdl, array $options, bool $debugMode = false)
     {
@@ -49,18 +53,18 @@ class EvalancheSoapClient extends \SoapClient
     }
 
     /**
-     * @param string $method
-     * @param array $arguments
+     * @param string $name
+     * @param array $args
      *
      * @return mixed
      * @throws DebugRequestException
      * @throws RequestException
      */
-    public function __call($method, $arguments = [])
+    public function __call($name, $args = [])
     {
         try {
-            return $this->__soapCall($method, $arguments);
-        } catch (\SoapFault $exception) {
+            return $this->__soapCall($name, $args);
+        } catch (SoapFault $exception) {
             if ($this->getDebugMode() === false) {
                 throw new RequestException($exception->getMessage());
             } else {

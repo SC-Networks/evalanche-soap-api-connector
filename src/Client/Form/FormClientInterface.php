@@ -4,6 +4,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Form;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
 
@@ -19,7 +20,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $poolAttributeId
      *
      * @return int
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addAttribute(int $id, int $poolAttributeId): int;
 
@@ -28,7 +29,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $optionId
      *
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addAttributeOption(int $id, int $optionId): bool;
 
@@ -38,7 +39,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $folderId
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function createAlias(int $id, string $title, int $folderId): ResourceInformationInterface;
 
@@ -46,7 +47,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $id
      *
      * @return ResourceInformationInterface[]
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getAliases(int $id): array;
 
@@ -54,7 +55,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $id
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getFormByAlias(int $id): ResourceInformationInterface;
 
@@ -63,7 +64,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param bool $includeAliases
      *
      * @return FormStatisticInterface[]
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getStatistics(int $id, bool $includeAliases): array;
 
@@ -72,7 +73,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $formAttributeId
      *
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function removeAttribute(int $id, int $formAttributeId): bool;
 
@@ -81,7 +82,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $optionId
      *
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function removeAttributeOption(int $id, int $optionId): bool;
 
@@ -90,7 +91,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param string $title
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface;
 
@@ -99,7 +100,7 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @param string $templateHtml
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateTemplate(int $id, string $templateHtml): ResourceInformationInterface;
 }

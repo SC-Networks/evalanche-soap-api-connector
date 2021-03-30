@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Pool;
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
 /**
@@ -24,7 +25,7 @@ final class PoolDataMinerClient extends AbstractClient implements PoolDataMinerC
      * @param string $title
      *
      * @return ResourceInformationInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface
     {

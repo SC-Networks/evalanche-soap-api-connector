@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Article;
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
 final class ArticleTemplateClient extends AbstractClient implements ArticleTemplateClientInterface
@@ -14,6 +15,9 @@ final class ArticleTemplateClient extends AbstractClient implements ArticleTempl
     const PORTNAME = 'articletemplate';
     const VERSION = ClientInterface::VERSION_V0;
 
+    /**
+     * @throws EmptyResultException
+     */
     public function create(
         string $title,
         int $typeId,
@@ -34,6 +38,9 @@ final class ArticleTemplateClient extends AbstractClient implements ArticleTempl
         );
     }
 
+    /**
+     * @throws EmptyResultException
+     */
     public function updateTemplate(
         int $templateId,
         string $template

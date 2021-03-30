@@ -199,18 +199,18 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
 
     /**
      * @param int $id
-     * @param array $attributeTitles
+     * @param array $attributeName
      *
      * @return JobHandleInterface
      * @throws EmptyResultException
      */
-    public function getBounceProfiles(int $id, array $attributeTitles): JobHandleInterface
+    public function getBounceProfiles(int $id, array $attributeName): JobHandleInterface
     {
         return $this->responseMapper->getObject(
             $this->soapClient->getBounceProfiles(
                 [
                     'mailing_id' => $id,
-                    'attribute_names' => $attributeTitles,
+                    'attribute_names' => $attributeName,
                 ]
             ),
             'getBounceProfilesResult',

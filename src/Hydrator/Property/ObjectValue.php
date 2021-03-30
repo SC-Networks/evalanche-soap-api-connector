@@ -2,6 +2,7 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Property;
 
+use Closure;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\Hydrator\Hydrator;
 
@@ -15,9 +16,9 @@ class ObjectValue implements PropertyObjectInterface
     /**
      * @param string $propertyName
      *
-     * @return \Closure
+     * @return Closure
      */
-    public static function get(string $propertyName): \Closure
+    public static function get(string $propertyName): Closure
     {
         return (new static())->createGetter($propertyName);
     }
@@ -25,9 +26,9 @@ class ObjectValue implements PropertyObjectInterface
     /**
      * @param string $propertyName
      *
-     * @return \Closure
+     * @return Closure
      */
-    private function createGetter(string $propertyName): \Closure
+    private function createGetter(string $propertyName): Closure
     {
         return function () use ($propertyName): ?object {
             return $this->$propertyName;
@@ -38,9 +39,9 @@ class ObjectValue implements PropertyObjectInterface
      * @param string $propertyName
      *
      * @param HydratorConfigInterface $hydratorConfig
-     * @return \Closure
+     * @return Closure
      */
-    public static function set(string $propertyName, HydratorConfigInterface $hydratorConfig = null): \Closure
+    public static function set(string $propertyName, HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return (new static())->createSetter($propertyName, $hydratorConfig);
     }
@@ -49,9 +50,9 @@ class ObjectValue implements PropertyObjectInterface
      * @param string $propertyName
      *
      * @param HydratorConfigInterface $hydratorConfig
-     * @return \Closure
+     * @return Closure
      */
-    private function createSetter(string $propertyName, HydratorConfigInterface $hydratorConfig = null): \Closure
+    private function createSetter(string $propertyName, HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return function ($value) use ($propertyName, $hydratorConfig): void {
             if ($hydratorConfig instanceof HydratorConfigInterface) {

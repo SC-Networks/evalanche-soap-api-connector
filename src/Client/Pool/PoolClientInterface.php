@@ -4,6 +4,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Pool;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Pool\PoolAttributeInterface;
 
 /**
@@ -20,7 +21,7 @@ interface PoolClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $typeId
      *
      * @return PoolAttributeInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addAttribute(int $id, string $title, string $label, int $typeId): PoolAttributeInterface;
 
@@ -30,7 +31,7 @@ interface PoolClientInterface extends ClientInterface, ResourceTraitInterface
      * @param string[] $labels
      *
      * @return PoolAttributeInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addAttributeOptions(int $id, int $attributeId, array $labels): PoolAttributeInterface;
 
@@ -38,7 +39,7 @@ interface PoolClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $id
      * @param int $attributeId
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function deleteAttribute(int $id, int $attributeId): bool;
 
@@ -48,7 +49,7 @@ interface PoolClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $optionId
      *
      * @return PoolAttributeInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function deleteAttributeOption(int $id, int $attributeId, int $optionId): PoolAttributeInterface;
 
@@ -56,7 +57,7 @@ interface PoolClientInterface extends ClientInterface, ResourceTraitInterface
      * @param int $id
      *
      * @return PoolAttributeInterface[]
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function getAttributesByPool(int $id): array;
 
@@ -67,7 +68,7 @@ interface PoolClientInterface extends ClientInterface, ResourceTraitInterface
      * @param string $label
      *
      * @return PoolAttributeInterface
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function updateAttributeOption(
         int $id,

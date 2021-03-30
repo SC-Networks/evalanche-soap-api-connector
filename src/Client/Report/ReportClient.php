@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\CreateResourceTrait;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 
 /**
  * Class ReportClient
@@ -25,7 +26,7 @@ final class ReportClient extends AbstractClient implements ReportClientInterface
      * @param int $reportId
      *
      * @return bool
-     * @throws \Scn\EvalancheSoapApiConnector\Exception\EmptyResultException
+     * @throws EmptyResultException
      */
     public function addResourceIdToReport(int $id, int $reportId): bool
     {
