@@ -39,6 +39,25 @@ Work with the results
 Most of the methods will require/return structs which are defined and
 described in [the struct repository](https://github.com/SC-Networks/evalanche-soap-api-struct).
 
+### Custom soapclient settings
+
+`EvalancheConnection::create` allows to set [custom settings](https://www.php.net/manual/en/soapclient.construct.php)
+for phps soap client. Please note that some options are predefined with meaningful values and cannot
+be changed.
+
+
+```php
+$connection = \Scn\EvalancheSoapApiConnector\EvalancheConnection::create(
+    'given host',
+    'given username',
+    'given password',
+    false,
+    [
+        'keep_alive' => false,
+    ]
+);
+```
+
 ## Method Documentation
 
 Can be found [here](/docs/index.md).
