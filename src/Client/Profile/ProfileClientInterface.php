@@ -81,12 +81,12 @@ interface ProfileClientInterface extends ClientInterface
     public function getBounces(int $id, array $poolAttributeList, int $timestampStart, int $timestampEnd): array;
 
     /**
-     * @param int $id
+     * @param int|string $id
      *
      * @return HashMapInterface
      * @throws EmptyResultException
      */
-    public function getById(int $id): HashMapInterface;
+    public function getById($id): HashMapInterface;
 
     /**
      * @param int $id
