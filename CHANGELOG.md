@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.8.1] - 2021-04-01
+### FIXED
+- Fetching a profile using the encrypted UID (#151)
+
 ## [1.8.0] - 2021-03-30
 ### Added
 - Allow custom soap settings on client creation

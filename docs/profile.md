@@ -55,11 +55,11 @@ getBounces(
 ): ProfileBounceStatus[]
 ```
 
-Retrieve a profile by id
+Retrieve a profile by id or sid
 
 
 ```
-getById(int <profile-id>): HashMap
+getById(int|string <profile-id|s-id>): HashMap
 ```
 
 Retrieve all profiles by key
