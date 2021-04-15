@@ -1,7 +1,7 @@
 # EVALANCHE SOAP API CONNECTOR
 
 [![Monthly Downloads](https://poser.pugx.org/scn/evalanche-soap-api-connector/d/monthly)](https://packagist.org/packages/scn/evalanche-soap-api-connector)
-[![License](https://github.com/SC-Networks/evalanche-soap-api-connector/blob/master/LICENSE.md)](LICENSE)
+[![License](https://poser.pugx.org/scn/evalanche-soap-api-connector/license)](LICENSE.md)
 ![tests](https://github.com/SC-Networks/evalanche-soap-api-connector/workflows/tests/badge.svg)
 
 ## Install
