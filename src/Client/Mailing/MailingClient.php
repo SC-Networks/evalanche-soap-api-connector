@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
@@ -978,6 +979,45 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
         return $this->responseMapper->getObject(
             $this->soapClient->getByExternalId(['external_id' => $id]),
             'getByExternalIdResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
+
+    /**
+     * @param int $mailingId
+     *
+     * @return HashMapInterface
+     * @throws EmptyResultException
+     */
+    public function getContentContainerData(int $mailingId): HashMapInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getContentContainerData([
+                'mailing_id' => $mailingId
+            ]),
+            'getContentContainerDataResult',
+            $this->hydratorConfigFactory->createHashMapConfig()
+        );
+    }
+
+    /**
+     * @param int $mailingId
+     * @param HashMapInterface $hashMap
+     *
+     * @return ResourceInformationInterface
+     * @throws EmptyResultException
+     */
+    public function setContentContainerData(int $mailingId, HashMapInterface $hashMap): ResourceInformationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->setContentContainerData([
+                'mailing_id' => $mailingId,
+                'data' => $this->extractor->extract(
+                    $this->hydratorConfigFactory->createHashMapConfig(),
+                    $hashMap
+                )
+            ]),
+            'setContentContainerDataResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );
     }
