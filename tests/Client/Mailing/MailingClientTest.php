@@ -12,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
@@ -113,6 +114,8 @@ class MailingClientTest extends TestCase
             'getById',
             'getResourceDefaultCategory',
             'getByExternalId',
+            'getContentContainerData',
+            'setContentContainerData',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -1523,6 +1526,96 @@ class MailingClientTest extends TestCase
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->getByExternalId($id)
+        );
+    }
+
+    public function testGetContentContainerDataReturnsData(): void
+    {
+        $id = 666;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->getContentContainerDataResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createHashMapConfig')
+            ->willReturn($config);
+        
+        $this->soapClient->expects($this->once())
+            ->method('getContentContainerData')
+            ->with(['mailing_id' => $id])->willReturn($response);
+        
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'getContentContainerDataResult',
+                $config
+            )
+            ->willReturn($response->getContentContainerDataResult);
+
+        $this->assertSame(
+            $object,
+            $this->subject->getContentContainerData($id)
+        );
+    }
+
+    public function testSetContentContainerDataSetsData(): void
+    {
+        $id = 666;
+        $extractedData = [
+            [
+                'some' => 'data'
+            ],
+            [
+                'some' => 'other data'
+            ]
+        ];
+
+        $hashMapConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $resourceInformationConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->setContentContainerDataResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createHashMapConfig')
+            ->willReturn($hashMapConfig);
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createResourceInformationConfig')
+            ->willReturn($resourceInformationConfig);
+
+        $this->soapClient->expects($this->once())
+            ->method('setContentContainerData')
+            ->with([
+                'mailing_id' => $id,
+                'data' => $extractedData
+            ])->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'setContentContainerDataResult',
+                $resourceInformationConfig
+            )
+            ->willReturn($response->setContentContainerDataResult);
+
+        $this->extractor->expects($this->once())
+            ->method('extract')
+            ->with(
+                $hashMapConfig,
+                $hashMap
+            )
+            ->willReturn($extractedData);
+
+        $this->assertSame(
+            $object,
+            $this->subject->setContentContainerData($id, $hashMap)
         );
     }
 }

@@ -398,3 +398,20 @@ setSubjects(
 	array <subject-lines-and-targetgroup-id>
 ): bool
 ```
+
+Retrieve the content of the container container of a mailing
+
+```
+getContentContainerData(
+    int <mailing_id>
+): HashMap
+```
+
+Update the content container of a mailing
+
+```
+setContentContainerData(
+    int <mailing_id>,
+    HashMap <data>
+): EvalancheResourceInformation
+```

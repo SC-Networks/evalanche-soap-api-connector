@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
@@ -457,4 +458,21 @@ interface MailingClientInterface extends ClientInterface
      * @throws EmptyResultException
      */
     public function getByExternalId(string $id): ResourceInformationInterface;
+
+    /**
+     * @param int $mailingId
+     *
+     * @return HashMapInterface
+     * @throws EmptyResultException
+     */
+    public function getContentContainerData(int $mailingId): HashMapInterface;
+
+    /**
+     * @param int $mailingId
+     * @param HashMapInterface $hashMap
+     *
+     * @return ResourceInformationInterface
+     * @throws EmptyResultException
+     */
+    public function setContentContainerData(int $mailingId, HashMapInterface $hashMap): ResourceInformationInterface;
 }
