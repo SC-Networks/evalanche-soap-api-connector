@@ -9,7 +9,6 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 class MailingSlotItemConfig implements HydratorConfigInterface
 {
-
     public function getObject(): StructInterface
     {
         return new MailingSlotItem();

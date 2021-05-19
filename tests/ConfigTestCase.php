@@ -6,7 +6,6 @@ namespace Scn\EvalancheSoapApiConnector;
 
 abstract class ConfigTestCase extends \PHPUnit\Framework\TestCase
 {
-
     public function testGetHydratorPropertiesCanReturnArray()
     {
         $subject = $this->getSubject();

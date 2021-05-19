@@ -147,9 +147,9 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     /**
      * @param int $id
      * @param array $mailingIds
-     * 
+     *
      * @return bool
-     * 
+     *
      * @throws EmptyResultException
      */
     public function applyTemplate(int $id, array $mailingIds): bool
@@ -259,7 +259,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
 
     /**
      * Removes an existing slot from a mailing template
-     * 
+     *
      * @param int $id
      * @param int $slotId
      *
@@ -279,7 +279,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
 
     /**
      * Removes an article template configuration for a certain template type from an existing slot
-     * 
+     *
      * @param int $id
      * @param int $slotId
      * @param int $templateType
@@ -307,7 +307,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
 
     /**
      * @param int $id
-     * 
+     *
      * @return MailingSlotConfigurationInterface
      * @throws EmptyResultException
      */
@@ -322,7 +322,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
 
     /**
      * Adds a slot to the mailing template
-     * 
+     *
      * @param int $id
      * @param int $slotNumber
      *

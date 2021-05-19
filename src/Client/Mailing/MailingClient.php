@@ -78,18 +78,24 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
      * @param string $title
      * @param int $templateId
      * @param int $folderId
+     * @param null|int $typeId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function createDraft(string $title, int $templateId, int $folderId): ResourceInformationInterface
-    {
+    public function createDraft(
+        string $title,
+        int $templateId,
+        int $folderId,
+        ?int $typeId = null
+    ): ResourceInformationInterface {
         return $this->responseMapper->getObject(
             $this->soapClient->createDraft(
                 [
                     'name' => $title,
                     'template_id' => $templateId,
                     'category_id' => $folderId,
+                    'type_id' => $typeId
                 ]
             ),
             'createDraftResult',

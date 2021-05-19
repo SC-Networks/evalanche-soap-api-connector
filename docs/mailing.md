@@ -96,6 +96,7 @@ createDraft(
 	string <object-name>,
 	int <mailing-template-id>,
 	int <folder-id>
+	int <type-id> (optional)
 ): ResourceInformation
 ```
 
