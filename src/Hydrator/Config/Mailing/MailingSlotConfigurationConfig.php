@@ -9,7 +9,6 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
 
 class MailingSlotConfigurationConfig implements HydratorConfigInterface
 {
-
     public function getObject(): StructInterface
     {
         return new MailingSlotConfiguration();

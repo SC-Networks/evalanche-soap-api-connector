@@ -18,7 +18,7 @@ class CouponListClient extends AbstractClient implements CouponListClientInterfa
 
     /**
      * Creates a coupon list object
-     * 
+     *
      * @param string $title
      * @param int $folderId
      *
@@ -48,7 +48,7 @@ class CouponListClient extends AbstractClient implements CouponListClientInterfa
      * @param int $amount The amount of coupon codes to be generated
      *
      * @return bool
-     * 
+     *
      * @throws EmptyResultException
      */
     public function generate(
@@ -68,12 +68,12 @@ class CouponListClient extends AbstractClient implements CouponListClientInterfa
 
     /**
      * Removes a certain coupon code from a list
-     * 
+     *
      * @param int $couponListId
      * @param int $profileCouponId
-     * 
+     *
      * @return bool
-     * 
+     *
      * @throws EmptyResultException
      */
     public function removeById(
@@ -93,11 +93,11 @@ class CouponListClient extends AbstractClient implements CouponListClientInterfa
 
     /**
      * Removes all coupon codes from a coupon list
-     * 
+     *
      * @param int $couponListId
-     * 
+     *
      * @return bool
-     * 
+     *
      * @throws EmptyResultException
      */
     public function removeAll(
@@ -115,11 +115,11 @@ class CouponListClient extends AbstractClient implements CouponListClientInterfa
 
     /**
      * Returns a list of all coupon codes
-     * 
+     *
      * @param int $couponListId
-     * 
+     *
      * @return ProfileCouponInterface[]
-     * 
+     *
      * @throws EmptyResultException
      */
     public function getProfileCouponList(
@@ -138,12 +138,12 @@ class CouponListClient extends AbstractClient implements CouponListClientInterfa
 
     /**
      * Imports a list of profile coupons
-     * 
+     *
      * @param int $couponListId
      * @param ProfileCouponInterface[] $profileCouponItems
-     * 
+     *
      * @return bool
-     * 
+     *
      * @throws EmptyResultException
      */
     public function import(

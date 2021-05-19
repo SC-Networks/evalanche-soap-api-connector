@@ -777,6 +777,7 @@ class MailingClientTest extends TestCase
         $title = 'some title';
         $templateId = 32;
         $folderId = 23;
+        $typeId = 234;
 
         $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
         $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
@@ -784,12 +785,17 @@ class MailingClientTest extends TestCase
         $response = new stdClass();
         $response->createDraftResult = $object;
 
-        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('createDraft')->with([
-            'name' => $title,
-            'template_id' => $templateId,
-            'category_id' => $folderId,
-        ])->willReturn($response);
+        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn(
+            $config
+        );
+        $this->soapClient->expects($this->once())->method('createDraft')->with(
+            [
+                'name' => $title,
+                'template_id' => $templateId,
+                'category_id' => $folderId,
+                'type_id' => $typeId
+            ]
+        )->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createDraftResult',
@@ -798,7 +804,7 @@ class MailingClientTest extends TestCase
 
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
-            $this->subject->createDraft($title, $templateId, $folderId)
+            $this->subject->createDraft($title, $templateId, $folderId, $typeId)
         );
     }
 

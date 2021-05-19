@@ -50,11 +50,17 @@ interface MailingClientInterface extends ClientInterface
      * @param string $title
      * @param int $templateId
      * @param int $folderId
+     * @param null|int $typeId
      *
      * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
-    public function createDraft(string $title, int $templateId, int $folderId): ResourceInformationInterface;
+    public function createDraft(
+        string $title,
+        int $templateId,
+        int $folderId,
+        ?int $typeId = null
+    ): ResourceInformationInterface;
 
     /**
      * @param int $id

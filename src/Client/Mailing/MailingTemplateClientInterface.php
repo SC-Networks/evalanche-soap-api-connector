@@ -172,7 +172,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
 
     /**
      * Adds a slot to the mailing template
-     * 
+     *
      * @param int $id
      * @param int $slotNumber
      *

@@ -12,7 +12,7 @@ interface CouponListClientInterface extends ClientInterface, ResourceTraitInterf
 {
     /**
      * Creates a coupon list object
-     * 
+     *
      * @param string $title
      * @param int $folderId
      *
