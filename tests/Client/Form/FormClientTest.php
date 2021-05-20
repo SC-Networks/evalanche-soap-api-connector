@@ -59,7 +59,8 @@ class FormClientTest extends TestCase
             'removeAttribute',
             'removeAttributeOption',
             'rename',
-            'updateTemplate'
+            'updateTemplate',
+            'create'
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -327,6 +328,34 @@ class FormClientTest extends TestCase
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->updateTemplate($id, $templateHtml)
+        );
+    }
+
+    public function testCreateCanReturnInstanceOfResourceInformation()
+    {
+        $poolId = 999;
+        $title = 'some title';
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->createResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
+        $this->soapClient->expects($this->once())->method('create')->with([
+            'pool_id' => $poolId,
+            'name' => $title
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'createResult',
+            $config
+        )->willReturn($response->createResult);
+
+        $this->assertInstanceOf(
+            ResourceInformationInterface::class,
+            $this->subject->create($poolId, $title)
         );
     }
 }

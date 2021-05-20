@@ -20,6 +20,16 @@ updateTemplate(
 ): ResourceInformation
 ```
 
+Create a form
+
+
+```
+create(
+    int <pool-id>,
+    string <title>
+): ResourceInformation
+```
+
 Create an alias of a form
 
 
