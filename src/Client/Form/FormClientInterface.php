@@ -103,4 +103,6 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @throws EmptyResultException
      */
     public function updateTemplate(int $id, string $templateHtml): ResourceInformationInterface;
+
+    public function create(int $poolId, string $title): ResourceInformationInterface;
 }

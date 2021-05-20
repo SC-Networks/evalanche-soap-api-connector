@@ -195,4 +195,15 @@ final class FormClient extends AbstractClient implements FormClientInterface
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );
     }
+
+    public function create(int $poolId, string $title): ResourceInformationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->create(
+                ['pool_id' => $poolId, 'name' => $title]
+            ),
+            'createResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
 }
