@@ -62,6 +62,7 @@ class MailingTemplateConfigurationConfigTest extends TestCase
         'htmlarea_7',
         'htmlarea_8',
         'htmlarea_9',
+        'containerType',
     ];
 
     public function setUp(): void
