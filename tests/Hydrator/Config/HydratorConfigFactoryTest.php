@@ -51,7 +51,10 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\FormStatisticConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\MailClientStatisticItemConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\MailingStatisticConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\User\UserConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowConfigVersionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowDetailConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowStateChangeResultConfig;
 use Scn\EvalancheSoapApiConnector\TestCase;
 
 class HydratorConfigFactoryTest extends TestCase
@@ -128,6 +131,9 @@ class HydratorConfigFactoryTest extends TestCase
             ['createMailingSlotConfig', MailingSlotConfig::class],
             ['createMailingSlotItemConfig', MailingSlotItemConfig::class],
             ['createCouponListProfileCouponConfig', CouponListProfileCouponConfig::class],
+            ['createWorkflowConfigurationConfig', WorkflowConfigurationConfig::class],
+            ['createWorkflowConfigVersionConfig', WorkflowConfigVersionConfig::class],
+            ['createWorkflowStateChangeResultConfig', WorkflowStateChangeResultConfig::class],
         ];
     }
 }

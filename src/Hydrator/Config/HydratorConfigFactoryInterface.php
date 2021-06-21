@@ -99,4 +99,10 @@ interface HydratorConfigFactoryInterface
     public function createMailingSlotItemConfig(): HydratorConfigInterface;
 
     public function createCouponListProfileCouponConfig(): HydratorConfigInterface;
+
+    public function createWorkflowConfigurationConfig(): HydratorConfigInterface;
+
+    public function createWorkflowConfigVersionConfig(): HydratorConfigInterface;
+
+    public function createWorkflowStateChangeResultConfig(): HydratorConfigInterface;
 }

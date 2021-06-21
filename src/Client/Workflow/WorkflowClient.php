@@ -8,7 +8,10 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\CreateResourceTrait;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigVersionInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowDetailInterface;
+use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowStateChangeResultInterface;
 
 /**
  * Class WorkflowClient
@@ -142,6 +145,102 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
                 'workflow_id' => $workflowId
             ]),
             'exportResult'
+        );
+    }
+
+    /**
+     * Update the configuration of a campaign and returns the new config version id
+     *
+     * @param int $workflowId
+     * @param string $configVersion The campaign config version
+     * @param string $configuration The configuration as json encoded string
+     *
+     * @return string The new config version id
+     *
+     * @throws EmptyResultException
+     */
+    public function setConfiguration(
+        int $workflowId,
+        string $configVersion,
+        string $configuration
+    ): string {
+        return $this->responseMapper->getString(
+            $this->soapClient->setConfiguration([
+                'workflow_id' => $workflowId,
+                'config_version' => $configVersion,
+                'configuration' => $configuration,
+            ]),
+            'setConfigurationResult'
+        );
+    }
+
+    /**
+     * Return the configuration of a campaign
+     *
+     * @param int $workflowId
+     *
+     * @return WorkflowConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getConfiguration(int $workflowId): WorkflowConfigurationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getConfiguration(['workflow_id' => $workflowId]),
+            'getConfigurationResult',
+            $this->hydratorConfigFactory->createWorkflowConfigurationConfig()
+        );
+    }
+
+    /**
+     * Gets the config versions of a campaign
+     *
+     * @param int $workflowId
+     *
+     * @return WorkflowConfigVersionInterface[]
+     * @throws EmptyResultException
+     */
+    public function getConfigurationVersions(int $workflowId): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getConfigurationVersions([
+                'workflow_id' => $workflowId
+            ]),
+            'getConfigurationVersionsResult',
+            $this->hydratorConfigFactory->createWorkflowConfigVersionConfig()
+        );
+    }
+
+    /**
+     * Activates a campaign
+     *
+     * @param int $workflowId
+     *
+     * @return WorkflowStateChangeResultInterface
+     * @throws EmptyResultException
+     */
+    public function activate(int $workflowId): WorkflowStateChangeResultInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->activate(['workflow_id' => $workflowId]),
+            'activateResult',
+            $this->hydratorConfigFactory->createWorkflowStateChangeResultConfig()
+        );
+    }
+
+    /**
+     * Deactivates a campaign
+     *
+     * @param int $workflowId
+     *
+     * @return WorkflowStateChangeResultInterface
+     * @throws EmptyResultException
+     */
+    public function deactivate(int $workflowId): WorkflowStateChangeResultInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->deactivate(['workflow_id' => $workflowId]),
+            'deactivateResult',
+            $this->hydratorConfigFactory->createWorkflowStateChangeResultConfig()
         );
     }
 }
