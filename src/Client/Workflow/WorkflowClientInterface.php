@@ -7,7 +7,10 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\CreateResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigurationInterface;
+use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigVersionInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowDetailInterface;
+use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowStateChangeResultInterface;
 
 /**
  * Interface WorkflowClientInterface
@@ -69,4 +72,61 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
      * @throws EmptyResultException
      */
     public function export(int $workflowId): string;
+
+    /**
+     * Update the configuration of a workflow
+     *
+     * @param int $workflowId
+     * @param string $configVersion The workflow config version
+     * @param string $configuration The configuration as json encoded string
+     *
+     * @return string The new config version id
+     *
+     * @throws EmptyResultException
+     */
+    public function setConfiguration(
+        int $workflowId,
+        string $configVersion,
+        string $configuration
+    ): string;
+
+    /**
+     * Return the configuration of a campaign
+     *
+     * @param int $workflowId
+     *
+     * @return WorkflowConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getConfiguration(int $workflowId): WorkflowConfigurationInterface;
+
+    /**
+     * Gets the config versions of a campaign
+     *
+     * @param int $workflowId
+     *
+     * @return WorkflowConfigVersionInterface[]
+     * @throws EmptyResultException
+     */
+    public function getConfigurationVersions(int $workflowId): array;
+
+    /**
+     * Activates a campaign
+     *
+     * @param int $workflowId
+     *
+     * @return WorkflowStateChangeResultInterface
+     * @throws EmptyResultException
+     */
+    public function activate(int $workflowId): WorkflowStateChangeResultInterface;
+
+    /**
+     * Deactivates a campaign
+     *
+     * @param int $workflowId
+     *
+     * @return WorkflowStateChangeResultInterface
+     * @throws EmptyResultException
+     */
+    public function deactivate(int $workflowId): WorkflowStateChangeResultInterface;
 }

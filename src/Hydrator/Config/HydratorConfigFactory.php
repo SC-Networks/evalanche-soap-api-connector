@@ -18,28 +18,26 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\MassUpdateResultConfig
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceTypeInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ServiceStatusConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotConfigurationConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotItemConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateConfigurationConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateSourcesConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\CategoryConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\ProductConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileTrackingHistoryConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupDetailConfig;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupMemberShipConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingArticleConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingClickConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingImpressionConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotItemConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingStatusConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSubjectConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateSourcesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mandator\MandatorConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\CategoryConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\ProductConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Pool\PoolAttributeConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileActivityScoreConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileBounceStatusConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileGroupScoreConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileTrackingHistoryConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Scoring\ScoringGroupDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink\SmartLinkConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\ArticleStatisticConfig;
@@ -48,8 +46,13 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\ClientStatisticConfi
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\FormStatisticConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\MailClientStatisticItemConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\MailingStatisticConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupDetailConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupMemberShipConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\User\UserConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowConfigVersionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowDetailConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowStateChangeResultConfig;
 
 final class HydratorConfigFactory implements HydratorConfigFactoryInterface
 {
@@ -291,5 +294,20 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createCouponListProfileCouponConfig(): HydratorConfigInterface
     {
         return new CouponListProfileCouponConfig();
+    }
+    
+    public function createWorkflowConfigurationConfig(): HydratorConfigInterface
+    {
+        return new WorkflowConfigurationConfig();
+    }
+    
+    public function createWorkflowConfigVersionConfig(): HydratorConfigInterface
+    {
+        return new WorkflowConfigVersionConfig();
+    }
+    
+    public function createWorkflowStateChangeResultConfig(): HydratorConfigInterface
+    {
+        return new WorkflowStateChangeResultConfig();
     }
 }
