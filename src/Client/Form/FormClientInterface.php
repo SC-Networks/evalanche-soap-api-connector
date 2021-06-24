@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Form;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Form\FormConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
 
@@ -105,4 +106,24 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
     public function updateTemplate(int $id, string $templateHtml): ResourceInformationInterface;
 
     public function create(int $poolId, string $title): ResourceInformationInterface;
+
+    /**
+     * @param int $id
+     * @param FormConfigurationInterface $configuration
+     *
+     * @return FormConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function setConfiguration(
+        int $id,
+        FormConfigurationInterface $configuration
+    ): FormConfigurationInterface;
+
+    /**
+     * @param int $id
+     *
+     * @return FormConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getConfiguration(int $id): FormConfigurationInterface;
 }

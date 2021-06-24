@@ -12,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeGr
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeOptionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeRoleTypeConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\CouponList\CouponListProfileCouponConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Form\FormConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
@@ -97,6 +98,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createContainerAttributeGroupConfig', ContainerAttributeGroupConfig::class],
             ['createContainerAttributeOptionConfig', ContainerAttributeOptionConfig::class],
             ['createContainerAttributeRoleTypeConfig', ContainerAttributeRoleTypeConfig::class],
+            ['createFormConfigurationConfig', FormConfigurationConfig::class],
             ['createFolderInformationConfig', FolderInformationConfig::class],
             ['createTargetGroupDetailConfig', TargetGroupDetailConfig::class],
             ['createFormStatisticConfig', FormStatisticConfig::class],

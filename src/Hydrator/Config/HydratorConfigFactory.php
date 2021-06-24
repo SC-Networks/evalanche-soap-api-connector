@@ -10,6 +10,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeGr
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeOptionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeRoleTypeConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\CouponList\CouponListProfileCouponConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Form\FormConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
@@ -124,6 +125,11 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createContainerAttributeRoleTypeConfig(): HydratorConfigInterface
     {
         return new ContainerAttributeRoleTypeConfig();
+    }
+
+    public function createFormConfigurationConfig(): HydratorConfigInterface
+    {
+        return new FormConfigurationConfig();
     }
 
     public function createFolderInformationConfig(): HydratorConfigInterface
