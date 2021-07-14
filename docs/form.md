@@ -178,3 +178,18 @@ Retrieve a form by its external id
 ```
 getByExternalId(string <external-id>): ResourceInformation
 ```
+
+Set the detail configuration of a form
+
+```
+setConfiguration(
+    int <form-id>
+    FormConfiguration <form-configuration>
+): FormConfiguration
+```
+
+Retrieve the detailed configuration of a form
+
+```
+getConfiguration(int <form-id>): FormConfiguration
+```

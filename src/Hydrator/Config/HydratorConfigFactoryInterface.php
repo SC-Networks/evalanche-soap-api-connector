@@ -32,6 +32,8 @@ interface HydratorConfigFactoryInterface
 
     public function createContainerAttributeRoleTypeConfig(): HydratorConfigInterface;
 
+    public function createFormConfigurationConfig(): HydratorConfigInterface;
+
     public function createFolderInformationConfig(): HydratorConfigInterface;
 
     public function createTargetGroupDetailConfig(): HydratorConfigInterface;

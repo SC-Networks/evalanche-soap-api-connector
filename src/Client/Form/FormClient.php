@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Form\FormConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
 
@@ -204,6 +205,51 @@ final class FormClient extends AbstractClient implements FormClientInterface
             ),
             'createResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     * @param FormConfigurationInterface $configuration
+     *
+     * @return FormConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function setConfiguration(
+        int $id,
+        FormConfigurationInterface $configuration
+    ): FormConfigurationInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->setConfiguration(
+                [
+                    'form_id' => $id,
+                    'configuration' => $this->extractor->extract(
+                        $this->hydratorConfigFactory->createFormConfigurationConfig(),
+                        $configuration
+                    ),
+                ]
+            ),
+            'setConfigurationResult',
+            $this->hydratorConfigFactory->createFormConfigurationConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return FormConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getConfiguration(int $id): FormConfigurationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getConfiguration(
+                [
+                    'form_id' => $id,
+                ]
+            ),
+            'getConfigurationResult',
+            $this->hydratorConfigFactory->createFormConfigurationConfig()
         );
     }
 }
