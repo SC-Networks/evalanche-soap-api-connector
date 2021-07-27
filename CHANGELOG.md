@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.9.0] - 2021-07-27
+### ADDED
+- Support methods to retrieve/update form configurations (#156)
+- Support method to retrieve workflow configurations (#165)
+- Support method to retrieve workflow config versions (#166)
+- Support methods to start/stop campaigns (#163)
+- Support setting/retrieving Container type ids in MailingTemplateConfiguration (#162)
+- Support FormService method to create forms (#155)
+- Support different object types in MailingService::createDraft (#154)
+- Support MailingService methods to retrieve/manipulate the content container (#153)
+
 ## [1.8.1] - 2021-04-01
 ### FIXED
 - Fetching a profile using the encrypted UID (#151)
