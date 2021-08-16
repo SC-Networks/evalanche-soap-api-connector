@@ -12,6 +12,12 @@ interface HydratorConfigFactoryInterface
 
     public function createSmartLinkConfig(): HydratorConfigInterface;
 
+    public function createSmartLinkConfigurationConfig(): HydratorConfigInterface;
+
+    public function createSmartLinkPoolConfigurationConfig(): HydratorConfigInterface;
+
+    public function createSmartLinkScoringConfigurationConfig(): HydratorConfigInterface;
+
     public function createScoringGroupDetailConfig(): HydratorConfigInterface;
 
     public function createPoolAttributeConfig(): HydratorConfigInterface;
