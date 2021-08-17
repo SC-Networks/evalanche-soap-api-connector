@@ -54,7 +54,8 @@ class SmartLinkClientTest extends TestCase
             'createLink',
             'getTrackingUrls',
             'getLinkConfigurations',
-            'setLinkConfigurations'
+            'setLinkConfigurations',
+            'createLinkConfigurations'
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -213,6 +214,63 @@ class SmartLinkClientTest extends TestCase
         $this->assertSame(
             $result,
             $this->subject->setLinkConfigurations($link_id, $configurations)
+        );
+    }
+
+    public function testCreateLinkConfigurations()
+    {
+        $link_id = 1234;
+        $configurations = [
+            $this->createMock(SmartLinkConfigurationInterface::class),
+            $this->createMock(SmartLinkConfigurationInterface::class)
+        ];
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+
+        $response = new stdClass();
+        $result = true;
+        $response->setLinkConfigurationsResult = $result;
+
+        $extractedData = [
+            [
+                'some' => 'data'
+            ],
+            [
+                'some' => 'other data'
+            ]
+        ];
+
+        $this->extractor->expects($this->once())
+            ->method('extractArray')
+            ->with(
+                $config,
+                $configurations
+            )
+            ->willReturn($extractedData);
+
+        $this->hydratorConfigFactory->expects($this->exactly(1))
+            ->method('createSmartLinkConfigurationConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('createLinkConfigurations')
+            ->with([
+                'smartlink_link_id' => $link_id,
+                'items' => $extractedData
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getBoolean')
+            ->with(
+                $response,
+                'createLinkConfigurationsResult'
+            )
+            ->willReturn($response->setLinkConfigurationsResult);
+
+        $this->assertSame(
+            $result,
+            $this->subject->createLinkConfigurations($link_id, $configurations)
         );
     }
 }
