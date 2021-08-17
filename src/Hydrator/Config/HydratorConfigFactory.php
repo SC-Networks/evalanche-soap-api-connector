@@ -41,6 +41,9 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileGroupScoreConfi
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileTrackingHistoryConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Scoring\ScoringGroupDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink\SmartLinkConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink\SmartLinkConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink\SmartLinkPoolConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink\SmartLinkScoringConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\ArticleStatisticConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\ArticleStatisticItemConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\ClientStatisticConfig;
@@ -75,6 +78,21 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createSmartLinkConfig(): HydratorConfigInterface
     {
         return new SmartLinkConfig();
+    }
+
+    public function createSmartLinkConfigurationConfig(): HydratorConfigInterface
+    {
+        return new SmartLinkConfigurationConfig();
+    }
+
+    public function createSmartLinkPoolConfigurationConfig(): HydratorConfigInterface
+    {
+        return new SmartLinkPoolConfigurationConfig();
+    }
+
+    public function createSmartLinkScoringConfigurationConfig(): HydratorConfigInterface
+    {
+        return new SmartLinkScoringConfigurationConfig();
     }
 
     public function createScoringGroupDetailConfig(): HydratorConfigInterface

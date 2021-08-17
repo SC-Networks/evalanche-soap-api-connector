@@ -29,6 +29,9 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplat
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\CategoryConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\ProductConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Profile\ProfileTrackingHistoryConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink\SmartLinkConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink\SmartLinkPoolConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\SmartLink\SmartLinkScoringConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\TargetGroup\TargetGroupMemberShipConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingArticleConfig;
@@ -88,6 +91,9 @@ class HydratorConfigFactoryTest extends TestCase
             ['createResourceInformationConfig', ResourceInformationConfig::class],
             ['createUserConfig', UserConfig::class],
             ['createSmartLinkConfig', SmartLinkConfig::class],
+            ['createSmartLinkConfigurationConfig', SmartLinkConfigurationConfig::class],
+            ['createSmartLinkPoolConfigurationConfig', SmartLinkPoolConfigurationConfig::class],
+            ['createSmartLinkScoringConfigurationConfig', SmartLinkScoringConfigurationConfig::class],
             ['createScoringGroupDetailConfig', ScoringGroupDetailConfig::class],
             ['createPoolAttributeConfig', PoolAttributeConfig::class],
             ['createMandatorConfig', MandatorConfig::class],
