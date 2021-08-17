@@ -101,4 +101,27 @@ final class SmartLinkClient extends AbstractClient implements SmartLinkClientInt
             'setLinkConfigurationsResult'
         );
     }
+
+    /**
+     * Creates link configurations for a SmartLink object
+     *
+     * @param int $link_id
+     * @param SmartLinkConfigurationInterface[] $configurations
+     *
+     * @return bool
+     * @throws EmptyResultException
+     */
+    public function createLinkConfigurations(int $link_id, array $configurations): bool
+    {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->createLinkConfigurations([
+                'smartlink_link_id' => $link_id,
+                'items' => $this->extractor->extractArray(
+                    $this->hydratorConfigFactory->createSmartLinkConfigurationConfig(),
+                    $configurations
+                ),
+            ]),
+            'createLinkConfigurationsResult'
+        );
+    }
 }
