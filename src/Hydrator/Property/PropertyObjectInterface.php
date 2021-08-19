@@ -14,16 +14,15 @@ interface PropertyObjectInterface
 {
     /**
      * @param string $propertyName
-     *
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    public static function get(string $propertyName): Closure;
+    public static function get(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure;
 
     /**
      * @param string $propertyName
-     *
-     * @param HydratorConfigInterface $hydratorConfig
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    public static function set(string $propertyName, HydratorConfigInterface $hydratorConfig = null): Closure;
+    public static function set(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure;
 }
