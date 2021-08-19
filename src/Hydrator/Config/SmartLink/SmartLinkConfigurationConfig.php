@@ -62,8 +62,8 @@ class SmartLinkConfigurationConfig implements HydratorConfigInterface
             'activate_redirect' => BooleanValue::get('activateRedirect'),
             'activate_profile_update' => BooleanValue::get('activateProfileUpdate'),
             'activate_tracking' => BooleanValue::get('activateTracking'),
-            'scoring_configs' => ArrayOfObjectValue::get('scoringConfigs'),
-            'pool_attributes' => ArrayOfObjectValue::get('poolAttributes')
+            'scoring_configs' => ArrayOfObjectValue::get('scoringConfigs', new SmartLinkScoringConfigurationConfig()),
+            'pool_attributes' => ArrayOfObjectValue::get('poolAttributes', new SmartLinkPoolConfigurationConfig())
         ];
     }
 }

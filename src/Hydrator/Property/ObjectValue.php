@@ -15,10 +15,10 @@ class ObjectValue implements PropertyObjectInterface
 {
     /**
      * @param string $propertyName
-     *
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    public static function get(string $propertyName): Closure
+    public static function get(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return (new static())->createGetter($propertyName);
     }
@@ -37,22 +37,20 @@ class ObjectValue implements PropertyObjectInterface
 
     /**
      * @param string $propertyName
-     *
-     * @param HydratorConfigInterface $hydratorConfig
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    public static function set(string $propertyName, HydratorConfigInterface $hydratorConfig = null): Closure
+    public static function set(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return (new static())->createSetter($propertyName, $hydratorConfig);
     }
 
     /**
      * @param string $propertyName
-     *
-     * @param HydratorConfigInterface $hydratorConfig
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    private function createSetter(string $propertyName, HydratorConfigInterface $hydratorConfig = null): Closure
+    private function createSetter(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return function ($value) use ($propertyName, $hydratorConfig): void {
             if ($hydratorConfig instanceof HydratorConfigInterface) {

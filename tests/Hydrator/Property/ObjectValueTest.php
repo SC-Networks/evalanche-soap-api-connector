@@ -177,4 +177,36 @@ class ObjectValueTest extends TestCase
         static::assertInstanceOf(Closure::class, $get);
         static::assertInstanceOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
+
+    public function testGetWithHydratorContainsHydratedObjectsIfValueIsArray()
+    {
+        $testValue = new stdClass();
+        $testValue->description = 'some thing';
+        $testValue->count = 456;
+
+        $dummy = new class {
+            private $value;
+
+            public function getValue()
+            {
+                return $this->value;
+            }
+
+            public function setValue($value)
+            {
+                $this->value = $value;
+            }
+        };
+
+        $set = ObjectValue::set('value', new MailClientStatisticItemConfig());
+        $set = $set->bindTo($dummy, $dummy);
+        static::assertInstanceOf(Closure::class, $set);
+
+        $set($testValue, 'value', $dummy);
+
+        $get = ObjectValue::get('value', new MailClientStatisticItemConfig());
+        $get = $get->bindTo($dummy, $dummy);
+        static::assertInstanceOf(Closure::class, $get);
+        static::assertInstanceOf(MailClientStatisticItemInterface::class, $dummy->getValue());
+    }
 }

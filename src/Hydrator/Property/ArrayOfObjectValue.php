@@ -16,44 +16,58 @@ class ArrayOfObjectValue implements PropertyObjectInterface
 
     /**
      * @param string $propertyName
-     *
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    public static function get(string $propertyName): Closure
+    public static function get(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
-        return (new static())->createGetter($propertyName);
+        return (new static())->createGetter($propertyName, $hydratorConfig);
     }
 
     /**
      * @param string $propertyName
-     *
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    private function createGetter(string $propertyName): Closure
+    private function createGetter(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
-        return function () use ($propertyName): ?array {
-            return $this->$propertyName;
+        return function () use ($propertyName, $hydratorConfig): ?array {
+            $items = $this->$propertyName;
+
+            if ($hydratorConfig instanceof HydratorConfigInterface) {
+                $hydrator = new Hydrator();
+
+                $items = array_map(
+                    function ($item) use ($hydrator, $hydratorConfig) {
+                        return (object) $hydrator->extract(
+                            $hydratorConfig,
+                            $item
+                        );
+                    },
+                    $items
+                );
+            }
+
+            return $items;
         };
     }
 
     /**
      * @param string $propertyName
-     *
-     * @param HydratorConfigInterface $hydratorConfig
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    public static function set(string $propertyName, HydratorConfigInterface $hydratorConfig = null): Closure
+    public static function set(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return (new static())->createSetter($propertyName, $hydratorConfig);
     }
 
     /**
      * @param string $propertyName
-     *
-     * @param HydratorConfigInterface $hydratorConfig
+     * @param HydratorConfigInterface|null $hydratorConfig
      * @return Closure
      */
-    private function createSetter(string $propertyName, HydratorConfigInterface $hydratorConfig = null): Closure
+    private function createSetter(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return function ($value) use ($propertyName, $hydratorConfig): void {
             $items = [];

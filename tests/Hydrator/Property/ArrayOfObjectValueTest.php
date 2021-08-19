@@ -195,4 +195,43 @@ class ArrayOfObjectValueTest extends TestCase
         static::assertIsArray($dummy->getValue());
         static::assertContainsOnlyInstancesOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
+
+    public function testGetWithHydratorContainsHydratedObjectsIfValueIsArray()
+    {
+        $firstObject = new stdClass();
+        $firstObject->description = 'some thing';
+        $firstObject->count = 456;
+
+        $secondObject = new stdClass();
+        $secondObject->description = 'some thing other';
+        $secondObject->count = 4561;
+
+        $testValue = [$firstObject, $secondObject];
+
+        $dummy = new class {
+            private $value;
+
+            public function getValue()
+            {
+                return $this->value;
+            }
+
+            public function setValue($value)
+            {
+                $this->value = $value;
+            }
+        };
+
+        $set = ArrayOfObjectValue::set('value', new MailClientStatisticItemConfig());
+        $set = $set->bindTo($dummy, $dummy);
+        static::assertInstanceOf(Closure::class, $set);
+
+        $set($testValue, 'value', $dummy);
+
+        $get = ArrayOfObjectValue::get('value', new MailClientStatisticItemConfig());
+        $get = $get->bindTo($dummy, $dummy);
+        static::assertInstanceOf(Closure::class, $get);
+        static::assertIsArray($dummy->getValue());
+        static::assertContainsOnlyInstancesOf(MailClientStatisticItemInterface::class, $dummy->getValue());
+    }
 }
