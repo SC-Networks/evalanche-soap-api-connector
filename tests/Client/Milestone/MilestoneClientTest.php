@@ -90,8 +90,8 @@ class MilestoneClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
         $this->soapClient->expects($this->once())->method('create')->with([
-            'name' => $title,
-            'category_id' => $folderId,
+            'title' => $title,
+            'folder_id' => $folderId,
         ])->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
