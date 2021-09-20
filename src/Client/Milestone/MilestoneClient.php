@@ -30,7 +30,7 @@ final class MilestoneClient extends AbstractClient implements MilestoneClientInt
     public function create(string $name, int $folderId): ResourceInformationInterface
     {
         return $this->responseMapper->getObject(
-            $this->soapClient->create(['name' => $name, 'category_id' => $folderId]),
+            $this->soapClient->create(['title' => $name, 'folder_id' => $folderId]),
             'createResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );
