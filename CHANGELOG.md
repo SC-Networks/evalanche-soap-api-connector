@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.9.1] - 2021-09-20
+### FIXED
+- Milestone Create Parameter
+
 ## [1.9.0] - 2021-07-27
 ### ADDED
 - Support methods to retrieve/update form configurations (#156)
