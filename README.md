@@ -60,7 +60,7 @@ $connection = \Scn\EvalancheSoapApiConnector\EvalancheConnection::create(
 
 ## Method Documentation
 
-Can be found [here](/docs/index.md).
+Can be found [here](/docs/index.md). Detailled information about the calls can be found in the [API documentation](https://help.evalanche.cloud/hc/en-us/sections/360003694531-Standard-API-SOAP-).
 
 ## Testing
 
