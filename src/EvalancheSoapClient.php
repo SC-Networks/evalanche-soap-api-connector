@@ -60,6 +60,7 @@ class EvalancheSoapClient extends SoapClient
      * @throws DebugRequestException
      * @throws RequestException
      */
+    #[\ReturnTypeWillChange]
     public function __call($name, $args = [])
     {
         try {

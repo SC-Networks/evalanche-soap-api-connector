@@ -1,0 +1,7 @@
+parameters:
+	level: 2
+	paths:
+		- src
+includes:
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
+	- phpstan-baseline.neon

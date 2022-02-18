@@ -213,7 +213,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     /**
      * @param int $id
      *
-     * @return MailingTemplateConfigurationInterface
+     * @return MailingTemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function getSources(int $id): MailingTemplatesSourcesInterface

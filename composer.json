@@ -31,7 +31,9 @@
   "require-dev": {
     "php": ">=7.3",
     "phpunit/phpunit": "^9",
-    "friendsofphp/php-cs-fixer": "^3.0"
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "phpstan/phpstan": "^1.4",
+    "phpstan/phpstan-strict-rules": "^1.1"
   },
   "autoload": {
     "psr-4": {
@@ -44,6 +46,10 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit -c phpunit.xml.dist"
+    "test": "vendor/bin/phpunit -c phpunit.xml.dist",
+    "stan": "vendor/bin/phpstan",
+    "check-cs": "./vendor/bin/php-cs-fixer fix --dry-run --diff",
+    "fix-cs": "./vendor/bin/php-cs-fixer fix",
+    "qa": "composer check-cs && composer test && composer stan"
   }
 }

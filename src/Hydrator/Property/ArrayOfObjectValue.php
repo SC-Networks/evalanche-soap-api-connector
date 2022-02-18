@@ -98,7 +98,7 @@ class ArrayOfObjectValue implements PropertyObjectInterface
                 }
             }
 
-            $this->$propertyName = (array)$items;
+            $this->$propertyName = $items;
         };
     }
 }

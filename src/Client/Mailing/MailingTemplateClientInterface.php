@@ -115,7 +115,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      *
      * @param int $id
      *
-     * @return MailingTemplateConfigurationInterface
+     * @return MailingTemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function getSources(int $id): MailingTemplatesSourcesInterface;
