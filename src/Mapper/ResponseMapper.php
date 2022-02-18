@@ -34,7 +34,7 @@ final class ResponseMapper implements ResponseMapperInterface
         object $response,
         string $responseProperty
     ): int {
-        if (isset($response->$responseProperty)) {
+        if (property_exists($response, $responseProperty)) {
             return (int)$response->$responseProperty;
         }
 
@@ -52,7 +52,7 @@ final class ResponseMapper implements ResponseMapperInterface
         object $response,
         string $responseProperty
     ): bool {
-        if (isset($response->$responseProperty)) {
+        if (property_exists($response, $responseProperty)) {
             return (bool)$response->$responseProperty;
         }
 
@@ -70,7 +70,7 @@ final class ResponseMapper implements ResponseMapperInterface
         object $response,
         string $responseProperty
     ): string {
-        if (isset($response->$responseProperty)) {
+        if (property_exists($response, $responseProperty)) {
             return (string)$response->$responseProperty;
         }
 
@@ -88,7 +88,7 @@ final class ResponseMapper implements ResponseMapperInterface
         object $response,
         string $responseProperty
     ): array {
-        if (isset($response->$responseProperty)) {
+        if (property_exists($response, $responseProperty)) {
             return (array)$response->$responseProperty;
         }
 
@@ -108,7 +108,7 @@ final class ResponseMapper implements ResponseMapperInterface
         string $responseProperty,
         HydratorConfigInterface $hydratorConfig
     ): StructInterface {
-        if (isset($response->$responseProperty)) {
+        if (property_exists($response, $responseProperty)) {
             return $this->mapSingleObject($response->$responseProperty, $hydratorConfig);
         }
 
@@ -170,7 +170,7 @@ final class ResponseMapper implements ResponseMapperInterface
         string $responseProperty,
         HydratorConfigInterface $hydratorConfig
     ): array {
-        if (isset($response->$responseProperty)) {
+        if (property_exists($response, $responseProperty)) {
             return $this->mapListOfObjects($this->getListFromResponse($response->$responseProperty), $hydratorConfig);
         }
 

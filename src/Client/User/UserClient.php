@@ -23,7 +23,7 @@ final class UserClient extends AbstractClient implements UserClientInterface
      *
      * @param string $username
      *
-     * @return UserInterface|StructInterface
+     * @return UserInterface&StructInterface
      * @throws EmptyResultException
      */
     public function getByUsername(string $username): UserInterface

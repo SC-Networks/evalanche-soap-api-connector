@@ -62,7 +62,7 @@ final class ArrayValue implements PropertyInterface
                 }
             }
 
-            $this->$propertyName = (array)$items;
+            $this->$propertyName = $items;
         };
     }
 }
