@@ -61,7 +61,7 @@ class EvalancheSoapClient extends SoapClient
      * @throws RequestException
      */
     #[\ReturnTypeWillChange]
-    public function __call($name, $args = [])
+    public function __call($name, $args = []): mixed
     {
         try {
             return $this->__soapCall($name, $args);
