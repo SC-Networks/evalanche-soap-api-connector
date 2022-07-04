@@ -7,11 +7,6 @@ namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingConfigurationInterface;
 
-/**
- * Class MailingConfigurationConfigTest
- *
- * @package Scn\EvalancheSoapApiConnector\Hydrator\Mailing
- */
 class MailingConfigurationConfigTest extends TestCase
 {
     /**
@@ -31,6 +26,7 @@ class MailingConfigurationConfigTest extends TestCase
         'salutation_company',
         'salutation_family',
         'salutation_other',
+        'salutation_divers',
         'sender_email',
         'sender_name',
         'reply_name',

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.10.0] - 2022-07-01
+### ADDED
+- new Salutation
+
 ## [1.9.1] - 2021-09-20
 ### FIXED
 - Milestone Create Parameter
