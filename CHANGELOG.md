@@ -2,7 +2,7 @@
 
 ## [1.10.0] - 2022-07-01
 ### ADDED
-- new Salutation
+- Support for new salutation type "divers"
 
 ## [1.9.1] - 2021-09-20
 ### FIXED
