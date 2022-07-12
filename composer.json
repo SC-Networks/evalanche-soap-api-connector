@@ -22,14 +22,14 @@
     }
   ],
   "require": {
-    "php": ">=7.2",
+    "php": "^8.1",
     "ext-soap": "*",
     "scn/evalanche-soap-api-struct": "^1.13",
     "scn/hydrator": "^2|^3",
     "scn/hydrator-property-values": "^2.0|^3.0"
   },
   "require-dev": {
-    "php": ">=7.3",
+    "php": "^8.1",
     "phpunit/phpunit": "^9",
     "friendsofphp/php-cs-fixer": "^3.0",
     "phpstan/phpstan": "^1.4",
