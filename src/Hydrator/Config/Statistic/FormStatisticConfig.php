@@ -37,7 +37,7 @@ class FormStatisticConfig implements HydratorConfigInterface
             'impressions' => IntegerValue::set('impressions'),
             'succeeded' => IntegerValue::set('succeeded'),
             'identity_errors' => IntegerValue::set('identityErrorCount'),
-            'duplication_errors' => IntegerValue::set('duplicationErrorĆount'),
+            'duplication_errors' => IntegerValue::set('duplicationErrorCount'),
             'validation_errors' => IntegerValue::set('validationErrorCount'),
             'mandatory_errors' => IntegerValue::set('mandatoryErrorCount'),
         ];
@@ -55,7 +55,7 @@ class FormStatisticConfig implements HydratorConfigInterface
             'impressions' => IntegerValue::get('impressions'),
             'succeeded' => IntegerValue::get('succeeded'),
             'identity_errors' => IntegerValue::get('identityErrorCount'),
-            'duplication_errors' => IntegerValue::get('duplicationErrorĆount'),
+            'duplication_errors' => IntegerValue::get('duplicationErrorCount'),
             'validation_errors' => IntegerValue::get('validationErrorCount'),
             'mandatory_errors' => IntegerValue::get('mandatoryErrorCount'),
         ];
