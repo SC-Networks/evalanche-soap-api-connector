@@ -133,7 +133,7 @@ class MarketplaceClientTest extends TestCase
 
     public function testPurchaseProductCanReturnString(): void
     {
-        $productId = 'some product id';
+        $productId = 123123;
         $mandatorId = 45;
         $languageId = LanguageEnum::EN;
 

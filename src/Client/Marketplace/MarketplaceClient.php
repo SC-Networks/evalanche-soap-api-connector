@@ -32,7 +32,7 @@ final class MarketplaceClient extends AbstractClient implements MarketplaceClien
     /**
      * @throws EmptyResultException
      */
-    public function purchaseProduct(string $productId, int $mandatorId, int $languageId): string
+    public function purchaseProduct(int $productId, int $mandatorId, int $languageId): string
     {
         return $this->responseMapper->getString(
             $this->soapClient->purchaseProduct(['ProductId' => $productId, 'MandatorId' => $mandatorId, 'LanguageId' => $languageId]),
