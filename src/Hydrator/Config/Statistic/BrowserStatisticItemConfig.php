@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class BrowserStatisticItemConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

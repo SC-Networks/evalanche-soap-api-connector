@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class ProfileGroupScoreConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

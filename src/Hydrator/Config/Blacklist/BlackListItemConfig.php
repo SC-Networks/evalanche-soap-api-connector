@@ -14,7 +14,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class BlackListItemConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

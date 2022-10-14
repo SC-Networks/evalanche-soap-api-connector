@@ -16,7 +16,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class JobResultConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

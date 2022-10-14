@@ -11,7 +11,6 @@ use Closure;
  */
 final class ArrayValue implements PropertyInterface
 {
-
     /**
      * @param string $propertyName
      *

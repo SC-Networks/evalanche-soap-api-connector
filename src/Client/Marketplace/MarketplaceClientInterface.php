@@ -8,7 +8,6 @@ use Scn\EvalancheSoapStruct\Struct\Marketplace\ProductInterface;
 
 interface MarketplaceClientInterface extends ClientInterface
 {
-
     /**
      * @param int $languageId
      * @return CategoryInterface[]

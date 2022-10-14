@@ -21,7 +21,6 @@ use stdClass;
  */
 class PoolDataMinerClientTest extends TestCase
 {
-
     /**
      * @var PoolDataMinerClient
      */

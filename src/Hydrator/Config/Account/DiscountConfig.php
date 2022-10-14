@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class DiscountConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

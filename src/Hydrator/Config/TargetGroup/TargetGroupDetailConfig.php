@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class TargetGroupDetailConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

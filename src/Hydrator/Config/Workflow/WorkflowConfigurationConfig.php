@@ -9,7 +9,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
 
 final class WorkflowConfigurationConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

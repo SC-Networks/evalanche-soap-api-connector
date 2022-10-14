@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class PoolAttributeOptionConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

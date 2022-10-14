@@ -19,7 +19,6 @@ use stdClass;
  */
 class ReportClientTest extends TestCase
 {
-
     /**
      * @var ReportClient
      */
