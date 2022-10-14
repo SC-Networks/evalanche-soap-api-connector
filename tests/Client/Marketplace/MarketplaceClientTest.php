@@ -18,7 +18,6 @@ use stdClass;
 
 class MarketplaceClientTest extends TestCase
 {
-
     /**
      * @var MarketplaceClient
      */

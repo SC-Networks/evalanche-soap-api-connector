@@ -14,7 +14,6 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
  */
 class HashMapConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

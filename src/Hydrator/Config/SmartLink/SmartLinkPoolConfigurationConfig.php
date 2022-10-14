@@ -16,7 +16,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class SmartLinkPoolConfigurationConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

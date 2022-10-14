@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class AccountingItemConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

@@ -14,7 +14,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class ServiceStatusConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

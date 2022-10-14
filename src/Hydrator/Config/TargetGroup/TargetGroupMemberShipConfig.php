@@ -14,7 +14,6 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class TargetGroupMemberShipConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

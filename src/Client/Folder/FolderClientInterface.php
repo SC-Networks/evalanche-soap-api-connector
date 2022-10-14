@@ -13,7 +13,6 @@ use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
  */
 interface FolderClientInterface extends ClientInterface
 {
-
     /**
      * @param string $title
      * @param int $folderId

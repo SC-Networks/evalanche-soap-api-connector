@@ -14,7 +14,6 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class MediaStatisticItemConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

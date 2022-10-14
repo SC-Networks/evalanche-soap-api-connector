@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class BlackListConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

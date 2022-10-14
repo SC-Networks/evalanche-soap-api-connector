@@ -21,7 +21,6 @@ use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterf
  */
 interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitInterface
 {
-
     /**
      * @param string $title
      * @param int $folderId

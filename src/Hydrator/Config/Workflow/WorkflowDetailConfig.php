@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 final class WorkflowDetailConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

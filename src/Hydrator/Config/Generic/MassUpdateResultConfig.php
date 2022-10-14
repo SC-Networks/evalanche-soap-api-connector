@@ -14,7 +14,6 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
  */
 class MassUpdateResultConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

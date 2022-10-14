@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class ContainerAttributeRoleTypeConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */
