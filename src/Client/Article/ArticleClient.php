@@ -111,4 +111,23 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
             $this->hydratorConfigFactory->createArticleDetailConfig()
         );
     }
+
+    /**
+     * @param int $articleTypeId
+     *
+     * @return ResourceInformationInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByArticleTypeId(int $articleTypeId): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getByArticleTypeId(
+                [
+                    'article_type_id' => $articleTypeId,
+                ]
+            ),
+            'getByArticleTypeIdResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
 }

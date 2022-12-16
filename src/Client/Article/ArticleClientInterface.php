@@ -56,4 +56,12 @@ interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): ArticleDetailInterface;
+
+    /**
+     * @param int $articleTypeId
+     *
+     * @return ResourceInformationInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByArticleTypeId(int $articleTypeId): array;
 }

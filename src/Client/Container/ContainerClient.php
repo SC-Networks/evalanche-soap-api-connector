@@ -111,4 +111,23 @@ final class ContainerClient extends AbstractClient implements ContainerClientInt
             $this->hydratorConfigFactory->createContainerDetailConfig()
         );
     }
+
+    /**
+     * @param int $containerTypeId
+     *
+     * @return ResourceInformationInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByContainerTypeId(int $containerTypeId): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getByContainerTypeId(
+                [
+                    'container_type_id' => $containerTypeId,
+                ]
+            ),
+            'getByContainerTypeIdResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
 }
