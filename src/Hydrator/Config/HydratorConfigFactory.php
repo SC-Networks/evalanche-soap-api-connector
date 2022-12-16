@@ -4,11 +4,13 @@ namespace Scn\EvalancheSoapApiConnector\Hydrator\Config;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Account\AccountConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Account\DiscountConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Article\ArticleDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Blacklist\BlackListConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeGroupConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeOptionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeRoleTypeConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\CouponList\CouponListProfileCouponConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Form\FormConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
@@ -329,9 +331,19 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     {
         return new WorkflowConfigVersionConfig();
     }
-    
+
     public function createWorkflowStateChangeResultConfig(): HydratorConfigInterface
     {
         return new WorkflowStateChangeResultConfig();
+    }
+
+    public function createArticleDetailConfig(): HydratorConfigInterface
+    {
+        return new ArticleDetailConfig();
+    }
+
+    public function createContainerDetailConfig(): HydratorConfigInterface
+    {
+        return new ContainerDetailConfig();
     }
 }
