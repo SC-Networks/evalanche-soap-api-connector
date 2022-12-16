@@ -102,3 +102,10 @@ Get object specific details of a container
 ```
 getDetailsById(int <container-id>): ContainerDetail
 ```
+
+Retrieve all containers by their container type id
+
+
+```
+getByContainerTypeId(int <container-type-id>): ResourceInformation[]
+```

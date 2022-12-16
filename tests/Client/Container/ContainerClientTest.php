@@ -55,6 +55,7 @@ class ContainerClientTest extends TestCase
             'getData',
             'update',
             'getDetails',
+            'getByContainerTypeId',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -200,6 +201,39 @@ class ContainerClientTest extends TestCase
         $this->assertInstanceOf(
             ContainerDetailInterface::class,
             $this->subject->getDetailsById($id)
+        );
+    }
+
+    public function testGetByContainerTypeIdCanReturnInstancesOfResourceInformation()
+    {
+        $containerTypeId = 123;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->getByContainerTypeIdResult = [$object, $otherObject];
+
+        $this->hydratorConfigFactory
+            ->expects($this->once())
+            ->method('createResourceInformationConfig')
+            ->willReturn($config);
+
+        $this->soapClient
+            ->expects($this->once())
+            ->method('getByContainerTypeId')
+            ->with(['container_type_id' => $containerTypeId])
+            ->willReturn($response);
+        $this->responseMapper
+            ->expects($this->once())
+            ->method('getObjects')
+            ->with($response, 'getByContainerTypeIdResult', $config)
+            ->willReturn($response->getByContainerTypeIdResult);
+
+        $this->assertContainsOnlyInstancesOf(
+            ResourceInformationInterface::class,
+            $this->subject->getByContainerTypeId($containerTypeId)
         );
     }
 }

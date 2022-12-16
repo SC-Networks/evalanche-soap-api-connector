@@ -56,4 +56,12 @@ interface ContainerClientInterface extends ClientInterface, ResourceTraitInterfa
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): ContainerDetailInterface;
+
+    /**
+     * @param int $containerTypeId
+     *
+     * @return ResourceInformationInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByContainerTypeId(int $containerTypeId): array;
 }
