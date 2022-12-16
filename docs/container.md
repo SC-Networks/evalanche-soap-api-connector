@@ -95,3 +95,10 @@ Retrieve a container by its external id
 ```
 getByExternalId(string <external-id>): ResourceInformation
 ```
+
+Get object specific details of a container
+
+
+```
+getDetailsById(int <container-id>): ContainerDetail
+```
