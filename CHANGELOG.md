@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.11.0] - 2022-12-20
+### ADDED
+- Support methods to retrieve article and container details (#193)
+- Support methods to retrieve article and container by type (#191)
+
+### FIXED
+- Typo inside JobResultConfig key `resultChunks` (#192)
+- Method purchaseProduct parameter `productId` should be int (#188)
+
 ## [1.10.0] - 2022-07-01
 ### ADDED
 - Support for new salutation type "divers"
