@@ -16,7 +16,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class ArticleStatisticConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

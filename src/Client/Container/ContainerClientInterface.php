@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Container;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Container\ContainerDetailInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
@@ -47,4 +48,20 @@ interface ContainerClientInterface extends ClientInterface, ResourceTraitInterfa
      * @throws EmptyResultException
      */
     public function update(int $id, HashMapInterface $hashMap): ResourceInformationInterface;
+
+    /**
+     * @param int $id
+     *
+     * @return ContainerDetailInterface
+     * @throws EmptyResultException
+     */
+    public function getDetailsById(int $id): ContainerDetailInterface;
+
+    /**
+     * @param int $containerTypeId
+     *
+     * @return ResourceInformationInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByContainerTypeId(int $containerTypeId): array;
 }

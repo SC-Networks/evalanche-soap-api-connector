@@ -11,7 +11,7 @@ use Scn\Hydrator\Hydrator;
  *
  * @package Scn\EvalancheSoapApiConnector\Hydrator\Property
  */
-class ObjectValue implements PropertyObjectInterface
+final class ObjectValue implements PropertyObjectInterface
 {
     /**
      * @param string $propertyName

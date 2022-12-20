@@ -22,7 +22,6 @@ use stdClass;
  */
 class SmartLinkClientTest extends TestCase
 {
-
     /**
      * @var SmartLinkClient
      */

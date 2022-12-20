@@ -8,7 +8,6 @@ use Scn\EvalancheSoapStruct\Struct\Marketplace\ProductInterface;
 
 interface MarketplaceClientInterface extends ClientInterface
 {
-
     /**
      * @param int $languageId
      * @return CategoryInterface[]
@@ -22,5 +21,5 @@ interface MarketplaceClientInterface extends ClientInterface
      */
     public function getProducts(int $categoryId, int $languageId): array;
 
-    public function purchaseProduct(string $productId, int $mandatorId, int $languageId): string;
+    public function purchaseProduct(int $productId, int $mandatorId, int $languageId): string;
 }

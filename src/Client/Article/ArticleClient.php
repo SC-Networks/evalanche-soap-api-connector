@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Article\ArticleDetailInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
@@ -88,6 +89,44 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
                 )
             ]),
             'updateResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return ArticleDetailInterface
+     * @throws EmptyResultException
+     */
+    public function getDetailsById(int $id): ArticleDetailInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getDetails(
+                [
+                    'article_id' => $id,
+                ]
+            ),
+            'getDetailsResult',
+            $this->hydratorConfigFactory->createArticleDetailConfig()
+        );
+    }
+
+    /**
+     * @param int $articleTypeId
+     *
+     * @return ResourceInformationInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByArticleTypeId(int $articleTypeId): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getByArticleTypeId(
+                [
+                    'article_type_id' => $articleTypeId,
+                ]
+            ),
+            'getByArticleTypeIdResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );
     }

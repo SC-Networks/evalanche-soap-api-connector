@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class MailClientStatisticItemConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

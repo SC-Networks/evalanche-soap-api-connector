@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class ProfileTrackingHistoryConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

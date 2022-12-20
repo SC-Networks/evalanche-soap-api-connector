@@ -19,7 +19,6 @@ use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowStateChangeResultInterface;
  */
 interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterface, CreateResourceTraitInterface
 {
-
     /**
      * @param int $timestampStart
      * @param int $timestampEnd

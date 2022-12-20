@@ -12,7 +12,6 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 
 class EvalancheConnectionTest extends TestCase
 {
-
     /**
      * @var EvalancheConnection
      */

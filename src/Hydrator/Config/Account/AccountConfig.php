@@ -14,7 +14,6 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
  */
 class AccountConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

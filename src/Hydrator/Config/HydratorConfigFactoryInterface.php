@@ -113,4 +113,8 @@ interface HydratorConfigFactoryInterface
     public function createWorkflowConfigVersionConfig(): HydratorConfigInterface;
 
     public function createWorkflowStateChangeResultConfig(): HydratorConfigInterface;
+
+    public function createArticleDetailConfig(): HydratorConfigInterface;
+
+    public function createContainerDetailConfig(): HydratorConfigInterface;
 }

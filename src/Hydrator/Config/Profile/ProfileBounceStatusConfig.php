@@ -16,7 +16,6 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class ProfileBounceStatusConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

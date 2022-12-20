@@ -100,3 +100,17 @@ Retrieve an article by its external id
 ```
 getByExternalId(string <external-id>): ResourceInformation
 ```
+
+Get object specific details of an article
+
+
+```
+getDetailsById(int <article-id>): ArticleDetail
+```
+
+Retrieve all articles by their article type id
+
+
+```
+getByArticleTypeId(int <article-type-id>): ResourceInformation[]
+```

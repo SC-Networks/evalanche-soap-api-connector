@@ -11,6 +11,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
+use Scn\EvalancheSoapStruct\Struct\Container\ContainerDetailInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use stdClass;
@@ -53,6 +54,8 @@ class ContainerClientTest extends TestCase
             'create',
             'getData',
             'update',
+            'getDetails',
+            'getByContainerTypeId',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -170,6 +173,67 @@ class ContainerClientTest extends TestCase
         $this->assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->update($id, $hashMap)
+        );
+    }
+
+    public function testGetDetailsByIdCanReturnInstanceOfContainerDetail()
+    {
+        $id = 123;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ContainerDetailInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->getDataResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())->method('createContainerDetailConfig')->willReturn($config);
+
+
+        $this->soapClient->expects($this->once())->method('getDetails')->with([
+            'container_id' => $id,
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getDetailsResult',
+            $config
+        )->willReturn($response->getDataResult);
+
+        $this->assertInstanceOf(
+            ContainerDetailInterface::class,
+            $this->subject->getDetailsById($id)
+        );
+    }
+
+    public function testGetByContainerTypeIdCanReturnInstancesOfResourceInformation()
+    {
+        $containerTypeId = 123;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->getByContainerTypeIdResult = [$object, $otherObject];
+
+        $this->hydratorConfigFactory
+            ->expects($this->once())
+            ->method('createResourceInformationConfig')
+            ->willReturn($config);
+
+        $this->soapClient
+            ->expects($this->once())
+            ->method('getByContainerTypeId')
+            ->with(['container_type_id' => $containerTypeId])
+            ->willReturn($response);
+        $this->responseMapper
+            ->expects($this->once())
+            ->method('getObjects')
+            ->with($response, 'getByContainerTypeIdResult', $config)
+            ->willReturn($response->getByContainerTypeIdResult);
+
+        $this->assertContainsOnlyInstancesOf(
+            ResourceInformationInterface::class,
+            $this->subject->getByContainerTypeId($containerTypeId)
         );
     }
 }

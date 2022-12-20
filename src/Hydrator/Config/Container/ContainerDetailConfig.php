@@ -1,26 +1,26 @@
 <?php
 
-namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
+namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Container;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformation;
+use Scn\EvalancheSoapStruct\Struct\Container\ContainerDetail;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\HydratorPropertyValues\Property\IntegerValue;
 use Scn\HydratorPropertyValues\Property\StringValue;
 
 /**
- * Class ResourceInformationConfig
+ * Class ContainerDetailConfig
  *
- * @package Scn\EvalancheSoapApiConnector\Hydrator\Generic
+ * @package Scn\EvalancheSoapApiConnector\Hydrator\Container
  */
-class ResourceInformationConfig implements HydratorConfigInterface
+class ContainerDetailConfig implements HydratorConfigInterface
 {
     /**
      * @return StructInterface
      */
     public function getObject(): StructInterface
     {
-        return new ResourceInformation();
+        return new ContainerDetail();
     }
 
     /**
@@ -29,12 +29,13 @@ class ResourceInformationConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
+            'id' => IntegerValue::set('id'),
+            'name' => StringValue::set('name'),
             'url' => StringValue::set('url'),
             'type_id' => IntegerValue::set('typeId'),
             'category_id' => IntegerValue::set('folderId'),
             'customer_id' => IntegerValue::set('mandatorId'),
-            'id' => IntegerValue::set('id'),
-            'name' => StringValue::set('name')
+            'container_type_id' => IntegerValue::set('containerTypeId'),
         ];
     }
 
@@ -44,12 +45,13 @@ class ResourceInformationConfig implements HydratorConfigInterface
     public function getExtractorProperties(): array
     {
         return [
+            'id' => IntegerValue::get('id'),
+            'name' => StringValue::get('name'),
             'url' => StringValue::get('url'),
             'type_id' => IntegerValue::get('typeId'),
             'category_id' => IntegerValue::get('folderId'),
             'customer_id' => IntegerValue::get('mandatorId'),
-            'id' => IntegerValue::get('id'),
-            'name' => StringValue::get('name')
+            'container_type_id' => IntegerValue::get('containerTypeId'),
         ];
     }
 }

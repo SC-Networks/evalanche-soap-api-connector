@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class FormatStatisticItemConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

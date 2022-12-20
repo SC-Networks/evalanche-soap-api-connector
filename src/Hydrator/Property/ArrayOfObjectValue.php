@@ -11,9 +11,8 @@ use Scn\Hydrator\Hydrator;
  *
  * @package Scn\EvalancheSoapApiConnector\Hydrator\Property
  */
-class ArrayOfObjectValue implements PropertyObjectInterface
+final class ArrayOfObjectValue implements PropertyObjectInterface
 {
-
     /**
      * @param string $propertyName
      * @param HydratorConfigInterface|null $hydratorConfig

@@ -14,7 +14,6 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class MailingImpressionConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

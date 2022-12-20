@@ -5,6 +5,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Article;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Article\ArticleDetailInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
@@ -47,4 +48,20 @@ interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
      * @throws EmptyResultException
      */
     public function update(int $id, HashMapInterface $hashMap): ResourceInformationInterface;
+
+    /**
+     * @param int $id
+     *
+     * @return ArticleDetailInterface
+     * @throws EmptyResultException
+     */
+    public function getDetailsById(int $id): ArticleDetailInterface;
+
+    /**
+     * @param int $articleTypeId
+     *
+     * @return ResourceInformationInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByArticleTypeId(int $articleTypeId): array;
 }

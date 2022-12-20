@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Unsafe usage of new static\\(\\)\\.$#"
-			count: 2
-			path: src/Hydrator/Property/ArrayOfObjectValue.php
-
-		-
 			message: "#^Variable property access on \\$this\\(Scn\\\\EvalancheSoapApiConnector\\\\Hydrator\\\\Property\\\\ArrayOfObjectValue\\)\\.$#"
 			count: 2
 			path: src/Hydrator/Property/ArrayOfObjectValue.php
@@ -14,11 +9,6 @@ parameters:
 			message: "#^Variable property access on \\$this\\(Scn\\\\EvalancheSoapApiConnector\\\\Hydrator\\\\Property\\\\ArrayValue\\)\\.$#"
 			count: 2
 			path: src/Hydrator/Property/ArrayValue.php
-
-		-
-			message: "#^Unsafe usage of new static\\(\\)\\.$#"
-			count: 2
-			path: src/Hydrator/Property/ObjectValue.php
 
 		-
 			message: "#^Variable property access on \\$this\\(Scn\\\\EvalancheSoapApiConnector\\\\Hydrator\\\\Property\\\\ObjectValue\\)\\.$#"

@@ -15,7 +15,6 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class FolderInformationConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */

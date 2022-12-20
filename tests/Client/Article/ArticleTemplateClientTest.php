@@ -16,7 +16,6 @@ use stdClass;
 
 class ArticleTemplateClientTest extends TestCase
 {
-
     /**
      * @var ArticleTemplateClient
      */

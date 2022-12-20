@@ -11,7 +11,6 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
  */
 interface ExtractorInterface
 {
-
     /**
      * @param HydratorConfigInterface $config
      * @param object $object

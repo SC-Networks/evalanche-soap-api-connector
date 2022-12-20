@@ -14,7 +14,6 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class ProfileActivityScoreConfig implements HydratorConfigInterface
 {
-
     /**
      * @return StructInterface
      */
