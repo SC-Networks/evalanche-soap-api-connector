@@ -12,6 +12,13 @@ Via Composer
 $ composer require scn/evalanche-soap-api-connector
 ```
 
+## PHP-Support
+
+| Connector-Version/Branch | PHP-Version(s)          |
+|--------------------------|-------------------------|
+| 1.x                      | 7.2, 7.3, 7.4, 8.0, 8.1 |
+| master                   | 8.1, 8.2                |
+
 ## Usage
 
 ### General
