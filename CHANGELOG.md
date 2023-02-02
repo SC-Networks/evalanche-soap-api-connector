@@ -9,6 +9,12 @@
 - Typo inside JobResultConfig key `resultChunks` (#192)
 - Method purchaseProduct parameter `productId` should be int (#188)
 
+## [1.10.1] - 2022-08-11
+### FIXED
+- FormStatistic::getDuplicationErrorCount() causes a TypeError due to missing
+  hydration of the value (thx @LosHawlos)
+- Update structs to 1.13.1
+
 ## [1.10.0] - 2022-07-01
 ### ADDED
 - Support for new salutation type "divers"
