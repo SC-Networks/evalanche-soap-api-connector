@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Article\ArticleDetailInterface;
+use Scn\EvalancheSoapStruct\Struct\Article\ArticleIndividualizationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
@@ -64,4 +65,25 @@ interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
      * @throws EmptyResultException
      */
     public function getByArticleTypeId(int $articleTypeId): array;
+
+    /**
+     * Return the article's individualization config
+     *
+     * @param int $id The article's id
+     * @return ArticleIndividualizationInterface
+     */
+    public function getIndividualization(int $id): ArticleIndividualizationInterface;
+
+    /**
+     * Sets an article's individualization config
+     *
+     * @param int $id The article's id
+     * @param ArticleIndividualizationInterface $individualization
+     *
+     * @return bool
+     */
+    public function setIndividualization(
+        int $id,
+        ArticleIndividualizationInterface $individualization
+    ): bool;
 }

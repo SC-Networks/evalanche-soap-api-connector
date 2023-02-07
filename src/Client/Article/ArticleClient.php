@@ -7,6 +7,7 @@ use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Article\ArticleDetailInterface;
+use Scn\EvalancheSoapStruct\Struct\Article\ArticleIndividualizationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
@@ -128,6 +129,53 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
             ),
             'getByArticleTypeIdResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
+
+    /**
+     * Return the article's individualization config
+     *
+     * @param int $id The article's id
+     * @return ArticleIndividualizationInterface
+     *
+     * @throws EmptyResultException
+     */
+    public function getIndividualization(int $id): ArticleIndividualizationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getIndividualization(
+                [
+                    'article_id' => $id,
+                ]
+            ),
+            'getIndividualizationResult',
+            $this->hydratorConfigFactory->createArticleIndividualizationConfig()
+        );
+    }
+
+    /**
+     * Sets an article's individualization config
+     *
+     * @param int $id
+     * @param ArticleIndividualizationInterface $individualization
+     *
+     * @return bool
+     *
+     * @throws EmptyResultException
+     */
+    public function setIndividualization(
+        int $id,
+        ArticleIndividualizationInterface $individualization
+    ): bool {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->setIndividualization([
+                'article_id' => $id,
+                'configuration' => $this->extractor->extract(
+                    $this->hydratorConfigFactory->createArticleIndividualizationConfig(),
+                    $individualization
+                )
+            ]),
+            'setIndividualizationResult'
         );
     }
 }

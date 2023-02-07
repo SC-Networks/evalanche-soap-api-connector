@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.12.0] - 2023-02-17
+### ADDED
+- Support methods to retrieve article individualization (#196)
+
 ## [1.11.0] - 2022-12-20
 ### ADDED
 - Support methods to retrieve article and container details (#193)

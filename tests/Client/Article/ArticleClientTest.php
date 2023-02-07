@@ -7,11 +7,13 @@ namespace Scn\EvalancheSoapApiConnector\Client\Article;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Article\ArticleIndividualizationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Article\ArticleDetailInterface;
+use Scn\EvalancheSoapStruct\Struct\Article\ArticleIndividualizationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use stdClass;
@@ -56,6 +58,8 @@ class ArticleClientTest extends TestCase
             'update',
             'getDetails',
             'getByArticleTypeId',
+            'getIndividualization',
+            'setIndividualization',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -234,6 +238,85 @@ class ArticleClientTest extends TestCase
         $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
             $this->subject->getByArticleTypeId($articleTypeId)
+        );
+    }
+
+    public function testGetIndividualizationdReturnsData(): void
+    {
+        $articleId = 123;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ArticleIndividualizationInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->getIndividualizationResult = $object;
+
+        $this->hydratorConfigFactory
+            ->expects($this->once())
+            ->method('createArticleIndividualizationConfig')
+            ->willReturn($config);
+
+        $this->soapClient
+            ->expects($this->once())
+            ->method('getIndividualization')
+            ->with(['article_id' => $articleId])
+            ->willReturn($response);
+        $this->responseMapper
+            ->expects($this->once())
+            ->method('getObject')
+            ->with($response, 'getIndividualizationResult', $config)
+            ->willReturn($response->getIndividualizationResult);
+
+        static::assertInstanceOf(
+            ArticleIndividualizationInterface::class,
+            $this->subject->getIndividualization($articleId)
+        );
+    }
+
+    public function testSetIndividualizationSetsData(): void
+    {
+        $articleId = 123;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $individualization = $this->getMockBuilder(ArticleIndividualizationInterface::class)->getMock();
+
+        $extractionResult = ['some-result'];
+        $response = new stdClass();
+        $response->setIndividualizationResult = true;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createArticleIndividualizationConfig')
+            ->willReturn($config);
+
+        $this->extractor->expects($this->once())
+            ->method('extract')
+            ->with(
+                $config,
+                $individualization
+            )
+            ->willReturn($extractionResult);
+
+        $this->hydratorConfigFactory
+            ->expects($this->once())
+            ->method('createArticleIndividualizationConfig')
+            ->willReturn($config);
+
+        $this->soapClient
+            ->expects($this->once())
+            ->method('setIndividualization')
+            ->with([
+                'article_id' => $articleId,
+                'configuration' => $extractionResult
+            ])
+            ->willReturn($response);
+        $this->responseMapper
+            ->expects($this->once())
+            ->method('getBoolean')
+            ->with($response, 'setIndividualizationResult')
+            ->willReturn($response->setIndividualizationResult);
+
+        static::assertTrue(
+            $this->subject->setIndividualization($articleId, $individualization)
         );
     }
 }
