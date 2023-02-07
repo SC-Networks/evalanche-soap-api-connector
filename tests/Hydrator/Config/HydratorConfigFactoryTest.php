@@ -7,6 +7,7 @@ namespace Scn\EvalancheSoapApiConnector\Hydrator\Config;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Account\AccountConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Account\DiscountConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Article\ArticleDetailConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Article\ArticleIndividualizationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Blacklist\BlackListConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeGroupConfig;
@@ -146,6 +147,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createWorkflowStateChangeResultConfig', WorkflowStateChangeResultConfig::class],
             ['createArticleDetailConfig', ArticleDetailConfig::class],
             ['createContainerDetailConfig', ContainerDetailConfig::class],
+            ['createArticleIndividualizationConfig', ArticleIndividualizationConfig::class],
         ];
     }
 }
