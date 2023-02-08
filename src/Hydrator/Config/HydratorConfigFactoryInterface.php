@@ -117,4 +117,6 @@ interface HydratorConfigFactoryInterface
     public function createArticleDetailConfig(): HydratorConfigInterface;
 
     public function createContainerDetailConfig(): HydratorConfigInterface;
+
+    public function createArticleIndividualizationConfig(): HydratorConfigInterface;
 }

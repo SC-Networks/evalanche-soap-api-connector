@@ -31,6 +31,23 @@ update(
 ): HashMap
 ```
 
+Retrieve article individualization configuration
+
+```
+getIndividualization(
+    int <article-id>
+): ArticleIndividualizationInterface
+```
+
+Set article individualization configuration
+
+```
+setIndividualization(
+    int <article-id>,
+    ArticleIndividualizationInterface <individualization>
+): bool;
+```
+
 Move an article to a folder
 
 
