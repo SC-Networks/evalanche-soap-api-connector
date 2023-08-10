@@ -61,7 +61,8 @@ final class ObjectValue implements PropertyObjectInterface
                 $hydrator->hydrate(
                     $hydratorConfig,
                     $object,
-                    (array)$value
+                    (array)$value,
+                    Hydrator::NO_STRICT_KEYS
                 );
 
                 $this->$propertyName = $object;
