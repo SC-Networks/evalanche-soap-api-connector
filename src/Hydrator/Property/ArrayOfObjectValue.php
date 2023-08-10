@@ -90,7 +90,8 @@ final class ArrayOfObjectValue implements PropertyObjectInterface
                     $hydrator->hydrate(
                         $hydratorConfig,
                         $object,
-                        (array)$item
+                        (array)$item,
+                        Hydrator::NO_STRICT_KEYS,
                     );
 
                     $items[$key] = $object;
