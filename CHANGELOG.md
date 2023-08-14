@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.12.1] - 2023-08-14
+### FIXED
+- Allow unexpected keys in API response (#200)
+
 ## [1.12.0] - 2023-02-17
 ### ADDED
 - Support methods to retrieve article individualization (#196)
