@@ -163,24 +163,6 @@ final class FormClient extends AbstractClient implements FormClientInterface
 
     /**
      * @param int $id
-     * @param string $title
-     *
-     * @return ResourceInformationInterface
-     * @throws EmptyResultException
-     */
-    public function updateTitle(int $id, string $title): ResourceInformationInterface
-    {
-        return $this->responseMapper->getObject(
-            $this->soapClient->rename(
-                ['resource_id' => $id, 'name' => $title]
-            ),
-            'renameResult',
-            $this->hydratorConfigFactory->createResourceInformationConfig()
-        );
-    }
-
-    /**
-     * @param int $id
      * @param string $templateHtml
      *
      * @return ResourceInformationInterface

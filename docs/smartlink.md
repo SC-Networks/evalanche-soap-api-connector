@@ -51,6 +51,15 @@ Delete a smartlink
 delete(int <smartlink-id>): bool
 ```
 
+Update the title of a smartlink
+
+```
+updateTitle(
+    int <smartlink-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all smartlinks of a mandator
 
 

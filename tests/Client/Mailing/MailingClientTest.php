@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
@@ -37,6 +38,8 @@ use stdClass;
  */
 class MailingClientTest extends TestCase
 {
+    use CommonResourceMethodsTestTrait;
+
     /**
      * @var MailingClient
      */
@@ -474,34 +477,6 @@ class MailingClientTest extends TestCase
         $this->assertInstanceOf(
             MailingConfigurationInterface::class,
             $this->subject->getConfiguration($id)
-        );
-    }
-
-    public function testMoveCanReturnInstanceOfResourceInformation()
-    {
-        $id = 456;
-        $folderId = 34;
-
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-
-        $response = new stdClass();
-        $response->moveResult = $object;
-
-        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('move')->with([
-            'resource_id' => $id,
-            'category_id' => $folderId
-        ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with(
-            $response,
-            'moveResult',
-            $config
-        )->willReturn($response->moveResult);
-
-        $this->assertInstanceOf(
-            ResourceInformationInterface::class,
-            $this->subject->move($id, $folderId)
         );
     }
 
@@ -1362,50 +1337,6 @@ class MailingClientTest extends TestCase
         $this->assertContainsOnlyInstancesOf(
             ResourceTypeInformationInterface::class,
             $this->subject->getTypeIds()
-        );
-    }
-
-    public function testDeleteCanReturnBoolean()
-    {
-        $id = 56;
-
-        $response = new stdClass();
-        $response->deleteResult = true;
-
-        $this->soapClient->expects($this->once())->method('delete')->with(['resource_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
-            $response,
-            'deleteResult'
-        )->willReturn($response->deleteResult);
-
-        $this->assertTrue($this->subject->delete($id));
-    }
-
-    public function testCopyCanReturnInstanceOfResourceInformation()
-    {
-        $id = 456;
-        $folderId = 123;
-
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-
-        $response = new stdClass();
-        $response->copyResult = $object;
-
-        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('copy')->with([
-            'resource_id' => $id,
-            'category_id' => $folderId
-        ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with(
-            $response,
-            'copyResult',
-            $config
-        )->willReturn($response->copyResult);
-
-        $this->assertInstanceOf(
-            ResourceInformationInterface::class,
-            $this->subject->copy($id, $folderId)
         );
     }
 

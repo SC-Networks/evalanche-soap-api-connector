@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Client\Report;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
@@ -19,6 +20,7 @@ use stdClass;
  */
 class ReportClientTest extends TestCase
 {
+    use CommonResourceMethodsTestTrait;
     /**
      * @var ReportClient
      */
@@ -46,7 +48,13 @@ class ReportClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock(['addResourceToReport']);
+        $this->soapClient = $this->getWsdlMock([
+            'addResourceToReport',
+            'rename',
+            'move',
+            'copy',
+            'delete',
+        ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
         $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();

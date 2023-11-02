@@ -91,4 +91,12 @@ interface ResourceTraitInterface
      * @return ServiceStatusInterface
      */
     public function getServiceAvailable(): ServiceStatusInterface;
+
+    /**
+     * @param int $id
+     * @param string $title
+     *
+     * @return ResourceInformationInterface
+     */
+    public function updateTitle(int $id, string $title): ResourceInformationInterface;
 }

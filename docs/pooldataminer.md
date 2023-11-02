@@ -31,6 +31,15 @@ Delete a pooldataminer
 delete(int <pooldataminer-id>): bool
 ```
 
+Update the title of a pooldataminer
+
+```
+updateTitle(
+    int <pooldataminer-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all pooldataminers of a mandator
 
 
