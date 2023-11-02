@@ -13,11 +13,4 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
  */
 interface PoolDataMinerClientInterface extends ClientInterface, ResourceTraitInterface
 {
-    /**
-     * @param int $id
-     * @param string $title
-     *
-     * @return ResourceInformationInterface
-     */
-    public function updateTitle(int $id, string $title): ResourceInformationInterface;
 }

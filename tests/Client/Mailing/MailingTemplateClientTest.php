@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
@@ -28,6 +29,7 @@ use stdClass;
  */
 class MailingTemplateClientTest extends TestCase
 {
+    use CommonResourceMethodsTestTrait;
     /**
      * @var MailingTemplateClient
      */
@@ -58,6 +60,9 @@ class MailingTemplateClientTest extends TestCase
         $this->soapClient = $this->getWsdlMock([
             'create',
             'rename',
+            'copy',
+            'move',
+            'delete',
             'addArticles',
             'getArticles',
             'removeAllArticles',

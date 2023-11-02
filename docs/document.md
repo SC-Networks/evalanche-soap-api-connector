@@ -21,6 +21,15 @@ Delete a document
 delete(int <document-id>): bool
 ```
 
+Update the title of a document
+
+```
+updateTitle(
+    int <document-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all documents of a mandator
 
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Client\Article;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Article\ArticleIndividualizationConfig;
@@ -25,6 +26,7 @@ use stdClass;
  */
 class ArticleClientTest extends TestCase
 {
+    use CommonResourceMethodsTestTrait;
     /**
      * @var ArticleClient
      */
@@ -60,6 +62,10 @@ class ArticleClientTest extends TestCase
             'getByArticleTypeId',
             'getIndividualization',
             'setIndividualization',
+            'rename',
+            'move',
+            'copy',
+            'delete',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();

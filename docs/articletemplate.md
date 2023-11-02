@@ -22,25 +22,34 @@ updateTemplate(
 ): ResourceInformation
 ```
 
-Move an article template to a folder
+Move an article-template to a folder
 
 
 ```
-move(int <article-id>, int <folder-id>): ResourceInformation
+move(int <template-id>, int <folder-id>): ResourceInformation
 ```
 
-Copy an article template to a folder
+Copy an article-template to a folder
 
 
 ```
-copy(int <article-id>, int <folder-id>): ResourceInformation
+copy(int <template-id>, int <folder-id>): ResourceInformation
 ```
 
 Delete an article-template
 
 
 ```
-delete(int <article-id>): bool
+delete(int <template-id>): bool
+```
+
+Update the title of an article-template
+
+```
+updateTitle(
+    int <template-id>,
+    string <title>
+): ResourceInformation
 ```
 
 Retrieve all article templates of a mandator

@@ -144,6 +144,15 @@ Delete a container type
 delete(int <container-type-id>): bool
 ```
 
+Update the title of a container-type
+
+```
+updateTitle(
+    int <container-type-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all container types of a mandator
 
 

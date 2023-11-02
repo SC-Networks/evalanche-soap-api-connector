@@ -41,6 +41,15 @@ Delete a report
 delete(int <report-id>): bool
 ```
 
+Update the title of a report
+
+```
+updateTitle(
+    int <report-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all reports of a mandator
 
 

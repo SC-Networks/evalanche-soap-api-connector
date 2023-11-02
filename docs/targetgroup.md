@@ -21,6 +21,15 @@ Delete a targetgroup
 delete(int <targetgroup-id>): bool
 ```
 
+Update the title of a targetgroup
+
+```
+updateTitle(
+    int <targetgroup-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all targetgroups of a mandator
 
 

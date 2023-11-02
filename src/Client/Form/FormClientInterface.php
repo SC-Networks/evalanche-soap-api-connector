@@ -89,15 +89,6 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
 
     /**
      * @param int $id
-     * @param string $title
-     *
-     * @return ResourceInformationInterface
-     * @throws EmptyResultException
-     */
-    public function updateTitle(int $id, string $title): ResourceInformationInterface;
-
-    /**
-     * @param int $id
      * @param string $templateHtml
      *
      * @return ResourceInformationInterface

@@ -31,6 +31,15 @@ Delete a milestone
 delete(int <milestone-id>): bool
 ```
 
+Update the title of a milestone
+
+```
+updateTitle(
+    int <milestone-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all milestones of a mandator
 
 
