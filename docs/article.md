@@ -69,6 +69,15 @@ Delete an article
 delete(int <article-id>): bool
 ```
 
+Update the title of an article
+
+```
+updateTitle(
+    int <article-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all articles of a mandator
 
 

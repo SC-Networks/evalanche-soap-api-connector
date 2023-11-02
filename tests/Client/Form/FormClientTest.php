@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Client\Form;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
@@ -23,6 +24,7 @@ use stdClass;
  */
 class FormClientTest extends TestCase
 {
+    use CommonResourceMethodsTestTrait;
     /**
      * @var FormClient
      */
@@ -60,6 +62,9 @@ class FormClientTest extends TestCase
             'removeAttribute',
             'removeAttributeOption',
             'rename',
+            'move',
+            'copy',
+            'delete',
             'updateTemplate',
             'create',
             'getConfiguration',
@@ -276,34 +281,6 @@ class FormClientTest extends TestCase
         )->willReturn($response->removeAttributeOptionResult);
 
         $this->assertFalse($this->subject->removeAttributeOption($id, $optionId));
-    }
-
-    public function testUpdateTitleCanReturnInstanceOfResourceInformationInterface()
-    {
-        $id = 123;
-        $title = 'some title';
-
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-
-        $response = new stdClass();
-        $response->renameResult = $object;
-
-        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('rename')->with([
-            'resource_id' => $id,
-            'name' => $title,
-        ])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObject')->with(
-            $response,
-            'renameResult',
-            $config
-        )->willReturn($response->renameResult);
-
-        $this->assertInstanceOf(
-            ResourceInformationInterface::class,
-            $this->subject->updateTitle($id, $title)
-        );
     }
 
     public function testUpdateTemplateCanReturnInstanceOfResourceInformation()

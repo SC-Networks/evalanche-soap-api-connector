@@ -21,6 +21,15 @@ Delete a workflow
 delete(int <workflow-id>): bool
 ```
 
+Update the title of a workflow
+
+```
+updateTitle(
+    int <workflow-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all workflows of a mandator
 
 

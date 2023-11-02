@@ -29,6 +29,15 @@ copy(int <mailing-template-id>, int <folder-id>): ResourceInformation
 delete(int <mailing-template-id>): bool
 ```
 
+### Update the title of a mailing-template
+
+```
+updateTitle(
+    int <mailing-template-id>,
+    string <title>
+): ResourceInformation
+```
+
 ### Retrieve all mailing templates of a mandator
 
 

@@ -130,6 +130,15 @@ Delete a form
 delete(int <form-id>): bool
 ```
 
+Update the title of a form
+
+```
+updateTitle(
+    int <form-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all forms of a mandator
 
 
