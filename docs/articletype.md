@@ -145,21 +145,30 @@ Move an article type to a folder
 
 
 ```
-move(int <article-id>, int <folder-id>): ResourceInformation
+move(int <article-type-id>, int <folder-id>): ResourceInformation
 ```
 
-Copy an article type to a folder
-
-
-```
-copy(int <article-id>, int <folder-id>): ResourceInformation
-```
-
-Delete an article type
+Copy an article-type to a folder
 
 
 ```
-delete(int <article-id>): bool
+copy(int <article-type-id>, int <folder-id>): ResourceInformation
+```
+
+Delete an article-type
+
+
+```
+delete(int <article-type-id>): bool
+```
+
+Update the title of an article-type
+
+```
+updateTitle(
+    int <article-type-id>,
+    string <title>
+): ResourceInformation
 ```
 
 Retrieve all article types of a mandator

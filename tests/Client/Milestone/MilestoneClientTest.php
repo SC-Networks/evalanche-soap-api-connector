@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Client\Milestone;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
@@ -21,6 +22,7 @@ use stdClass;
  */
 class MilestoneClientTest extends TestCase
 {
+    use CommonResourceMethodsTestTrait;
     /**
      * @var MilestoneClient
      */
@@ -60,6 +62,7 @@ class MilestoneClientTest extends TestCase
             'getResourceDefaultCategory',
             'getTypeIds',
             'move',
+            'rename',
             'isAlive'
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();

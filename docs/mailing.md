@@ -347,7 +347,7 @@ Update the title of a mailing
 
 ```
 updateTitle(
-    int <mailing-template-id>,
+    int <mailing-id>,
     string <title>
 ): ResourceInformation
 ```

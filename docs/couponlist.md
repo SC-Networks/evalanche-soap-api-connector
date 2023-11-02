@@ -51,3 +51,30 @@ import(
     array <profileCouponItems>
 ): bool
 ```
+
+### Move a coupon-list to a folder
+
+```
+move(int <couponListId>, int <folderId>): ResourceInformation
+```
+
+### Copy a coupon-list to a folder
+
+```
+copy(int <couponListId>, int <folderId>): ResourceInformation
+```
+
+### Delete a coupon-list
+
+```
+delete(int <couponListId>): bool
+```
+
+### Update the title of coupon-list 
+
+```
+updateTitle(
+    int <couponListId>,
+    string <title>
+): ResourceInformation
+```

@@ -33,15 +33,6 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
         int $folderId
     ): ResourceInformationInterface;
 
-    /**
-     * @param int $id
-     * @param string $title
-     *
-     * @return ResourceInformationInterface
-     * @throws EmptyResultException
-     */
-    public function updateTitle(int $id, string $title): ResourceInformationInterface;
-
 
     /**
      * @param int $id

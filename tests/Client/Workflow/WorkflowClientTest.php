@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Client\Workflow;
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
@@ -24,6 +25,7 @@ use stdClass;
  */
 class WorkflowClientTest extends TestCase
 {
+    use CommonResourceMethodsTestTrait;
     /**
      * @var WorkflowClient
      */
@@ -63,6 +65,10 @@ class WorkflowClientTest extends TestCase
             'activate',
             'deactivate',
             'getConfigurationVersions',
+            'copy',
+            'move',
+            'delete',
+            'rename',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();

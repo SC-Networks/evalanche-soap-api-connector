@@ -32,6 +32,15 @@ Delete an image
 delete(int <image-id>): bool
 ```
 
+Update the title of an image
+
+```
+updateTitle(
+    int <image-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all images of a mandator
 
 

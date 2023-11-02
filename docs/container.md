@@ -47,6 +47,15 @@ Delete a container
 delete(int <container-id>): bool
 ```
 
+Update the title of a container
+
+```
+updateTitle(
+    int <container-id>,
+    string <title>
+): ResourceInformation
+```
+
 Retrieve all containers of a mandator
 
 
