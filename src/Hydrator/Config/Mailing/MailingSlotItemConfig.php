@@ -3,6 +3,7 @@
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ArrayValue;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotItem;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\HydratorPropertyValues\Property\IntegerValue;
@@ -23,6 +24,10 @@ class MailingSlotItemConfig implements HydratorConfigInterface
             'pdf_article_template_id' => IntegerValue::set('pdfArticleTemplateId'),
             'web_article_template_id' => IntegerValue::set('webArticleTemplateId'),
             'landingpage_article_template_id' => IntegerValue::set('landingpageArticleTemplateId'),
+            'email_allowed_article_template_ids' => ArrayValue::set('emailAllowedArticleTemplateIds'),
+            'text_allowed_article_template_ids' => ArrayValue::set('textAllowedArticleTemplateIds'),
+            'landingpage_allowed_article_template_ids' => ArrayValue::set('landingpageAllowedArticleTemplateIds'),
+            'web_allowed_article_template_ids' => ArrayValue::set('webAllowedArticleTemplateIds'),
         ];
     }
 
@@ -35,6 +40,10 @@ class MailingSlotItemConfig implements HydratorConfigInterface
             'pdf_article_template_id' => IntegerValue::get('pdfArticleTemplateId'),
             'web_article_template_id' => IntegerValue::get('webArticleTemplateId'),
             'landingpage_article_template_id' => IntegerValue::get('landingpageArticleTemplateId'),
+            'email_allowed_article_template_ids' => ArrayValue::get('emailAllowedArticleTemplateIds'),
+            'text_allowed_article_template_ids' => ArrayValue::get('textAllowedArticleTemplateIds'),
+            'landingpage_allowed_article_template_ids' => ArrayValue::get('landingpageAllowedArticleTemplateIds'),
+            'web_allowed_article_template_ids' => ArrayValue::get('webAllowedArticleTemplateIds'),
         ];
     }
 }

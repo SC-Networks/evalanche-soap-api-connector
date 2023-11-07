@@ -27,6 +27,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ServiceStatusConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotItemConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateAllowedTemplatesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateSourcesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace\CategoryConfig;
@@ -148,6 +149,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createArticleDetailConfig', ArticleDetailConfig::class],
             ['createContainerDetailConfig', ContainerDetailConfig::class],
             ['createArticleIndividualizationConfig', ArticleIndividualizationConfig::class],
+            ['createMailingTemplateAllowedTemplatesConfig', MailingTemplateAllowedTemplatesConfig::class],
         ];
     }
 }
