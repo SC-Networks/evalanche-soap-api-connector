@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.13.0] - 2023-11-10
+### ADDED
+- Add support to define the allowed templates when configuring slot items
+  (#207)
+- Allow updateTitle in all resource-related clients (#204)
+
 ## [1.12.1] - 2023-08-14
 ### FIXED
 - Allow unexpected keys in API response (#200)
