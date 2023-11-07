@@ -32,6 +32,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotConfigurati
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotItemConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingStatusConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSubjectConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateAllowedTemplatesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateSourcesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mandator\MandatorConfig;
@@ -351,5 +352,10 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createArticleIndividualizationConfig(): HydratorConfigInterface
     {
         return new ArticleIndividualizationConfig();
+    }
+
+    public function createMailingTemplateAllowedTemplatesConfig(): HydratorConfigInterface
+    {
+        return new MailingTemplateAllowedTemplatesConfig();
     }
 }
