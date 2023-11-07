@@ -704,6 +704,7 @@ class MailingTemplateClientTest extends TestCase
         $slotId = 555;
         $data = $this->createMock(HashMapInterface::class);
         $articleTypeId = 666;
+        $allowedTemplates = [];
 
         $config = $this->createMock(HydratorConfigInterface::class);
         $object = $this->createMock(MailingSlotItemInterface::class);
@@ -721,7 +722,8 @@ class MailingTemplateClientTest extends TestCase
                 'mailing_template_id' => $id,
                 'slot_id' => $slotId,
                 'data' => $data,
-                'article_type_id' => $articleTypeId
+                'article_type_id' => $articleTypeId,
+                'allowed_templates' => $allowedTemplates,
             ])
             ->willReturn($response);
 
@@ -740,7 +742,8 @@ class MailingTemplateClientTest extends TestCase
                 $id,
                 $slotId,
                 $data,
-                $articleTypeId
+                $articleTypeId,
+                $allowedTemplates
             )
         );
     }
@@ -751,6 +754,7 @@ class MailingTemplateClientTest extends TestCase
         $slotId = 555;
         $data = $this->createMock(HashMapInterface::class);
         $articleTypeId = 666;
+        $allowedTemplates = [];
 
         $config = $this->createMock(HydratorConfigInterface::class);
         $object = $this->createMock(MailingSlotItemInterface::class);
@@ -768,7 +772,8 @@ class MailingTemplateClientTest extends TestCase
                 'mailing_template_id' => $id,
                 'slot_id' => $slotId,
                 'data' => $data,
-                'article_type_id' => $articleTypeId
+                'article_type_id' => $articleTypeId,
+                'allowed_templates' => $allowedTemplates,
             ])
             ->willReturn($response);
 
@@ -787,7 +792,8 @@ class MailingTemplateClientTest extends TestCase
                 $id,
                 $slotId,
                 $data,
-                $articleTypeId
+                $articleTypeId,
+                $allowedTemplates
             )
         );
     }

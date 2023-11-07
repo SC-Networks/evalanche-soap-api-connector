@@ -11,6 +11,7 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotItemInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateAllowedTemplatesInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 
@@ -203,6 +204,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @param int $slotId
      * @param HashMapInterface $config
      * @param int $articleTypeId
+     * @param MailingTemplateAllowedTemplatesInterface[] $allowed_templates
      *
      * @return MailingSlotItemInterface
      * @throws EmptyResultException
@@ -211,7 +213,8 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
         int $id,
         int $slotId,
         HashMapInterface $config,
-        int $articleTypeId = 0
+        int $articleTypeId = 0,
+        array $allowed_templates = []
     ): MailingSlotItemInterface;
 
     /**
@@ -221,6 +224,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
      * @param int $slotId
      * @param HashMapInterface $config
      * @param int $articleTypeId
+     * @param MailingTemplateAllowedTemplatesInterface[] $allowed_templates
      *
      * @return MailingSlotItemInterface
      * @throws EmptyResultException
@@ -229,6 +233,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
         int $id,
         int $slotId,
         HashMapInterface $config,
-        int $articleTypeId = 0
+        int $articleTypeId = 0,
+        array $allowed_templates = []
     ): MailingSlotItemInterface;
 }
