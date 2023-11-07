@@ -12,6 +12,8 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotItemInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\AllowedTemplatesInterface;
+use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateAllowedTemplatesInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
 
@@ -369,6 +371,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param int $slotId
      * @param HashMapInterface $config
      * @param int $articleTypeId
+     * @param MailingTemplateAllowedTemplatesInterface[] $allowed_templates
      *
      * @return MailingSlotItemInterface
      * @throws EmptyResultException
@@ -377,14 +380,19 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
         int $id,
         int $slotId,
         HashMapInterface $config,
-        int $articleTypeId = 0
+        int $articleTypeId = 0,
+        array $allowed_templates = []
     ): MailingSlotItemInterface {
         return $this->responseMapper->getObject(
             $this->soapClient->addTemplatesToSlot([
                 'mailing_template_id' => $id,
                 'slot_id' => $slotId,
                 'data' => $config,
-                'article_type_id' => $articleTypeId
+                'article_type_id' => $articleTypeId,
+                'allowed_templates' => $this->extractor->extractArray(
+                    $this->hydratorConfigFactory->createMailingTemplateAllowedTemplatesConfig(),
+                    $allowed_templates
+                )
             ]),
             'addTemplatesToSlotResult',
             $this->hydratorConfigFactory->createMailingSlotItemConfig()
@@ -398,6 +406,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
      * @param int $slotId
      * @param HashMapInterface $config
      * @param int $articleTypeId
+     * @param MailingTemplateAllowedTemplatesInterface[] $allowed_templates
      *
      * @return MailingSlotItemInterface
      * @throws EmptyResultException
@@ -406,14 +415,19 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
         int $id,
         int $slotId,
         HashMapInterface $config,
-        int $articleTypeId = 0
+        int $articleTypeId = 0,
+        array $allowed_templates = []
     ): MailingSlotItemInterface {
         return $this->responseMapper->getObject(
             $this->soapClient->updateSlotTemplates([
                 'mailing_template_id' => $id,
                 'slot_id' => $slotId,
                 'data' => $config,
-                'article_type_id' => $articleTypeId
+                'article_type_id' => $articleTypeId,
+                'allowed_templates' => $this->extractor->extractArray(
+                    $this->hydratorConfigFactory->createMailingTemplateAllowedTemplatesConfig(),
+                    $allowed_templates
+                )
             ]),
             'updateSlotTemplatesResult',
             $this->hydratorConfigFactory->createMailingSlotItemConfig()

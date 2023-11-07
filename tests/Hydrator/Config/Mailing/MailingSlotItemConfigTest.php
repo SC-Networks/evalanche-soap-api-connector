@@ -34,6 +34,10 @@ class MailingSlotItemConfigTest extends ConfigTestCase
             'pdf_article_template_id',
             'web_article_template_id',
             'landingpage_article_template_id',
+            'email_allowed_article_template_ids',
+            'text_allowed_article_template_ids',
+            'landingpage_allowed_article_template_ids',
+            'web_allowed_article_template_ids',
         ];
     }
 
