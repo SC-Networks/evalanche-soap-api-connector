@@ -82,13 +82,13 @@ class HydratorConfigFactoryTest extends TestCase
      */
     public function testFactoryMethods($method, $expectedClass, array $parameter = [])
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             $expectedClass,
             call_user_func_array([$this->subject, $method], $parameter)
         );
     }
 
-    public function factoryDataProvider()
+    public static function factoryDataProvider()
     {
         return [
             ['createWorkflowDetailConfig', WorkflowDetailConfig::class],

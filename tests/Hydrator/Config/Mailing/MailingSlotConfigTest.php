@@ -19,7 +19,7 @@ class MailingSlotConfigTest extends ConfigTestCase
 
     public function testGetObjectReturnsData(): void
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingSlot::class,
             $this->subject->getObject()
         );

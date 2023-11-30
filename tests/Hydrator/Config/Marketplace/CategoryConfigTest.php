@@ -29,7 +29,7 @@ class CategoryConfigTest extends TestCase
 
     public function testGetObjectCanReturnInstanceOfProduct()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             CategoryInterface::class,
             $this->subject->getObject()
         );
@@ -38,14 +38,14 @@ class CategoryConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
 }

@@ -34,7 +34,7 @@ class ServiceStatusConfigTest extends TestCase
 
     public function testGetObjectCanReturnInstanceOfUser()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ServiceStatusInterface::class,
             $this->subject->getObject()
         );
@@ -43,14 +43,14 @@ class ServiceStatusConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
 }

@@ -94,7 +94,7 @@ class PoolClientTest extends TestCase
             $config
         )->willReturn($response->addAttributeResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             PoolAttributeInterface::class,
             $this->subject->addAttribute($id, $title, $label, $typeId)
         );
@@ -127,7 +127,7 @@ class PoolClientTest extends TestCase
             $config
         )->willReturn($response->addAttributeOptionsResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             PoolAttributeInterface::class,
             $this->subject->addAttributeOptions($id, $attributeId, $label)
         );
@@ -180,7 +180,7 @@ class PoolClientTest extends TestCase
             $config
         )->willReturn($response->deleteAttributeOptionResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             PoolAttributeInterface::class,
             $this->subject->deleteAttributeOption($id, $attributeId, $optionId)
         );
@@ -242,7 +242,7 @@ class PoolClientTest extends TestCase
             $config
         )->willReturn($response->updateAttributeOptionResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             PoolAttributeInterface::class,
             $this->subject->updateAttributeOption($id, $attributeId, $optionId, $label)
         );

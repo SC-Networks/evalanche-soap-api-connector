@@ -30,7 +30,7 @@ class WorkflowStateChangeResultErrorConfigTest extends TestCase
 
     public function testGetObjectCanReturnInstance(): void
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             WorkflowStateChangeResultError::class,
             $this->subject->getObject()
         );
@@ -39,14 +39,14 @@ class WorkflowStateChangeResultErrorConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
 }

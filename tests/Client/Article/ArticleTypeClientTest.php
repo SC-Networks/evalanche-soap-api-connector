@@ -113,7 +113,7 @@ class ArticleTypeClientTest extends TestCase
             $config
         )->willReturn($response->addAttributeResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ContainerAttributeInterface::class,
             $this->subject->addAttribute($id, $title, $label, $typeId, $groupId)
         );
@@ -141,7 +141,7 @@ class ArticleTypeClientTest extends TestCase
             $config
         )->willReturn($response->addAttributeGroupResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ContainerAttributeGroupInterface::class,
             $this->subject->addAttributeGroup($id, $title)
         );
@@ -215,7 +215,7 @@ class ArticleTypeClientTest extends TestCase
             $config
         )->willReturn($response->createAttributeOptionResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ContainerAttributeOptionInterface::class,
             $this->subject->createAttributeOption($id, $attributeId, $label)
         );

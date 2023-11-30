@@ -38,7 +38,7 @@ class MailingStatusConfigTest extends TestCase
 
     public function testGetObjectCanReturnInstanceOfMailingStatusConfig()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingStatusInterface::class,
             $this->subject->getObject()
         );
@@ -47,12 +47,12 @@ class MailingStatusConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray()
     {
-        $this->assertSame([], $this->subject->getExtractorProperties());
+        self::assertSame([], $this->subject->getExtractorProperties());
     }
 }

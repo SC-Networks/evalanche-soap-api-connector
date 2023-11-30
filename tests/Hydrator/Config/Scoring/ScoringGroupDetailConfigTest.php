@@ -35,7 +35,7 @@ class ScoringGroupDetailConfigTest extends TestCase
 
     public function testGetObjectCanReturnInstanceOfUser()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ScoringGroupDetailInterface::class,
             $this->subject->getObject()
         );
@@ -44,14 +44,14 @@ class ScoringGroupDetailConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
 }

@@ -150,7 +150,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getClientStatisticsResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ClientStatisticInterface::class,
             $this->subject->getClientStatisticById($id)
         );
@@ -176,7 +176,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getStatisticsResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingStatisticInterface::class,
             $this->subject->getStatisticsByMailingId($id)
         );
@@ -269,7 +269,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->isAliveResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ServiceStatusInterface::class,
             $this->subject->getServiceAvailable()
         );
@@ -302,7 +302,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->setConfigurationResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingConfigurationInterface::class,
             $this->subject->setConfiguration($id, $configuration)
         );
@@ -417,7 +417,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->sendToTargetgroupResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingDetailInterface::class,
             $this->subject->sendToTargetGroup($id, $targetGroupId, $sendTime, $speed)
         );
@@ -448,7 +448,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getAllArticleImpressionProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getAllArticleImpressionProfiles($id, $attributeTitles)
         );
@@ -474,7 +474,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getConfigurationResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingConfigurationInterface::class,
             $this->subject->getConfiguration($id)
         );
@@ -505,7 +505,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getBounceProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getBounceProfiles($id, $attributeTitles)
         );
@@ -605,7 +605,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getLinkClickProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getLinkClickProfiles($id, $linkId, $attributeTitles)
         );
@@ -666,7 +666,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getClickProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getClickProfiles($id, $attributeTitles)
         );
@@ -777,7 +777,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->createDraftResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->createDraft($title, $templateId, $folderId, $typeId)
         );
@@ -808,7 +808,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getSoftbounceProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getSoftbounceProfiles($id, $attributeTitles)
         );
@@ -861,7 +861,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getImpressionProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getImpressionProfiles($id, $attributeTitles)
         );
@@ -892,7 +892,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getRecipientsProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getRecipientsProfiles($id, $attributeTitles)
         );
@@ -918,7 +918,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getResultsResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobResultInterface::class,
             $this->subject->getResults($id)
         );
@@ -949,7 +949,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getMultipleImpressionProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getMultipleImpressionProfiles($id, $attributeTitles)
         );
@@ -980,7 +980,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getAllLinkClickProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getAllLinkClickProfiles($id, $attributeTitles)
         );
@@ -1054,7 +1054,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getHardbounceProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getHardbounceProfiles($id, $attributeTitles)
         );
@@ -1085,7 +1085,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getMultipleClickProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getMultipleClickProfiles($id, $attributeTitles)
         );
@@ -1118,7 +1118,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getArticleImpressionProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getArticleImpressionProfiles($id, $article_id, $attributeTitles)
         );
@@ -1149,7 +1149,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getUnsubscriptionProfilesResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getUnsubscriptionProfiles($id, $attributeTitles)
         );
@@ -1176,7 +1176,7 @@ class MailingClientTest extends TestCase
             'sendToProfilesResult'
         )->willReturn($response->sendToProfilesResult);
 
-        $this->assertSame(
+        self::assertSame(
             $profileIds,
             $this->subject->sendToProfiles($id, $profileIds)
         );
@@ -1202,7 +1202,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getDetailsResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingDetailInterface::class,
             $this->subject->getDetailsById($id)
         );
@@ -1228,7 +1228,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getJobInformationResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getJobInformation($id)
         );
@@ -1247,7 +1247,7 @@ class MailingClientTest extends TestCase
             'getResultCursorResult'
         )->willReturn($response->getResultCursorResult);
 
-        $this->assertSame(
+        self::assertSame(
             'some return string',
             $this->subject->getResultCursorByJobId($id)
         );
@@ -1275,7 +1275,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->renameResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->updateTitle($id, $title)
         );
@@ -1412,7 +1412,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getByExternalIdResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->getById($id)
         );
@@ -1436,7 +1436,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getResourceDefaultCategoryResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             FolderInformationInterface::class,
             $this->subject->getDefaultFolderByMandatorId($id)
         );
@@ -1460,7 +1460,7 @@ class MailingClientTest extends TestCase
             $config
         )->willReturn($response->getByExternalIdResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->getByExternalId($id)
         );
@@ -1493,7 +1493,7 @@ class MailingClientTest extends TestCase
             )
             ->willReturn($response->getContentContainerDataResult);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->getContentContainerData($id)
         );
@@ -1550,7 +1550,7 @@ class MailingClientTest extends TestCase
             )
             ->willReturn($extractedData);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->setContentContainerData($id, $hashMap)
         );

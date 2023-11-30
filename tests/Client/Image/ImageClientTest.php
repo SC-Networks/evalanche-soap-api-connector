@@ -104,7 +104,7 @@ class ImageClientTest extends TestCase
             $config
         )->willReturn($response->createResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->create($image, $title, $folderId)
         );
@@ -182,7 +182,7 @@ class ImageClientTest extends TestCase
             $config
         )->willReturn($response->getByExternalIdResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->getByExternalId($id)
         );
@@ -206,7 +206,7 @@ class ImageClientTest extends TestCase
             $config
         )->willReturn($response->getByExternalIdResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->getById($id)
         );
@@ -261,7 +261,7 @@ class ImageClientTest extends TestCase
             $config
         )->willReturn($response->getResourceDefaultCategoryResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             FolderInformationInterface::class,
             $this->subject->getDefaultFolderByMandatorId($id)
         );
@@ -308,7 +308,7 @@ class ImageClientTest extends TestCase
             $config
         )->willReturn($response->isAliveResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ServiceStatusInterface::class,
             $this->subject->getServiceAvailable()
         );

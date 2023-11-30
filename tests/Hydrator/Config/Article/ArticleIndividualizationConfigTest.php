@@ -31,7 +31,7 @@ class ArticleIndividualizationConfigTest extends TestCase
 
     public function testGetObjectReturnsInstance(): void
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ArticleIndividualizationInterface::class,
             $this->subject->getObject()
         );
@@ -40,14 +40,14 @@ class ArticleIndividualizationConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
 }

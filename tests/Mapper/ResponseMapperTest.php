@@ -38,7 +38,7 @@ class ResponseMapperTest extends TestCase
         $response = new stdClass();
         $response->$responseProperty = 5;
 
-        $this->assertSame(5, $this->subject->getInteger($response, $responseProperty));
+        self::assertSame(5, $this->subject->getInteger($response, $responseProperty));
     }
 
     public function testGetIntegerCanThrowException()
@@ -68,7 +68,7 @@ class ResponseMapperTest extends TestCase
         $response = new stdClass();
         $response->$responseProperty = 'some string';
 
-        $this->assertSame('some string', $this->subject->getString($response, $responseProperty));
+        self::assertSame('some string', $this->subject->getString($response, $responseProperty));
     }
 
     public function testGetStringCanThrowException()
@@ -86,7 +86,7 @@ class ResponseMapperTest extends TestCase
             'key' => 'value',
         ];
 
-        $this->assertSame($response->$responseProperty, $this->subject->getArray($response, $responseProperty));
+        self::assertSame($response->$responseProperty, $this->subject->getArray($response, $responseProperty));
     }
 
     public function testGetArrayCanThrowException()
@@ -114,7 +114,7 @@ class ResponseMapperTest extends TestCase
         $this->hydrator->expects($this->once())->method('hydrate')
             ->with($hydratorConfig, $someUser, (array)$responseObject);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             UserInterface::class,
             $this->subject->getObject(
                 $response,
@@ -161,12 +161,12 @@ class ResponseMapperTest extends TestCase
             ->willReturn($someUser);
 
         $this->hydrator->expects($this->exactly(2))->method('hydrate')
-            ->withConsecutive(
+            ->willReturnOnConsecutiveCalls(
                 [$hydratorConfig, $someUser, (array)$firstResponseObject],
                 [$hydratorConfig, $someUser, (array)$secondResponseObject]
             );
 
-        $this->containsOnlyInstancesOf(
+        self::assertContainsOnlyInstancesOf(
             UserInterface::class,
             $this->subject->getObjects(
                 $response,
@@ -198,7 +198,7 @@ class ResponseMapperTest extends TestCase
 
         $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
 
-        $this->assertEquals(
+        self::assertEquals(
             [],
             $this->subject->getObjects(
                 $response,
@@ -234,7 +234,7 @@ class ResponseMapperTest extends TestCase
         $this->hydrator->expects($this->once())->method('hydrate')
             ->with($hydratorConfig, $someUser, (array)$firstResponseObject);
 
-        $this->assertContainsOnlyInstancesOf(
+        self::assertContainsOnlyInstancesOf(
             UserInterface::class,
             $this->subject->getObjects(
                 $response,
@@ -271,7 +271,7 @@ class ResponseMapperTest extends TestCase
         $this->hydrator->expects($this->once())->method('hydrate')
             ->with($hydratorConfig, $someUser, (array)$responseObject);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             UserInterface::class,
             $this->subject->getObjectDirectly(
                 $response,
@@ -303,12 +303,12 @@ class ResponseMapperTest extends TestCase
             ->willReturn($someUser);
 
         $this->hydrator->expects($this->exactly(2))->method('hydrate')
-            ->withConsecutive(
+            ->willReturnOnConsecutiveCalls(
                 [$hydratorConfig, $someUser, (array)$firstResponseObject],
                 [$hydratorConfig, $someUser, (array)$secondResponseObject]
             );
 
-        $this->containsOnlyInstancesOf(
+        self::assertContainsOnlyInstancesOf(
             UserInterface::class,
             $this->subject->getObjectsDirectly(
                 $response,

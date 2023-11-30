@@ -61,7 +61,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateAccountClientCanReturnInstanceOfAccountClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Account\AccountClientInterface::class,
             $this->subject->createAccountClient()
         );
@@ -69,7 +69,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateArticleClientCanReturnInstanceOfArticleClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Article\ArticleClientInterface::class,
             $this->subject->createArticleClient()
         );
@@ -77,7 +77,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateArticleTemplateClientCanReturnInstanceOfArticleTemplateClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Article\ArticleTemplateClientInterface::class,
             $this->subject->createArticleTemplateClient()
         );
@@ -85,7 +85,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateArticleTypeClientCanReturnInstanceOfArticleTypeClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Article\ArticleTypeClientInterface::class,
             $this->subject->createArticleTypeClient()
         );
@@ -93,7 +93,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateFolderClientCanReturnInstanceOfCategoryClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Folder\FolderClientInterface::class,
             $this->subject->createFolderClient()
         );
@@ -101,7 +101,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateContainerClientCanReturnInstanceOfContainerClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Container\ContainerClientInterface::class,
             $this->subject->createContainerClient()
         );
@@ -109,7 +109,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateContainerTypeClientCanReturnInstanceOfContainerTypeClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Container\ContainerTypeClientInterface::class,
             $this->subject->createContainerTypeClient()
         );
@@ -117,7 +117,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateDocumentClientCanReturnInstanceOfDocumentClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Document\DocumentClientInterface::class,
             $this->subject->createDocumentClient()
         );
@@ -125,7 +125,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateFormClientCanReturnInstanceOfFormClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Form\FormClientInterface::class,
             $this->subject->createFormClient()
         );
@@ -133,7 +133,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateTargetGroupClientCanReturnInstanceOfTargetGroupClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\TargetGroup\TargetGroupClientInterface::class,
             $this->subject->createTargetGroupClient()
         );
@@ -141,7 +141,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateImageClientCanReturnInstanceOfImageClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Image\ImageClientInterface::class,
             $this->subject->createImageClient()
         );
@@ -149,7 +149,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateMailingclientCanReturnInstanceOfMailingClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Mailing\MailingClientInterface::class,
             $this->subject->createMailingClient()
         );
@@ -157,7 +157,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateMailingTemplateClientCanReturnInstanceOfMailingTemplateClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Mailing\MailingTemplateClientInterface::class,
             $this->subject->createMailingTemplateClient()
         );
@@ -165,7 +165,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateMandatorClientCanReturnInstanceOfMandatorClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Mandator\MandatorClientInterface::class,
             $this->subject->createMandatorClient()
         );
@@ -173,7 +173,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreatePoolClientCanReturnInstanceOfPoolClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Pool\PoolClientInterface::class,
             $this->subject->createPoolClient()
         );
@@ -181,7 +181,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreatePoolDataMinerClientCanReturnInstanceOfPoolDataMinerClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Pool\PoolDataMinerClientInterface::class,
             $this->subject->createPoolDataMinerClient()
         );
@@ -189,7 +189,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateProfileClientCanReturnInstanceOfProfileClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Profile\ProfileClientInterface::class,
             $this->subject->createProfileClient()
         );
@@ -197,7 +197,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateReportClientCanReturnInstanceOfReportClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Report\ReportClientInterface::class,
             $this->subject->createReportClient()
         );
@@ -205,7 +205,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateScoringClientCanReturnInstanceOfScoringClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Scoring\ScoringClientInterface::class,
             $this->subject->createScoringClient()
         );
@@ -213,7 +213,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateSmartLinkClientCanReturnInstanceOfSmartLinkClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Smartlink\SmartLinkClientInterface::class,
             $this->subject->createSmartLinkClient()
         );
@@ -221,7 +221,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateUserClientCanReturnInstanceOfUserClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\User\UserClientInterface::class,
             $this->subject->createUserClient()
         );
@@ -229,7 +229,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateWorkflowClientCanReturnInstanceOfWorkflowClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Workflow\WorkflowClientInterface::class,
             $this->subject->createWorkflowClient()
         );
@@ -237,7 +237,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateCanReturnInstanceOfEvalancheConnection()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             EvalancheConnectionInterface::class,
             $this->subject::create('some host', 'some user', 'some password')
         );
@@ -245,7 +245,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateBlackListClientCanReturnInstanceOfBlackListClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Blacklist\BlackListClient::class,
             $this->subject->createBlackListClient()
         );
@@ -253,7 +253,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateWebhookClientCanReturnInstanceOfWebhookClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Webhook\WebhookClient::class,
             $this->subject->createWebhookClient()
         );
@@ -261,7 +261,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateMilestoneClientCanReturnInstanceOfMileStoneClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Milestone\MilestoneClient::class,
             $this->subject->createMilestoneClient()
         );
@@ -269,7 +269,7 @@ class EvalancheConnectionTest extends TestCase
 
     public function testCreateMarketplaceClientCanReturnInstanceOfMarketplaceClient()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\Marketplace\MarketplaceClient::class,
             $this->subject->createMarketplaceClient()
         );
@@ -277,7 +277,7 @@ class EvalancheConnectionTest extends TestCase
     
     public function testCreateCouponListClientReturnsInstance(): void
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             Client\CouponList\CouponListClient::class,
             $this->subject->createCouponListClient()
         );

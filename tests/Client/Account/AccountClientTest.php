@@ -80,7 +80,7 @@ class AccountClientTest extends TestCase
             $config
         )->willReturn($response);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             AccountInterface::class,
             $this->subject->getAccountByMandatorId($mandatorId)
         );
@@ -88,6 +88,6 @@ class AccountClientTest extends TestCase
 
     public function testGetWsdlUriCanReturnString()
     {
-        $this->assertSame('api/soap/v1/accounting/wsdl', $this->subject->getWsdlUri());
+        self::assertSame('api/soap/v1/accounting/wsdl', $this->subject->getWsdlUri());
     }
 }

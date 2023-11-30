@@ -35,7 +35,7 @@ trait CommonResourceMethodsTestTrait
             $config
         )->willReturn($response->renameResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->updateTitle($id, $title)
         );
@@ -63,7 +63,7 @@ trait CommonResourceMethodsTestTrait
             $config
         )->willReturn($response->moveResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->move($id, $folderId)
         );
@@ -107,7 +107,7 @@ trait CommonResourceMethodsTestTrait
             $config
         )->willReturn($response->copyResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->copy($id, $folderId)
         );

@@ -161,7 +161,7 @@ class WorkflowClientTest extends TestCase
         $this->soapClient->expects($this->once())->method('getDetails')->with(['resource_id' => $id])->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObject')->with($result)->willReturn($object);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             WorkflowDetailInterface::class,
             $this->subject->getDetailById($id)
         );
@@ -218,7 +218,7 @@ class WorkflowClientTest extends TestCase
             ->method('getObject')
             ->with($result, 'createConfiguredResult', $resourceInformationConfig)
             ->willReturn($resourceInformation);
-        $this->assertSame(
+        self::assertSame(
             $resourceInformation,
             $this->subject->createConfigured($name, $schemaVersion, $workflowConfiguration, $categoryId)
         );
@@ -244,7 +244,7 @@ class WorkflowClientTest extends TestCase
             ->with($result, 'exportResult')
             ->willReturn($result_string);
         
-        $this->assertSame(
+        self::assertSame(
             $result_string,
             $this->subject->export($workflowId)
         );
@@ -274,7 +274,7 @@ class WorkflowClientTest extends TestCase
             ->with($result, 'setConfigurationResult')
             ->willReturn($resultString);
 
-        $this->assertSame(
+        self::assertSame(
             $resultString,
             $this->subject->setConfiguration($workflowId, $configVersion, $configuration)
         );
@@ -305,7 +305,7 @@ class WorkflowClientTest extends TestCase
             ->method('createWorkflowConfigVersionConfig')
             ->willReturn($configVersionsConfig);
 
-        $this->assertSame(
+        self::assertSame(
             $configResult,
             $this->subject->getConfigurationVersions($workflowId)
         );
@@ -336,7 +336,7 @@ class WorkflowClientTest extends TestCase
             ->method('createWorkflowStateChangeResultConfig')
             ->willReturn($hydratorConfig);
 
-        $this->assertSame(
+        self::assertSame(
             $configResult,
             $this->subject->activate($workflowId)
         );
@@ -367,7 +367,7 @@ class WorkflowClientTest extends TestCase
             ->method('createWorkflowStateChangeResultConfig')
             ->willReturn($hydratorConfig);
 
-        $this->assertSame(
+        self::assertSame(
             $configResult,
             $this->subject->deactivate($workflowId)
         );
@@ -398,7 +398,7 @@ class WorkflowClientTest extends TestCase
             ->method('createWorkflowConfigurationConfig')
             ->willReturn($hydratorConfig);
 
-        $this->assertSame(
+        self::assertSame(
             $configResult,
             $this->subject->getConfiguration($workflowId)
         );

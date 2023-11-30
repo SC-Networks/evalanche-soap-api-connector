@@ -90,7 +90,7 @@ class PoolDataMinerClientTest extends TestCase
             $config
         )->willReturn($resonse->renameResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->updateTitle($id, $title)
         );

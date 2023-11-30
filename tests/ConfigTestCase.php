@@ -11,7 +11,7 @@ abstract class ConfigTestCase extends \PHPUnit\Framework\TestCase
         $subject = $this->getSubject();
         
         foreach ($this->getArrayKeys() as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $subject->getHydratorProperties());
         }
     }
 
@@ -20,7 +20,7 @@ abstract class ConfigTestCase extends \PHPUnit\Framework\TestCase
         $subject = $this->getSubject();
         
         foreach ($this->getArrayKeys() as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $subject->getExtractorProperties());
         }
     }
     
