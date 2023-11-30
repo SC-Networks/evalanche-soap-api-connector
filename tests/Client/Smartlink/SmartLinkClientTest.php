@@ -95,7 +95,7 @@ class SmartLinkClientTest extends TestCase
             'createLinkResult'
         )->willReturn($result_string);
 
-        $this->assertSame($result_string, $this->subject->createLink($id, $title, $url));
+        self::assertSame($result_string, $this->subject->createLink($id, $title, $url));
     }
 
     public function testGetTrackingUrlsCanReturnArrayOfSmartLink()
@@ -216,7 +216,7 @@ class SmartLinkClientTest extends TestCase
             )
             ->willReturn($response->setLinkConfigurationsResult);
 
-        $this->assertSame(
+        self::assertSame(
             $result,
             $this->subject->setLinkConfigurations($link_id, $configurations)
         );
@@ -273,7 +273,7 @@ class SmartLinkClientTest extends TestCase
             )
             ->willReturn($response->setLinkConfigurationsResult);
 
-        $this->assertSame(
+        self::assertSame(
             $result,
             $this->subject->createLinkConfigurations($link_id, $configurations)
         );

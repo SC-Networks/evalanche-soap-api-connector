@@ -84,7 +84,7 @@ class MandatorClientTest extends TestCase
             ->with($result, 'getByIdResult', $config)
             ->willReturn($object);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->getById(5)
         );

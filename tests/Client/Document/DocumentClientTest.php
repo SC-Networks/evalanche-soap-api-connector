@@ -102,7 +102,7 @@ class DocumentClientTest extends TestCase
             $config
         )->willReturn($response->createResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->create($title, $folderId)
         );
@@ -180,7 +180,7 @@ class DocumentClientTest extends TestCase
             $config
         )->willReturn($response->getByExternalIdResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->getByExternalId($id)
         );
@@ -204,7 +204,7 @@ class DocumentClientTest extends TestCase
             $config
         )->willReturn($response->getByExternalIdResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->getById($id)
         );
@@ -259,7 +259,7 @@ class DocumentClientTest extends TestCase
             $config
         )->willReturn($response->getResourceDefaultCategoryResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             FolderInformationInterface::class,
             $this->subject->getDefaultFolderByMandatorId($id)
         );
@@ -312,7 +312,7 @@ class DocumentClientTest extends TestCase
             $config
         )->willReturn($response->moveResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->move($id, $folderId)
         );
@@ -334,7 +334,7 @@ class DocumentClientTest extends TestCase
             $config
         )->willReturn($response->isAliveResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ServiceStatusInterface::class,
             $this->subject->getServiceAvailable()
         );

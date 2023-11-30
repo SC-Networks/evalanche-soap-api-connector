@@ -161,7 +161,7 @@ class ProfileClientTest extends TestCase
             'createResult'
         )->willReturn($response->createResult);
 
-        $this->assertSame(345, $this->subject->create($id, $hashMap));
+        self::assertSame(345, $this->subject->create($id, $hashMap));
     }
 
     public function testGetByPoolCanReturnInstanceOfJobHandle()
@@ -189,7 +189,7 @@ class ProfileClientTest extends TestCase
             $config
         )->willReturn($response->getByPoolResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getByPool($id, $poolAttributeList)
         );
@@ -415,7 +415,7 @@ class ProfileClientTest extends TestCase
             'getResultCursorResult'
         )->willReturn($response->getResultCursorResult);
 
-        $this->assertSame(
+        self::assertSame(
             'some return string',
             $this->subject->getResultCursorByJobId($id)
         );
@@ -539,7 +539,7 @@ class ProfileClientTest extends TestCase
             $config
         )->willReturn($response->getByTargetGroupResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getByTargetGroup($id, $poolAttributeList)
         );
@@ -670,7 +670,7 @@ class ProfileClientTest extends TestCase
             $config
         )->willReturn($response->massUpdateResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MassUpdateResultInterface::class,
             $this->subject->massUpdate($id, $keyAttributeTitle, $attributes, $data, $merge, $ignoreMissing)
         );
@@ -860,7 +860,7 @@ class ProfileClientTest extends TestCase
             $config
         )->willReturn($response->getJobInformationResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getJobInformationByJobId($id)
         );
@@ -956,7 +956,7 @@ class ProfileClientTest extends TestCase
             $config
         )->willReturn($response->getResultsResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobResultInterface::class,
             $this->subject->getResultByJobId($id)
         );
@@ -1066,7 +1066,7 @@ class ProfileClientTest extends TestCase
         )->willReturn($response->getByIdResult);
 
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             HashMapInterface::class,
             $this->subject->getById($id)
         );
@@ -1254,7 +1254,7 @@ class ProfileClientTest extends TestCase
                 $config
             )->willReturn($response->getByMilestoneResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             JobHandleInterface::class,
             $this->subject->getByMilestone($milestoneId, $poolAttributeList, $timestampStart, $timestampEnd)
         );

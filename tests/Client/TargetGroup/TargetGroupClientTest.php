@@ -99,7 +99,7 @@ class TargetGroupClientTest extends TestCase
             $config
         )->willReturn($response->createByOptionResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->createByOption($id, $attributeId, $optionId, $folderId, $title)
         );
@@ -126,7 +126,7 @@ class TargetGroupClientTest extends TestCase
         )->willReturn($response->createByOptionResult);
 
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             TargetGroupDetailInterface::class,
             $this->subject->getDetailById($id)
         );

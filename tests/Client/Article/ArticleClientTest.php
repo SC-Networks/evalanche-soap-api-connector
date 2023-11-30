@@ -117,7 +117,7 @@ class ArticleClientTest extends TestCase
             $config
         )->willReturn($response->createResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->create($id, $title, $folderId, $hashMap)
         );
@@ -141,7 +141,7 @@ class ArticleClientTest extends TestCase
             $config
         )->willReturn($response->getDataResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             HashMapInterface::class,
             $this->subject->getDetailById($id)
         );
@@ -181,7 +181,7 @@ class ArticleClientTest extends TestCase
             $config
         )->willReturn($response->updateResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->update($id, $hashMap)
         );
@@ -208,7 +208,7 @@ class ArticleClientTest extends TestCase
             $config
         )->willReturn($response->getDataResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ArticleDetailInterface::class,
             $this->subject->getDetailsById($id)
         );

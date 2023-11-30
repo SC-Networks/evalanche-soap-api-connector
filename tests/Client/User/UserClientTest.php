@@ -77,7 +77,7 @@ class UserClientTest extends TestCase
             $config
         )->willReturn($object);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->getByUsername('some username')
         );
@@ -132,7 +132,7 @@ class UserClientTest extends TestCase
             ->with($result, 'updateResult', $config)
             ->willReturn($object);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             UserInterface::class,
             $this->subject->updateUser($object)
         );

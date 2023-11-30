@@ -30,19 +30,19 @@ class EvalancheConfigTest extends TestCase
 
     public function testGetUsernameCanReturnUsername()
     {
-        $this->assertSame('some username', $this->subject->getUsername());
+        self::assertSame('some username', $this->subject->getUsername());
     }
 
     public function testGetPasswordCanReturnPassword()
     {
-        $this->assertSame('some password', $this->subject->getPassword());
+        self::assertSame('some password', $this->subject->getPassword());
     }
 
     public function testGetWsdlServiceUrlCanReturnWsdlUrl()
     {
         $wsdlUri = 'some wsdl uri';
 
-        $this->assertSame(
+        self::assertSame(
             sprintf('https://%s/%s', 'some hostname', $wsdlUri),
             $this->subject->getWsdlServiceUrl($wsdlUri)
         );
@@ -55,7 +55,7 @@ class EvalancheConfigTest extends TestCase
 
     public function testGetSoapSettingsReturnsData(): void
     {
-        $this->assertSame(
+        self::assertSame(
             $this->soapSettings,
             $this->subject->getSoapClientOptions()
         );

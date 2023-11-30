@@ -50,7 +50,7 @@ class ExtractorTest extends TestCase
                 'somethingfalse' => false,
             ]);
 
-        $this->assertSame([
+        self::assertSame([
             'id' => 5,
             'password' => 'something',
             'somethingempty' => '',
@@ -88,7 +88,7 @@ class ExtractorTest extends TestCase
             ]
         ];
 
-        $this->assertSame($expectedArray, $this->subject->extractArray(
+        self::assertSame($expectedArray, $this->subject->extractArray(
             $config,
             [$user, $user]
         ));

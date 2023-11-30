@@ -29,8 +29,7 @@
     "scn/hydrator-property-values": "^2.0|^3.0"
   },
   "require-dev": {
-    "php": ">=7.3",
-    "phpunit/phpunit": "^9",
+    "phpunit/phpunit": "^10",
     "friendsofphp/php-cs-fixer": "^3.0",
     "phpstan/phpstan": "^1.4",
     "phpstan/phpstan-strict-rules": "^1.1"

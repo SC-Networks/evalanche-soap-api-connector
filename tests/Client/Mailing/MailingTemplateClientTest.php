@@ -124,7 +124,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->createResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->create($title, $folderId)
         );
@@ -162,7 +162,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->renameResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->updateTitle($id, $title)
         );
@@ -380,7 +380,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->getConfigurationResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingTemplateConfigurationInterface::class,
             $this->subject->getConfiguration($id)
         );
@@ -425,7 +425,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->setConfigurationResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingTemplateConfigurationInterface::class,
             $this->subject->setConfiguration($id, $configuration)
         );
@@ -461,7 +461,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->getSourcesResult);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->getSources($id)
         );
@@ -508,7 +508,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->setSourcesResult);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->setSources($id, $configuration, $overwrite)
         );
@@ -601,7 +601,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->getSlotConfigurationResult);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->getSlotConfiguration($id)
         );
@@ -639,7 +639,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->addSlotResult);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->addSlot($id, $slotNumber)
         );
@@ -685,7 +685,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->updateSlotResult);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->updateSlot(
                 $id,
@@ -736,7 +736,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->addTemplatesToSlotResult);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->addTemplatesToSlot(
                 $id,
@@ -786,7 +786,7 @@ class MailingTemplateClientTest extends TestCase
             )
             ->willReturn($response->updateSlotTemplatesResult);
 
-        $this->assertSame(
+        self::assertSame(
             $object,
             $this->subject->updateSlotTemplates(
                 $id,

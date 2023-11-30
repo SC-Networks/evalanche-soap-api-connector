@@ -88,7 +88,7 @@ class FolderClientTest extends TestCase
             $config
         )->willReturn($response->createResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             FolderInformationInterface::class,
             $this->subject->create($title, $folderId)
         );
@@ -169,7 +169,7 @@ class FolderClientTest extends TestCase
         )->willReturn($response->getDetailsResult);
 
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             FolderInformationInterface::class,
             $this->subject->get($id)
         );

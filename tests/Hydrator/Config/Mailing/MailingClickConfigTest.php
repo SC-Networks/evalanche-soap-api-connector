@@ -38,7 +38,7 @@ class MailingClickConfigTest extends TestCase
 
     public function testGetObjectCanReturnInstanceOfUser()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             MailingClickInterface::class,
             $this->subject->getObject()
         );
@@ -47,14 +47,14 @@ class MailingClickConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
 }

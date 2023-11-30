@@ -44,7 +44,7 @@ class SoapClientFactoryTest extends TestCase
         $config->expects($this->once())->method('getWsdlServiceUrl')->with($portname)->willReturn(__DIR__ . '/' . $portname);
 
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             SoapClient::class,
             $this->subject->create($config, $portname)
         );
@@ -59,7 +59,7 @@ class SoapClientFactoryTest extends TestCase
         $config->expects($this->once())->method('getPassword')->willReturn('some password');
         $config->expects($this->once())->method('getWsdlServiceUrl')->with($portname)->willReturn(__DIR__ . '/' . $portname);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             SoapClient::class,
             $this->subject->create($config, $portname)
         );

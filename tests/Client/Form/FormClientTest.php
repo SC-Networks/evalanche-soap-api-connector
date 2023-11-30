@@ -99,7 +99,7 @@ class FormClientTest extends TestCase
             'addAttributeResult'
         )->willReturn($response->addAttributeResult);
 
-        $this->assertSame(
+        self::assertSame(
             $response->addAttributeResult,
             $this->subject->addAttribute($id, $poolAttributeId)
         );
@@ -149,7 +149,7 @@ class FormClientTest extends TestCase
             $config
         )->willReturn($response->createAliasResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->createAlias($id, $title, $folderId)
         );
@@ -205,7 +205,7 @@ class FormClientTest extends TestCase
             $config
         )->willReturn($response->getFormByAliasResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->getFormByAlias($id)
         );
@@ -305,7 +305,7 @@ class FormClientTest extends TestCase
             $config
         )->willReturn($response->updateTemplateResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->updateTemplate($id, $templateHtml)
         );
@@ -333,7 +333,7 @@ class FormClientTest extends TestCase
             $config
         )->willReturn($response->createResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->create($poolId, $title)
         );
@@ -370,7 +370,7 @@ class FormClientTest extends TestCase
             )
             ->willReturn($response->getConfigurationResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             FormConfigurationInterface::class,
             $this->subject->getConfiguration($id)
         );
@@ -418,7 +418,7 @@ class FormClientTest extends TestCase
             )
             ->willReturn($response->setConfigurationResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             FormConfigurationInterface::class,
             $this->subject->setConfiguration($id, $configuration)
         );

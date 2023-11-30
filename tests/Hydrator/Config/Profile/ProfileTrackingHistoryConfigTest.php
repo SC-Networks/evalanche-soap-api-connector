@@ -44,7 +44,7 @@ class ProfileTrackingHistoryConfigTest extends TestCase
 
     public function testGetObjectCanReturnInstanceOfUser()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ProfileTrackingHistoryInterface::class,
             $this->subject->getObject()
         );
@@ -53,14 +53,14 @@ class ProfileTrackingHistoryConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
 }

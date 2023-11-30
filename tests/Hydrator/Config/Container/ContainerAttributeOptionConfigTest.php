@@ -36,7 +36,7 @@ class ContainerAttributeOptionConfigTest extends TestCase
 
     public function testGetObjectCanReturnInstanceOfUser()
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ContainerAttributeOptionInterface::class,
             $this->subject->getObject()
         );
@@ -45,14 +45,14 @@ class ContainerAttributeOptionConfigTest extends TestCase
     public function testGetHydratorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
     public function testGetExtractorPropertiesCanReturnArray()
     {
         foreach ($this->arrayKeys as $arrayKey) {
-            $this->assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
+            self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
         }
     }
 }

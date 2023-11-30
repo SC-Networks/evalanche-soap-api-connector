@@ -153,7 +153,7 @@ class MarketplaceClientTest extends TestCase
             ->method('getString')
             ->with($result, 'RecipeId')
             ->willReturn($result_string);
-        $this->assertSame(
+        self::assertSame(
             $result_string,
             $this->subject->purchaseProduct($productId, $mandatorId, $languageId)
         );

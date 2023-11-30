@@ -99,7 +99,7 @@ class ArticleTemplateClientTest extends TestCase
             $config
         )->willReturn($response->createResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->create($title, $typeId, $template, $folderId)
         );
@@ -133,7 +133,7 @@ class ArticleTemplateClientTest extends TestCase
             $config
         )->willReturn($response->createResult);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->updateTemplate($templateId, $template)
         );
