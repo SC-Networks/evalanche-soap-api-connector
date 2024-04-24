@@ -7,28 +7,18 @@ namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
-/**
- * Class ResourceInformationConfigTest
- *
- * @package Scn\EvalancheSoapApiConnector\Hydrator\Generic
- */
 class ResourceInformationConfigTest extends TestCase
 {
-    /**
-     * @var ResourceInformationConfig
-     */
-    private $subject;
+    private ResourceInformationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'url',
         'type_id',
         'category_id',
         'customer_id',
         'id',
         'name',
+        'last_modified'
     ];
 
     public function setUp(): void

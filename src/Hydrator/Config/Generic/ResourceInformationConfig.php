@@ -34,7 +34,8 @@ class ResourceInformationConfig implements HydratorConfigInterface
             'category_id' => IntegerValue::set('folderId'),
             'customer_id' => IntegerValue::set('mandatorId'),
             'id' => IntegerValue::set('id'),
-            'name' => StringValue::set('name')
+            'name' => StringValue::set('name'),
+            'last_modified' => IntegerValue::set('lastModified'),
         ];
     }
 
@@ -49,7 +50,8 @@ class ResourceInformationConfig implements HydratorConfigInterface
             'category_id' => IntegerValue::get('folderId'),
             'customer_id' => IntegerValue::get('mandatorId'),
             'id' => IntegerValue::get('id'),
-            'name' => StringValue::get('name')
+            'name' => StringValue::get('name'),
+            'last_modified' => IntegerValue::get('lastModified'),
         ];
     }
 }
