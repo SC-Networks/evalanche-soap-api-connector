@@ -24,7 +24,7 @@
   "require": {
     "php": "^8.1",
     "ext-soap": "*",
-    "scn/evalanche-soap-api-struct": "^2.1",
+    "scn/evalanche-soap-api-struct": "^2.2",
     "scn/hydrator": "^2|^3",
     "scn/hydrator-property-values": "^2.0|^3.0"
   },

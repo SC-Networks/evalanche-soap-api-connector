@@ -2,7 +2,6 @@
 
 namespace Scn\EvalancheSoapApiConnector;
 
-use Scn\EvalancheSoapApiConnector\Client;
 use Scn\EvalancheSoapApiConnector\Extractor\Extractor;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactory;

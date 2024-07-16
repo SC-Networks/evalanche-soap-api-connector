@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector;
 
 use PHPUnit\Framework\MockObject\MockObject;
-use Scn\EvalancheSoapApiConnector\Client;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;

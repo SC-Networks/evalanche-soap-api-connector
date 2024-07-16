@@ -8,7 +8,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Config\Article\ArticleIndividualizationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
