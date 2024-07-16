@@ -125,6 +125,11 @@ final class EvalancheConnection implements EvalancheConnectionInterface
         return $this->createClient(Client\Image\ImageClient::class);
     }
 
+    public function createLeadpageClient(): Client\LeadPage\LeadpageClientInterface
+    {
+        return $this->createClient(Client\LeadPage\LeadpageClient::class);
+    }
+
     public function createMailingClient(): Client\Mailing\MailingClientInterface
     {
         return $this->createClient(Client\Mailing\MailingClient::class);

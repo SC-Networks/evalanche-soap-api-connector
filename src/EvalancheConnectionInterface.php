@@ -28,6 +28,8 @@ interface EvalancheConnectionInterface
 
     public function createImageClient(): Client\Image\ImageClientInterface;
 
+    public function createLeadpageClient(): Client\LeadPage\LeadpageClientInterface;
+
     public function createMailingClient(): Client\Mailing\MailingClientInterface;
 
     public function createMailingTemplateClient(): Client\Mailing\MailingTemplateClientInterface;
