@@ -11,10 +11,7 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 
 class EvalancheConnectionTest extends TestCase
 {
-    /**
-     * @var EvalancheConnection
-     */
-    private $subject;
+    private EvalancheConnection $subject;
 
     /**
      * @var EvalancheConfigInterface|MockObject
@@ -279,6 +276,14 @@ class EvalancheConnectionTest extends TestCase
         self::assertInstanceOf(
             Client\CouponList\CouponListClient::class,
             $this->subject->createCouponListClient()
+        );
+    }
+
+    public function testCreateLeadpageClientCanReturnInstance(): void
+    {
+        self::assertInstanceOf(
+            Client\LeadPage\LeadpageClient::class,
+            $this->subject->createLeadpageClient()
         );
     }
 }
