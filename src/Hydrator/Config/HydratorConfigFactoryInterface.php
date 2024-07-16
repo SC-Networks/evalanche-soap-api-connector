@@ -2,8 +2,6 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config;
 
-use Scn\EvalancheSoapStruct\Struct\MailingTemplate\AllowedTemplatesInterface;
-
 interface HydratorConfigFactoryInterface
 {
     public function createWorkflowDetailConfig(): HydratorConfigInterface;
@@ -77,6 +75,8 @@ interface HydratorConfigFactoryInterface
     public function createMailingDetailConfig(): HydratorConfigInterface;
 
     public function createMailingClickConfig(): HydratorConfigInterface;
+
+    public function createLeadpageConfigurationConfig(): HydratorConfigInterface;
 
     public function createMailingConfigurationConfig(): HydratorConfigInterface;
 
