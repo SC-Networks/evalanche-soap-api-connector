@@ -286,4 +286,12 @@ class EvalancheConnectionTest extends TestCase
             $this->subject->createLeadpageClient()
         );
     }
+
+    public function testCreateLeadpageTemplateClientCanReturnInstance(): void
+    {
+        self::assertInstanceOf(
+            Client\LeadPageTemplate\LeadpageTemplateClient::class,
+            $this->subject->createLeadpageTemplateClient()
+        );
+    }
 }

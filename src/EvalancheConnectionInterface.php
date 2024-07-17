@@ -61,4 +61,6 @@ interface EvalancheConnectionInterface
     public function createMarketplaceClient(): Client\Marketplace\MarketplaceClientInterface;
 
     public function createCouponListClient(): Client\CouponList\CouponListClientInterface;
+
+    public function createLeadpageTemplateClient(): Client\LeadPageTemplate\LeadpageTemplateClientInterface;
 }

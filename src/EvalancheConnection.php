@@ -209,4 +209,9 @@ final class EvalancheConnection implements EvalancheConnectionInterface
     {
         return $this->createClient(Client\CouponList\CouponListClient::class);
     }
+
+    public function createLeadpageTemplateClient(): Client\LeadPageTemplate\LeadpageTemplateClientInterface
+    {
+        return $this->createClient(Client\LeadPageTemplate\LeadpageTemplateClient::class);
+    }
 }
