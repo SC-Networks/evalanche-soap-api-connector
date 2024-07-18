@@ -3,12 +3,14 @@
 namespace Scn\EvalancheSoapApiConnector\Client\LeadPage;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Generic\EditorModulesTypesTraitInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageConfigurationInterface;
 
-interface LeadpageClientInterface extends ResourceTraitInterface, ClientInterface
+interface LeadpageClientInterface extends ResourceTraitInterface, EditorModulesTypesTraitInterface, ClientInterface
 {
     /**
      * @param int $id
@@ -45,4 +47,21 @@ interface LeadpageClientInterface extends ResourceTraitInterface, ClientInterfac
         int $id,
         LeadpageConfigurationInterface $configuration
     ): LeadpageConfigurationInterface;
+
+    /**
+     * @param int $leadpageId
+     *
+     * @return HashMapInterface
+     * @throws EmptyResultException
+     */
+    public function getContentContainerData(int $leadpageId): HashMapInterface;
+
+    /**
+     * @param int $leadpageId
+     * @param HashMapInterface $hashMap
+     *
+     * @return ResourceInformationInterface
+     * @throws EmptyResultException
+     */
+    public function setContentContainerData(int $leadpageId, HashMapInterface $hashMap): ResourceInformationInterface;
 }

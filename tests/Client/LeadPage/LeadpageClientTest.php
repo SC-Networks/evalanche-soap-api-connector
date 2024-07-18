@@ -12,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageConfigurationInterface;
@@ -48,6 +49,10 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
             'getById',
             'getResourceDefaultCategory',
             'getByExternalId',
+            'getContentContainerData',
+            'setContentContainerData',
+            'updateModuleTypes',
+            'retrieveModuleTypes'
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -353,5 +358,135 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
             ResourceInformationInterface::class,
             $this->subject->getByExternalId($id)
         );
+    }
+
+    public function testGetContentContainerDataReturnsData(): void
+    {
+        $id = 666;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->getContentContainerDataResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createHashMapConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('getContentContainerData')
+            ->with(['leadpage_id' => $id])->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'getContentContainerDataResult',
+                $config
+            )
+            ->willReturn($response->getContentContainerDataResult);
+
+        self::assertSame(
+            $object,
+            $this->subject->getContentContainerData($id)
+        );
+    }
+
+    public function testSetContentContainerDataSetsData(): void
+    {
+        $id = 666;
+        $extractedData = [
+            [
+                'some' => 'data'
+            ],
+            [
+                'some' => 'other data'
+            ]
+        ];
+
+        $hashMapConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $resourceInformationConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->setContentContainerDataResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createHashMapConfig')
+            ->willReturn($hashMapConfig);
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createResourceInformationConfig')
+            ->willReturn($resourceInformationConfig);
+
+        $this->soapClient->expects($this->once())
+            ->method('setContentContainerData')
+            ->with([
+                'leadpage_id' => $id,
+                'data' => $extractedData
+            ])->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'setContentContainerDataResult',
+                $resourceInformationConfig
+            )
+            ->willReturn($response->setContentContainerDataResult);
+
+        $this->extractor->expects($this->once())
+            ->method('extract')
+            ->with(
+                $hashMapConfig,
+                $hashMap
+            )
+            ->willReturn($extractedData);
+
+        self::assertSame(
+            $object,
+            $this->subject->setContentContainerData($id, $hashMap)
+        );
+    }
+
+    public function testUpdateModuleTypesCanReturnBool(): void
+    {
+        $id = 23;
+        $moduleTypeContent = 'some-thing';
+
+        $response = new stdClass();
+        $response->updateModuleTypesResult = true;
+
+        $this->soapClient->expects($this->once())->method('updateModuleTypes')->with([
+            'resource_id' => $id,
+            'module_type_content' => $moduleTypeContent
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'updateModuleTypesResult'
+        )->willReturn($response->updateModuleTypesResult);
+
+
+        static::assertTrue($this->subject->updateModuleTypes($id, $moduleTypeContent));
+    }
+
+    public function testGetModuleTypesCanReturnString(): void
+    {
+        $id = 23;
+
+        $response = new stdClass();
+        $response->retrieveModuleTypesResult = 'some-thing';
+
+        $this->soapClient->expects($this->once())->method('retrieveModuleTypes')->with([
+            'resource_id' => $id
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getString')->with(
+            $response,
+            'retrieveModuleTypesResult'
+        )->willReturn($response->retrieveModuleTypesResult);
+
+
+        static::assertSame('some-thing', $this->subject->getModuleTypes($id));
     }
 }
