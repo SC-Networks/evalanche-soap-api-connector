@@ -6,14 +6,17 @@ namespace Scn\EvalancheSoapApiConnector\Client\LeadPage;
 
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Generic\EditorModuleTypesTrait;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageConfigurationInterface;
 
 class LeadpageClient extends AbstractClient implements LeadpageClientInterface
 {
     use ResourceTrait;
+    use EditorModuleTypesTrait;
     const PORTNAME = 'leadpage';
     const VERSION = ClientInterface::VERSION_V0;
 
@@ -78,6 +81,45 @@ class LeadpageClient extends AbstractClient implements LeadpageClientInterface
             ),
             'setConfigurationResult',
             $this->hydratorConfigFactory->createLeadpageConfigurationConfig()
+        );
+    }
+
+    /**
+     * @param int $leadpageId
+     *
+     * @return HashMapInterface
+     * @throws EmptyResultException
+     */
+    public function getContentContainerData(int $leadpageId): HashMapInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getContentContainerData([
+                'leadpage_id' => $leadpageId
+            ]),
+            'getContentContainerDataResult',
+            $this->hydratorConfigFactory->createHashMapConfig()
+        );
+    }
+
+    /**
+     * @param int $leadpageId
+     * @param HashMapInterface $hashMap
+     *
+     * @return ResourceInformationInterface
+     * @throws EmptyResultException
+     */
+    public function setContentContainerData(int $leadpageId, HashMapInterface $hashMap): ResourceInformationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->setContentContainerData([
+                'leadpage_id' => $leadpageId,
+                'data' => $this->extractor->extract(
+                    $this->hydratorConfigFactory->createHashMapConfig(),
+                    $hashMap
+                )
+            ]),
+            'setContentContainerDataResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
         );
     }
 }

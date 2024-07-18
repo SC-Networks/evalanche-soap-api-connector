@@ -31,11 +31,6 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\ClientStatisticInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\MailingStatisticInterface;
 use stdClass;
 
-/**
- * Class MailingClientTest
- *
- * @package Scn\EvalancheSoapApiConnector\Client\Mailing
- */
 class MailingClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
@@ -119,6 +114,8 @@ class MailingClientTest extends TestCase
             'getByExternalId',
             'getContentContainerData',
             'setContentContainerData',
+            'updateModuleTypes',
+            'retrieveModuleTypes'
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -1554,5 +1551,45 @@ class MailingClientTest extends TestCase
             $object,
             $this->subject->setContentContainerData($id, $hashMap)
         );
+    }
+
+    public function testUpdateModuleTypesCanReturnBool(): void
+    {
+        $id = 23;
+        $moduleTypeContent = 'some-thing';
+
+        $response = new stdClass();
+        $response->updateModuleTypesResult = true;
+
+        $this->soapClient->expects($this->once())->method('updateModuleTypes')->with([
+            'resource_id' => $id,
+            'module_type_content' => $moduleTypeContent
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getBoolean')->with(
+            $response,
+            'updateModuleTypesResult'
+        )->willReturn($response->updateModuleTypesResult);
+
+
+        static::assertTrue($this->subject->updateModuleTypes($id, $moduleTypeContent));
+    }
+
+    public function testGetModuleTypesCanReturnString(): void
+    {
+        $id = 23;
+
+        $response = new stdClass();
+        $response->retrieveModuleTypesResult = 'some-thing';
+
+        $this->soapClient->expects($this->once())->method('retrieveModuleTypes')->with([
+            'resource_id' => $id
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getString')->with(
+            $response,
+            'retrieveModuleTypesResult'
+        )->willReturn($response->retrieveModuleTypesResult);
+
+
+        static::assertSame('some-thing', $this->subject->getModuleTypes($id));
     }
 }
