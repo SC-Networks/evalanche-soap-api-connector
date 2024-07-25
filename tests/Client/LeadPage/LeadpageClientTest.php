@@ -376,7 +376,7 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
 
         $this->soapClient->expects($this->once())
             ->method('getContentContainerData')
-            ->with(['leadpage_id' => $id])->willReturn($response);
+            ->with(['resource_id' => $id])->willReturn($response);
 
         $this->responseMapper->expects($this->once())
             ->method('getObject')
@@ -423,7 +423,7 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         $this->soapClient->expects($this->once())
             ->method('setContentContainerData')
             ->with([
-                'leadpage_id' => $id,
+                'resource_id' => $id,
                 'data' => $extractedData
             ])->willReturn($response);
 

@@ -835,7 +835,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     {
         return $this->responseMapper->getObject(
             $this->soapClient->getContentContainerData([
-                'mailing_id' => $mailingId
+                'resource_id' => $mailingId
             ]),
             'getContentContainerDataResult',
             $this->hydratorConfigFactory->createHashMapConfig()
@@ -853,7 +853,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     {
         return $this->responseMapper->getObject(
             $this->soapClient->setContentContainerData([
-                'mailing_id' => $mailingId,
+                'resource_id' => $mailingId,
                 'data' => $this->extractor->extract(
                     $this->hydratorConfigFactory->createHashMapConfig(),
                     $hashMap

@@ -94,7 +94,7 @@ class LeadpageClient extends AbstractClient implements LeadpageClientInterface
     {
         return $this->responseMapper->getObject(
             $this->soapClient->getContentContainerData([
-                'leadpage_id' => $leadpageId
+                'resource_id' => $leadpageId
             ]),
             'getContentContainerDataResult',
             $this->hydratorConfigFactory->createHashMapConfig()
@@ -112,7 +112,7 @@ class LeadpageClient extends AbstractClient implements LeadpageClientInterface
     {
         return $this->responseMapper->getObject(
             $this->soapClient->setContentContainerData([
-                'leadpage_id' => $leadpageId,
+                'resource_id' => $leadpageId,
                 'data' => $this->extractor->extract(
                     $this->hydratorConfigFactory->createHashMapConfig(),
                     $hashMap
