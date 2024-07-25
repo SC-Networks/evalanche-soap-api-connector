@@ -15,7 +15,6 @@ use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\MassUpdateResultInterface;
-use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Profile\ProfileTrackingHistoryInterface;
 use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupMemberShipInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingStatusInterface;

@@ -4,7 +4,6 @@ namespace Scn\EvalancheSoapApiConnector\Client\Pool;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
-use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 
 /**
  * Interface PoolDataMinerClientInterface

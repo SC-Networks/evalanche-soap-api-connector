@@ -2,8 +2,6 @@
 
 namespace Scn\EvalancheSoapApiConnector;
 
-use Scn\EvalancheSoapApiConnector\Client;
-
 interface EvalancheConnectionInterface
 {
     public static function create(string $hostname, string $username, string $password): EvalancheConnectionInterface;
