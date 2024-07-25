@@ -1479,7 +1479,7 @@ class MailingClientTest extends TestCase
         
         $this->soapClient->expects($this->once())
             ->method('getContentContainerData')
-            ->with(['mailing_id' => $id])->willReturn($response);
+            ->with(['resource_id' => $id])->willReturn($response);
         
         $this->responseMapper->expects($this->once())
             ->method('getObject')
@@ -1526,7 +1526,7 @@ class MailingClientTest extends TestCase
         $this->soapClient->expects($this->once())
             ->method('setContentContainerData')
             ->with([
-                'mailing_id' => $id,
+                'resource_id' => $id,
                 'data' => $extractedData
             ])->willReturn($response);
 
