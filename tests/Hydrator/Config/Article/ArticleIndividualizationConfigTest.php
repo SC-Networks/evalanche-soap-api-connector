@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Article;
 
 use Scn\EvalancheSoapApiConnector\TestCase;
-use Scn\EvalancheSoapStruct\Struct\Article\ArticleIndividualization;
 use Scn\EvalancheSoapStruct\Struct\Article\ArticleIndividualizationInterface;
-use Scn\EvalancheSoapStruct\Struct\Article\ArticleIndividualizationItemInterface;
 
 class ArticleIndividualizationConfigTest extends TestCase
 {

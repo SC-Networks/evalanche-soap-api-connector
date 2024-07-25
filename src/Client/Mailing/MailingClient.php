@@ -6,13 +6,10 @@ use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
-use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
-use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
-use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatusInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingClickInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingConfigurationInterface;
@@ -836,7 +833,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     {
         return $this->responseMapper->getObject(
             $this->soapClient->getContentContainerData([
-                'mailing_id' => $mailingId
+                'resource_id' => $mailingId
             ]),
             'getContentContainerDataResult',
             $this->hydratorConfigFactory->createHashMapConfig()
@@ -854,7 +851,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     {
         return $this->responseMapper->getObject(
             $this->soapClient->setContentContainerData([
-                'mailing_id' => $mailingId,
+                'resource_id' => $mailingId,
                 'data' => $this->extractor->extract(
                     $this->hydratorConfigFactory->createHashMapConfig(),
                     $hashMap

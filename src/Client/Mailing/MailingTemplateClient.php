@@ -12,7 +12,6 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlotItemInterface;
-use Scn\EvalancheSoapStruct\Struct\MailingTemplate\AllowedTemplatesInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateAllowedTemplatesInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterface;
