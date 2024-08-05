@@ -1,7 +1,7 @@
 # Changelog
 
 ## [1.13.1] - 2024-08-05
-### ADDED
+### FIXED
 - Correct parameter-name of the set-/getContainerContainerData methods (had
   been changed due to technical reasons)
 
