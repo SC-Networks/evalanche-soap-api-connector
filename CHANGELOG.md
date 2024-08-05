@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.13.1] - 2024-08-05
+### ADDED
+- Correct parameter-name of the set-/getContainerContainerData methods (had
+  been changed due to technical reasons)
+
 ## [1.13.0] - 2023-11-10
 ### ADDED
 - Add support to define the allowed templates when configuring slot items
