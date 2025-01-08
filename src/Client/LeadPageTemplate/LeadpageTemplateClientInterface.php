@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\LeadpageTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\TemplatesSourcesInterface;
 
 interface LeadpageTemplateClientInterface extends ResourceTraitInterface, ClientInterface
@@ -42,4 +43,24 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
         TemplatesSourcesInterface $configuration,
         bool $overwrite = false
     ): TemplatesSourcesInterface;
+
+    /**
+     * @param int $id
+     *
+     * @return LeadpageTemplateConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getConfiguration(int $id): LeadpageTemplateConfigurationInterface;
+
+    /**
+     * @param int $id
+     * @param LeadpageTemplateConfigurationInterface $configuration
+     *
+     * @return LeadpageTemplateConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function setConfiguration(
+        int $id,
+        LeadpageTemplateConfigurationInterface $configuration
+    ): LeadpageTemplateConfigurationInterface;
 }

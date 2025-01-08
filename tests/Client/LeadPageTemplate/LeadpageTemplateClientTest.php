@@ -12,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\LeadpageTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\TemplatesSourcesInterface;
 use \stdClass;
 
@@ -224,6 +225,65 @@ class LeadpageTemplateClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         self::assertSame(
             $object,
             $this->subject->setSources($id, $configuration, $overwrite)
+        );
+    }
+
+    public function testSetConfigurationCanReturnInstanceOfLeadpageTemplateConfiguration(): void
+    {
+        $id = 128;
+        $configuration = $this->getMockBuilder(LeadpageTemplateConfigurationInterface::class)->getMock();
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(LeadpageTemplateConfigurationInterface::class)->getMock();
+
+        $extractedData = [
+            'some ' => 'data',
+        ];
+
+        $response = new stdClass();
+        $response->setConfigurationResult = $object;
+
+        $this->extractor->expects($this->once())->method('extract')->with($config, $configuration)->willReturn($extractedData);
+        $this->hydratorConfigFactory->expects($this->exactly(2))->method('createLeadpageTemplateConfigurationConfig')->willReturn($config);
+        $this->soapClient->expects($this->once())->method('setConfiguration')->with([
+            'leadpage_template_id' => $id,
+            'configuration' => $extractedData,
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'setConfigurationResult',
+            $config
+        )->willReturn($response->setConfigurationResult);
+
+        self::assertInstanceOf(
+            LeadpageTemplateConfigurationInterface::class,
+            $this->subject->setConfiguration($id, $configuration)
+        );
+    }
+
+    public function testGetConfigurationCanReturnInstanceOfLeadpageTemplateConfiguration(): void
+    {
+        $id = 667;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(LeadpageTemplateConfigurationInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->getConfigurationResult = $object;
+
+        $this->hydratorConfigFactory->expects($this->once())->method('createLeadpageTemplateConfigurationConfig')->willReturn($config);
+        $this->soapClient->expects($this->once())->method('getConfiguration')->with([
+            'leadpage_template_id' => $id,
+        ])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObject')->with(
+            $response,
+            'getConfigurationResult',
+            $config
+        )->willReturn($response->getConfigurationResult);
+
+        self::assertInstanceOf(
+            LeadpageTemplateConfigurationInterface::class,
+            $this->subject->getConfiguration($id),
         );
     }
 }

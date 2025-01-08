@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2cdf31ca6a736b7d8c0bb5baed2febd5",
+    "content-hash": "592d06f3776ef7695854752ce2ace4fb",
     "packages": [
         {
             "name": "scn/evalanche-soap-api-struct",
-            "version": "2.3.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SC-Networks/evalanche-soap-api-struct.git",
-                "reference": "0964418a4ee14385e1e8fb9084340b0d2a3ccff9"
+                "reference": "de362d255adb88730ca7be22a97d4bf5a8a84f7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SC-Networks/evalanche-soap-api-struct/zipball/0964418a4ee14385e1e8fb9084340b0d2a3ccff9",
-                "reference": "0964418a4ee14385e1e8fb9084340b0d2a3ccff9",
+                "url": "https://api.github.com/repos/SC-Networks/evalanche-soap-api-struct/zipball/de362d255adb88730ca7be22a97d4bf5a8a84f7b",
+                "reference": "de362d255adb88730ca7be22a97d4bf5a8a84f7b",
                 "shasum": ""
             },
             "require": {
@@ -61,9 +61,9 @@
             ],
             "support": {
                 "issues": "https://github.com/SC-Networks/evalanche-soap-api-struct/issues",
-                "source": "https://github.com/SC-Networks/evalanche-soap-api-struct/tree/2.3.0"
+                "source": "https://github.com/SC-Networks/evalanche-soap-api-struct/tree/2.4.0"
             },
-            "time": "2024-07-17T08:12:27+00:00"
+            "time": "2025-01-09T08:39:41+00:00"
         },
         {
             "name": "scn/hydrator",
