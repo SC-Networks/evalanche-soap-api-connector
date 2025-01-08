@@ -9,6 +9,8 @@ use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\LeadpageTemplateConfiguration;
+use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\LeadpageTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\TemplatesSourcesInterface;
 
 class LeadpageTemplateClient extends AbstractClient implements LeadpageTemplateClientInterface
@@ -84,6 +86,51 @@ class LeadpageTemplateClient extends AbstractClient implements LeadpageTemplateC
             ),
             'setSourcesResult',
             $this->hydratorConfigFactory->createLeadpageTemplateSourcesConfig()
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return LeadpageTemplateConfigurationInterface
+     * @throws EmptyResultException
+     */
+    public function getConfiguration(int $id): LeadpageTemplateConfigurationInterface
+    {
+        return $this->responseMapper->getObject(
+            $this->soapClient->getConfiguration(
+                [
+                    'leadpage_template_id' => $id,
+                ],
+            ),
+            'getConfigurationResult',
+            $this->hydratorConfigFactory->createLeadpageTemplateConfigurationConfig(),
+        );
+    }
+
+    /**
+     * @param int $id
+     * @param LeadpageTemplateConfigurationInterface $configuration
+     *
+     * @return LeadpageTemplateConfiguration
+     * @throws EmptyResultException
+     */
+    public function setConfiguration(
+        int $id,
+        LeadpageTemplateConfigurationInterface $configuration
+    ): LeadpageTemplateConfigurationInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->setConfiguration(
+                [
+                    'leadpage_template_id' => $id,
+                    'configuration' => $this->extractor->extract(
+                        $this->hydratorConfigFactory->createLeadpageTemplateConfigurationConfig(),
+                        $configuration,
+                    ),
+                ],
+            ),
+            'setConfigurationResult',
+            $this->hydratorConfigFactory->createLeadpageTemplateConfigurationConfig(),
         );
     }
 }

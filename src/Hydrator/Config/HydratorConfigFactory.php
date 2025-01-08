@@ -24,6 +24,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceTypeInformatio
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ServiceStatusConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPage\LeadpageConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageTemplateSourcesConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageTemplateConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingArticleConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingClickConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingConfigurationConfig;
@@ -249,6 +250,11 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createLeadpageConfigurationConfig(): HydratorConfigInterface
     {
         return new LeadpageConfigurationConfig();
+    }
+    
+    public function createLeadpageTemplateConfigurationConfig(): HydratorConfigInterface
+    {
+        return new LeadpageTemplateConfigurationConfig();
     }
 
     public function createMailingConfigurationConfig(): HydratorConfigInterface
