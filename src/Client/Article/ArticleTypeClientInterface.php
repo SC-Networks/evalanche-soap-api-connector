@@ -111,15 +111,10 @@ interface ArticleTypeClientInterface extends ClientInterface, ResourceTraitInter
 
     /**
      * @param int $id
-     *
-     * @return ContainerAttributeInterface[]
-     * @throws EmptyResultException;
-     *
-     * /**
-     * @param int $id
      * @param int $attributeId
      *
      * @return bool
+     *
      * @throws EmptyResultException
      */
     public function removeAttribute(int $id, int $attributeId): bool;
