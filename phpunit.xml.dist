@@ -6,6 +6,7 @@
          colors="true"
          cacheDirectory=".phpunit.cache"
          displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
          >
   <coverage includeUncoveredFiles="false"/>
   <testsuites>
