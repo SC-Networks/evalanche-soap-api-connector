@@ -113,9 +113,11 @@ interface ArticleTypeClientInterface extends ClientInterface, ResourceTraitInter
      * @param int $id
      *
      * @return ContainerAttributeInterface[]
-     * @throws EmptyResultException;
-     *
-     * /**
+     * @throws EmptyResultException
+     */
+    public function getAttributes(int $id): array;
+
+    /**
      * @param int $id
      * @param int $attributeId
      *
