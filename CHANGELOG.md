@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.13.2] - 2024-08-27
+## [1.13.2] - 2025-08-27
 ### FIXED
 - Add missing `getAttributes` methode to `ArticleTypeInterface`
 
