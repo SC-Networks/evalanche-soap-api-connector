@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.13.2] - 2024-08-27
+### FIXED
+- Add missing `getAttributes` methode to `ArticleTypeInterface`
+
 ## [1.13.1] - 2024-08-05
 ### FIXED
 - Correct parameter-name of the set-/getContainerContainerData methods (had
