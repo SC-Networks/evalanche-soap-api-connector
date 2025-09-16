@@ -17,11 +17,6 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
 use stdClass;
 
-/**
- * Class FormClientTest
- *
- * @package Scn\EvalancheSoapApiConnector\Client\Form
- */
 class FormClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
@@ -69,6 +64,7 @@ class FormClientTest extends TestCase
             'create',
             'getConfiguration',
             'setConfiguration',
+            'toggleHtmlTemplateMode',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -421,6 +417,33 @@ class FormClientTest extends TestCase
         self::assertInstanceOf(
             FormConfigurationInterface::class,
             $this->subject->setConfiguration($id, $configuration)
+        );
+    }
+
+    public function testToggleHtmlTemplateUpdateModeToggles(): void
+    {
+        $id = 123;
+        $response = new stdClass();
+
+        $this->soapClient
+            ->expects($this->once())
+            ->method('toggleHtmlTemplateMode')
+            ->with([
+                'form_id' => $id,
+                'enabled' => true,
+            ])
+            ->willReturn($response);
+        $this->responseMapper
+            ->expects($this->once())
+            ->method('getBoolean')
+            ->with(
+                $response,
+                'toggleHtmlTemplateModeResult',
+            )
+            ->willReturn(true);
+
+        $this->assertTrue(
+            $this->subject->toggleHtmlTemplateMode($id, true)
         );
     }
 }
