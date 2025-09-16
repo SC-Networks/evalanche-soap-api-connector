@@ -234,4 +234,18 @@ final class FormClient extends AbstractClient implements FormClientInterface
             $this->hydratorConfigFactory->createFormConfigurationConfig()
         );
     }
+
+    /** @inheritDoc */
+    public function toggleHtmlTemplateMode(int $id, bool $enabled): bool
+    {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->toggleHtmlTemplateMode(
+                [
+                    'form_id' => $id,
+                    'enabled' => $enabled,
+                ]
+            ),
+            'toggleHtmlTemplateModeResult'
+        );
+    }
 }

@@ -117,4 +117,13 @@ interface FormClientInterface extends ClientInterface, ResourceTraitInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $id): FormConfigurationInterface;
+
+    /**
+     * Toggles the individual html-template mode
+     *
+     * @return bool The current state of the individual html-temlate mode
+     *
+     * @throws EmptyResultException
+     */
+    public function toggleHtmlTemplateMode(int $id, bool $enabled): bool;
 }
