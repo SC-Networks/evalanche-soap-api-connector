@@ -16,6 +16,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
+use Scn\EvalancheSoapStruct\Struct\Generic\JobStateInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatusInterface;
@@ -115,7 +116,9 @@ class MailingClientTest extends TestCase
             'getContentContainerData',
             'setContentContainerData',
             'updateModuleTypes',
-            'retrieveModuleTypes'
+            'retrieveModuleTypes',
+            'runContentGeneration',
+            'getJobState',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -1591,5 +1594,90 @@ class MailingClientTest extends TestCase
 
 
         static::assertSame('some-thing', $this->subject->getModuleTypes($id));
+    }
+
+    public function testRunContentGenerationReturnsData(): void
+    {
+        $id = 666;
+        $extractedData = ['some' => 'data'];
+
+        $hashMapConfig = $this->createMock(HydratorConfigInterface::class);
+        $hydrator = $this->createMock(HydratorConfigInterface::class);
+        $result = $this->createMock(JobStateInterface::class);
+        $variables = $this->createMock(HashMapInterface::class);
+
+        $response = new stdClass();
+        $response->runContentGenerationResult = $result;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createHashMapConfig')
+            ->willReturn($hashMapConfig);
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createJobStateConfig')
+            ->willReturn($hydrator);
+
+        $this->soapClient->expects($this->once())
+            ->method('runContentGeneration')
+            ->with([
+                'resource_id' => $id,
+                'variables' => $extractedData
+            ])->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'runContentGenerationResult',
+                $hydrator
+            )
+            ->willReturn($response->runContentGenerationResult);
+
+        $this->extractor->expects($this->once())
+            ->method('extract')
+            ->with(
+                $hashMapConfig,
+                $variables
+            )
+            ->willReturn($extractedData);
+
+        self::assertSame(
+            $result,
+            $this->subject->runContentGeneration($id, $variables)
+        );
+    }
+
+    public function testGetJobStateReturnsData(): void
+    {
+        $id = 'some-id';
+
+        $hydrator = $this->createMock(HydratorConfigInterface::class);
+        $result = $this->createMock(JobStateInterface::class);
+
+        $response = new stdClass();
+        $response->getJobStateResult = $result;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createJobStateConfig')
+            ->willReturn($hydrator);
+
+        $this->soapClient->expects($this->once())
+            ->method('getJobState')
+            ->with([
+                'job_id' => $id,
+            ])->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObject')
+            ->with(
+                $response,
+                'getJobStateResult',
+                $hydrator
+            )
+            ->willReturn($response->getJobStateResult);
+
+        self::assertSame(
+            $result,
+            $this->subject->getJobState($id)
+        );
     }
 }

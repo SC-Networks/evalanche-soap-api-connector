@@ -20,6 +20,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfi
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobResultConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobStateConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\MassUpdateResultConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceTypeInformationConfig;
@@ -156,6 +157,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createLeadpageConfigurationConfig', LeadpageConfigurationConfig::class],
             ['createLeadpageTemplateSourcesConfig', LeadpageTemplateSourcesConfig::class],
             ['createLeadpageTemplateConfigurationConfig', LeadpageTemplateConfigurationConfig::class],
+            ['createJobStateConfig', JobStateConfig::class],
         ];
     }
 }
