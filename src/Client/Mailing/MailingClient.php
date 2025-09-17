@@ -4,6 +4,7 @@ namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
 use Scn\EvalancheSoapApiConnector\Client\AbstractClient;
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Generic\ContentGenerationTrait;
 use Scn\EvalancheSoapApiConnector\Client\Generic\EditorModuleTypesTrait;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
@@ -29,6 +30,7 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\MailingStatisticInterface;
  */
 final class MailingClient extends AbstractClient implements MailingClientInterface
 {
+    use ContentGenerationTrait;
     use ResourceTrait;
     use EditorModuleTypesTrait;
     const PORTNAME = 'mailing';

@@ -3,6 +3,7 @@
 namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Generic\ContentGenerationInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\EditorModulesTypesTraitInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
@@ -29,7 +30,11 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\MailingStatisticInterface;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Mailing
  */
-interface MailingClientInterface extends ResourceTraitInterface, EditorModulesTypesTraitInterface, ClientInterface
+interface MailingClientInterface extends
+    ContentGenerationInterface,
+    ResourceTraitInterface,
+    EditorModulesTypesTraitInterface,
+    ClientInterface
 {
     /**
      * @param int $id

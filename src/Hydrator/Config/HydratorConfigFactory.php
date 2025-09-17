@@ -18,6 +18,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfi
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobResultConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobStateConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\MassUpdateResultConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceTypeInformationConfig;
@@ -375,5 +376,10 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createMailingTemplateAllowedTemplatesConfig(): HydratorConfigInterface
     {
         return new MailingTemplateAllowedTemplatesConfig();
+    }
+
+    public function createJobStateConfig(): HydratorConfigInterface
+    {
+        return new JobStateConfig();
     }
 }

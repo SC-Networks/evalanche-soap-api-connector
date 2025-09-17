@@ -127,4 +127,6 @@ interface HydratorConfigFactoryInterface
     public function createArticleIndividualizationConfig(): HydratorConfigInterface;
 
     public function createMailingTemplateAllowedTemplatesConfig(): HydratorConfigInterface;
+
+    public function createJobStateConfig(): HydratorConfigInterface;
 }
