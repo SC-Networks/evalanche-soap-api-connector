@@ -72,6 +72,8 @@ interface HydratorConfigFactoryInterface
 
     public function createMailingArticleConfig(): HydratorConfigInterface;
 
+    public function createLeadpageArticleConfig(): HydratorConfigInterface;
+
     public function createMailingDetailConfig(): HydratorConfigInterface;
 
     public function createMailingClickConfig(): HydratorConfigInterface;

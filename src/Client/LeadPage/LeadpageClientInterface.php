@@ -9,6 +9,7 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageConfigurationInterface;
 
 interface LeadpageClientInterface extends
@@ -69,4 +70,48 @@ interface LeadpageClientInterface extends
      * @throws EmptyResultException
      */
     public function setContentContainerData(int $leadpageId, HashMapInterface $hashMap): ResourceInformationInterface;
+
+    /**
+     * Remove all articles from the leadpage
+     *
+     * @param int $id
+     *
+     * @return bool
+     *
+     * @throws EmptyResultException
+     */
+    public function removeAllArticles(int $id): bool;
+
+    /**
+     * Remove certain articles from the leadpage
+     *
+     * @param int $id
+     * @param int[] $referenceIds
+     *
+     * @return LeadpageArticleInterface[]
+     *
+     * @throws EmptyResultException
+     */
+    public function removeArticles(int $id, array $referenceIds): array;
+
+    /**
+     * Retrieve all articles of the leadpage
+     *
+     * @param int $id
+     *
+     * @return LeadpageArticleInterface[]
+     * @throws EmptyResultException
+     */
+    public function getArticlesByLeadpageId(int $id): array;
+
+    /**
+     * Add articles to a leadpage
+     *
+     * @param int $id
+     * @param array $articles
+     *
+     * @return LeadpageArticleInterface[]
+     * @throws EmptyResultException
+     */
+    public function addArticles(int $id, array $articles): array;
 }

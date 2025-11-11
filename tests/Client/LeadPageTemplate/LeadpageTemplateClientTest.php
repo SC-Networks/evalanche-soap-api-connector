@@ -12,6 +12,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
+use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\LeadpageTemplateConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\TemplatesSourcesInterface;
 use \stdClass;
@@ -56,6 +57,10 @@ class LeadpageTemplateClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
             'setConfiguration',
             'setSources',
             'getSources',
+            'removeAllArticles',
+            'removeArticles',
+            'getArticles',
+            'addArticles',
         ]);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
@@ -284,6 +289,161 @@ class LeadpageTemplateClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         self::assertInstanceOf(
             LeadpageTemplateConfigurationInterface::class,
             $this->subject->getConfiguration($id),
+        );
+    }
+
+    public function testRemoveAllArticlesCalls(): void
+    {
+        $id = 23;
+
+        $response = new stdClass();
+        $response->removeAllArticleResult = true;
+
+        $this->soapClient->expects($this->once())
+            ->method('removeAllArticles')
+            ->with([
+                'leadpage_template_id' => $id
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getBoolean')
+            ->with(
+                $response,
+                'removeAllArticlesResult'
+            )
+            ->willReturn($response->removeAllArticleResult);
+
+
+        static::assertTrue(
+            $this->subject->removeAllArticles($id)
+        );
+    }
+
+    public function testRemoveArticlesCalls(): void
+    {
+        $id = 23;
+        $referenceIds = [42, 666];
+        $response = new stdClass();
+        $result = ['some-result'];
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+
+        $this->soapClient->expects($this->once())
+            ->method('removeArticles')
+            ->with([
+                'leadpage_template_id' => $id,
+                'reference_ids' => $referenceIds,
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObjects')
+            ->with(
+                $response,
+                'removeArticlesResult',
+                $config,
+            )
+            ->willReturn($result);
+
+        $this->hydratorConfigFactory->expects(static::once())
+            ->method('createLeadpageArticleConfig')
+            ->willReturn($config);
+
+        static::assertSame(
+            $result,
+            $this->subject->removeArticles($id, $referenceIds)
+        );
+    }
+
+    public function testAddArticlesCalls(): void
+    {
+        $id = 1234;
+        $articles = [
+            $this->createMock(LeadpageArticleInterface::class),
+        ];
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+
+        $response = new stdClass();
+        $response->addArticlesResult = $articles;
+
+        $extractedData = [
+            [
+                'some' => 'data'
+            ],
+        ];
+
+        $this->extractor->expects($this->once())
+            ->method('extractArray')
+            ->with(
+                $config,
+                $articles
+            )
+            ->willReturn($extractedData);
+
+        $this->hydratorConfigFactory->expects($this->exactly(2))
+            ->method('createLeadpageArticleConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('addArticles')
+            ->with([
+                'leadpage_template_id' => $id,
+                'articles' => $extractedData
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObjects')
+            ->with(
+                $response,
+                'addArticlesResult',
+                $config
+            )
+            ->willReturn($response->addArticlesResult);
+
+        $this->assertContainsOnlyInstancesOf(
+            LeadpageArticleInterface::class,
+            $this->subject->addArticles($id, $articles)
+        );
+    }
+
+    public function testGetArticlesByLeadpageTemplateIdCallsAndReturnsArticles(): void
+    {
+        $id = 123;
+
+        $config = $this->createMock(HydratorConfigInterface::class);
+        $object = $this->createMock(LeadpageArticleInterface::class);
+
+        $response = new stdClass();
+        $response->getArticlesResult = [
+            $object,
+        ];
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createLeadpageArticleConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('getArticles')
+            ->with([
+                'leadpage_template_id' => $id,
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObjects')
+            ->with(
+                $response,
+                'getArticlesResult',
+                $config
+            )
+            ->willReturn($response->getArticlesResult);
+
+        $this->assertContainsOnlyInstancesOf(
+            LeadpageArticleInterface::class,
+            $this->subject->getArticlesByLeadpageTemplateId($id)
         );
     }
 }

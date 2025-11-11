@@ -133,4 +133,60 @@ class LeadpageTemplateClient extends AbstractClient implements LeadpageTemplateC
             $this->hydratorConfigFactory->createLeadpageTemplateConfigurationConfig(),
         );
     }
+
+    /** @inheritdoc */
+    public function removeAllArticles(int $id): bool
+    {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->removeAllArticles([
+                'leadpage_template_id' => $id
+            ]),
+            'removeAllArticlesResult'
+        );
+    }
+
+    /** @inheritdoc */
+    public function removeArticles(int $id, array $referenceIds): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->removeArticles(
+                [
+                    'leadpage_template_id' => $id,
+                    'reference_ids' => $referenceIds,
+                ]
+            ),
+            'removeArticlesResult',
+            $this->hydratorConfigFactory->createLeadpageArticleConfig()
+        );
+    }
+
+    /** @inheritdoc */
+    public function getArticlesByLeadpageTemplateId(int $id): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getArticles([
+                'leadpage_template_id' => $id
+            ]),
+            'getArticlesResult',
+            $this->hydratorConfigFactory->createLeadpageArticleConfig()
+        );
+    }
+
+    /** @inheritdoc */
+    public function addArticles(int $id, array $articles): array
+    {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->addArticles(
+                [
+                    'leadpage_template_id' => $id,
+                    'articles' => $this->extractor->extractArray(
+                        $this->hydratorConfigFactory->createLeadpageArticleConfig(),
+                        $articles
+                    )
+                ]
+            ),
+            'addArticlesResult',
+            $this->hydratorConfigFactory->createLeadpageArticleConfig()
+        );
+    }
 }
