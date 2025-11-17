@@ -27,6 +27,10 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceTypeInformatio
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ServiceStatusConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPage\LeadpageArticleConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPage\LeadpageConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageSlotConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageSlotConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageSlotItemConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageTemplateAllowedTemplatesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadpageTemplate\LeadpageTemplateConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageTemplateSourcesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingSlotConfig;
@@ -146,8 +150,11 @@ class HydratorConfigFactoryTest extends TestCase
             ['createMailingTemplateConfigurationConfig', MailingTemplateConfigurationConfig::class],
             ['createMailingTemplateSourcesConfig', MailingTemplateSourcesConfig::class],
             ['createMailingSlotConfigurationConfig', MailingSlotConfigurationConfig::class],
+            ['createLeadpageSlotConfigurationConfig', LeadpageSlotConfigurationConfig::class],
             ['createMailingSlotConfig', MailingSlotConfig::class],
+            ['createLeadpageSlotConfig', LeadpageSlotConfig::class],
             ['createMailingSlotItemConfig', MailingSlotItemConfig::class],
+            ['createLeadpageSlotItemConfig', LeadpageSlotItemConfig::class],
             ['createCouponListProfileCouponConfig', CouponListProfileCouponConfig::class],
             ['createWorkflowConfigurationConfig', WorkflowConfigurationConfig::class],
             ['createWorkflowConfigVersionConfig', WorkflowConfigVersionConfig::class],
@@ -156,6 +163,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createContainerDetailConfig', ContainerDetailConfig::class],
             ['createArticleIndividualizationConfig', ArticleIndividualizationConfig::class],
             ['createMailingTemplateAllowedTemplatesConfig', MailingTemplateAllowedTemplatesConfig::class],
+            ['createLeadpageTemplateAllowedTemplatesConfig', LeadpageTemplateAllowedTemplatesConfig::class],
             ['createLeadpageConfigurationConfig', LeadpageConfigurationConfig::class],
             ['createLeadpageTemplateSourcesConfig', LeadpageTemplateSourcesConfig::class],
             ['createLeadpageTemplateConfigurationConfig', LeadpageTemplateConfigurationConfig::class],

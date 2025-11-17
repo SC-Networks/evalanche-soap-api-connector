@@ -25,6 +25,10 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ResourceTypeInformatio
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ServiceStatusConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPage\LeadpageArticleConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPage\LeadpageConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageSlotConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageSlotConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageSlotItemConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageTemplateAllowedTemplatesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageTemplateSourcesConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate\LeadpageTemplateConfigurationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Mailing\MailingArticleConfig;
@@ -333,17 +337,32 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     {
         return new MailingSlotConfigurationConfig();
     }
-    
+
+    public function createLeadpageSlotConfigurationConfig(): HydratorConfigInterface
+    {
+        return new LeadpageSlotConfigurationConfig();
+    }
+
     public function createMailingSlotConfig(): HydratorConfigInterface
     {
         return new MailingSlotConfig();
     }
-    
+
+    public function createLeadpageSlotConfig(): HydratorConfigInterface
+    {
+        return new LeadpageSlotConfig();
+    }
+
     public function createMailingSlotItemConfig(): HydratorConfigInterface
     {
         return new MailingSlotItemConfig();
     }
-    
+
+    public function createLeadpageSlotItemConfig(): HydratorConfigInterface
+    {
+        return new LeadpageSlotItemConfig();
+    }
+
     public function createCouponListProfileCouponConfig(): HydratorConfigInterface
     {
         return new CouponListProfileCouponConfig();
@@ -382,6 +401,11 @@ final class HydratorConfigFactory implements HydratorConfigFactoryInterface
     public function createMailingTemplateAllowedTemplatesConfig(): HydratorConfigInterface
     {
         return new MailingTemplateAllowedTemplatesConfig();
+    }
+
+    public function createLeadpageTemplateAllowedTemplatesConfig(): HydratorConfigInterface
+    {
+        return new LeadpageTemplateAllowedTemplatesConfig();
     }
 
     public function createJobStateConfig(): HydratorConfigInterface

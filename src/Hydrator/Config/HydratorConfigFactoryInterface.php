@@ -110,9 +110,15 @@ interface HydratorConfigFactoryInterface
 
     public function createMailingSlotConfigurationConfig(): HydratorConfigInterface;
 
+    public function createLeadpageSlotConfigurationConfig(): HydratorConfigInterface;
+
     public function createMailingSlotConfig(): HydratorConfigInterface;
 
+    public function createLeadpageSlotConfig(): HydratorConfigInterface;
+
     public function createMailingSlotItemConfig(): HydratorConfigInterface;
+
+    public function createLeadpageSlotItemConfig(): HydratorConfigInterface;
 
     public function createCouponListProfileCouponConfig(): HydratorConfigInterface;
 
@@ -129,6 +135,8 @@ interface HydratorConfigFactoryInterface
     public function createArticleIndividualizationConfig(): HydratorConfigInterface;
 
     public function createMailingTemplateAllowedTemplatesConfig(): HydratorConfigInterface;
+
+    public function createLeadpageTemplateAllowedTemplatesConfig(): HydratorConfigInterface;
 
     public function createJobStateConfig(): HydratorConfigInterface;
 }
