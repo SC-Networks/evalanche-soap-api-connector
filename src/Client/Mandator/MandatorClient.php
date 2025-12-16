@@ -46,4 +46,41 @@ final class MandatorClient extends AbstractClient implements MandatorClientInter
             $this->hydratorConfigFactory->createMandatorConfig()
         );
     }
+
+    /** @inheritDoc */
+    public function create(
+        string $name,
+        bool $demo_mode,
+        int $pricemodel_id = 0,
+        string $description = '',
+        int $industry_type = 1,
+    ): StructInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->create([
+                'name' => $name,
+                'demo_mode' => $demo_mode,
+                'pricemodel_id' => $pricemodel_id,
+                'description' => $description,
+                'industry_type' => $industry_type,
+            ]),
+            'createResult',
+            $this->hydratorConfigFactory->createMandatorConfig()
+        );
+    }
+
+    /** @inheritDoc */
+    public function importScenario(
+        int $mandator_id,
+        string $scenario_data,
+        string $language_code
+    ): bool {
+        return $this->responseMapper->getBoolean(
+            $this->soapClient->importScenario([
+                'mandator_id' => $mandator_id,
+                'scenario_data' => $scenario_data,
+                'language_code' => $language_code,
+            ]),
+            'importScenarioResult',
+        );
+    }
 }
