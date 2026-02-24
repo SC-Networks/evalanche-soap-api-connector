@@ -139,4 +139,6 @@ interface HydratorConfigFactoryInterface
     public function createLeadpageTemplateAllowedTemplatesConfig(): HydratorConfigInterface;
 
     public function createJobStateConfig(): HydratorConfigInterface;
+
+    public function createContentGenerationVariableConfig(): HydratorConfigInterface;
 }
