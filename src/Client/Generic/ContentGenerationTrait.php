@@ -28,4 +28,17 @@ trait ContentGenerationTrait
             $this->hydratorConfigFactory->createJobStateConfig()
         );
     }
+
+    /** @inheritDoc */
+    public function getContentGenerationVariables(
+        int $id,
+    ): array {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getContentGenerationVariables([
+                'resource_id' => $id,
+            ]),
+            'getContentGenerationVariablesResult',
+            $this->hydratorConfigFactory->createContentGenerationVariableConfig()
+        );
+    }
 }

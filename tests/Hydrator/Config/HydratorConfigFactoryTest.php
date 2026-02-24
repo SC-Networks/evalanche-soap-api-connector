@@ -16,6 +16,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerAttributeRo
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Container\ContainerDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\CouponList\CouponListProfileCouponConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Form\FormConfigurationConfig;
+use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\ContentGenerationVariableConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\FolderInformationConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\HashMapConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic\JobHandleConfig;
@@ -168,6 +169,7 @@ class HydratorConfigFactoryTest extends TestCase
             ['createLeadpageTemplateSourcesConfig', LeadpageTemplateSourcesConfig::class],
             ['createLeadpageTemplateConfigurationConfig', LeadpageTemplateConfigurationConfig::class],
             ['createJobStateConfig', JobStateConfig::class],
+            ['createContentGenerationVariableConfig', ContentGenerationVariableConfig::class],
         ];
     }
 }

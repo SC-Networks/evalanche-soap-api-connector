@@ -119,6 +119,7 @@ class MailingClientTest extends TestCase
             'retrieveModuleTypes',
             'runContentGeneration',
             'getJobState',
+            'getContentGenerationVariables',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -1678,6 +1679,41 @@ class MailingClientTest extends TestCase
         self::assertSame(
             $result,
             $this->subject->getJobState($id)
+        );
+    }
+
+    public function testGetContentGenerationVariablesReturnsData(): void
+    {
+        $id = 666;
+
+        $hydrator = $this->createMock(HydratorConfigInterface::class);
+        $result = $this->createMock(JobStateInterface::class);
+
+        $response = new stdClass();
+        $response->getContentGenerationVariablesResult = $result;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createContentGenerationVariableConfig')
+            ->willReturn($hydrator);
+
+        $this->soapClient->expects($this->once())
+            ->method('getContentGenerationVariables')
+            ->with([
+                'resource_id' => $id,
+            ])->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObjects')
+            ->with(
+                $response,
+                'getContentGenerationVariablesResult',
+                $hydrator
+            )
+            ->willReturn([$result]);
+
+        self::assertSame(
+            [$result],
+            $this->subject->getContentGenerationVariables($id)
         );
     }
 }
