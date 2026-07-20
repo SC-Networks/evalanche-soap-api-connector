@@ -63,7 +63,8 @@ class MilestoneClientTest extends TestCase
             'getTypeIds',
             'move',
             'rename',
-            'isAlive'
+            'isAlive',
+            'getByModificationDate',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();

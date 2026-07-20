@@ -54,6 +54,8 @@ class ContainerTypeClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'getAll',
+            'getByModificationDate',
             'addAttribute',
             'addAttributeGroup',
             'changeAttributeType',

@@ -2,6 +2,8 @@
 
 namespace Scn\EvalancheSoapApiConnector\Client\Generic;
 
+use DateTimeInterface;
+use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
@@ -99,4 +101,20 @@ interface ResourceTraitInterface
      * @return ResourceInformationInterface
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface;
+
+    /**
+     * Returns all items having a modification-date in the given time-range
+     *
+     * @param DateTimeInterface $startDate
+     * @param DateTimeInterface $endDate
+     * @param int $mandator_id
+     *
+     * @return ResourceInformationInterface[]
+     * @throws EmptyResultException
+     */
+    public function getByModificationDate(
+        DateTimeInterface $startDate,
+        DateTimeInterface $endDate,
+        int $mandator_id = 0,
+    ): array;
 }

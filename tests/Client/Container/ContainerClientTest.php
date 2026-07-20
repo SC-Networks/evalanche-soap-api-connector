@@ -57,6 +57,8 @@ class ContainerClientTest extends TestCase
             'getData',
             'update',
             'getDetails',
+            'getAll',
+            'getByModificationDate',
             'getByContainerTypeId',
             'rename',
             'move',

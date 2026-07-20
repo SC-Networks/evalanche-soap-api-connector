@@ -45,7 +45,11 @@ class WebhookClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock(['trigger']);
+        $this->soapClient = $this->getWsdlMock([
+            'trigger',
+            'getAll',
+            'getByModificationDate',
+        ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
         $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();

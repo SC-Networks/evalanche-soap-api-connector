@@ -2,6 +2,7 @@
 
 namespace Scn\EvalancheSoapApiConnector\Client\Generic;
 
+use DateTimeInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
@@ -192,6 +193,23 @@ trait ResourceTrait
         return $this->responseMapper->getObject(
             $this->soapClient->rename(['resource_id' => $id, 'name' => $title]),
             'renameResult',
+            $this->hydratorConfigFactory->createResourceInformationConfig()
+        );
+    }
+
+    /** @inheritDoc */
+    public function getByModificationDate(
+        DateTimeInterface $startDate,
+        DateTimeInterface $endDate,
+        int $mandator_id = 0,
+    ): array {
+        return $this->responseMapper->getObjects(
+            $this->soapClient->getByModificationDate([
+                'start_date' => $startDate->getTimestamp(),
+                'end_date' => $endDate->getTimestamp(),
+                'mandator_id' => $mandator_id,
+            ]),
+            'getByModificationDateResult',
             $this->hydratorConfigFactory->createResourceInformationConfig()
         );
     }

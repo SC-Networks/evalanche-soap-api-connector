@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client;
 
+use DateInterval;
+use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\Test;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use stdClass;
@@ -110,6 +113,77 @@ trait CommonResourceMethodsTestTrait
         self::assertInstanceOf(
             ResourceInformationInterface::class,
             $this->subject->copy($id, $folderId)
+        );
+    }
+
+    #[Test]
+    public function getListByMandatorIdCanReturnArrayOfResourceInformation(): void
+    {
+        $id = 456;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+
+        $response = new stdClass();
+        $response->getAllResult = [
+            $object,
+            $otherObject
+        ];
+        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
+        $this->soapClient->expects($this->once())->method('getAll')->with(['mandator_id' => $id])->willReturn($response);
+        $this->responseMapper->expects($this->once())->method('getObjects')->with(
+            $response,
+            'getAllResult',
+            $config
+        )->willReturn($response->getAllResult);
+
+        $this->assertContainsOnlyInstancesOf(
+            ResourceInformationInterface::class,
+            $this->subject->getListByMandatorId($id)
+        );
+    }
+
+    #[Test]
+    public function getByModificationDateReturnsResult(): void
+    {
+        $mandator_id = 456;
+
+        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+
+        $result = [$object];
+        $start = new DateTimeImmutable();
+        $end = $start->add(DateInterval::createFromDateString('5 minutes'));
+
+        $response = new stdClass();
+        $response->getByModificationDateResult = $result;
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createResourceInformationConfig')
+            ->willReturn($config);
+
+        $this->soapClient->expects($this->once())
+            ->method('getByModificationDate')
+            ->with([
+                'start_date' => $start->getTimestamp(),
+                'end_date' => $end->getTimestamp(),
+                'mandator_id' => $mandator_id,
+            ])
+            ->willReturn($response);
+
+        $this->responseMapper->expects($this->once())
+            ->method('getObjects')
+            ->with(
+                $response,
+                'getByModificationDateResult',
+                $config
+            )
+            ->willReturn($result);
+
+        $this->assertContainsOnlyInstancesOf(
+            ResourceInformationInterface::class,
+            $this->subject->getByModificationDate($start, $end, $mandator_id)
         );
     }
 }

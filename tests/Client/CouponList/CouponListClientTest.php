@@ -51,6 +51,8 @@ class CouponListClientTest extends TestCase
             'generate',
             'removeById',
             'removeAll',
+            'getAll',
+            'getByModificationDate',
             'getProfileCouponList',
             'import',
             'rename',

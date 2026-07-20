@@ -49,6 +49,7 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
             'getByCategory',
             'getById',
             'getResourceDefaultCategory',
+            'getByModificationDate',
             'getByExternalId',
             'getContentContainerData',
             'setContentContainerData',
@@ -236,33 +237,6 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         $this->assertContainsOnlyInstancesOf(
             ResourceTypeInformationInterface::class,
             $this->subject->getTypeIds()
-        );
-    }
-
-    public function testGetListByMandatorIdCanReturnArrayOfResourceInformation()
-    {
-        $id = 456;
-
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-
-        $response = new stdClass();
-        $response->getAllResult = [
-            $object,
-            $otherObject
-        ];
-        $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAll')->with(['mandator_id' => $id])->willReturn($response);
-        $this->responseMapper->expects($this->once())->method('getObjects')->with(
-            $response,
-            'getAllResult',
-            $config
-        )->willReturn($response->getAllResult);
-
-        $this->assertContainsOnlyInstancesOf(
-            ResourceInformationInterface::class,
-            $this->subject->getListByMandatorId($id)
         );
     }
 
