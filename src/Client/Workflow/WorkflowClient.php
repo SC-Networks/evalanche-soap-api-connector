@@ -7,6 +7,7 @@ use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\CreateResourceTrait;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTrait;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Generic\JobStateInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigVersionInterface;
@@ -241,6 +242,18 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
             $this->soapClient->deactivate(['workflow_id' => $workflowId]),
             'deactivateResult',
             $this->hydratorConfigFactory->createWorkflowStateChangeResultConfig()
+        );
+    }
+
+    /** @inheritDoc */
+    public function generateConfiguration(
+        int $workflowId,
+        string $prompt,
+    ): JobStateInterface {
+        return $this->responseMapper->getObject(
+            $this->soapClient->generateConfiguration(['workflow_id' => $workflowId, 'prompt' => $prompt]),
+            'generateConfigurationResult',
+            $this->hydratorConfigFactory->createJobStateConfig()
         );
     }
 }
