@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Workflow;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -12,6 +13,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\EvalancheSoapApiConnector\TestCase;
+use Scn\EvalancheSoapStruct\Struct\Generic\JobStateInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowDetailInterface;
@@ -69,6 +71,7 @@ class WorkflowClientTest extends TestCase
             'move',
             'delete',
             'rename',
+            'generateConfiguration',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
@@ -401,6 +404,40 @@ class WorkflowClientTest extends TestCase
         self::assertSame(
             $configResult,
             $this->subject->getConfiguration($workflowId)
+        );
+    }
+
+    #[Test]
+    public function generateConfigurationGenerates(): void
+    {
+        $workflowId = 42;
+        $prompt = 'some-prompt';
+        $result = new stdClass();
+
+        $configResult = $this->createMock(JobStateInterface::class);
+        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
+
+        $this->soapClient->expects($this->once())
+            ->method('generateConfiguration')
+            ->with([
+                'workflow_id' => $workflowId,
+                'prompt' => $prompt,
+            ])
+            ->willReturn($result);
+
+        $this->responseMapper
+            ->expects($this->once())
+            ->method('getObject')
+            ->with($result, 'generateConfigurationResult', $hydratorConfig)
+            ->willReturn($configResult);
+
+        $this->hydratorConfigFactory->expects($this->once())
+            ->method('createJobStateConfig')
+            ->willReturn($hydratorConfig);
+
+        self::assertSame(
+            $configResult,
+            $this->subject->generateConfiguration($workflowId, $prompt)
         );
     }
 }

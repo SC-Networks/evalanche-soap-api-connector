@@ -6,6 +6,7 @@ use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\CreateResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
+use Scn\EvalancheSoapStruct\Struct\Generic\JobStateInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigVersionInterface;
@@ -128,4 +129,17 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
      * @throws EmptyResultException
      */
     public function deactivate(int $workflowId): WorkflowStateChangeResultInterface;
+
+    /**
+     * Generates a campaign configuration
+     *
+     * @param int $workflowId
+     * @param string $prompt
+     *
+     * @throws EmptyResultException
+     */
+    public function generateConfiguration(
+        int $workflowId,
+        string $prompt,
+    ): JobStateInterface;
 }
