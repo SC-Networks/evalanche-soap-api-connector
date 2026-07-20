@@ -58,6 +58,7 @@ class MailingTemplateClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'getAll',
             'create',
             'rename',
             'copy',
@@ -79,6 +80,7 @@ class MailingTemplateClientTest extends TestCase
             'updateSlot',
             'addTemplatesToSlot',
             'updateSlotTemplates',
+            'getByModificationDate',
         ]);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);

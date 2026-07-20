@@ -49,6 +49,8 @@ class ReportClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'getAll',
+            'getByModificationDate',
             'addResourceToReport',
             'rename',
             'move',

@@ -48,6 +48,8 @@ class ArticleTemplateClientTest extends TestCase
         $this->soapClient = $this->getWsdlMock(
             [
                 'create',
+                'getAll',
+                'getByModificationDate',
                 'updateTemplate',
                 'rename',
                 'move',

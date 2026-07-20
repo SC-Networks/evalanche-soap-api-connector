@@ -54,6 +54,8 @@ class FormClientTest extends TestCase
             'getAliases',
             'getFormByAlias',
             'getStatistics',
+            'getAll',
+            'getByModificationDate',
             'removeAttribute',
             'removeAttributeOption',
             'rename',

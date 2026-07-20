@@ -51,6 +51,8 @@ class PoolDataMinerClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'getAll',
+            'getByModificationDate',
             'rename',
             'copy',
             'delete',

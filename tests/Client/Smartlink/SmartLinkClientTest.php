@@ -52,6 +52,8 @@ class SmartLinkClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'getAll',
+            'getByModificationDate',
             'createLink',
             'getTrackingUrls',
             'getLinkConfigurations',

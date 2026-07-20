@@ -57,6 +57,8 @@ class LeadpageTemplateClientTest extends TestCase
             'rename',
             'copy',
             'move',
+            'getAll',
+            'getByModificationDate',
             'delete',
             'getConfiguration',
             'setConfiguration',

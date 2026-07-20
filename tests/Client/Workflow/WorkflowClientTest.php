@@ -56,6 +56,7 @@ class WorkflowClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'getAll',
             'getByStartDateRange',
             'getByEndDateRange',
             'getDetails',
@@ -72,6 +73,7 @@ class WorkflowClientTest extends TestCase
             'delete',
             'rename',
             'generateConfiguration',
+            'getByModificationDate',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();

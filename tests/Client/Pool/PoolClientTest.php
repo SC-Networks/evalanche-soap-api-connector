@@ -49,6 +49,8 @@ class PoolClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock([
+            'getAll',
+            'getByModificationDate',
             'addAttribute',
             'addAttributeOptions',
             'deleteAttribute',

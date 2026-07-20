@@ -58,6 +58,7 @@ class ArticleClientTest extends TestCase
             'getData',
             'update',
             'getDetails',
+            'getAll',
             'getByArticleTypeId',
             'getIndividualization',
             'setIndividualization',
@@ -65,6 +66,7 @@ class ArticleClientTest extends TestCase
             'move',
             'copy',
             'delete',
+            'getByModificationDate',
         ]);
         $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
         $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
