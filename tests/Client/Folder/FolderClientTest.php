@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Folder;
 
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
@@ -42,9 +43,9 @@ class FolderClientTest extends TestCase
     private $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var Stub&ExtractorInterface
      */
-    private $extractor;
+    private Stub $extractor;
 
     public function setUp(): void
     {
@@ -54,9 +55,9 @@ class FolderClientTest extends TestCase
             'getSubCategories',
             'getDetails',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createStub(ExtractorInterface::class);
 
         $this->subject = new FolderClient(
             $this->soapClient,
@@ -71,8 +72,8 @@ class FolderClientTest extends TestCase
         $title = 'some title';
         $folderId = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(FolderInformationInterface::class);
 
         $response = new stdClass();
         $response->createResult = $object;
@@ -121,9 +122,9 @@ class FolderClientTest extends TestCase
     {
         $id = 523;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(FolderInformationInterface::class);
+        $otherObject = $this->createStub(FolderInformationInterface::class);
 
         $response = new stdClass();
         $response->getSubCategoriesResult = [
@@ -152,8 +153,8 @@ class FolderClientTest extends TestCase
     {
         $id = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(FolderInformationInterface::class);
 
         $response = new stdClass();
         $response->getDetailsResult = $object;

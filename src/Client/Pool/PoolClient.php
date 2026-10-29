@@ -21,12 +21,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param string $title
-     * @param string $label
-     * @param int $typeId
      *
-     * @return PoolAttributeInterface
      * @throws EmptyResultException
      */
     public function addAttribute(int $id, string $title, string $label, int $typeId): PoolAttributeInterface
@@ -44,11 +39,8 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
      * @param string[] $labels
      *
-     * @return PoolAttributeInterface
      * @throws EmptyResultException
      */
     public function addAttributeOptions(int $id, int $attributeId, array $labels): PoolAttributeInterface
@@ -65,9 +57,6 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @return bool
      * @throws EmptyResultException
      */
     public function deleteAttribute(int $id, int $attributeId): bool
@@ -82,11 +71,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $optionId
      *
-     * @return PoolAttributeInterface
      * @throws EmptyResultException
      */
     public function deleteAttributeOption(int $id, int $attributeId, int $optionId): PoolAttributeInterface
@@ -103,7 +88,6 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
     }
 
     /**
-     * @param int $id
      *
      * @return PoolAttributeInterface[]
      * @throws EmptyResultException
@@ -118,12 +102,7 @@ final class PoolClient extends AbstractClient implements PoolClientInterface
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $optionId
-     * @param string $label
      *
-     * @return PoolAttributeInterface
      * @throws EmptyResultException
      */
     public function updateAttributeOption(

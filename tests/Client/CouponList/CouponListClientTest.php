@@ -77,8 +77,8 @@ class CouponListClientTest extends TestCase
         $folderId = 123;
         $title = 'some title';
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(ResourceInformationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->createResult = $object;
@@ -199,8 +199,8 @@ class CouponListClientTest extends TestCase
     {
         $profileCouponId = 1234;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(ProfileCouponInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ProfileCouponInterface::class);
 
         $response = new stdClass();
         $response->getProfileCouponListResult = [
@@ -237,9 +237,9 @@ class CouponListClientTest extends TestCase
         $couponListId = 1234;
         
         $coupons = [
-            $this->createMock(ProfileCouponInterface::class),
+            $this->createStub(ProfileCouponInterface::class),
         ];
-        $config = $this->createMock(HydratorConfigInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $response = new stdClass();
         $response->importResult = true;

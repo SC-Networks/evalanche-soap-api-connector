@@ -96,9 +96,9 @@ class ProfileClientTest extends TestCase
             'hasMilestone',
             'getByMilestone'
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createMock(ExtractorInterface::class);
 
         $this->subject = new ProfileClient(
             $this->soapClient,
@@ -135,7 +135,7 @@ class ProfileClientTest extends TestCase
     public function testCreateCanReturnInteger()
     {
         $id = 123;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->createResult = 345;
@@ -144,7 +144,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
             $config,
@@ -171,8 +171,8 @@ class ProfileClientTest extends TestCase
             'data',
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(JobHandleInterface::class);
 
         $response = new stdClass();
         $response->getByPoolResult = $object;
@@ -198,9 +198,9 @@ class ProfileClientTest extends TestCase
     {
         $id = 'some id';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ProfileGroupScoreInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ProfileGroupScoreInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ProfileGroupScoreInterface::class);
+        $otherObject = $this->createStub(ProfileGroupScoreInterface::class);
 
         $response = new stdClass();
         $response->getScoresResult = [
@@ -225,7 +225,7 @@ class ProfileClientTest extends TestCase
     public function testUpdateByPoolId()
     {
         $id = 234;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->updateByPoolResult = true;
@@ -234,7 +234,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
@@ -265,9 +265,9 @@ class ProfileClientTest extends TestCase
             'some toher data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ProfileBounceStatusInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ProfileBounceStatusInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ProfileBounceStatusInterface::class);
+        $otherObject = $this->createStub(ProfileBounceStatusInterface::class);
 
         $response = new stdClass();
         $response->getBouncesResult = [
@@ -305,9 +305,9 @@ class ProfileClientTest extends TestCase
             'some toher data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(HashMapInterface::class);
+        $otherObject = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->getUnsubscriptionsResult = [
@@ -338,7 +338,7 @@ class ProfileClientTest extends TestCase
     public function testMergeByTargetGroupIdCanReturnBoolean()
     {
         $id = 234;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->mergeByTargetGroupResult = true;
@@ -347,7 +347,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
@@ -371,7 +371,7 @@ class ProfileClientTest extends TestCase
     public function testMergeByIdCanReturnBoolean()
     {
         $id = 234;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->mergeByIdResult = true;
@@ -380,7 +380,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
@@ -428,9 +428,9 @@ class ProfileClientTest extends TestCase
             99,
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(TargetGroupMemberShipInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(TargetGroupMemberShipInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(TargetGroupMemberShipInterface::class);
+        $otherObject = $this->createStub(TargetGroupMemberShipInterface::class);
 
         $response = new stdClass();
         $response->isInTargetgroupsResult = [
@@ -465,9 +465,9 @@ class ProfileClientTest extends TestCase
         $timestampStart = 1533038842;
         $timestampEnd = 1533058842;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(HashMapInterface::class);
+        $otherObject = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->getGrantedPermissionsResult = [
@@ -521,8 +521,8 @@ class ProfileClientTest extends TestCase
             'data',
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(JobHandleInterface::class);
 
         $response = new stdClass();
         $response->getByTargetGroupResult = $object;
@@ -549,7 +549,7 @@ class ProfileClientTest extends TestCase
         $id = 234;
         $key = 'some key';
         $value = 'some value';
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->mergeByKeyResult = true;
@@ -558,7 +558,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
@@ -600,7 +600,7 @@ class ProfileClientTest extends TestCase
     public function testUpdateByTargetGroupId()
     {
         $id = 234;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->updateByTargetGroupResult = true;
@@ -609,7 +609,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
@@ -647,8 +647,8 @@ class ProfileClientTest extends TestCase
         $merge = false;
         $ignoreMissing = true;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(MassUpdateResultInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MassUpdateResultInterface::class);
 
         $response = new stdClass();
         $response->massUpdateResult = $object;
@@ -680,7 +680,7 @@ class ProfileClientTest extends TestCase
         $id = 234;
         $key = 'some key';
         $value = 'some value';
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->updateByKeyResult = true;
@@ -689,7 +689,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
@@ -737,7 +737,7 @@ class ProfileClientTest extends TestCase
     public function testUpdateByIdCanReturnBoolean()
     {
         $id = 234;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->updateByIdResult = true;
@@ -746,7 +746,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
@@ -777,9 +777,9 @@ class ProfileClientTest extends TestCase
             'some toher data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(HashMapInterface::class);
+        $otherObject = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->getByKeyResult = [
@@ -812,9 +812,9 @@ class ProfileClientTest extends TestCase
         $id = 123;
         $mailingId = 45;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(MailingStatusInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(MailingStatusInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingStatusInterface::class);
+        $otherObject = $this->createStub(MailingStatusInterface::class);
 
         $response = new stdClass();
         $response->getMailingStatusResult = [
@@ -843,8 +843,8 @@ class ProfileClientTest extends TestCase
     {
         $id = 'some id';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(JobHandleInterface::class);
 
         $response = new stdClass();
         $response->getJobInformationResult = $object;
@@ -875,9 +875,9 @@ class ProfileClientTest extends TestCase
         $timestampStart = 1533038842;
         $timestampEnd = 1533058842;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(HashMapInterface::class);
+        $otherObject = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->getModifiedProfilesResult = [
@@ -910,7 +910,7 @@ class ProfileClientTest extends TestCase
     public function testMergeByPoolId()
     {
         $id = 234;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->mergeByPoolResult = null;
@@ -919,7 +919,7 @@ class ProfileClientTest extends TestCase
             'some' => 'data'
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
         $this->extractor->expects($this->once())->method('extract')->with(
@@ -939,8 +939,8 @@ class ProfileClientTest extends TestCase
     {
         $id = 'some id';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(JobResultInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(JobResultInterface::class);
 
         $response = new stdClass();
         $response->getResultsResult = $object;
@@ -1008,9 +1008,9 @@ class ProfileClientTest extends TestCase
         $timestampStart =1533038842;
         $timestampEnd = 1534038842;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ProfileActivityScoreInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ProfileActivityScoreInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ProfileActivityScoreInterface::class);
+        $otherObject = $this->createStub(ProfileActivityScoreInterface::class);
 
         $response = new stdClass();
         $response->getActivityScoringHistoryResult = [
@@ -1046,8 +1046,8 @@ class ProfileClientTest extends TestCase
     {
         $id = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->getByIdResult = $object;
@@ -1133,9 +1133,9 @@ class ProfileClientTest extends TestCase
         $timestampStart = 123456;
         $timestampEnd = 234567;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ProfileTrackingHistoryInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ProfileTrackingHistoryInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ProfileTrackingHistoryInterface::class);
+        $otherObject = $this->createStub(ProfileTrackingHistoryInterface::class);
 
         $response = new stdClass();
         $response->getTrackingHistoryResult = [
@@ -1224,8 +1224,8 @@ class ProfileClientTest extends TestCase
         $timestampStart = 123456;
         $timestampEnd = 234567;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(JobHandleInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(JobHandleInterface::class);
 
         $response = new stdClass();
         $response->getByMilestoneResult = $object;

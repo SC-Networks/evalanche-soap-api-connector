@@ -38,16 +38,16 @@ class ArrayValueTest extends TestCase
 
         $set = ArrayValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertIsArray($dummy->getValue());
-        static::assertSame($testValue->item, $dummy->getValue());
-        static::assertSame($testValue->item, $get('value'));
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertIsArray($dummy->getValue());
+        self::assertSame($testValue->item, $dummy->getValue());
+        self::assertSame($testValue->item, $get('value'));
     }
 
     public function testEverythingIfItemNotArray()
@@ -71,16 +71,16 @@ class ArrayValueTest extends TestCase
 
         $set = ArrayValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertIsArray($dummy->getValue());
-        static::assertSame([$testValue->item], $dummy->getValue());
-        static::assertSame([$testValue->item], $get('value'));
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertIsArray($dummy->getValue());
+        self::assertSame([$testValue->item], $dummy->getValue());
+        self::assertSame([$testValue->item], $get('value'));
     }
 
 
@@ -103,15 +103,15 @@ class ArrayValueTest extends TestCase
 
         $set = ArrayValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ArrayValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertIsArray($dummy->getValue());
-        static::assertSame([], $dummy->getValue());
-        static::assertSame([], $get('value'));
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertIsArray($dummy->getValue());
+        self::assertSame([], $dummy->getValue());
+        self::assertSame([], $get('value'));
     }
 }

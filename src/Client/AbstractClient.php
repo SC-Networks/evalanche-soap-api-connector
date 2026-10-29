@@ -37,12 +37,6 @@ abstract class AbstractClient
      */
     protected $extractor;
 
-    /**
-     * @param SoapClient $soapClient
-     * @param ResponseMapperInterface $responseMapper
-     * @param HydratorConfigFactoryInterface $hydratorConfigFactory
-     * @param ExtractorInterface $extractor
-     */
     final public function __construct(
         SoapClient $soapClient,
         ResponseMapperInterface $responseMapper,
@@ -55,10 +49,6 @@ abstract class AbstractClient
         $this->extractor = $extractor;
     }
 
-    /**
-     *
-     * @return string
-     */
     public static function getWsdlUri(): string
     {
         return sprintf(ClientInterface::WSDL_DEFAULT_URI, static::VERSION, static::PORTNAME);

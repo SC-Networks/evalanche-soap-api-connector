@@ -1,66 +1,98 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector;
+
+use Scn\EvalancheSoapApiConnector\Client\Account\AccountClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleTemplateClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleTypeClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Folder\FolderClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Container\ContainerClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Container\ContainerTypeClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Document\DocumentClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Form\FormClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\TargetGroup\TargetGroupClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Image\ImageClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\LeadPage\LeadpageClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Mailing\MailingClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Mailing\MailingTemplateClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Mandator\MandatorClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Pool\PoolClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Pool\PoolDataMinerClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Profile\ProfileClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Report\ReportClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Scoring\ScoringClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Smartlink\SmartLinkClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\User\UserClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Workflow\WorkflowClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Blacklist\BlackListClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Webhook\WebhookClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Milestone\MilestoneClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Marketplace\MarketplaceClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\CouponList\CouponListClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\LeadPageTemplate\LeadpageTemplateClientInterface;
 
 interface EvalancheConnectionInterface
 {
     public static function create(string $hostname, string $username, string $password): EvalancheConnectionInterface;
 
-    public function createAccountClient(): Client\Account\AccountClientInterface;
+    public function createAccountClient(): AccountClientInterface;
 
-    public function createArticleClient(): Client\Article\ArticleClientInterface;
+    public function createArticleClient(): ArticleClientInterface;
 
-    public function createArticleTemplateClient(): Client\Article\ArticleTemplateClientInterface;
+    public function createArticleTemplateClient(): ArticleTemplateClientInterface;
 
-    public function createArticleTypeClient(): Client\Article\ArticleTypeClientInterface;
+    public function createArticleTypeClient(): ArticleTypeClientInterface;
 
-    public function createFolderClient(): Client\Folder\FolderClientInterface;
+    public function createFolderClient(): FolderClientInterface;
 
-    public function createContainerClient(): Client\Container\ContainerClientInterface;
+    public function createContainerClient(): ContainerClientInterface;
 
-    public function createContainerTypeClient(): Client\Container\ContainerTypeClientInterface;
+    public function createContainerTypeClient(): ContainerTypeClientInterface;
 
-    public function createDocumentClient(): Client\Document\DocumentClientInterface;
+    public function createDocumentClient(): DocumentClientInterface;
 
-    public function createFormClient(): Client\Form\FormClientInterface;
+    public function createFormClient(): FormClientInterface;
 
-    public function createTargetGroupClient(): Client\TargetGroup\TargetGroupClientInterface;
+    public function createTargetGroupClient(): TargetGroupClientInterface;
 
-    public function createImageClient(): Client\Image\ImageClientInterface;
+    public function createImageClient(): ImageClientInterface;
 
-    public function createLeadpageClient(): Client\LeadPage\LeadpageClientInterface;
+    public function createLeadpageClient(): LeadpageClientInterface;
 
-    public function createMailingClient(): Client\Mailing\MailingClientInterface;
+    public function createMailingClient(): MailingClientInterface;
 
-    public function createMailingTemplateClient(): Client\Mailing\MailingTemplateClientInterface;
+    public function createMailingTemplateClient(): MailingTemplateClientInterface;
 
-    public function createMandatorClient(): Client\Mandator\MandatorClientInterface;
+    public function createMandatorClient(): MandatorClientInterface;
 
-    public function createPoolClient(): Client\Pool\PoolClientInterface;
+    public function createPoolClient(): PoolClientInterface;
 
-    public function createPoolDataMinerClient(): Client\Pool\PoolDataMinerClientInterface;
+    public function createPoolDataMinerClient(): PoolDataMinerClientInterface;
 
-    public function createProfileClient(): Client\Profile\ProfileClientInterface;
+    public function createProfileClient(): ProfileClientInterface;
 
-    public function createReportClient(): Client\Report\ReportClientInterface;
+    public function createReportClient(): ReportClientInterface;
 
-    public function createScoringClient(): Client\Scoring\ScoringClientInterface;
+    public function createScoringClient(): ScoringClientInterface;
 
-    public function createSmartLinkClient(): Client\Smartlink\SmartLinkClientInterface;
+    public function createSmartLinkClient(): SmartLinkClientInterface;
 
-    public function createUserClient(): Client\User\UserClientInterface;
+    public function createUserClient(): UserClientInterface;
 
-    public function createWorkflowClient(): Client\Workflow\WorkflowClientInterface;
+    public function createWorkflowClient(): WorkflowClientInterface;
 
-    public function createBlackListClient(): Client\Blacklist\BlackListClientInterface;
+    public function createBlackListClient(): BlackListClientInterface;
 
-    public function createWebhookClient(): Client\Webhook\WebhookClientInterface;
+    public function createWebhookClient(): WebhookClientInterface;
 
-    public function createMilestoneClient(): Client\Milestone\MilestoneClientInterface;
+    public function createMilestoneClient(): MilestoneClientInterface;
 
-    public function createMarketplaceClient(): Client\Marketplace\MarketplaceClientInterface;
+    public function createMarketplaceClient(): MarketplaceClientInterface;
 
-    public function createCouponListClient(): Client\CouponList\CouponListClientInterface;
+    public function createCouponListClient(): CouponListClientInterface;
 
-    public function createLeadpageTemplateClient(): Client\LeadPageTemplate\LeadpageTemplateClientInterface;
+    public function createLeadpageTemplateClient(): LeadpageTemplateClientInterface;
 }

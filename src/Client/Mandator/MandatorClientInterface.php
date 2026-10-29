@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Mandator;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -15,7 +17,6 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
 interface MandatorClientInterface extends ClientInterface
 {
     /**
-     * @param int $id
      *
      * @return MandatorInterface
      */

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPageTemplate;
 
+use Scn\EvalancheSoapApiConnector\TestCase;
 use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\TemplatesSourcesInterface;
 
-class LeadpageTemplateSourcesConfigTest extends \Scn\EvalancheSoapApiConnector\TestCase
+class LeadpageTemplateSourcesConfigTest extends TestCase
 {
     /** @var LeadpageTemplateSourcesConfig|null */
     private $subject;

@@ -22,13 +22,7 @@ final class TargetGroupClient extends AbstractClient implements TargetGroupClien
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $optionId
-     * @param int $folderId
-     * @param string $title
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function createByOption(
@@ -52,9 +46,7 @@ final class TargetGroupClient extends AbstractClient implements TargetGroupClien
     }
 
     /**
-     * @param int $id
      *
-     * @return TargetGroupDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailById(int $id): TargetGroupDetailInterface

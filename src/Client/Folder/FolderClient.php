@@ -18,10 +18,7 @@ final class FolderClient extends AbstractClient implements FolderClientInterface
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param string $title
-     * @param int $folderId
      *
-     * @return FolderInformationInterface
      * @throws EmptyResultException
      */
     public function create(string $title, int $folderId): FolderInformationInterface
@@ -34,9 +31,7 @@ final class FolderClient extends AbstractClient implements FolderClientInterface
     }
 
     /**
-     * @param int $id
      *
-     * @return bool
      *
      * @throws EmptyResultException
      */
@@ -49,7 +44,6 @@ final class FolderClient extends AbstractClient implements FolderClientInterface
     }
 
     /**
-     * @param int $id
      *
      * @return FolderInformationInterface[]
      * @throws EmptyResultException
@@ -64,9 +58,7 @@ final class FolderClient extends AbstractClient implements FolderClientInterface
     }
 
     /**
-     * @param int $id
      *
-     * @return FolderInformationInterface
      * @throws EmptyResultException
      */
     public function get(int $id): FolderInformationInterface

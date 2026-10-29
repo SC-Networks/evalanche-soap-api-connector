@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
@@ -15,17 +17,11 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class DeviceStatisticItemConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new DeviceStatisticItem();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -34,9 +30,6 @@ class DeviceStatisticItemConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

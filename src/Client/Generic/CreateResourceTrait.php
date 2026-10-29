@@ -13,10 +13,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 trait CreateResourceTrait
 {
     /**
-     * @param string $title
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(string $title, int $folderId): ResourceInformationInterface

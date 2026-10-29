@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Document;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;

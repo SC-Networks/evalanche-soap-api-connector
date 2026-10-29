@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Account\AccountConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Account\DiscountConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Article\ArticleDetailConfig;
@@ -87,9 +88,7 @@ class HydratorConfigFactoryTest extends TestCase
         $this->subject = new HydratorConfigFactory();
     }
 
-    /**
-     * @dataProvider factoryDataProvider
-     */
+    #[DataProvider('factoryDataProvider')]
     public function testFactoryMethods($method, $expectedClass, array $parameter = [])
     {
         self::assertInstanceOf(

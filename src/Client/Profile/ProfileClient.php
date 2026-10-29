@@ -27,12 +27,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $profileId
-     * @param int $scoringGroupId
-     * @param int $score
-     * @param string $title
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function addScore(int $profileId, int $scoringGroupId, int $score, string $title): bool
@@ -49,10 +44,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return int
      * @throws EmptyResultException
      */
     public function create(int $id, HashMapInterface $hashMap): int
@@ -69,9 +61,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param array $ids
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function delete(array $ids): bool
@@ -87,12 +77,6 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $scoringGroupId
-     * @param int $scoringTypeId
-     * @param int $resourceId
-     * @param int $startTimestamp
-     * @param int $endTimestamp
      * @return ProfileActivityScoreInterface[]
      * @throws EmptyResultException
      */
@@ -121,10 +105,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $poolAttributeList
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return ProfileBounceStatusInterface[]
      * @throws EmptyResultException
@@ -148,7 +129,6 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     /**
      * @param int|string $id
      *
-     * @return HashMapInterface
      * @throws EmptyResultException
      */
     public function getById($id): HashMapInterface
@@ -165,10 +145,6 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param string $key
-     * @param string $value
-     * @param array $poolAttributeList
      *
      * @return HashMapInterface[]
      * @throws EmptyResultException
@@ -190,10 +166,8 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $poolAttributeList
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getByPool(int $id, array $poolAttributeList): JobHandleInterface
@@ -211,10 +185,8 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $poolAttributeList
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getByTargetGroup(int $id, array $poolAttributeList): JobHandleInterface
@@ -232,10 +204,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $attributes
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return HashMapInterface[]
      * @throws EmptyResultException
@@ -257,9 +226,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param string $id
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getJobInformationByJobId(string $id): JobHandleInterface
@@ -276,8 +243,6 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $mailingId
      *
      * @return MailingStatusInterface[]
      * @throws EmptyResultException
@@ -297,10 +262,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $attributes
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return HashMapInterface[]
      * @throws EmptyResultException
@@ -322,9 +284,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param string $id
      *
-     * @return string
      * @throws EmptyResultException
      */
     public function getResultCursorByJobId(string $id): string
@@ -340,9 +300,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param string $id
      *
-     * @return JobResultInterface
      * @throws EmptyResultException
      */
     public function getResultByJobId(string $id): JobResultInterface
@@ -359,7 +317,6 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param string $id
      *
      * @return ProfileGroupScoreInterface[]
      * @throws EmptyResultException
@@ -378,10 +335,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $poolAttributeList
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return HashMapInterface[]
      * @throws EmptyResultException
@@ -403,9 +357,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function grantPermission(int $id): bool
@@ -421,7 +373,6 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param int[] $targetGroupIds
      *
      * @return TargetGroupMemberShipInterface[]
@@ -442,14 +393,9 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param string $keyAttributeTitle
      * @param string[] $attributes
      * @param string[][] $data
-     * @param bool $merge
-     * @param bool $ignoreMissing
      *
-     * @return MassUpdateResultInterface
      * @throws EmptyResultException
      */
     public function massUpdate(
@@ -477,10 +423,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param string $id
-     * @param HashMapInterface $hashMap
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function mergeById(string $id, HashMapInterface $hashMap): bool
@@ -497,12 +440,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param string $key
-     * @param string $value
-     * @param HashMapInterface $hashMap
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function mergeByKey(int $id, string $key, string $value, HashMapInterface $hashMap): bool
@@ -520,12 +458,6 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
         );
     }
 
-    /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
-     *
-     * @return void
-     */
     public function mergeByPoolId(int $id, HashMapInterface $hashMap): void
     {
         $this->soapClient->mergeByPool(
@@ -537,10 +469,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function mergeByTargetGroupId(int $id, HashMapInterface $hashMap): bool
@@ -557,9 +486,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function revokePermission(int $id): bool
@@ -575,9 +502,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function revokeTracking(int $id): bool
@@ -593,10 +518,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param string $id
-     * @param int $cursor
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function setResultCursor(string $id, int $cursor): bool
@@ -613,12 +535,8 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $values
-     * @param string $key
-     * @param bool $doUpdate
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function tagWithOption(int $id, array $values, string $key, bool $doUpdate): bool
@@ -637,12 +555,8 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $values
-     * @param string $key
-     * @param bool $doUpdate
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function unTagWithOption(int $id, array $values, string $key, bool $doUpdate): bool
@@ -661,10 +575,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function updateById(int $id, HashMapInterface $hashMap): bool
@@ -681,12 +592,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param string $key
-     * @param string $value
-     * @param HashMapInterface $hashMap
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function updateByKey(int $id, string $key, string $value, HashMapInterface $hashMap): bool
@@ -705,10 +611,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function updateByPoolId(int $id, HashMapInterface $hashMap): bool
@@ -725,10 +628,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function updateByTargetGroupId(int $id, HashMapInterface $hashMap): bool
@@ -745,9 +645,6 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $profileId
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return ProfileTrackingHistoryInterface[]
      * @throws EmptyResultException
@@ -771,10 +668,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $profileId
-     * @param int $milestoneId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function setMilestone(int $profileId, int $milestoneId): bool
@@ -789,12 +683,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $profileId
-     * @param int $milestoneId
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function hasMilestone(
@@ -815,12 +704,7 @@ final class ProfileClient extends AbstractClient implements ProfileClientInterfa
     }
 
     /**
-     * @param int $milestoneId
-     * @param array $poolAttributeList
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getByMilestone(

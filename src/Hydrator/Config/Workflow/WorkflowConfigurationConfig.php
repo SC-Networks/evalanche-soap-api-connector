@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
@@ -9,17 +11,11 @@ use Scn\HydratorPropertyValues\Property\StringValue;
 
 final class WorkflowConfigurationConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new WorkflowConfiguration();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -28,9 +24,6 @@ final class WorkflowConfigurationConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Property;
 
 use Closure;
@@ -11,17 +13,7 @@ use Closure;
  */
 interface PropertyInterface
 {
-    /**
-     * @param string $propertyName
-     *
-     * @return Closure
-     */
     public static function get(string $propertyName): Closure;
 
-    /**
-     * @param string $propertyName
-     *
-     * @return Closure
-     */
     public static function set(string $propertyName): Closure;
 }

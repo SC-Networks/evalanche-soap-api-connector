@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\LeadPageTemplate;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -18,10 +20,7 @@ use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\TemplatesSourcesInterface;
 interface LeadpageTemplateClientInterface extends ResourceTraitInterface, ClientInterface
 {
     /**
-     * @param string $title
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(
@@ -30,18 +29,13 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     ): ResourceInformationInterface;
 
     /**
-     * @param int $id
      *
-     * @return TemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function getSources(int $id): TemplatesSourcesInterface;
 
     /**
-     * @param int $id
-     * @param TemplatesSourcesInterface $configuration
      *
-     * @return TemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function setSources(
@@ -51,18 +45,13 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     ): TemplatesSourcesInterface;
 
     /**
-     * @param int $id
      *
-     * @return LeadpageTemplateConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $id): LeadpageTemplateConfigurationInterface;
 
     /**
-     * @param int $id
-     * @param LeadpageTemplateConfigurationInterface $configuration
      *
-     * @return LeadpageTemplateConfigurationInterface
      * @throws EmptyResultException
      */
     public function setConfiguration(
@@ -73,9 +62,7 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Remove all articles from the leadpage-template
      *
-     * @param int $id
      *
-     * @return bool
      *
      * @throws EmptyResultException
      */
@@ -84,7 +71,6 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Remove certain articles from the leadpage-template
      *
-     * @param int $id
      * @param int[] $referenceIds
      *
      * @return LeadpageArticleInterface[]
@@ -96,7 +82,6 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Retrieve all articles of the leadpage-template
      *
-     * @param int $id
      *
      * @return LeadpageArticleInterface[]
      * @throws EmptyResultException
@@ -106,8 +91,6 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Add articles to a leadpage-template
      *
-     * @param int $id
-     * @param array $articles
      *
      * @return LeadpageArticleInterface[]
      * @throws EmptyResultException
@@ -117,10 +100,7 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Removes an existing slot from a leadpage-template
      *
-     * @param int $id
-     * @param int $slotId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeSlot(int $id, int $slotId): bool;
@@ -128,12 +108,7 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Removes an article template configuration for a certain template type from an existing slot of the leadpage-template
      *
-     * @param int $id
-     * @param int $slotId
-     * @param int $templateType
-     * @param int $articleTypeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeTemplateFromSlot(
@@ -144,9 +119,7 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     ): bool;
 
     /**
-     * @param int $id
      *
-     * @return LeadpageSlotConfigurationInterface
      * @throws EmptyResultException
      */
     public function getSlotConfiguration(int $id): LeadpageSlotConfigurationInterface;
@@ -154,10 +127,7 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Adds a slot to the leadpage-template
      *
-     * @param int $id
-     * @param int $slotNumber
      *
-     * @return LeadpageSlotInterface
      * @throws EmptyResultException
      */
     public function addSlot(
@@ -168,14 +138,7 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Update a slot of the leadpage-template
      *
-     * @param int $id
-     * @param int $slotId
-     * @param int $slotNumber
-     * @param string $name
-     * @param int $sortTypeId
-     * @param int $sortValue
      *
-     * @return LeadpageSlotInterface
      * @throws EmptyResultException
      */
     public function updateSlot(
@@ -190,13 +153,8 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Adds a template config to an existing slot of the leadpage-template
      *
-     * @param int $id
-     * @param int $slotId
-     * @param HashMapInterface $config
-     * @param int $articleTypeId
      * @param list<LeadpageTemplateAllowedTemplatesInterface> $allowed_templates
      *
-     * @return LeadpageSlotItemInterface
      * @throws EmptyResultException
      */
     public function addTemplatesToSlot(
@@ -210,13 +168,8 @@ interface LeadpageTemplateClientInterface extends ResourceTraitInterface, Client
     /**
      * Updates an existing template config of a slot of the leadpage-template
      *
-     * @param int $id
-     * @param int $slotId
-     * @param HashMapInterface $config
-     * @param int $articleTypeId
      * @param list<LeadpageTemplateAllowedTemplatesInterface> $allowed_templates
      *
-     * @return LeadpageSlotItemInterface
      * @throws EmptyResultException
      */
     public function updateSlotTemplates(

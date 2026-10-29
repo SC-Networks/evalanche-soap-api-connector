@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
@@ -15,17 +17,11 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class JobHandleConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new JobHandle();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -39,9 +35,6 @@ class JobHandleConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

@@ -18,17 +18,11 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class SmartLinkConfigurationConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new SmartLinkConfiguration();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -46,9 +40,6 @@ class SmartLinkConfigurationConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

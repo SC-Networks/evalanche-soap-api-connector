@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
@@ -15,17 +17,11 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class FormatStatisticItemConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new FormatStatisticItem();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -38,9 +34,6 @@ class FormatStatisticItemConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

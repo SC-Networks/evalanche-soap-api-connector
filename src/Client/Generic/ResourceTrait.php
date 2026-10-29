@@ -17,10 +17,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatusInterface;
 trait ResourceTrait
 {
     /**
-     * @param int $id
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function copy(int $id, int $folderId): ResourceInformationInterface
@@ -33,9 +30,7 @@ trait ResourceTrait
     }
 
     /**
-     * @param int $id
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function delete(int $id): bool
@@ -47,7 +42,6 @@ trait ResourceTrait
     }
 
     /**
-     * @param int $id
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -62,7 +56,6 @@ trait ResourceTrait
     }
 
     /**
-     * @param int $id
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -77,9 +70,7 @@ trait ResourceTrait
     }
 
     /**
-     * @param string $id
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function getByExternalId(string $id): ResourceInformationInterface
@@ -92,9 +83,7 @@ trait ResourceTrait
     }
 
     /**
-     * @param int $id
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function getById(int $id): ResourceInformationInterface
@@ -107,8 +96,6 @@ trait ResourceTrait
     }
 
     /**
-     * @param int $id
-     * @param int $mandatorId
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -123,9 +110,7 @@ trait ResourceTrait
     }
 
     /**
-     * @param int $id
      *
-     * @return FolderInformationInterface
      * @throws EmptyResultException
      */
     public function getDefaultFolderByMandatorId(int $id): FolderInformationInterface
@@ -152,10 +137,7 @@ trait ResourceTrait
     }
 
     /**
-     * @param int $id
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function move(int $id, int $folderId): ResourceInformationInterface
@@ -169,7 +151,6 @@ trait ResourceTrait
 
     /**
      *
-     * @return ServiceStatusInterface
      * @throws EmptyResultException
      */
     public function getServiceAvailable(): ServiceStatusInterface
@@ -182,10 +163,7 @@ trait ResourceTrait
     }
 
     /**
-     * @param int $id
-     * @param string $title
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function updateTitle(int $id, string $title): ResourceInformationInterface

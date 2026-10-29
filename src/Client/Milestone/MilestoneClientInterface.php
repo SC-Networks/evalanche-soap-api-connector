@@ -15,10 +15,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 interface MilestoneClientInterface extends ClientInterface, ResourceTraitInterface
 {
     /**
-     * @param string $name
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(string $name, int $folderId): ResourceInformationInterface;

@@ -26,13 +26,7 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param string $title
-     * @param string $label
-     * @param int $typeId
-     * @param int $groupId
      *
-     * @return ContainerAttributeInterface
      * @throws EmptyResultException
      */
     public function addAttribute(
@@ -58,10 +52,7 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param string $title
      *
-     * @return ContainerAttributeGroupInterface
      * @throws EmptyResultException
      */
     public function addAttributeGroup(int $id, string $title): ContainerAttributeGroupInterface
@@ -76,11 +67,7 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $roleTypeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function assignRoleToAttribute(int $id, int $attributeId, int $roleTypeId): bool
@@ -94,11 +81,7 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $typeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function changeAttributeType(int $id, int $attributeId, int $typeId): bool
@@ -112,11 +95,7 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param string $label
      *
-     * @return ContainerAttributeOptionInterface
      * @throws EmptyResultException
      */
     public function createAttributeOption(int $id, int $attributeId, string $label): ContainerAttributeOptionInterface
@@ -131,8 +110,6 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
      *
      * @return ContainerAttributeRoleTypeInterface[]
      * @throws EmptyResultException
@@ -149,8 +126,6 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
      *
      * @return ContainerAttributeRoleTypeInterface[]
      * @throws EmptyResultException
@@ -167,7 +142,6 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
      *
      * @return ContainerAttributeGroupInterface[]
      * @throws EmptyResultException
@@ -184,8 +158,6 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
      *
      * @return ContainerAttributeOptionInterface[]
      * @throws EmptyResultException
@@ -202,7 +174,6 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
      *
      * @return ContainerAttributeInterface[]
      * @throws EmptyResultException
@@ -219,10 +190,7 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAttribute(int $id, int $attributeId): bool
@@ -236,10 +204,7 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeGroupId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAttributeGroup(int $id, int $attributeGroupId): bool
@@ -253,11 +218,7 @@ final class ArticleTypeClient extends AbstractClient implements ArticleTypeClien
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $optionId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAttributeOption(int $id, int $attributeId, int $optionId): bool

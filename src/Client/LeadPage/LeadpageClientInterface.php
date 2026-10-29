@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\LeadPage;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -19,34 +21,25 @@ interface LeadpageClientInterface extends
     ClientInterface
 {
     /**
-     * @param int $id
-     * @param int $mandatorId
      *
      * @return ResourceInformationInterface[]
      */
     public function getByTypeId(int $id, int $mandatorId): array;
 
     /**
-     * @param int $id
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): ResourceInformationInterface;
 
     /**
-     * @param int $id
      *
-     * @return LeadpageConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $id): LeadpageConfigurationInterface;
 
     /**
-     * @param int $id
-     * @param LeadpageConfigurationInterface $configuration
      *
-     * @return LeadpageConfigurationInterface
      * @throws EmptyResultException
      */
     public function setConfiguration(
@@ -55,18 +48,13 @@ interface LeadpageClientInterface extends
     ): LeadpageConfigurationInterface;
 
     /**
-     * @param int $leadpageId
      *
-     * @return HashMapInterface
      * @throws EmptyResultException
      */
     public function getContentContainerData(int $leadpageId): HashMapInterface;
 
     /**
-     * @param int $leadpageId
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function setContentContainerData(int $leadpageId, HashMapInterface $hashMap): ResourceInformationInterface;
@@ -74,9 +62,7 @@ interface LeadpageClientInterface extends
     /**
      * Remove all articles from the leadpage
      *
-     * @param int $id
      *
-     * @return bool
      *
      * @throws EmptyResultException
      */
@@ -85,7 +71,6 @@ interface LeadpageClientInterface extends
     /**
      * Remove certain articles from the leadpage
      *
-     * @param int $id
      * @param int[] $referenceIds
      *
      * @return LeadpageArticleInterface[]
@@ -97,7 +82,6 @@ interface LeadpageClientInterface extends
     /**
      * Retrieve all articles of the leadpage
      *
-     * @param int $id
      *
      * @return LeadpageArticleInterface[]
      * @throws EmptyResultException
@@ -107,8 +91,6 @@ interface LeadpageClientInterface extends
     /**
      * Add articles to a leadpage
      *
-     * @param int $id
-     * @param array $articles
      *
      * @return LeadpageArticleInterface[]
      * @throws EmptyResultException

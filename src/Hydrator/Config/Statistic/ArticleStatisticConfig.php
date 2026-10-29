@@ -2,8 +2,9 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ObjectValue;
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ArrayOfObjectValue;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\ArticleStatistic;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\HydratorPropertyValues\Property\IntegerValue;
@@ -16,47 +17,38 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class ArticleStatisticConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new ArticleStatistic();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
             'id' => IntegerValue::set('id'),
             'reference_id' => IntegerValue::set('referenceId'),
             'name' => StringValue::set('name'),
-            'overall' => Property\ObjectValue::set('overall', new FormatStatisticItemConfig()),
-            'landingpage' => Property\ObjectValue::set('landingPage', new FormatStatisticItemConfig()),
-            'print' => Property\ObjectValue::set('print', new FormatStatisticItemConfig()),
-            'voice' => Property\ObjectValue::set('voice', new FormatStatisticItemConfig()),
-            'social_sharing' => Property\ObjectValue::set('socialSharing', new FormatStatisticItemConfig()),
-            'links' => Property\ArrayOfObjectValue::set('links', new LinkStatisticItemConfig()),
+            'overall' => ObjectValue::set('overall', new FormatStatisticItemConfig()),
+            'landingpage' => ObjectValue::set('landingPage', new FormatStatisticItemConfig()),
+            'print' => ObjectValue::set('print', new FormatStatisticItemConfig()),
+            'voice' => ObjectValue::set('voice', new FormatStatisticItemConfig()),
+            'social_sharing' => ObjectValue::set('socialSharing', new FormatStatisticItemConfig()),
+            'links' => ArrayOfObjectValue::set('links', new LinkStatisticItemConfig()),
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [
             'id' => IntegerValue::get('id'),
             'reference_id' => IntegerValue::get('referenceId'),
             'name' => StringValue::get('name'),
-            'overall' => Property\ObjectValue::get('overall'),
-            'landingpage' => Property\ObjectValue::get('landingPage'),
-            'print' => Property\ObjectValue::get('print'),
-            'voice' => Property\ObjectValue::get('voice'),
-            'social_sharing' => Property\ObjectValue::get('socialSharing'),
-            'links' => Property\ArrayOfObjectValue::get('links'),
+            'overall' => ObjectValue::get('overall'),
+            'landingpage' => ObjectValue::get('landingPage'),
+            'print' => ObjectValue::get('print'),
+            'voice' => ObjectValue::get('voice'),
+            'social_sharing' => ObjectValue::get('socialSharing'),
+            'links' => ArrayOfObjectValue::get('links'),
         ];
     }
 }

@@ -29,7 +29,7 @@ class ExtractorTest extends TestCase
 
     public function setUp(): void
     {
-        $this->hydrator = $this->getMockBuilder(HydratorInterface::class)->getMock();
+        $this->hydrator = $this->createMock(HydratorInterface::class);
         $this->subject = new Extractor(
             $this->hydrator
         );
@@ -37,8 +37,8 @@ class ExtractorTest extends TestCase
 
     public function testExtractCanReturnArray()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $user = $this->getMockBuilder(UserInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $user = $this->createStub(UserInterface::class);
 
         $this->hydrator->expects($this->once())->method('extract')
             ->with($config, $user)
@@ -62,8 +62,8 @@ class ExtractorTest extends TestCase
 
     public function testExtractArrayCanReturnArray()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $user = $this->getMockBuilder(UserInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $user = $this->createStub(UserInterface::class);
 
         $this->hydrator->expects($this->exactly(2))->method('extract')
             ->with($config, $user)

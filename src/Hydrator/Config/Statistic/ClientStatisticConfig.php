@@ -2,8 +2,8 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ArrayOfObjectValue;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\ClientStatistic;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 
@@ -14,35 +14,26 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
  */
 class ClientStatisticConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new ClientStatistic();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
-            'mail_clients' => Property\ArrayOfObjectValue::set('clients', new MailClientStatisticItemConfig()),
-            'browsers' => Property\ArrayOfObjectValue::set('browsers', new BrowserStatisticItemConfig()),
-            'devices' => Property\ArrayOfObjectValue::set('devices', new MailClientStatisticItemConfig()),
+            'mail_clients' => ArrayOfObjectValue::set('clients', new MailClientStatisticItemConfig()),
+            'browsers' => ArrayOfObjectValue::set('browsers', new BrowserStatisticItemConfig()),
+            'devices' => ArrayOfObjectValue::set('devices', new MailClientStatisticItemConfig()),
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [
-            'mail_clients' => Property\ArrayOfObjectValue::set('clients', new MailClientStatisticItemConfig()),
-            'browsers' => Property\ArrayOfObjectValue::set('browsers', new BrowserStatisticItemConfig()),
-            'devices' => Property\ArrayOfObjectValue::set('devices', new MailClientStatisticItemConfig()),
+            'mail_clients' => ArrayOfObjectValue::set('clients', new MailClientStatisticItemConfig()),
+            'browsers' => ArrayOfObjectValue::set('browsers', new BrowserStatisticItemConfig()),
+            'devices' => ArrayOfObjectValue::set('devices', new MailClientStatisticItemConfig()),
         ];
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Container;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -17,12 +19,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 interface ContainerClientInterface extends ClientInterface, ResourceTraitInterface
 {
     /**
-     * @param int $id
-     * @param string $title
-     * @param int $folderId
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(
@@ -33,32 +30,24 @@ interface ContainerClientInterface extends ClientInterface, ResourceTraitInterfa
     ): ResourceInformationInterface;
 
     /**
-     * @param int $id
      *
-     * @return HashMapInterface
      * @throws EmptyResultException
      */
     public function getDetailById(int $id): HashMapInterface;
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function update(int $id, HashMapInterface $hashMap): ResourceInformationInterface;
 
     /**
-     * @param int $id
      *
-     * @return ContainerDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): ContainerDetailInterface;
 
     /**
-     * @param int $containerTypeId
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException

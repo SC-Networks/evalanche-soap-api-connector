@@ -42,6 +42,6 @@ final class MarketplaceClient extends AbstractClient implements MarketplaceClien
 
     public static function getWsdlUri(): string
     {
-        return sprintf(ClientInterface::WSDL_V1_URI, static::VERSION, static::PORTNAME);
+        return sprintf(ClientInterface::WSDL_V1_URI, self::VERSION, self::PORTNAME);
     }
 }

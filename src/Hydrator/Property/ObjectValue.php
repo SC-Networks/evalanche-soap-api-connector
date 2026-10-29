@@ -13,43 +13,21 @@ use Scn\Hydrator\Hydrator;
  */
 final class ObjectValue implements PropertyObjectInterface
 {
-    /**
-     * @param string $propertyName
-     * @param HydratorConfigInterface|null $hydratorConfig
-     * @return Closure
-     */
     public static function get(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return (new static())->createGetter($propertyName);
     }
 
-    /**
-     * @param string $propertyName
-     *
-     * @return Closure
-     */
     private function createGetter(string $propertyName): Closure
     {
-        return function () use ($propertyName): ?object {
-            return $this->$propertyName;
-        };
+        return fn (): ?object => $this->$propertyName;
     }
 
-    /**
-     * @param string $propertyName
-     * @param HydratorConfigInterface|null $hydratorConfig
-     * @return Closure
-     */
     public static function set(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return (new static())->createSetter($propertyName, $hydratorConfig);
     }
 
-    /**
-     * @param string $propertyName
-     * @param HydratorConfigInterface|null $hydratorConfig
-     * @return Closure
-     */
     private function createSetter(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return function ($value) use ($propertyName, $hydratorConfig): void {

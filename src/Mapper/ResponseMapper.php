@@ -8,26 +8,14 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\Hydrator\Hydrator;
 use Scn\Hydrator\HydratorInterface;
 
-final class ResponseMapper implements ResponseMapperInterface
+final readonly class ResponseMapper implements ResponseMapperInterface
 {
-    /**
-     * @var HydratorInterface
-     */
-    private $hydrator;
-
-    /**
-     * @param HydratorInterface $hydrator
-     */
-    public function __construct(HydratorInterface $hydrator)
+    public function __construct(private HydratorInterface $hydrator)
     {
-        $this->hydrator = $hydrator;
     }
 
     /**
-     * @param object $response
-     * @param string $responseProperty
      *
-     * @return int
      * @throws EmptyResultException
      */
     public function getInteger(
@@ -42,10 +30,7 @@ final class ResponseMapper implements ResponseMapperInterface
     }
 
     /**
-     * @param object $response
-     * @param string $responseProperty
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function getBoolean(
@@ -60,10 +45,7 @@ final class ResponseMapper implements ResponseMapperInterface
     }
 
     /**
-     * @param object $response
-     * @param string $responseProperty
      *
-     * @return string
      * @throws EmptyResultException
      */
     public function getString(
@@ -78,10 +60,7 @@ final class ResponseMapper implements ResponseMapperInterface
     }
 
     /**
-     * @param object $response
-     * @param string $responseProperty
      *
-     * @return array
      * @throws EmptyResultException
      */
     public function getArray(
@@ -96,11 +75,7 @@ final class ResponseMapper implements ResponseMapperInterface
     }
 
     /**
-     * @param object $response
-     * @param string $responseProperty
-     * @param HydratorConfigInterface $hydratorConfig
      *
-     * @return StructInterface
      * @throws EmptyResultException
      */
     public function getObject(
@@ -116,8 +91,6 @@ final class ResponseMapper implements ResponseMapperInterface
     }
 
     /**
-     * @param object $response
-     * @param HydratorConfigInterface $hydratorConfig
      *
      * @return StructInterface
      */
@@ -127,8 +100,6 @@ final class ResponseMapper implements ResponseMapperInterface
     }
 
     /**
-     * @param object $response
-     * @param HydratorConfigInterface $hydratorConfig
      *
      * @return StructInterface[]
      */
@@ -137,12 +108,6 @@ final class ResponseMapper implements ResponseMapperInterface
         return $this->mapListOfObjects($this->getListFromResponse($response), $hydratorConfig);
     }
 
-    /**
-     * @param object $objectResponse
-     * @param HydratorConfigInterface $hydratorConfig
-     *
-     * @return StructInterface
-     */
     private function mapSingleObject(object $objectResponse, HydratorConfigInterface $hydratorConfig): StructInterface
     {
         $object = $hydratorConfig->getObject();
@@ -158,9 +123,6 @@ final class ResponseMapper implements ResponseMapperInterface
     }
 
     /**
-     * @param object $response
-     * @param string $responseProperty
-     * @param HydratorConfigInterface $hydratorConfig
      *
      * @return StructInterface[]
      * @throws EmptyResultException
@@ -177,12 +139,6 @@ final class ResponseMapper implements ResponseMapperInterface
         throw new EmptyResultException('Empty Result');
     }
 
-    /**
-     * @param array $objectResponse
-     * @param HydratorConfigInterface $hydratorConfig
-     *
-     * @return array
-     */
     private function mapListOfObjects(array $objectResponse, HydratorConfigInterface $hydratorConfig): array
     {
         foreach ($objectResponse as $objectKey => $unmappedObject) {
@@ -192,11 +148,6 @@ final class ResponseMapper implements ResponseMapperInterface
         return $objectResponse;
     }
 
-    /**
-     * @param object $objectResponse
-     *
-     * @return array
-     */
     private function getListFromResponse(object $objectResponse): array
     {
         if (property_exists($objectResponse, 'items') || !property_exists($objectResponse, 'item')) {

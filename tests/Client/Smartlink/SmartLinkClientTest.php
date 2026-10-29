@@ -64,9 +64,9 @@ class SmartLinkClientTest extends TestCase
             'move',
             'delete',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createMock(ExtractorInterface::class);
 
         $this->subject = new SmartLinkClient(
             $this->soapClient,
@@ -104,9 +104,9 @@ class SmartLinkClientTest extends TestCase
     {
         $id = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(SmartLinkInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(SmartLinkInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(SmartLinkInterface::class);
+        $otherObject = $this->createStub(SmartLinkInterface::class);
 
         $response = new stdClass();
         $response->getTrackingUrlsResult = [
@@ -132,9 +132,9 @@ class SmartLinkClientTest extends TestCase
     {
         $link_id = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(SmartLinkConfigurationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(SmartLinkConfigurationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(SmartLinkConfigurationInterface::class);
+        $otherObject = $this->createStub(SmartLinkConfigurationInterface::class);
 
         $response = new stdClass();
         $response->getLinkConfigurationsResult = [
@@ -171,11 +171,11 @@ class SmartLinkClientTest extends TestCase
     {
         $link_id = 1234;
         $configurations = [
-            $this->createMock(SmartLinkConfigurationInterface::class),
-            $this->createMock(SmartLinkConfigurationInterface::class)
+            $this->createStub(SmartLinkConfigurationInterface::class),
+            $this->createStub(SmartLinkConfigurationInterface::class)
         ];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $response = new stdClass();
         $result = true;
@@ -228,11 +228,11 @@ class SmartLinkClientTest extends TestCase
     {
         $link_id = 1234;
         $configurations = [
-            $this->createMock(SmartLinkConfigurationInterface::class),
-            $this->createMock(SmartLinkConfigurationInterface::class)
+            $this->createStub(SmartLinkConfigurationInterface::class),
+            $this->createStub(SmartLinkConfigurationInterface::class)
         ];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $response = new stdClass();
         $result = true;

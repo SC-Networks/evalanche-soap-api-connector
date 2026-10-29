@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Workflow;
 
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -49,9 +50,9 @@ class WorkflowClientTest extends TestCase
     private $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var Stub&ExtractorInterface
      */
-    private $extractor;
+    private Stub $extractor;
 
     public function setUp(): void
     {
@@ -75,9 +76,9 @@ class WorkflowClientTest extends TestCase
             'generateConfiguration',
             'getByModificationDate',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createStub(ExtractorInterface::class);
 
         $this->subject = new WorkflowClient(
             $this->soapClient,
@@ -92,9 +93,9 @@ class WorkflowClientTest extends TestCase
         $timestampStart = 1532610558;
         $timestampEnd = 1532610558;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
+        $otherObject = $this->createStub(ResourceInformationInterface::class);
 
         $result = new stdClass();
         $result->getByEndateRangeResult = [
@@ -114,7 +115,7 @@ class WorkflowClientTest extends TestCase
             $config
         )->willReturn([$object, $otherObject]);
 
-        $this->containsOnlyInstancesOf(
+        $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
             $this->subject->getByStartDateRange($timestampStart, $timestampEnd)
         );
@@ -125,9 +126,9 @@ class WorkflowClientTest extends TestCase
         $timestampStart = 1532610558;
         $timestampEnd = 1532610558;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
+        $otherObject = $this->createStub(ResourceInformationInterface::class);
 
         $result = new stdClass();
         $result->getByEndDateRangeResult = [
@@ -147,7 +148,7 @@ class WorkflowClientTest extends TestCase
             $config
         )->willReturn([$object, $otherObject]);
 
-        $this->containsOnlyInstancesOf(
+        $this->assertContainsOnlyInstancesOf(
             ResourceInformationInterface::class,
             $this->subject->getByEndDateRange($timestampStart, $timestampEnd)
         );
@@ -156,8 +157,8 @@ class WorkflowClientTest extends TestCase
     public function testGetDetailByIdCanReturnInstanceOfWorkflowDetail()
     {
         $id = 55;
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(WorkflowDetailInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(WorkflowDetailInterface::class);
 
         $result = new stdClass();
         $result->getDetailsResult = $object;
@@ -200,7 +201,7 @@ class WorkflowClientTest extends TestCase
         $workflowConfiguration = 'my config';
         $categoryId = 456;
 
-        $resourceInformation = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $resourceInformation = $this->createStub(ResourceInformationInterface::class);
         $result = new stdClass();
         $result->createResult = $resourceInformation;
 
@@ -211,7 +212,7 @@ class WorkflowClientTest extends TestCase
             'category_id' => $categoryId,
         ])->willReturn($result);
 
-        $resourceInformationConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $resourceInformationConfig = $this->createStub(HydratorConfigInterface::class);
         $this->hydratorConfigFactory
             ->expects($this->once())
             ->method('createResourceInformationConfig')
@@ -291,7 +292,7 @@ class WorkflowClientTest extends TestCase
 
         $configResult = ['my result'];
         $result = new stdClass();
-        $configVersionsConfig = $this->createMock(HydratorConfigInterface::class);
+        $configVersionsConfig = $this->createStub(HydratorConfigInterface::class);
 
         $this->soapClient->expects($this->once())
             ->method('getConfigurationVersions')
@@ -320,9 +321,9 @@ class WorkflowClientTest extends TestCase
     {
         $workflowId = 42;
 
-        $configResult = $this->createMock(WorkflowStateChangeResultInterface::class);
+        $configResult = $this->createStub(WorkflowStateChangeResultInterface::class);
         $result = new stdClass();
-        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
+        $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
         $this->soapClient->expects($this->once())
             ->method('activate')
@@ -351,9 +352,9 @@ class WorkflowClientTest extends TestCase
     {
         $workflowId = 42;
 
-        $configResult = $this->createMock(WorkflowStateChangeResultInterface::class);
+        $configResult = $this->createStub(WorkflowStateChangeResultInterface::class);
         $result = new stdClass();
-        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
+        $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
         $this->soapClient->expects($this->once())
             ->method('deactivate')
@@ -382,9 +383,9 @@ class WorkflowClientTest extends TestCase
     {
         $workflowId = 42;
 
-        $configResult = $this->createMock(WorkflowConfigurationInterface::class);
+        $configResult = $this->createStub(WorkflowConfigurationInterface::class);
         $result = new stdClass();
-        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
+        $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
         $this->soapClient->expects($this->once())
             ->method('getConfiguration')
@@ -416,8 +417,8 @@ class WorkflowClientTest extends TestCase
         $prompt = 'some-prompt';
         $result = new stdClass();
 
-        $configResult = $this->createMock(JobStateInterface::class);
-        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
+        $configResult = $this->createStub(JobStateInterface::class);
+        $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
         $this->soapClient->expects($this->once())
             ->method('generateConfiguration')

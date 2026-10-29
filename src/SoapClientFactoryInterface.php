@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector;
 
 /**
@@ -9,12 +11,6 @@ namespace Scn\EvalancheSoapApiConnector;
  */
 interface SoapClientFactoryInterface
 {
-    /**
-     * @param EvalancheConfigInterface $config
-     * @param string $wsdlUri
-     *
-     * @return EvalancheSoapClient
-     */
     public function create(
         EvalancheConfigInterface $config,
         string $wsdlUri

@@ -53,9 +53,6 @@ class LeadpageTemplateConfigurationConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

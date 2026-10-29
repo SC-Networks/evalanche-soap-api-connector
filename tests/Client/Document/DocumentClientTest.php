@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Document;
 
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -47,9 +48,9 @@ class DocumentClientTest extends TestCase
     private $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var Stub&ExtractorInterface
      */
-    private $extractor;
+    private Stub $extractor;
 
     public function setUp(): void
     {
@@ -69,9 +70,9 @@ class DocumentClientTest extends TestCase
             'isAlive',
             'rename',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createStub(ExtractorInterface::class);
 
         $this->subject = new DocumentClient(
             $this->soapClient,
@@ -86,8 +87,8 @@ class DocumentClientTest extends TestCase
         $title = 'some title';
         $folderId = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->createResult = $object;
@@ -113,9 +114,9 @@ class DocumentClientTest extends TestCase
     {
         $id = 456;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
+        $otherObject = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByCategoryResult = [
@@ -140,8 +141,8 @@ class DocumentClientTest extends TestCase
     {
         $id = 'some id';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByExternalIdResult = $object;
@@ -164,8 +165,8 @@ class DocumentClientTest extends TestCase
     {
         $id = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByExternalIdResult = $object;
@@ -189,9 +190,9 @@ class DocumentClientTest extends TestCase
         $id = 456;
         $mandatorId = 76;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
+        $otherObject = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByTypeIdResult = [
@@ -219,8 +220,8 @@ class DocumentClientTest extends TestCase
     {
         $id = 456;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(FolderInformationInterface::class);
 
         $response = new stdClass();
         $response->getResourceDefaultCategoryResult = $object;
@@ -241,9 +242,9 @@ class DocumentClientTest extends TestCase
 
     public function testGetTypeIdsCanReturnArrayOfResourceTypeInformation()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceTypeInformationInterface::class);
+        $otherObject = $this->createStub(ResourceTypeInformationInterface::class);
 
         $response = new stdClass();
         $response->getByTypeIdResult = [
@@ -269,8 +270,8 @@ class DocumentClientTest extends TestCase
         $id = 456;
         $folderId = 34;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->moveResult = $object;
@@ -294,8 +295,8 @@ class DocumentClientTest extends TestCase
 
     public function testGetServiceAvailableCanReturnInstanceOfServiceStatus()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ServiceStatusInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ServiceStatusInterface::class);
 
         $response = new stdClass();
         $response->isAliveResult = $object;

@@ -2,8 +2,9 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ObjectValue;
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ArrayValue;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Generic\MassUpdateResult;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 
@@ -14,37 +15,28 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
  */
 class MassUpdateResultConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new MassUpdateResult();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
-            'updated' => Property\ObjectValue::set('updated', new HashMapConfig()),
-            'created' => Property\ObjectValue::set('created', new HashMapConfig()),
-            'ignored' => Property\ArrayValue::set('ignored'),
-            'error' => Property\ArrayValue::set('error'),
+            'updated' => ObjectValue::set('updated', new HashMapConfig()),
+            'created' => ObjectValue::set('created', new HashMapConfig()),
+            'ignored' => ArrayValue::set('ignored'),
+            'error' => ArrayValue::set('error'),
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [
-            'updated' => Property\ObjectValue::get('updated'),
-            'created' => Property\ObjectValue::get('created'),
-            'ignored' => Property\ArrayValue::get('ignored'),
-            'error' => Property\ArrayValue::get('error'),
+            'updated' => ObjectValue::get('updated'),
+            'created' => ObjectValue::get('created'),
+            'ignored' => ArrayValue::get('ignored'),
+            'error' => ArrayValue::get('error'),
         ];
     }
 }

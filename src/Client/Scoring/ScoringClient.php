@@ -20,7 +20,6 @@ final class ScoringClient extends AbstractClient implements ScoringClientInterfa
     /**
      * Returns the configured scoring groups
      *
-     * @param int $id
      *
      * @return ScoringGroupDetailInterface[]
      * @throws EmptyResultException

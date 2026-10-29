@@ -11,17 +11,11 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
 
 class ArticleIndividualizationItemConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new ArticleIndividualizationItem();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -30,9 +24,6 @@ class ArticleIndividualizationItemConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

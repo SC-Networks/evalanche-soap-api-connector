@@ -6,9 +6,9 @@ namespace Scn\EvalancheSoapApiConnector\Enum;
 
 final class ArticleTemplateTypeEnum
 {
-    public const HTML = 1;
-    public const PDF = 2;
-    public const TEXT = 3;
-    public const WEB = 4;
-    public const LANDINGPAGE = 5;
+    public const int HTML = 1;
+    public const int PDF = 2;
+    public const int TEXT = 3;
+    public const int WEB = 4;
+    public const int LANDINGPAGE = 5;
 }

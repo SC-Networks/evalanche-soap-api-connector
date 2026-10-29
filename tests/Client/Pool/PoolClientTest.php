@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Pool;
 
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
@@ -42,9 +43,9 @@ class PoolClientTest extends TestCase
     private $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var Stub&ExtractorInterface
      */
-    private $extractor;
+    private Stub $extractor;
 
     public function setUp(): void
     {
@@ -58,9 +59,9 @@ class PoolClientTest extends TestCase
             'getAttributes',
             'updateAttributeOption'
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createStub(ExtractorInterface::class);
 
         $this->subject = new PoolClient(
             $this->soapClient,
@@ -77,8 +78,8 @@ class PoolClientTest extends TestCase
         $label = 'some label';
         $typeId = 145;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(PoolAttributeInterface::class);
 
         $response = new stdClass();
         $response->addAttributeResult = $object;
@@ -111,8 +112,8 @@ class PoolClientTest extends TestCase
             'some other text',
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(PoolAttributeInterface::class);
 
         $response = new stdClass();
         $response->addAttributeOptionsResult = $object;
@@ -164,8 +165,8 @@ class PoolClientTest extends TestCase
         $attributeId = 95654;
         $optionId = 145;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(PoolAttributeInterface::class);
 
         $response = new stdClass();
         $response->deleteAttributeOptionResult = $object;
@@ -192,9 +193,9 @@ class PoolClientTest extends TestCase
     {
         $id = 654;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(PoolAttributeInterface::class);
+        $otherObject = $this->createStub(PoolAttributeInterface::class);
 
         $response = new stdClass();
         $response->getAttributesResult = [
@@ -225,8 +226,8 @@ class PoolClientTest extends TestCase
         $optionId = 5642;
         $label = 'some label';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(PoolAttributeInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(PoolAttributeInterface::class);
 
         $response = new stdClass();
         $response->updateAttributeOptionResult = $object;

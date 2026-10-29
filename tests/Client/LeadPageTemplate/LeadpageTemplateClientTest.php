@@ -93,8 +93,8 @@ class LeadpageTemplateClientTest extends TestCase
         $folderId = 123;
         $title = 'some title';
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(ResourceInformationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->createResult = $object;
@@ -131,8 +131,8 @@ class LeadpageTemplateClientTest extends TestCase
         $id = 123;
         $title = 'some title';
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(ResourceInformationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->renameResult = $object;
@@ -168,8 +168,8 @@ class LeadpageTemplateClientTest extends TestCase
     {
         $id = 1234;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(TemplatesSourcesInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(TemplatesSourcesInterface::class);
 
         $response = new stdClass();
         $response->getSourcesResult = $object;
@@ -203,9 +203,9 @@ class LeadpageTemplateClientTest extends TestCase
     public function testSetSourcesReturnsSources(): void
     {
         $id = 123;
-        $configuration = $this->createMock(TemplatesSourcesInterface::class);
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(TemplatesSourcesInterface::class);
+        $configuration = $this->createStub(TemplatesSourcesInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(TemplatesSourcesInterface::class);
         $overwrite = true;
 
         $extractedData = [
@@ -250,10 +250,10 @@ class LeadpageTemplateClientTest extends TestCase
     public function testSetConfigurationCanReturnInstanceOfLeadpageTemplateConfiguration(): void
     {
         $id = 128;
-        $configuration = $this->getMockBuilder(LeadpageTemplateConfigurationInterface::class)->getMock();
+        $configuration = $this->createStub(LeadpageTemplateConfigurationInterface::class);
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(LeadpageTemplateConfigurationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageTemplateConfigurationInterface::class);
 
         $extractedData = [
             'some ' => 'data',
@@ -284,8 +284,8 @@ class LeadpageTemplateClientTest extends TestCase
     {
         $id = 667;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(LeadpageTemplateConfigurationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageTemplateConfigurationInterface::class);
 
         $response = new stdClass();
         $response->getConfigurationResult = $object;
@@ -329,7 +329,7 @@ class LeadpageTemplateClientTest extends TestCase
             ->willReturn($response->removeAllArticleResult);
 
 
-        static::assertTrue(
+        self::assertTrue(
             $this->subject->removeAllArticles($id)
         );
     }
@@ -341,7 +341,7 @@ class LeadpageTemplateClientTest extends TestCase
         $response = new stdClass();
         $result = ['some-result'];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->soapClient->expects($this->once())
             ->method('removeArticles')
@@ -364,7 +364,7 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageArticleConfig')
             ->willReturn($config);
 
-        static::assertSame(
+        self::assertSame(
             $result,
             $this->subject->removeArticles($id, $referenceIds)
         );
@@ -374,10 +374,10 @@ class LeadpageTemplateClientTest extends TestCase
     {
         $id = 1234;
         $articles = [
-            $this->createMock(LeadpageArticleInterface::class),
+            $this->createStub(LeadpageArticleInterface::class),
         ];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $response = new stdClass();
         $response->addArticlesResult = $articles;
@@ -427,8 +427,8 @@ class LeadpageTemplateClientTest extends TestCase
     {
         $id = 123;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(LeadpageArticleInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageArticleInterface::class);
 
         $response = new stdClass();
         $response->getArticlesResult = [
@@ -522,8 +522,8 @@ class LeadpageTemplateClientTest extends TestCase
     {
         $id = 1234;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(LeadpageSlotConfigurationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageSlotConfigurationInterface::class);
 
         $response = new stdClass();
         $response->getSlotConfigurationResult = $object;
@@ -559,8 +559,8 @@ class LeadpageTemplateClientTest extends TestCase
         $id = 1234;
         $slotNumber = 666;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(LeadpageSlotInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageSlotInterface::class);
 
         $response = new stdClass();
         $response->addSlotResult = $object;
@@ -601,8 +601,8 @@ class LeadpageTemplateClientTest extends TestCase
         $sortTypeId = 444;
         $sortValue = 333;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(LeadpageSlotInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageSlotInterface::class);
 
         $response = new stdClass();
         $response->updateSlotResult = $object;
@@ -649,12 +649,12 @@ class LeadpageTemplateClientTest extends TestCase
     {
         $id = 1234;
         $slotId = 555;
-        $data = $this->createMock(HashMapInterface::class);
+        $data = $this->createStub(HashMapInterface::class);
         $articleTypeId = 666;
         $allowedTemplates = [];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(LeadpageSlotItemInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageSlotItemInterface::class);
 
         $response = new stdClass();
         $response->addTemplatesToSlotResult = $object;
@@ -699,12 +699,12 @@ class LeadpageTemplateClientTest extends TestCase
     {
         $id = 1234;
         $slotId = 555;
-        $data = $this->createMock(HashMapInterface::class);
+        $data = $this->createStub(HashMapInterface::class);
         $articleTypeId = 666;
         $allowedTemplates = [];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(LeadpageSlotItemInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageSlotItemInterface::class);
 
         $response = new stdClass();
         $response->updateSlotTemplatesResult = $object;

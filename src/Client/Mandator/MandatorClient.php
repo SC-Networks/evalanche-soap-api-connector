@@ -19,9 +19,7 @@ final class MandatorClient extends AbstractClient implements MandatorClientInter
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
      *
-     * @return MandatorInterface|StructInterface
      * @throws EmptyResultException
      */
     public function getById(int $id): StructInterface

@@ -26,7 +26,7 @@ class ResponseMapperTest extends TestCase
 
     public function setUp(): void
     {
-        $this->hydrator = $this->getMockBuilder(HydratorInterface::class)->getMock();
+        $this->hydrator = $this->createMock(HydratorInterface::class);
         $this->subject = new ResponseMapper(
             $this->hydrator
         );
@@ -105,9 +105,9 @@ class ResponseMapperTest extends TestCase
         $response = new stdClass();
         $response->$responseProperty = $responseObject;
 
-        $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
+        $someUser = $this->createStub(UserInterface::class);
 
-        $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
         $hydratorConfig->expects($this->once())->method('getObject')
             ->willReturn($someUser);
 
@@ -130,7 +130,7 @@ class ResponseMapperTest extends TestCase
         $this->subject->getObject(
             new stdClass(),
             'something',
-            $this->getMockBuilder(HydratorConfigInterface::class)->getMock()
+            $this->createStub(HydratorConfigInterface::class)
         );
     }
 
@@ -154,9 +154,9 @@ class ResponseMapperTest extends TestCase
         $response = new stdClass();
         $response->$responseProperty = $collection;
 
-        $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
+        $someUser = $this->createStub(UserInterface::class);
 
-        $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
         $hydratorConfig->expects($this->exactly(2))->method('getObject')
             ->willReturn($someUser);
 
@@ -196,7 +196,7 @@ class ResponseMapperTest extends TestCase
         $response = new stdClass();
         $response->$responseProperty = $collection;
 
-        $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
         self::assertEquals(
             [],
@@ -225,9 +225,9 @@ class ResponseMapperTest extends TestCase
         $response = new stdClass();
         $response->$responseProperty = $collection;
 
-        $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
+        $someUser = $this->createStub(UserInterface::class);
 
-        $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
         $hydratorConfig->expects($this->once())->method('getObject')
             ->willReturn($someUser);
 
@@ -250,7 +250,7 @@ class ResponseMapperTest extends TestCase
         $this->subject->getObjects(
             new stdClass(),
             'something',
-            $this->getMockBuilder(HydratorConfigInterface::class)->getMock()
+            $this->createStub(HydratorConfigInterface::class)
         );
     }
 
@@ -262,9 +262,9 @@ class ResponseMapperTest extends TestCase
 
         $response = $responseObject;
 
-        $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
+        $someUser = $this->createStub(UserInterface::class);
 
-        $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
         $hydratorConfig->expects($this->once())->method('getObject')
             ->willReturn($someUser);
 
@@ -296,9 +296,9 @@ class ResponseMapperTest extends TestCase
             $secondResponseObject
         ];
 
-        $someUser = $this->getMockBuilder(UserInterface::class)->getMock();
+        $someUser = $this->createStub(UserInterface::class);
 
-        $hydratorConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $hydratorConfig = $this->createMock(HydratorConfigInterface::class);
         $hydratorConfig->expects($this->exactly(2))->method('getObject')
             ->willReturn($someUser);
 

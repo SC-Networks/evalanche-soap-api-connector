@@ -15,17 +15,11 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class ResourceInformationConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new ResourceInformation();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -39,9 +33,6 @@ class ResourceInformationConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

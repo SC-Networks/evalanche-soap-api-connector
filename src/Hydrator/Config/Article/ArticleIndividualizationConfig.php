@@ -12,17 +12,11 @@ use Scn\HydratorPropertyValues\Property\BooleanValue;
 
 class ArticleIndividualizationConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new ArticleIndividualization();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -31,9 +25,6 @@ class ArticleIndividualizationConfig implements HydratorConfigInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [

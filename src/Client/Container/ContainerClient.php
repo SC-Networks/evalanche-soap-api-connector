@@ -23,12 +23,7 @@ final class ContainerClient extends AbstractClient implements ContainerClientInt
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param string $title
-     * @param int $folderId
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(
@@ -55,9 +50,7 @@ final class ContainerClient extends AbstractClient implements ContainerClientInt
     }
 
     /**
-     * @param int $id
      *
-     * @return HashMapInterface
      * @throws EmptyResultException
      */
     public function getDetailById(int $id): HashMapInterface
@@ -72,10 +65,7 @@ final class ContainerClient extends AbstractClient implements ContainerClientInt
     }
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function update(int $id, HashMapInterface $hashMap): ResourceInformationInterface
@@ -94,9 +84,7 @@ final class ContainerClient extends AbstractClient implements ContainerClientInt
     }
 
     /**
-     * @param int $id
      *
-     * @return ContainerDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): ContainerDetailInterface
@@ -113,7 +101,6 @@ final class ContainerClient extends AbstractClient implements ContainerClientInt
     }
 
     /**
-     * @param int $containerTypeId
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
