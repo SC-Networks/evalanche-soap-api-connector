@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\LeadPage;
 
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageConfigurationInterface;
 
 class LeadpageConfigurationConfigTest extends TestCase

@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Mandator\MandatorInterface;
 use stdClass;
 
@@ -44,12 +44,7 @@ class MandatorClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getById',
-            'getList',
-            'create',
-            'importScenario',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -73,10 +68,13 @@ class MandatorClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createMandatorConfig')
             ->willReturn($config);
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('getById')
-            ->with(['mandator_id' => 5])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getById',
+                [[
+                    'mandator_id' => 5
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper
@@ -109,9 +107,8 @@ class MandatorClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createMandatorConfig')
             ->willReturn($config);
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('getList')
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with('getList', [])
             ->willReturn($result);
 
         $this->responseMapper
@@ -143,16 +140,17 @@ class MandatorClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createMandatorConfig')
             ->willReturn($config);
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('create')
-            ->with([
-                'name' => $name,
-                'demo_mode' => $demo_mode,
-                'pricemodel_id' => $pricemodel_id,
-                'description' => $description,
-                'industry_type' => $industry_type,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'name' => $name,
+                    'demo_mode' => $demo_mode,
+                    'pricemodel_id' => $pricemodel_id,
+                    'description' => $description,
+                    'industry_type' => $industry_type,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper
@@ -184,14 +182,15 @@ class MandatorClientTest extends TestCase
         $scenario_content = 'some-data';
         $language_code = 'some-language';
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('importScenario')
-            ->with([
-                'mandator_id' => $mandator_id,
-                'scenario_data' => $scenario_content,
-                'language_code' => $language_code,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'importScenario',
+                [[
+                    'mandator_id' => $mandator_id,
+                    'scenario_data' => $scenario_content,
+                    'language_code' => $language_code,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper

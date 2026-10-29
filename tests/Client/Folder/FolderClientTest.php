@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use stdClass;
 
@@ -49,12 +49,7 @@ class FolderClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'create',
-            'delete',
-            'getSubCategories',
-            'getDetails',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -79,10 +74,15 @@ class FolderClientTest extends TestCase
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('create')->with([
-            'name' => $title,
-            'parent_category_id' => $folderId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'name' => $title,
+                    'parent_category_id' => $folderId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createResult',
@@ -102,9 +102,13 @@ class FolderClientTest extends TestCase
         $response = new stdClass();
         $response->deleteResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('delete')
-            ->with(['category_id' => $id])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'delete',
+                [[
+                    'category_id' => $id
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -133,9 +137,14 @@ class FolderClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getSubCategories')->with([
-            'category_id' => $id
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSubCategories',
+                [[
+                    'category_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getSubCategoriesResult',
@@ -160,9 +169,14 @@ class FolderClientTest extends TestCase
         $response->getDetailsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getDetails')->with([
-            'category_id' => $id
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getDetails',
+                [[
+                    'category_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getDetailsResult',

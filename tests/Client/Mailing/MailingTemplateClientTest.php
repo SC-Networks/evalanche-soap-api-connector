@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Mailing\MailingArticleInterface;
@@ -57,31 +57,7 @@ class MailingTemplateClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getAll',
-            'create',
-            'rename',
-            'copy',
-            'move',
-            'delete',
-            'addArticles',
-            'getArticles',
-            'removeAllArticles',
-            'removeArticles',
-            'applyTemplate',
-            'getConfiguration',
-            'setConfiguration',
-            'setSources',
-            'getSources',
-            'removeSlot',
-            'removeTemplateFromSlot',
-            'getSlotConfiguration',
-            'addSlot',
-            'updateSlot',
-            'addTemplatesToSlot',
-            'updateSlotTemplates',
-            'getByModificationDate',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -109,12 +85,14 @@ class MailingTemplateClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('create')
-            ->with([
-                'name' => $title,
-                'category_id' => $folderId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'name' => $title,
+                    'category_id' => $folderId,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -147,12 +125,14 @@ class MailingTemplateClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
         
-        $this->soapClient->expects($this->once())
-            ->method('rename')
-            ->with([
-                'resource_id' => $id,
-                'name' => $title,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'rename',
+                [[
+                    'resource_id' => $id,
+                    'name' => $title,
+                ]]
+            )
             ->willReturn($response);
         
         $this->responseMapper->expects($this->once())
@@ -194,12 +174,14 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingArticleConfig')
             ->willReturn($config);
         
-        $this->soapClient->expects($this->once())
-            ->method('removeArticles')
-            ->with([
-                'mailing_template_id' => $id,
-                'reference_ids' => $referenceIds,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeArticles',
+                [[
+                    'mailing_template_id' => $id,
+                    'reference_ids' => $referenceIds,
+                ]]
+            )
             ->willReturn($response);
         
         $this->responseMapper->expects($this->once())
@@ -250,12 +232,14 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingArticleConfig')
             ->willReturn($config);
         
-        $this->soapClient->expects($this->once())
-            ->method('addArticles')
-            ->with([
-                'mailing_template_id' => $id,
-                'articles' => $extractedData
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addArticles',
+                [[
+                    'mailing_template_id' => $id,
+                    'articles' => $extractedData
+                ]]
+            )
             ->willReturn($response);
         
         $this->responseMapper->expects($this->once())
@@ -291,11 +275,13 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingArticleConfig')
             ->willReturn($config);
         
-        $this->soapClient->expects($this->once())
-            ->method('getArticles')
-            ->with([
-                'mailing_template_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getArticles',
+                [[
+                    'mailing_template_id' => $id,
+                ]]
+            )
             ->willReturn($response);
         
         $this->responseMapper->expects($this->once())
@@ -320,9 +306,13 @@ class MailingTemplateClientTest extends TestCase
         $response = new stdClass();
         $response->removeAllArticlesResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeAllArticles')
-            ->with(['mailing_template_id' => $id])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAllArticles',
+                [[
+                    'mailing_template_id' => $id
+                ]]
+            )
             ->willReturn($response);
         
         $this->responseMapper->expects($this->once())
@@ -340,9 +330,14 @@ class MailingTemplateClientTest extends TestCase
         $response = new stdClass();
         $response->applyTemplateResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('applyTemplate')
-            ->with(['mailing_template_id' => $id, 'mailing_ids' => [$mailingId]])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'applyTemplate',
+                [[
+                    'mailing_template_id' => $id,
+                    'mailing_ids' => [$mailingId]
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -366,11 +361,13 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingTemplateConfigurationConfig')
             ->willReturn($config);
         
-        $this->soapClient->expects($this->once())
-            ->method('getConfiguration')
-            ->with([
-                'mailing_template_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getConfiguration',
+                [[
+                    'mailing_template_id' => $id,
+                ]]
+            )
             ->willReturn($response);
         
         $this->responseMapper->expects($this->once())
@@ -411,11 +408,14 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingTemplateConfigurationConfig')
             ->willReturn($config);
         
-        $this->soapClient->expects($this->once())
-            ->method('setConfiguration')->with([
-                'mailing_template_id' => $id,
-                'configuration' => $extractedData,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setConfiguration',
+                [[
+                    'mailing_template_id' => $id,
+                    'configuration' => $extractedData,
+                ]]
+            )
             ->willReturn($response);
         
         $this->responseMapper->expects($this->once())
@@ -447,11 +447,13 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingTemplateSourcesConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getSources')
-            ->with([
-                'mailing_template_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSources',
+                [[
+                    'mailing_template_id' => $id,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -493,12 +495,15 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingTemplateSourcesConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('setSources')->with([
-                'mailing_template_id' => $id,
-                'sources' => $extractedData,
-                'overwrite' => $overwrite
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setSources',
+                [[
+                    'mailing_template_id' => $id,
+                    'sources' => $extractedData,
+                    'overwrite' => $overwrite
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -524,12 +529,14 @@ class MailingTemplateClientTest extends TestCase
         $response = new stdClass();
         $response->removeSlotResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeSlot')
-            ->with([
-                'mailing_template_id' => $id,
-                'slot_id' => $slotId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeSlot',
+                [[
+                    'mailing_template_id' => $id,
+                    'slot_id' => $slotId,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -549,14 +556,16 @@ class MailingTemplateClientTest extends TestCase
         $response = new stdClass();
         $response->removeTemplateFromSlotResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeTemplateFromSlot')
-            ->with([
-                'mailing_template_id' => $id,
-                'slot_id' => $slotId,
-                'template_type' => $templateType,
-                'article_type_id' => $articleTypeId
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeTemplateFromSlot',
+                [[
+                    'mailing_template_id' => $id,
+                    'slot_id' => $slotId,
+                    'template_type' => $templateType,
+                    'article_type_id' => $articleTypeId
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -587,11 +596,13 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingSlotConfigurationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getSlotConfiguration')
-            ->with([
-                'mailing_template_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSlotConfiguration',
+                [[
+                    'mailing_template_id' => $id,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -624,12 +635,14 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingSlotConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('addSlot')
-            ->with([
-                'mailing_template_id' => $id,
-                'slot_number' => $slotNumber
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addSlot',
+                [[
+                    'mailing_template_id' => $id,
+                    'slot_number' => $slotNumber
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -666,16 +679,18 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingSlotConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('updateSlot')
-            ->with([
-                'mailing_template_id' => $id,
-                'slot_id' => $slotId,
-                'slot_number' => $slotNumber,
-                'name' => $name,
-                'sort_type_id' => $sortTypeId,
-                'sort_value' => $sortValue
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateSlot',
+                [[
+                    'mailing_template_id' => $id,
+                    'slot_id' => $slotId,
+                    'slot_number' => $slotNumber,
+                    'name' => $name,
+                    'sort_type_id' => $sortTypeId,
+                    'sort_value' => $sortValue
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -718,15 +733,17 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingSlotItemConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('addTemplatesToSlot')
-            ->with([
-                'mailing_template_id' => $id,
-                'slot_id' => $slotId,
-                'data' => $data,
-                'article_type_id' => $articleTypeId,
-                'allowed_templates' => $allowedTemplates,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addTemplatesToSlot',
+                [[
+                    'mailing_template_id' => $id,
+                    'slot_id' => $slotId,
+                    'data' => $data,
+                    'article_type_id' => $articleTypeId,
+                    'allowed_templates' => $allowedTemplates,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -768,15 +785,17 @@ class MailingTemplateClientTest extends TestCase
             ->method('createMailingSlotItemConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('updateSlotTemplates')
-            ->with([
-                'mailing_template_id' => $id,
-                'slot_id' => $slotId,
-                'data' => $data,
-                'article_type_id' => $articleTypeId,
-                'allowed_templates' => $allowedTemplates,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateSlotTemplates',
+                [[
+                    'mailing_template_id' => $id,
+                    'slot_id' => $slotId,
+                    'data' => $data,
+                    'article_type_id' => $articleTypeId,
+                    'allowed_templates' => $allowedTemplates,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())

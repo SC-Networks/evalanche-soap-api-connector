@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Marketplace;
 
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Marketplace\CategoryInterface;
 
 class CategoryConfigTest extends TestCase

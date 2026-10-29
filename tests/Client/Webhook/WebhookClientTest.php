@@ -10,7 +10,7 @@ use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class WebhookTest
@@ -46,11 +46,7 @@ class WebhookClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'trigger',
-            'getAll',
-            'getByModificationDate',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createStub(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createStub(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -68,10 +64,14 @@ class WebhookClientTest extends TestCase
         $hookId = 234;
         $profileId = 423;
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('trigger')
-            ->with(['webhookId' => $hookId, 'profileId' => $profileId])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'trigger',
+                [[
+                    'webhookId' => $hookId,
+                    'profileId' => $profileId
+                ]]
+            )
             ->willReturn(null);
 
         $this->assertNull($this->subject->trigger($hookId, $profileId));

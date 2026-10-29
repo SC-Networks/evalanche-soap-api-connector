@@ -12,7 +12,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use stdClass;
 
@@ -46,18 +46,7 @@ class ArticleTemplateClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock(
-            [
-                'create',
-                'getAll',
-                'getByModificationDate',
-                'updateTemplate',
-                'rename',
-                'move',
-                'copy',
-                'delete',
-            ]
-        );
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -87,14 +76,17 @@ class ArticleTemplateClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())->method('create')->with(
-            [
-                'title' => $title,
-                'type_id' => $typeId,
-                'template' => $template,
-                'folder_id' => $folderId
-            ]
-        )->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'title' => $title,
+                    'type_id' => $typeId,
+                    'template' => $template,
+                    'folder_id' => $folderId
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
@@ -123,12 +115,15 @@ class ArticleTemplateClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())->method('updateTemplate')->with(
-            [
-                'template_id' => $templateId,
-                'template' => $template
-            ]
-        )->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateTemplate',
+                [[
+                    'template_id' => $templateId,
+                    'template' => $template
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Property;
 
 use Closure;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**

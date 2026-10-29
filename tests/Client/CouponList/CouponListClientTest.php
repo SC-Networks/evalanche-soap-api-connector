@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\CouponList\ProfileCouponInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use stdClass;
@@ -46,20 +46,7 @@ class CouponListClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'create',
-            'generate',
-            'removeById',
-            'removeAll',
-            'getAll',
-            'getByModificationDate',
-            'getProfileCouponList',
-            'import',
-            'rename',
-            'move',
-            'copy',
-            'delete',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -87,12 +74,14 @@ class CouponListClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('create')
-            ->with([
-                'name' => $title,
-                'category_id' => $folderId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'name' => $title,
+                    'category_id' => $folderId,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -118,12 +107,14 @@ class CouponListClientTest extends TestCase
         $response = new stdClass();
         $response->generateResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('generate')
-            ->with([
-                'coupon_list_id' => $couponListId,
-                'amount' => $amount,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'generate',
+                [[
+                    'coupon_list_id' => $couponListId,
+                    'amount' => $amount,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -147,12 +138,14 @@ class CouponListClientTest extends TestCase
         $response = new stdClass();
         $response->removeByIdResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeById')
-            ->with([
-                'coupon_list_id' => $couponListId,
-                'profile_coupon_id' => $profileCouponId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeById',
+                [[
+                    'coupon_list_id' => $couponListId,
+                    'profile_coupon_id' => $profileCouponId,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -175,11 +168,13 @@ class CouponListClientTest extends TestCase
         $response = new stdClass();
         $response->removeAllResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeAll')
-            ->with([
-                'coupon_list_id' => $couponListId
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAll',
+                [[
+                    'coupon_list_id' => $couponListId
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -211,11 +206,13 @@ class CouponListClientTest extends TestCase
             ->method('createCouponListProfileCouponConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getProfileCouponList')
-            ->with([
-                'coupon_list_id' => $profileCouponId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getProfileCouponList',
+                [[
+                    'coupon_list_id' => $profileCouponId,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -262,12 +259,14 @@ class CouponListClientTest extends TestCase
             ->method('createCouponListProfileCouponConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('import')
-            ->with([
-                'coupon_list_id' => $couponListId,
-                'data' => $extractedData
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'import',
+                [[
+                    'coupon_list_id' => $couponListId,
+                    'data' => $extractedData
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())

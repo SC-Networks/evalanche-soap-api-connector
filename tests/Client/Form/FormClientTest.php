@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Form\FormConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
@@ -47,27 +47,7 @@ class FormClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'addAttribute',
-            'addAttributeOption',
-            'createAlias',
-            'getAliases',
-            'getFormByAlias',
-            'getStatistics',
-            'getAll',
-            'getByModificationDate',
-            'removeAttribute',
-            'removeAttributeOption',
-            'rename',
-            'move',
-            'copy',
-            'delete',
-            'updateTemplate',
-            'create',
-            'getConfiguration',
-            'setConfiguration',
-            'toggleHtmlTemplateMode',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -88,10 +68,15 @@ class FormClientTest extends TestCase
         $response = new stdClass();
         $response->addAttributeResult = 1;
 
-        $this->soapClient->expects($this->once())->method('addAttribute')->with([
-            'form_id' => $id,
-            'pool_attribute_id' => $poolAttributeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addAttribute',
+                [[
+                    'form_id' => $id,
+                    'pool_attribute_id' => $poolAttributeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getInteger')->with(
             $response,
             'addAttributeResult'
@@ -111,10 +96,15 @@ class FormClientTest extends TestCase
         $response = new stdClass();
         $response->addAttributeOptionResult = true;
 
-        $this->soapClient->expects($this->once())->method('addAttributeOption')->with([
-            'form_id' => $id,
-            'option_id' => $optionId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addAttributeOption',
+                [[
+                    'form_id' => $id,
+                    'option_id' => $optionId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'addAttributeOptionResult'
@@ -136,11 +126,16 @@ class FormClientTest extends TestCase
         $response->createAliasResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('createAlias')->with([
-            'form_id' => $id,
-            'name' => $title,
-            'category_id' => $folderId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'createAlias',
+                [[
+                    'form_id' => $id,
+                    'name' => $title,
+                    'category_id' => $folderId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createAliasResult',
@@ -168,9 +163,14 @@ class FormClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAliases')->with([
-            'form_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAliases',
+                [[
+                    'form_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getAliasesResult',
@@ -194,9 +194,14 @@ class FormClientTest extends TestCase
         $response->getFormByAliasResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getFormByAlias')->with([
-            'formalias_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getFormByAlias',
+                [[
+                    'formalias_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getFormByAliasResult',
@@ -225,10 +230,15 @@ class FormClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFormStatisticConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getStatistics')->with([
-            'formular_id' => $id,
-            'with_aliases' => $includeAliases
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getStatistics',
+                [[
+                    'formular_id' => $id,
+                    'with_aliases' => $includeAliases
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getStatisticsResult',
@@ -249,10 +259,15 @@ class FormClientTest extends TestCase
         $response = new stdClass();
         $response->removeAttributeResult = false;
 
-        $this->soapClient->expects($this->once())->method('removeAttribute')->with([
-            'form_id' => $id,
-            'form_attribute_id' => $formAttributeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAttribute',
+                [[
+                    'form_id' => $id,
+                    'form_attribute_id' => $formAttributeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'removeAttributeResult'
@@ -269,10 +284,15 @@ class FormClientTest extends TestCase
         $response = new stdClass();
         $response->removeAttributeOptionResult = false;
 
-        $this->soapClient->expects($this->once())->method('removeAttributeOption')->with([
-            'form_id' => $id,
-            'option_id' => $optionId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAttributeOption',
+                [[
+                    'form_id' => $id,
+                    'option_id' => $optionId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'removeAttributeOptionResult'
@@ -293,10 +313,15 @@ class FormClientTest extends TestCase
         $response->updateTemplateResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('updateTemplate')->with([
-            'form_id' => $id,
-            'source' => $templateHtml
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateTemplate',
+                [[
+                    'form_id' => $id,
+                    'source' => $templateHtml
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'updateTemplateResult',
@@ -321,10 +346,15 @@ class FormClientTest extends TestCase
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('create')->with([
-            'pool_id' => $poolId,
-            'name' => $title
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'pool_id' => $poolId,
+                    'name' => $title
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createResult',
@@ -351,12 +381,13 @@ class FormClientTest extends TestCase
             ->expects($this->once())
             ->method('createFormConfigurationConfig')
             ->willReturn($config);
-        $this->soapClient
-            ->expects($this->once())
-            ->method('getConfiguration')
-            ->with([
-                'form_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getConfiguration',
+                [[
+                    'form_id' => $id,
+                ]]
+            )
             ->willReturn($response);
         $this->responseMapper
             ->expects($this->once())
@@ -398,13 +429,14 @@ class FormClientTest extends TestCase
             ->expects($this->exactly(2))
             ->method('createFormConfigurationConfig')
             ->willReturn($config);
-        $this->soapClient
-            ->expects($this->once())
-            ->method('setConfiguration')
-            ->with([
-                'form_id' => $id,
-                'configuration' => $extractedData,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setConfiguration',
+                [[
+                    'form_id' => $id,
+                    'configuration' => $extractedData,
+                ]]
+            )
             ->willReturn($response);
         $this->responseMapper
             ->expects($this->once())
@@ -427,13 +459,14 @@ class FormClientTest extends TestCase
         $id = 123;
         $response = new stdClass();
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('toggleHtmlTemplateMode')
-            ->with([
-                'form_id' => $id,
-                'enabled' => true,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'toggleHtmlTemplateMode',
+                [[
+                    'form_id' => $id,
+                    'enabled' => true,
+                ]]
+            )
             ->willReturn($response);
         $this->responseMapper
             ->expects($this->once())

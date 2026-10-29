@@ -12,7 +12,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeGroupInterface;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeInterface;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeOptionInterface;
@@ -54,28 +54,7 @@ class ArticleTypeClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getAll',
-            'getByModificationDate',
-            'addAttribute',
-            'addAttributeGroup',
-            'assignRoleToAttribute',
-            'changeAttributeType',
-            'createAttributeOption',
-            'getApplicableRoleTypes',
-            'getAssignedRoleTypes',
-            'getAttributeGroups',
-            'getAttributeOptions',
-            'getAttributes',
-            'removeAttribute',
-            'removeAttributeGroup',
-            'removeAttributeOption',
-            'updateAttribute',
-            'rename',
-            'move',
-            'copy',
-            'delete',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -103,13 +82,18 @@ class ArticleTypeClientTest extends TestCase
         $response->addAttributeResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('addAttribute')->with([
-            'resource_id' => $id,
-            'name' => $title,
-            'label' => $label,
-            'type_id' => $typeId,
-            'group_id' => $groupId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addAttribute',
+                [[
+                    'resource_id' => $id,
+                    'name' => $title,
+                    'label' => $label,
+                    'type_id' => $typeId,
+                    'group_id' => $groupId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'addAttributeResult',
@@ -134,10 +118,15 @@ class ArticleTypeClientTest extends TestCase
         $response->addAttributeGroupResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeGroupConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('addAttributeGroup')->with([
-            'resource_id' => $id,
-            'name' => $title
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addAttributeGroup',
+                [[
+                    'resource_id' => $id,
+                    'name' => $title
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'addAttributeGroupResult',
@@ -159,11 +148,16 @@ class ArticleTypeClientTest extends TestCase
         $response = new stdClass();
         $response->assignRoleToAttributeResult = true;
 
-        $this->soapClient->expects($this->once())->method('assignRoleToAttribute')->with([
-            'resource_id' => $id,
-            'attribute_id' => $attributeId,
-            'role_type_id' => $roleTypeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'assignRoleToAttribute',
+                [[
+                    'resource_id' => $id,
+                    'attribute_id' => $attributeId,
+                    'role_type_id' => $roleTypeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'assignRoleToAttributeResult'
@@ -181,11 +175,16 @@ class ArticleTypeClientTest extends TestCase
         $response = new stdClass();
         $response->changeAttributeTypeResult = true;
 
-        $this->soapClient->expects($this->once())->method('changeAttributeType')->with([
-            'resource_id' => $id,
-            'attribute_id' => $attributeId,
-            'type_id' => $typeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'changeAttributeType',
+                [[
+                    'resource_id' => $id,
+                    'attribute_id' => $attributeId,
+                    'type_id' => $typeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'changeAttributeTypeResult'
@@ -207,11 +206,16 @@ class ArticleTypeClientTest extends TestCase
         $response->createAttributeOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeOptionConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('createAttributeOption')->with([
-            'resource_id' => $id,
-            'attribute_id' => $attributeId,
-            'label' => $label
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'createAttributeOption',
+                [[
+                    'resource_id' => $id,
+                    'attribute_id' => $attributeId,
+                    'label' => $label
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createAttributeOptionResult',
@@ -240,10 +244,15 @@ class ArticleTypeClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeRoleTypeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getApplicableRoleTypes')->with([
-            'resource_id' => $id,
-            'attribute_id' => $attributeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getApplicableRoleTypes',
+                [[
+                    'resource_id' => $id,
+                    'attribute_id' => $attributeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getApplicableRoleTypesResult'
@@ -271,10 +280,15 @@ class ArticleTypeClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeRoleTypeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAssignedRoleTypes')->with([
-            'resource_id' => $id,
-            'attribute_id' => $attributeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAssignedRoleTypes',
+                [[
+                    'resource_id' => $id,
+                    'attribute_id' => $attributeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getAssignedRoleTypesResult'
@@ -301,7 +315,14 @@ class ArticleTypeClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeGroupConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAttributeGroups')->with(['resource_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAttributeGroups',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getAttributeGroupsResult',
@@ -330,10 +351,15 @@ class ArticleTypeClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeOptionConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAttributeOptions')->with([
-            'resource_id' => $id,
-            'attribute_id' => $attributeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAttributeOptions',
+                [[
+                    'resource_id' => $id,
+                    'attribute_id' => $attributeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getAttributeOptionsResult',
@@ -361,9 +387,14 @@ class ArticleTypeClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerAttributeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAttributes')->with([
-            'resource_id' => $id
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAttributes',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getAttributesResult',
@@ -384,10 +415,15 @@ class ArticleTypeClientTest extends TestCase
         $response = new stdClass();
         $response->removeAttributeResult = true;
 
-        $this->soapClient->expects($this->once())->method('removeAttribute')->with([
-            'resource_id' => $id,
-            'attribute_id' => $attributeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAttribute',
+                [[
+                    'resource_id' => $id,
+                    'attribute_id' => $attributeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'removeAttributeResult'
@@ -406,10 +442,15 @@ class ArticleTypeClientTest extends TestCase
         $response = new stdClass();
         $response->removeAttributeGroupResult = true;
 
-        $this->soapClient->expects($this->once())->method('removeAttributeGroup')->with([
-            'resource_id' => $id,
-            'attribute_group_id' => $attributeGroupId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAttributeGroup',
+                [[
+                    'resource_id' => $id,
+                    'attribute_group_id' => $attributeGroupId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'removeAttributeGroupResult'
@@ -429,11 +470,16 @@ class ArticleTypeClientTest extends TestCase
         $response = new stdClass();
         $response->removeAttributeOptionResult = true;
 
-        $this->soapClient->expects($this->once())->method('removeAttributeOption')->with([
-            'resource_id' => $id,
-            'attribute_id' => $attributeId,
-            'option_id' => $optionId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAttributeOption',
+                [[
+                    'resource_id' => $id,
+                    'attribute_id' => $attributeId,
+                    'option_id' => $optionId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'removeAttributeOptionResult'

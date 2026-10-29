@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageArticleInterface;
@@ -52,30 +52,7 @@ class LeadpageTemplateClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'create',
-            'rename',
-            'copy',
-            'move',
-            'getAll',
-            'getByModificationDate',
-            'delete',
-            'getConfiguration',
-            'setConfiguration',
-            'setSources',
-            'getSources',
-            'removeAllArticles',
-            'removeArticles',
-            'getArticles',
-            'addArticles',
-            'removeSlot',
-            'removeTemplateFromSlot',
-            'getSlotConfiguration',
-            'addSlot',
-            'updateSlot',
-            'addTemplatesToSlot',
-            'updateSlotTemplates',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -103,12 +80,14 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('create')
-            ->with([
-                'name' => $title,
-                'category_id' => $folderId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'name' => $title,
+                    'category_id' => $folderId,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -141,12 +120,14 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('rename')
-            ->with([
-                'resource_id' => $id,
-                'name' => $title,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'rename',
+                [[
+                    'resource_id' => $id,
+                    'name' => $title,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -178,11 +159,13 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageTemplateSourcesConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getSources')
-            ->with([
-                'leadpage_template_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSources',
+                [[
+                    'leadpage_template_id' => $id,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -224,12 +207,15 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageTemplateSourcesConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('setSources')->with([
-                'leadpage_template_id' => $id,
-                'sources' => $extractedData,
-                'overwrite' => $overwrite
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setSources',
+                [[
+                    'leadpage_template_id' => $id,
+                    'sources' => $extractedData,
+                    'overwrite' => $overwrite
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -264,10 +250,15 @@ class LeadpageTemplateClientTest extends TestCase
 
         $this->extractor->expects($this->once())->method('extract')->with($config, $configuration)->willReturn($extractedData);
         $this->hydratorConfigFactory->expects($this->exactly(2))->method('createLeadpageTemplateConfigurationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('setConfiguration')->with([
-            'leadpage_template_id' => $id,
-            'configuration' => $extractedData,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setConfiguration',
+                [[
+                    'leadpage_template_id' => $id,
+                    'configuration' => $extractedData,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'setConfigurationResult',
@@ -291,9 +282,14 @@ class LeadpageTemplateClientTest extends TestCase
         $response->getConfigurationResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createLeadpageTemplateConfigurationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getConfiguration')->with([
-            'leadpage_template_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getConfiguration',
+                [[
+                    'leadpage_template_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getConfigurationResult',
@@ -313,11 +309,13 @@ class LeadpageTemplateClientTest extends TestCase
         $response = new stdClass();
         $response->removeAllArticleResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeAllArticles')
-            ->with([
-                'leadpage_template_id' => $id
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAllArticles',
+                [[
+                    'leadpage_template_id' => $id
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -343,12 +341,14 @@ class LeadpageTemplateClientTest extends TestCase
 
         $config = $this->createStub(HydratorConfigInterface::class);
 
-        $this->soapClient->expects($this->once())
-            ->method('removeArticles')
-            ->with([
-                'leadpage_template_id' => $id,
-                'reference_ids' => $referenceIds,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeArticles',
+                [[
+                    'leadpage_template_id' => $id,
+                    'reference_ids' => $referenceIds,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -400,12 +400,14 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageArticleConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('addArticles')
-            ->with([
-                'leadpage_template_id' => $id,
-                'articles' => $extractedData
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addArticles',
+                [[
+                    'leadpage_template_id' => $id,
+                    'articles' => $extractedData
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -439,11 +441,13 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageArticleConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getArticles')
-            ->with([
-                'leadpage_template_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getArticles',
+                [[
+                    'leadpage_template_id' => $id,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -469,12 +473,14 @@ class LeadpageTemplateClientTest extends TestCase
         $response = new stdClass();
         $response->removeSlotResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeSlot')
-            ->with([
-                'leadpage_template_id' => $id,
-                'slot_id' => $slotId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeSlot',
+                [[
+                    'leadpage_template_id' => $id,
+                    'slot_id' => $slotId,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -494,14 +500,16 @@ class LeadpageTemplateClientTest extends TestCase
         $response = new stdClass();
         $response->removeTemplateFromSlotResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeTemplateFromSlot')
-            ->with([
-                'leadpage_template_id' => $id,
-                'slot_id' => $slotId,
-                'template_type' => $templateType,
-                'article_type_id' => $articleTypeId
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeTemplateFromSlot',
+                [[
+                    'leadpage_template_id' => $id,
+                    'slot_id' => $slotId,
+                    'template_type' => $templateType,
+                    'article_type_id' => $articleTypeId
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -532,11 +540,13 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageSlotConfigurationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getSlotConfiguration')
-            ->with([
-                'leadpage_template_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSlotConfiguration',
+                [[
+                    'leadpage_template_id' => $id,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -569,12 +579,14 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageSlotConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('addSlot')
-            ->with([
-                'leadpage_template_id' => $id,
-                'slot_number' => $slotNumber
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addSlot',
+                [[
+                    'leadpage_template_id' => $id,
+                    'slot_number' => $slotNumber
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -611,16 +623,18 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageSlotConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('updateSlot')
-            ->with([
-                'leadpage_template_id' => $id,
-                'slot_id' => $slotId,
-                'slot_number' => $slotNumber,
-                'name' => $name,
-                'sort_type_id' => $sortTypeId,
-                'sort_value' => $sortValue
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateSlot',
+                [[
+                    'leadpage_template_id' => $id,
+                    'slot_id' => $slotId,
+                    'slot_number' => $slotNumber,
+                    'name' => $name,
+                    'sort_type_id' => $sortTypeId,
+                    'sort_value' => $sortValue
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -663,15 +677,17 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageSlotItemConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('addTemplatesToSlot')
-            ->with([
-                'leadpage_template_id' => $id,
-                'slot_id' => $slotId,
-                'data' => $data,
-                'article_type_id' => $articleTypeId,
-                'allowed_templates' => $allowedTemplates,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addTemplatesToSlot',
+                [[
+                    'leadpage_template_id' => $id,
+                    'slot_id' => $slotId,
+                    'data' => $data,
+                    'article_type_id' => $articleTypeId,
+                    'allowed_templates' => $allowedTemplates,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -713,15 +729,17 @@ class LeadpageTemplateClientTest extends TestCase
             ->method('createLeadpageSlotItemConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('updateSlotTemplates')
-            ->with([
-                'leadpage_template_id' => $id,
-                'slot_id' => $slotId,
-                'data' => $data,
-                'article_type_id' => $articleTypeId,
-                'allowed_templates' => $allowedTemplates,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateSlotTemplates',
+                [[
+                    'leadpage_template_id' => $id,
+                    'slot_id' => $slotId,
+                    'data' => $data,
+                    'article_type_id' => $articleTypeId,
+                    'allowed_templates' => $allowedTemplates,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())

@@ -12,7 +12,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Marketplace\CategoryInterface;
 use Scn\EvalancheSoapStruct\Struct\Marketplace\ProductInterface;
 use stdClass;
@@ -46,11 +46,7 @@ class MarketplaceClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getCategoryList',
-            'getProductList',
-            'purchaseProduct',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -78,10 +74,14 @@ class MarketplaceClientTest extends TestCase
             ->method('createMarketplaceCategoryConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())->method('getCategoryList')
+        $this->soapClient->expects($this->once())->method('__call')
             ->with(
-                ['LanguageId' => $languageId]
-            )->willReturn($result);
+                'getCategoryList',
+                [[
+                    'LanguageId' => $languageId
+                ]]
+            )
+            ->willReturn($result);
 
         $this->responseMapper
             ->expects($this->once())
@@ -111,13 +111,15 @@ class MarketplaceClientTest extends TestCase
             ->method('createMarketplaceProductConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())->method('getProductList')
+        $this->soapClient->expects($this->once())->method('__call')
             ->with(
-                [
+                'getProductList',
+                [[
                     'CategoryId' => $categoryId,
                     'LanguageId' => $languageId
-                ]
-            )->willReturn($result);
+                ]]
+            )
+            ->willReturn($result);
 
         $this->responseMapper
             ->expects($this->once())
@@ -141,13 +143,16 @@ class MarketplaceClientTest extends TestCase
         $result = new stdClass();
         $result->RecipeId = $result_string;
 
-        $this->soapClient->expects($this->once())->method('purchaseProduct')
+        $this->soapClient->expects($this->once())->method('__call')
             ->with(
-                ['ProductId' => $productId,
-                    'MandatorId' => $mandatorId,
-                    'LanguageId' => $languageId
-                ]
-            )->willReturn($result);
+                'purchaseProduct',
+                [[
+                    'ProductId' => $productId,
+                                        'MandatorId' => $mandatorId,
+                                        'LanguageId' => $languageId
+                ]]
+            )
+            ->willReturn($result);
 
         $this->responseMapper
             ->expects($this->once())

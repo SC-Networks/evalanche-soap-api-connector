@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Scoring\ScoringGroupDetailInterface;
 use stdClass;
 
@@ -44,7 +44,7 @@ class ScoringClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock(['getGroups']);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -67,7 +67,14 @@ class ScoringClientTest extends TestCase
         $result->getGroupsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createScoringGroupDetailConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getGroups')->with(['mandator_id' => 5])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getGroups',
+                [[
+                    'mandator_id' => 5
+                ]]
+            )
+            ->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $result,
             'getGroupsResult',

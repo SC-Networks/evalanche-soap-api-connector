@@ -12,7 +12,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
@@ -54,22 +54,7 @@ class DocumentClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'create',
-            'copy',
-            'delete',
-            'getAll',
-            'getByCategory',
-            'getByExternalId',
-            'getById',
-            'getByTypeId',
-            'getResourceDefaultCategory',
-            'getByModificationDate',
-            'getTypeIds',
-            'move',
-            'isAlive',
-            'rename',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -94,10 +79,15 @@ class DocumentClientTest extends TestCase
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('create')->with([
-            'name' => $title,
-            'category_id' => $folderId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'name' => $title,
+                    'category_id' => $folderId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createResult',
@@ -124,7 +114,14 @@ class DocumentClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByCategory')->with(['category_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByCategory',
+                [[
+                    'category_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getByCategoryResult',
@@ -148,7 +145,14 @@ class DocumentClientTest extends TestCase
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByExternalId')->with(['external_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByExternalId',
+                [[
+                    'external_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getByExternalIdResult',
@@ -172,7 +176,14 @@ class DocumentClientTest extends TestCase
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getById')->with(['resource_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getById',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getByIdResult',
@@ -200,10 +211,15 @@ class DocumentClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByTypeId')->with([
-            'type_id' => $id,
-            'mandator_id' => $mandatorId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByTypeId',
+                [[
+                    'type_id' => $id,
+                    'mandator_id' => $mandatorId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getByTypeIdResult',
@@ -227,7 +243,14 @@ class DocumentClientTest extends TestCase
         $response->getResourceDefaultCategoryResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getResourceDefaultCategory')->with(['customer_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getResourceDefaultCategory',
+                [[
+                    'customer_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getResourceDefaultCategoryResult',
@@ -252,7 +275,9 @@ class DocumentClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceTypeInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getTypeIds')->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with('getTypeIds', [])
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getTypeIdsResult',
@@ -277,10 +302,15 @@ class DocumentClientTest extends TestCase
         $response->moveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('move')->with([
-            'resource_id' => $id,
-            'category_id' => $folderId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'move',
+                [[
+                    'resource_id' => $id,
+                    'category_id' => $folderId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'moveResult',
@@ -302,7 +332,9 @@ class DocumentClientTest extends TestCase
         $response->isAliveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createServiceStatusConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('isAlive')->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with('isAlive', [])
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'isAliveResult',

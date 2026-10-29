@@ -28,10 +28,15 @@ trait CommonResourceMethodsTestTrait
         $response->renameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('rename')->with([
-            'resource_id' => $id,
-            'name' => $title,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'rename',
+                [[
+                    'resource_id' => $id,
+                    'name' => $title,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'renameResult',
@@ -56,10 +61,15 @@ trait CommonResourceMethodsTestTrait
         $response->moveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('move')->with([
-            'resource_id' => $id,
-            'category_id' => $folderId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'move',
+                [[
+                    'resource_id' => $id,
+                    'category_id' => $folderId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'moveResult',
@@ -79,7 +89,14 @@ trait CommonResourceMethodsTestTrait
         $response = new stdClass();
         $response->deleteResult = true;
 
-        $this->soapClient->expects($this->once())->method('delete')->with(['resource_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'delete',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'deleteResult'
@@ -100,10 +117,15 @@ trait CommonResourceMethodsTestTrait
         $response->copyResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('copy')->with([
-            'resource_id' => $id,
-            'category_id' => $folderId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'copy',
+                [[
+                    'resource_id' => $id,
+                    'category_id' => $folderId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'copyResult',
@@ -131,7 +153,14 @@ trait CommonResourceMethodsTestTrait
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAll')->with(['mandator_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAll',
+                [[
+                    'mandator_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getAllResult',
@@ -163,13 +192,15 @@ trait CommonResourceMethodsTestTrait
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getByModificationDate')
-            ->with([
-                'start_date' => $start->getTimestamp(),
-                'end_date' => $end->getTimestamp(),
-                'mandator_id' => $mandator_id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByModificationDate',
+                [[
+                    'start_date' => $start->getTimestamp(),
+                    'end_date' => $end->getTimestamp(),
+                    'mandator_id' => $mandator_id,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())

@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Container\ContainerDetailInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
@@ -52,19 +52,7 @@ class ContainerClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'create',
-            'getData',
-            'update',
-            'getDetails',
-            'getAll',
-            'getByModificationDate',
-            'getByContainerTypeId',
-            'rename',
-            'move',
-            'copy',
-            'delete',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -102,12 +90,17 @@ class ContainerClientTest extends TestCase
             $hashMap
         )->willReturn($expectedExtractor);
 
-        $this->soapClient->expects($this->once())->method('create')->with([
-            'container_preset_id' => $id,
-            'name' => $title,
-            'category_id' => $folderId,
-            'data' => $expectedExtractor,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'container_preset_id' => $id,
+                    'name' => $title,
+                    'category_id' => $folderId,
+                    'data' => $expectedExtractor,
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
@@ -132,7 +125,14 @@ class ContainerClientTest extends TestCase
         $response->getDataResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getData')->with(['container_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getData',
+                [[
+                    'container_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getDataResult',
@@ -168,10 +168,15 @@ class ContainerClientTest extends TestCase
             $hashMap
         )->willReturn($extractedData);
 
-        $this->soapClient->expects($this->once())->method('update')->with([
-            'container_id' => $id,
-            'data' => $extractedData
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'update',
+                [[
+                    'container_id' => $id,
+                    'data' => $extractedData
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'updateResult',
@@ -197,9 +202,14 @@ class ContainerClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createContainerDetailConfig')->willReturn($config);
 
 
-        $this->soapClient->expects($this->once())->method('getDetails')->with([
-            'container_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getDetails',
+                [[
+                    'container_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getDetailsResult',
@@ -228,10 +238,13 @@ class ContainerClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('getByContainerTypeId')
-            ->with(['container_type_id' => $containerTypeId])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByContainerTypeId',
+                [[
+                    'container_type_id' => $containerTypeId
+                ]]
+            )
             ->willReturn($response);
         $this->responseMapper
             ->expects($this->once())

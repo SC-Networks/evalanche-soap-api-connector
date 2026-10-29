@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Article\ArticleDetailInterface;
 use Scn\EvalancheSoapStruct\Struct\Article\ArticleIndividualizationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
@@ -53,21 +53,7 @@ class ArticleClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'create',
-            'getData',
-            'update',
-            'getDetails',
-            'getAll',
-            'getByArticleTypeId',
-            'getIndividualization',
-            'setIndividualization',
-            'rename',
-            'move',
-            'copy',
-            'delete',
-            'getByModificationDate',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -105,12 +91,17 @@ class ArticleClientTest extends TestCase
             $hashMap
         )->willReturn($expectedExtractor);
 
-        $this->soapClient->expects($this->once())->method('create')->with([
-            'article_preset_id' => $id,
-            'name' => $title,
-            'category_id' => $folderId,
-            'data' => $expectedExtractor,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'article_preset_id' => $id,
+                    'name' => $title,
+                    'category_id' => $folderId,
+                    'data' => $expectedExtractor,
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
@@ -135,7 +126,14 @@ class ArticleClientTest extends TestCase
         $response->getDataResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createHashMapConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getData')->with(['article_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getData',
+                [[
+                    'article_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getDataResult',
@@ -172,10 +170,15 @@ class ArticleClientTest extends TestCase
             $hashMap
         )->willReturn($extractedData);
 
-        $this->soapClient->expects($this->once())->method('update')->with([
-            'article_id' => $id,
-            'data' => $extractedData
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'update',
+                [[
+                    'article_id' => $id,
+                    'data' => $extractedData
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'updateResult',
@@ -200,9 +203,14 @@ class ArticleClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createArticleDetailConfig')->willReturn($config);
 
-        $this->soapClient->expects($this->once())->method('getDetails')->with([
-            'article_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getDetails',
+                [[
+                    'article_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getDetailsResult',
@@ -231,10 +239,13 @@ class ArticleClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($config);
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('getByArticleTypeId')
-            ->with(['article_type_id' => $articleTypeId])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByArticleTypeId',
+                [[
+                    'article_type_id' => $articleTypeId
+                ]]
+            )
             ->willReturn($response);
         $this->responseMapper
             ->expects($this->once())
@@ -263,10 +274,13 @@ class ArticleClientTest extends TestCase
             ->method('createArticleIndividualizationConfig')
             ->willReturn($config);
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('getIndividualization')
-            ->with(['article_id' => $articleId])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getIndividualization',
+                [[
+                    'article_id' => $articleId
+                ]]
+            )
             ->willReturn($response);
         $this->responseMapper
             ->expects($this->once())
@@ -308,13 +322,14 @@ class ArticleClientTest extends TestCase
             ->method('createArticleIndividualizationConfig')
             ->willReturn($config);
 
-        $this->soapClient
-            ->expects($this->once())
-            ->method('setIndividualization')
-            ->with([
-                'article_id' => $articleId,
-                'configuration' => $extractionResult
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setIndividualization',
+                [[
+                    'article_id' => $articleId,
+                    'configuration' => $extractionResult
+                ]]
+            )
             ->willReturn($response);
         $this->responseMapper
             ->expects($this->once())
