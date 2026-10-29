@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -23,10 +25,7 @@ use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterf
 interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitInterface
 {
     /**
-     * @param string $title
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(
@@ -36,8 +35,6 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
 
 
     /**
-     * @param int $id
-     * @param array $articles
      *
      * @return MailingArticleInterface[]
      * @throws EmptyResultException
@@ -45,15 +42,12 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     public function addArticles(int $id, array $articles): array;
 
     /**
-     * @param int $id
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAllArticles(int $id): bool;
 
     /**
-     * @param int $id
      * @param int[] $referenceIds
      *
      * @return MailingArticleInterface[]
@@ -62,7 +56,6 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     public function removeArticles(int $id, array $referenceIds): array;
 
     /**
-     * @param int $id
      *
      * @return MailingArticleInterface[]
      * @throws EmptyResultException
@@ -72,29 +65,17 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Applies an mailing template to existing mailing objects
      *
-     * @param int $id
      * @param int[] $mailingIds
-     *
-     * @return bool
      */
     public function applyTemplate(int $id, array $mailingIds): bool;
 
     /**
      * Retrieve the configuration of a mailing template
-     *
-     * @param int $id
-     *
-     * @return MailingTemplateConfigurationInterface
      */
     public function getConfiguration(int $id): MailingTemplateConfigurationInterface;
 
     /**
      * Sets the configuration of a mailing template
-     *
-     * @param int $id
-     * @param MailingTemplateConfigurationInterface $configuration
-     *
-     * @return MailingTemplateConfigurationInterface
      */
     public function setConfiguration(
         int $id,
@@ -104,9 +85,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Retrieves the source codes of a mailing template
      *
-     * @param int $id
      *
-     * @return MailingTemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function getSources(int $id): MailingTemplatesSourcesInterface;
@@ -114,10 +93,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Sets the source codes of a mailing template
      *
-     * @param int $id
-     * @param MailingTemplatesSourcesInterface $configuration
      *
-     * @return MailingTemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function setSources(
@@ -129,10 +105,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Removes an existing slot from a mailing template
      *
-     * @param int $id
-     * @param int $slotId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeSlot(int $id, int $slotId): bool;
@@ -140,12 +113,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Removes an article template configuration for a certain template type from an existing slot
      *
-     * @param int $id
-     * @param int $slotId
-     * @param int $templateType
-     * @param int $articleTypeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeTemplateFromSlot(
@@ -156,7 +124,6 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     ): bool;
 
     /**
-     * @return MailingSlotConfigurationInterface
      * @throws EmptyResultException
      */
     public function getSlotConfiguration(int $id): MailingSlotConfigurationInterface;
@@ -164,10 +131,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Adds a slot to the mailing template
      *
-     * @param int $id
-     * @param int $slotNumber
      *
-     * @return MailingSlotInterface
      * @throws EmptyResultException
      */
     public function addSlot(
@@ -178,14 +142,7 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Update a slot of the mailing template
      *
-     * @param int $id
-     * @param int $slotId
-     * @param int $slotNumber
-     * @param string $name
-     * @param int $sortTypeId
-     * @param int $sortValue
      *
-     * @return MailingSlotInterface
      * @throws EmptyResultException
      */
     public function updateSlot(
@@ -200,13 +157,8 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Adds a template config to an existing slot
      *
-     * @param int $id
-     * @param int $slotId
-     * @param HashMapInterface $config
-     * @param int $articleTypeId
      * @param MailingTemplateAllowedTemplatesInterface[] $allowed_templates
      *
-     * @return MailingSlotItemInterface
      * @throws EmptyResultException
      */
     public function addTemplatesToSlot(
@@ -220,13 +172,8 @@ interface MailingTemplateClientInterface extends ClientInterface, ResourceTraitI
     /**
      * Updates an existing template config of a slot
      *
-     * @param int $id
-     * @param int $slotId
-     * @param HashMapInterface $config
-     * @param int $articleTypeId
      * @param MailingTemplateAllowedTemplatesInterface[] $allowed_templates
      *
-     * @return MailingSlotItemInterface
      * @throws EmptyResultException
      */
     public function updateSlotTemplates(

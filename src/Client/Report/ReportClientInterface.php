@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Report;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -13,11 +15,5 @@ use Scn\EvalancheSoapApiConnector\Client\Generic\ResourceTraitInterface;
  */
 interface ReportClientInterface extends ClientInterface, ResourceTraitInterface, CreateResourceTraitInterface
 {
-    /**
-     * @param int $id
-     * @param int $reportId
-     *
-     * @return bool
-     */
     public function addResourceIdToReport(int $id, int $reportId): bool;
 }

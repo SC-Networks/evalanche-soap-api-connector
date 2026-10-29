@@ -40,15 +40,15 @@ class ObjectValueTest extends TestCase
 
         $set = ObjectValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertNull($dummy->getValue());
-        static::assertNull($get('value'));
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertNull($dummy->getValue());
+        self::assertNull($get('value'));
     }
 
     public function testContainsHydratedObjects()
@@ -73,14 +73,14 @@ class ObjectValueTest extends TestCase
 
         $set = ObjectValue::set('value', new MailClientStatisticItemConfig());
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertInstanceOf(MailClientStatisticItemInterface::class, $dummy->getValue());
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertInstanceOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
 
     public function testEverythingIfItemNotArray()
@@ -104,15 +104,15 @@ class ObjectValueTest extends TestCase
 
         $set = ObjectValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertNull($dummy->getValue());
-        static::assertNull($get('value'));
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertNull($dummy->getValue());
+        self::assertNull($get('value'));
     }
 
 
@@ -135,15 +135,15 @@ class ObjectValueTest extends TestCase
 
         $set = ObjectValue::set('value');
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertNull($dummy->getValue());
-        static::assertNull($get('value'));
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertNull($dummy->getValue());
+        self::assertNull($get('value'));
     }
 
     public function testContainsHydratedObjectsIfValueIsArray()
@@ -168,14 +168,14 @@ class ObjectValueTest extends TestCase
 
         $set = ObjectValue::set('value', new MailClientStatisticItemConfig());
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ObjectValue::get('value');
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertInstanceOf(MailClientStatisticItemInterface::class, $dummy->getValue());
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertInstanceOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
 
     public function testGetWithHydratorContainsHydratedObjectsIfValueIsArray()
@@ -200,13 +200,13 @@ class ObjectValueTest extends TestCase
 
         $set = ObjectValue::set('value', new MailClientStatisticItemConfig());
         $set = $set->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $set);
+        self::assertInstanceOf(Closure::class, $set);
 
         $set($testValue, 'value', $dummy);
 
         $get = ObjectValue::get('value', new MailClientStatisticItemConfig());
         $get = $get->bindTo($dummy, $dummy);
-        static::assertInstanceOf(Closure::class, $get);
-        static::assertInstanceOf(MailClientStatisticItemInterface::class, $dummy->getValue());
+        self::assertInstanceOf(Closure::class, $get);
+        self::assertInstanceOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
 }

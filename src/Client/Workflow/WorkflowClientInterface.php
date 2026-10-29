@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Workflow;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -21,8 +23,6 @@ use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowStateChangeResultInterface;
 interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterface, CreateResourceTraitInterface
 {
     /**
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -30,8 +30,6 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     public function getByStartDateRange(int $timestampStart, int $timestampEnd): array;
 
     /**
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -39,36 +37,21 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     public function getByEndDateRange(int $timestampStart, int $timestampEnd): array;
 
     /**
-     * @param int $id
      *
-     * @return WorkflowDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailById(int $id): WorkflowDetailInterface;
 
     /**
-     * @param int $id
-     * @param array $profileIds
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function pushProfilesIntoCampaign(int $id, array $profileIds): bool;
 
-    /**
-     * @param string $name
-     * @param int $schemaVersion
-     * @param string $workflowConfiguration
-     * @param int $categoryId
-     *
-     * @return ResourceInformationInterface
-     */
     public function createConfigured(string $name, int $schemaVersion, string $workflowConfiguration, int $categoryId = 0): ResourceInformationInterface;
 
     /**
-     * @param int $workflowId
      *
-     * @return string
      * @throws EmptyResultException
      */
     public function export(int $workflowId): string;
@@ -76,7 +59,6 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     /**
      * Update the configuration of a workflow
      *
-     * @param int $workflowId
      * @param string $configVersion The workflow config version
      * @param string $configuration The configuration as json encoded string
      *
@@ -93,9 +75,7 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     /**
      * Return the configuration of a campaign
      *
-     * @param int $workflowId
      *
-     * @return WorkflowConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $workflowId): WorkflowConfigurationInterface;
@@ -103,7 +83,6 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     /**
      * Gets the config versions of a campaign
      *
-     * @param int $workflowId
      *
      * @return WorkflowConfigVersionInterface[]
      * @throws EmptyResultException
@@ -113,9 +92,7 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     /**
      * Activates a campaign
      *
-     * @param int $workflowId
      *
-     * @return WorkflowStateChangeResultInterface
      * @throws EmptyResultException
      */
     public function activate(int $workflowId): WorkflowStateChangeResultInterface;
@@ -123,9 +100,7 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     /**
      * Deactivates a campaign
      *
-     * @param int $workflowId
      *
-     * @return WorkflowStateChangeResultInterface
      * @throws EmptyResultException
      */
     public function deactivate(int $workflowId): WorkflowStateChangeResultInterface;
@@ -133,8 +108,6 @@ interface WorkflowClientInterface extends ClientInterface, ResourceTraitInterfac
     /**
      * Generates a campaign configuration
      *
-     * @param int $workflowId
-     * @param string $prompt
      *
      * @throws EmptyResultException
      */

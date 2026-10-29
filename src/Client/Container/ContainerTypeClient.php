@@ -26,13 +26,7 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param string $title
-     * @param string $label
-     * @param int $typeId
-     * @param int $groupId
      *
-     * @return ContainerAttributeInterface
      * @throws EmptyResultException
      */
     public function addAttribute(
@@ -58,10 +52,7 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
-     * @param string $title
      *
-     * @return ContainerAttributeGroupInterface
      * @throws EmptyResultException
      */
     public function addAttributeGroup(int $id, string $title): ContainerAttributeGroupInterface
@@ -76,11 +67,7 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $typeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function updateAttributeType(int $id, int $attributeId, int $typeId): bool
@@ -94,11 +81,7 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param string $label
      *
-     * @return ContainerAttributeOptionInterface
      * @throws EmptyResultException
      */
     public function addAttributeOption(int $id, int $attributeId, string $label): ContainerAttributeOptionInterface
@@ -113,7 +96,6 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
      *
      * @return ContainerAttributeGroupInterface[]
      * @throws EmptyResultException
@@ -130,8 +112,6 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
      *
      * @return ContainerAttributeOptionInterface[]
      * @throws EmptyResultException
@@ -148,7 +128,6 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
      *
      * @return ContainerAttributeInterface[]
      * @throws EmptyResultException
@@ -165,10 +144,7 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAttribute(int $id, int $attributeId): bool
@@ -182,10 +158,7 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
-     * @param int $attributeGroupId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAttributeGroup(int $id, int $attributeGroupId): bool
@@ -199,11 +172,7 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $optionId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAttributeOption(int $id, int $attributeId, int $optionId): bool
@@ -217,11 +186,7 @@ final class ContainerTypeClient extends AbstractClient implements ContainerTypeC
     }
 
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param HashMapInterface $hashMap
      *
-     * @return ContainerAttributeInterface
      * @throws EmptyResultException
      */
     public function updateAttribute(int $id, int $attributeId, HashMapInterface $hashMap): ContainerAttributeInterface

@@ -18,9 +18,7 @@ final class AccountClient extends AbstractClient implements AccountClientInterfa
     const VERSION = ClientInterface::VERSION_V1;
 
     /**
-     * @param int $id
      *
-     * @return AccountInterface
      * @throws EmptyResultException
      */
     public function getAccountByMandatorId(int $id): AccountInterface
@@ -31,12 +29,8 @@ final class AccountClient extends AbstractClient implements AccountClientInterfa
         );
     }
 
-    /**
-     *
-     * @return string
-     */
     public static function getWsdlUri(): string
     {
-        return sprintf(ClientInterface::WSDL_V1_URI, static::VERSION, static::PORTNAME);
+        return sprintf(ClientInterface::WSDL_V1_URI, self::VERSION, self::PORTNAME);
     }
 }

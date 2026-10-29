@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Webhook;
 
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
@@ -29,19 +30,19 @@ class WebhookClientTest extends TestCase
     private $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var Stub&ResponseMapperInterface
      */
-    private $responseMapper;
+    private Stub $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var Stub&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private Stub $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var Stub&ExtractorInterface
      */
-    private $extractor;
+    private Stub $extractor;
 
     public function setUp(): void
     {
@@ -50,9 +51,9 @@ class WebhookClientTest extends TestCase
             'getAll',
             'getByModificationDate',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createStub(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createStub(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createStub(ExtractorInterface::class);
 
         $this->subject = new WebhookClient(
             $this->soapClient,

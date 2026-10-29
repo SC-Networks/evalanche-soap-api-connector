@@ -68,9 +68,9 @@ class ArticleClientTest extends TestCase
             'delete',
             'getByModificationDate',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createMock(ExtractorInterface::class);
 
         $this->subject = new ArticleClient(
             $this->soapClient,
@@ -85,10 +85,10 @@ class ArticleClientTest extends TestCase
         $id = 456;
         $title = 'some title';
         $folderId = 123;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $expectedExtractor = [
             'some' => 'value'
@@ -128,8 +128,8 @@ class ArticleClientTest extends TestCase
     {
         $id = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->getDataResult = $object;
@@ -151,10 +151,10 @@ class ArticleClientTest extends TestCase
     public function testUpdateCanReturnInstanceOfResourceInformation()
     {
         $id = 12;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->updateResult = $object;
@@ -192,8 +192,8 @@ class ArticleClientTest extends TestCase
     {
         $id = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ArticleDetailInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ArticleDetailInterface::class);
 
         $response = new stdClass();
         $response->getDataResult = $object;
@@ -219,9 +219,9 @@ class ArticleClientTest extends TestCase
     {
         $articleTypeId = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
+        $otherObject = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByArticleTypeIdResult = [$object, $otherObject];
@@ -252,8 +252,8 @@ class ArticleClientTest extends TestCase
     {
         $articleId = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ArticleIndividualizationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ArticleIndividualizationInterface::class);
 
         $response = new stdClass();
         $response->getIndividualizationResult = $object;
@@ -274,7 +274,7 @@ class ArticleClientTest extends TestCase
             ->with($response, 'getIndividualizationResult', $config)
             ->willReturn($response->getIndividualizationResult);
 
-        static::assertInstanceOf(
+        self::assertInstanceOf(
             ArticleIndividualizationInterface::class,
             $this->subject->getIndividualization($articleId)
         );
@@ -284,8 +284,8 @@ class ArticleClientTest extends TestCase
     {
         $articleId = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $individualization = $this->getMockBuilder(ArticleIndividualizationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $individualization = $this->createStub(ArticleIndividualizationInterface::class);
 
         $extractionResult = ['some-result'];
         $response = new stdClass();
@@ -322,7 +322,7 @@ class ArticleClientTest extends TestCase
             ->with($response, 'setIndividualizationResult')
             ->willReturn($response->setIndividualizationResult);
 
-        static::assertTrue(
+        self::assertTrue(
             $this->subject->setIndividualization($articleId, $individualization)
         );
     }

@@ -22,10 +22,7 @@ final class ReportClient extends AbstractClient implements ReportClientInterface
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param int $reportId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function addResourceIdToReport(int $id, int $reportId): bool

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Blacklist;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -13,27 +15,12 @@ use Scn\EvalancheSoapStruct\Struct\Blacklist\BlackListInterface;
  */
 interface BlackListClientInterface extends ClientInterface
 {
-    /**
-     * @param int $mandatorId
-     * @param string $email
-     * @param string $description
-     *
-     * @return void
-     */
     public function add(int $mandatorId, string $email, string $description): void;
 
-    /**
-     * @param int $mandatorId
-     * @param string $email
-     *
-     * @return void
-     */
     public function remove(int $mandatorId, string $email): void;
 
     /**
-     * @param int $mandatorId
      *
-     * @return BlackListInterface
      * @throws EmptyResultException
      */
     public function get(int $mandatorId): BlackListInterface;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Scoring;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -13,7 +15,6 @@ use Scn\EvalancheSoapStruct\Struct\Scoring\ScoringGroupDetailInterface;
 interface ScoringClientInterface extends ClientInterface
 {
     /**
-     * @param int $id
      *
      * @return ScoringGroupDetailInterface[]
      */

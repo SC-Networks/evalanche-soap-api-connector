@@ -6,9 +6,9 @@ namespace Scn\EvalancheSoapApiConnector\Enum;
 
 final class LanguageEnum
 {
-    public const DE = 1;
-    public const EN = 2;
-    public const IT = 3;
-    public const FR = 4;
-    public const ES = 5;
+    public const int DE = 1;
+    public const int EN = 2;
+    public const int IT = 3;
+    public const int FR = 4;
+    public const int ES = 5;
 }

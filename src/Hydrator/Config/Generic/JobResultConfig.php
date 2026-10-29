@@ -2,8 +2,8 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Generic;
 
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ArrayOfObjectValue;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobResult;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\HydratorPropertyValues\Property\IntegerValue;
@@ -16,17 +16,11 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class JobResultConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new JobResult();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -37,15 +31,12 @@ class JobResultConfig implements HydratorConfigInterface
             'method' => StringValue::set('method'),
             'resource_id' => IntegerValue::set('resourceId'),
             'result_chunks' => IntegerValue::set('resultChunks'),
-            'result' => Property\ArrayOfObjectValue::set('result', new HashMapConfig()),
+            'result' => ArrayOfObjectValue::set('result', new HashMapConfig()),
             'chunks_left' => IntegerValue::set('chunksLeft'),
             'result_size' => IntegerValue::set('resultSize'),
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [
@@ -56,7 +47,7 @@ class JobResultConfig implements HydratorConfigInterface
             'method' => StringValue::get('method'),
             'resource_id' => IntegerValue::get('resourceId'),
             'result_chunks' => IntegerValue::get('resultChunks'),
-            'result' => Property\ArrayOfObjectValue::get('result'),
+            'result' => ArrayOfObjectValue::get('result'),
             'chunks_left' => IntegerValue::get('chunksLeft'),
             'result_size' => IntegerValue::get('resultSize'),
         ];

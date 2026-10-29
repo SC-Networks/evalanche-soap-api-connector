@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector;
 
-abstract class ConfigTestCase extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class ConfigTestCase extends TestCase
 {
     public function testGetHydratorPropertiesCanReturnArray()
     {

@@ -24,12 +24,7 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param string $title
-     * @param int $folderId
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(
@@ -56,9 +51,7 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return HashMapInterface
      * @throws EmptyResultException
      */
     public function getDetailById(int $id): HashMapInterface
@@ -73,10 +66,7 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function update(int $id, HashMapInterface $hashMap): ResourceInformationInterface
@@ -95,9 +85,7 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return ArticleDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): ArticleDetailInterface
@@ -114,7 +102,6 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
     }
 
     /**
-     * @param int $articleTypeId
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -136,7 +123,6 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
      * Return the article's individualization config
      *
      * @param int $id The article's id
-     * @return ArticleIndividualizationInterface
      *
      * @throws EmptyResultException
      */
@@ -156,10 +142,7 @@ final class ArticleClient extends AbstractClient implements ArticleClientInterfa
     /**
      * Sets an article's individualization config
      *
-     * @param int $id
-     * @param ArticleIndividualizationInterface $individualization
      *
-     * @return bool
      *
      * @throws EmptyResultException
      */

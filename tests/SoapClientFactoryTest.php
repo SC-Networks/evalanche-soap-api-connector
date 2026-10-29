@@ -28,7 +28,7 @@ class SoapClientFactoryTest extends TestCase
     {
         $portname = 'evalanche.wsdl';
 
-        $config = $this->getMockBuilder(EvalancheConfigInterface::class)->getMock();
+        $config = $this->createMock(EvalancheConfigInterface::class);
         $config->expects($this->once())->method('getWsdlServiceUrl')->with($portname)->willReturn('something wrong');
 
         $this->expectException(SoapFault::class);
@@ -38,7 +38,7 @@ class SoapClientFactoryTest extends TestCase
     public function testCreateCanReturnReturnInstanceOfSoap()
     {
         $portname = 'evalanche.wsdl';
-        $config = $this->getMockBuilder(EvalancheConfigInterface::class)->getMock();
+        $config = $this->createMock(EvalancheConfigInterface::class);
         $config->expects($this->once())->method('getUsername')->willReturn('some username');
         $config->expects($this->once())->method('getPassword')->willReturn('some password');
         $config->expects($this->once())->method('getWsdlServiceUrl')->with($portname)->willReturn(__DIR__ . '/' . $portname);
@@ -53,7 +53,7 @@ class SoapClientFactoryTest extends TestCase
     public function testCreateCanReturnReturnInstanceOfSoapWithDebugSettings()
     {
         $portname = 'evalanche.wsdl';
-        $config = $this->getMockBuilder(EvalancheConfigInterface::class)->getMock();
+        $config = $this->createMock(EvalancheConfigInterface::class);
         $config->expects($this->exactly(2))->method('getDebugMode')->willReturn(true);
         $config->expects($this->once())->method('getUsername')->willReturn('some username');
         $config->expects($this->once())->method('getPassword')->willReturn('some password');

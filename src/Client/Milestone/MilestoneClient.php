@@ -21,10 +21,7 @@ final class MilestoneClient extends AbstractClient implements MilestoneClientInt
     use ResourceTrait;
 
     /**
-     * @param string $name
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(string $name, int $folderId): ResourceInformationInterface

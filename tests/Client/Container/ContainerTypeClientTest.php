@@ -72,9 +72,9 @@ class ContainerTypeClientTest extends TestCase
             'copy',
             'delete',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createMock(ExtractorInterface::class);
 
         $this->subject = new ContainerTypeClient(
             $this->soapClient,
@@ -93,8 +93,8 @@ class ContainerTypeClientTest extends TestCase
         $groupId = 767;
 
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ContainerAttributeInterface::class);
 
         $response = new stdClass();
         $response->addAttributeResult = $object;
@@ -124,8 +124,8 @@ class ContainerTypeClientTest extends TestCase
         $id = 23;
         $title = 'some title';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ContainerAttributeGroupInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ContainerAttributeGroupInterface::class);
 
         $response = new stdClass();
         $response->addAttributeGroupResult = $object;
@@ -176,8 +176,8 @@ class ContainerTypeClientTest extends TestCase
         $attributeId = 234;
         $label = 'some label';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ContainerAttributeOptionInterface::class);
 
         $response = new stdClass();
         $response->createAttributeOptionResult = $object;
@@ -204,9 +204,9 @@ class ContainerTypeClientTest extends TestCase
     {
         $id = 213;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ContainerAttributeOptionInterface::class);
+        $otherObject = $this->createStub(ContainerAttributeOptionInterface::class);
 
         $response = new stdClass();
         $response->getAttributeGroupsResult = [
@@ -235,9 +235,9 @@ class ContainerTypeClientTest extends TestCase
         $id = 8;
         $attributeId = 9;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ContainerAttributeOptionInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ContainerAttributeOptionInterface::class);
+        $otherObject = $this->createStub(ContainerAttributeOptionInterface::class);
 
         $response = new stdClass();
         $response->getAttributeOptionsResult = [
@@ -266,9 +266,9 @@ class ContainerTypeClientTest extends TestCase
     {
         $id = 12;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ContainerAttributeInterface::class);
+        $otherObject = $this->createStub(ContainerAttributeInterface::class);
 
         $response = new stdClass();
         $response->getAttributesResult = [
@@ -358,10 +358,10 @@ class ContainerTypeClientTest extends TestCase
     {
         $id = 34;
         $attributeId = 324;
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMap = $this->createStub(HashMapInterface::class);
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ContainerAttributeInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ContainerAttributeInterface::class);
 
         $extractedData = [
             'some key' => 'some value',

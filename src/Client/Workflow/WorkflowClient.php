@@ -30,8 +30,6 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Get campaign's by a specific Start- Date Range
      *
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -51,8 +49,6 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Get campaign's by a specific End- Date Range
      *
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -72,9 +68,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Return Details of a campaign
      *
-     * @param int $id
      *
-     * @return WorkflowDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailById(int $id): WorkflowDetailInterface
@@ -89,10 +83,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Push profiles into a specific campaign
      *
-     * @param int $id
-     * @param array $profileIds
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function pushProfilesIntoCampaign(int $id, array $profileIds): bool
@@ -109,12 +100,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Create a workflow by a JSON configuration
      *
-     * @param string $name
-     * @param int $schemaVersion
-     * @param string $workflowConfiguration
-     * @param int $categoryId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function createConfigured(string $name, int $schemaVersion, string $workflowConfiguration, int $categoryId = 0): ResourceInformationInterface
@@ -134,9 +120,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Export a specific workflow configuration as JSON string
      *
-     * @param int $workflowId
      *
-     * @return string
      * @throws EmptyResultException
      */
     public function export(int $workflowId): string
@@ -152,7 +136,6 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Update the configuration of a campaign and returns the new config version id
      *
-     * @param int $workflowId
      * @param string $configVersion The campaign config version
      * @param string $configuration The configuration as json encoded string
      *
@@ -178,9 +161,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Return the configuration of a campaign
      *
-     * @param int $workflowId
      *
-     * @return WorkflowConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $workflowId): WorkflowConfigurationInterface
@@ -195,7 +176,6 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Gets the config versions of a campaign
      *
-     * @param int $workflowId
      *
      * @return WorkflowConfigVersionInterface[]
      * @throws EmptyResultException
@@ -214,9 +194,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Activates a campaign
      *
-     * @param int $workflowId
      *
-     * @return WorkflowStateChangeResultInterface
      * @throws EmptyResultException
      */
     public function activate(int $workflowId): WorkflowStateChangeResultInterface
@@ -231,9 +209,7 @@ final class WorkflowClient extends AbstractClient implements WorkflowClientInter
     /**
      * Deactivates a campaign
      *
-     * @param int $workflowId
      *
-     * @return WorkflowStateChangeResultInterface
      * @throws EmptyResultException
      */
     public function deactivate(int $workflowId): WorkflowStateChangeResultInterface

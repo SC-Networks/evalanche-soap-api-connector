@@ -15,7 +15,6 @@ use ReflectionException;
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @param array $wsdl_methods
      *
      * @return MockObject
      * @throws ReflectionException

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\LeadPage;
 
+use Scn\EvalancheSoapApiConnector\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -19,7 +20,7 @@ use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageConfigurationInterface;
 use \stdClass;
 
-class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
+class LeadpageClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
 
@@ -60,9 +61,9 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
             'getArticles',
             'addArticles',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createMock(ExtractorInterface::class);
 
         $this->subject = new LeadpageClient(
             $this->soapClient,
@@ -75,10 +76,10 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     public function testSetConfigurationCanReturnInstanceOfLeadpageConfiguration()
     {
         $id = 123;
-        $configuration = $this->getMockBuilder(LeadpageConfigurationInterface::class)->getMock();
+        $configuration = $this->createStub(LeadpageConfigurationInterface::class);
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(LeadpageConfigurationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageConfigurationInterface::class);
 
         $extractedData = [
             'some ' => 'data',
@@ -110,8 +111,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         $id = 456;
         $mandatorId = 76;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByTypeIdResult = [
@@ -139,8 +140,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 1234;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(LeadpageConfigurationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageConfigurationInterface::class);
 
         $response = new stdClass();
         $response->getConfigurationResult = $object;
@@ -165,8 +166,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 1234;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getDetailsResult = $object;
@@ -192,8 +193,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         $id = 123;
         $title = 'some title';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->renameResult = $object;
@@ -217,9 +218,9 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
 
     public function testGetTypeIdsCanReturnArrayOfResourceInformation()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceTypeInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceTypeInformationInterface::class);
+        $otherObject = $this->createStub(ResourceTypeInformationInterface::class);
 
         $response = new stdClass();
         $response->getByTypeIdResult = [
@@ -244,9 +245,9 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 456;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
+        $otherObject = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByCategoryResult = [
@@ -271,8 +272,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 123;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByExternalIdResult = $object;
@@ -295,8 +296,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 456;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(FolderInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(FolderInformationInterface::class);
 
         $response = new stdClass();
         $response->getResourceDefaultCategoryResult = $object;
@@ -319,8 +320,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 'some id';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getByExternalIdResult = $object;
@@ -343,8 +344,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 666;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->getContentContainerDataResult = $object;
@@ -384,10 +385,10 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
             ]
         ];
 
-        $hashMapConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $resourceInformationConfig = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $hashMap = $this->getMockBuilder(HashMapInterface::class)->getMock();
+        $hashMapConfig = $this->createStub(HydratorConfigInterface::class);
+        $resourceInformationConfig = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
+        $hashMap = $this->createStub(HashMapInterface::class);
 
         $response = new stdClass();
         $response->setContentContainerDataResult = $object;
@@ -447,7 +448,7 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         )->willReturn($response->updateModuleTypesResult);
 
 
-        static::assertTrue($this->subject->updateModuleTypes($id, $moduleTypeContent));
+        self::assertTrue($this->subject->updateModuleTypes($id, $moduleTypeContent));
     }
 
     public function testGetModuleTypesCanReturnString(): void
@@ -466,7 +467,7 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         )->willReturn($response->retrieveModuleTypesResult);
 
 
-        static::assertSame('some-thing', $this->subject->getModuleTypes($id));
+        self::assertSame('some-thing', $this->subject->getModuleTypes($id));
     }
 
     public function testRemoveAllArticlesCalls(): void
@@ -492,7 +493,7 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
             ->willReturn($response->removeAllArticleResult);
 
 
-        static::assertTrue(
+        self::assertTrue(
             $this->subject->removeAllArticles($id)
         );
     }
@@ -504,7 +505,7 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
         $response = new stdClass();
         $result = ['some-result'];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $this->soapClient->expects($this->once())
             ->method('removeArticles')
@@ -527,7 +528,7 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
             ->method('createLeadpageArticleConfig')
             ->willReturn($config);
 
-        static::assertSame(
+        self::assertSame(
             $result,
             $this->subject->removeArticles($id, $referenceIds)
         );
@@ -537,10 +538,10 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 1234;
         $articles = [
-            $this->createMock(LeadpageArticleInterface::class),
+            $this->createStub(LeadpageArticleInterface::class),
         ];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $response = new stdClass();
         $response->addArticlesResult = $articles;
@@ -590,8 +591,8 @@ class LeadpageClientTest extends \Scn\EvalancheSoapApiConnector\TestCase
     {
         $id = 123;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(LeadpageArticleInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(LeadpageArticleInterface::class);
 
         $response = new stdClass();
         $response->getArticlesResult = [

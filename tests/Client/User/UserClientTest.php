@@ -49,9 +49,9 @@ class UserClientTest extends TestCase
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock(['getByUsername', 'getAll', 'update']);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createMock(ExtractorInterface::class);
 
         $this->subject = new UserClient(
             $this->soapClient,
@@ -63,8 +63,8 @@ class UserClientTest extends TestCase
 
     public function testGetByUsernameCanReturnInstanceOfUserInterface()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(UserInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(UserInterface::class);
 
         $result = new stdClass();
         $result->getByUsernameResult = $object;
@@ -85,9 +85,9 @@ class UserClientTest extends TestCase
 
     public function testGetListByMandatorIdCanReturnArrayOfUserInterface()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(UserInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(UserInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(UserInterface::class);
+        $otherObject = $this->createStub(UserInterface::class);
 
         $list = new stdClass();
         $list->item = [
@@ -112,8 +112,8 @@ class UserClientTest extends TestCase
 
     public function testUpdateUserCanReturnInstanceOfUserInterface()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(UserInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(UserInterface::class);
 
         $result = new stdClass();
         $result->updateResult = $object;

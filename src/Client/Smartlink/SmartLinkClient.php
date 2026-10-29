@@ -26,11 +26,7 @@ final class SmartLinkClient extends AbstractClient implements SmartLinkClientInt
     /**
      * Appends a new link to an existing smartlink object
      *
-     * @param int $id
-     * @param string $title
-     * @param string $url
      *
-     * @return string
      * @throws EmptyResultException
      */
     public function createLink(int $id, string $title, string $url): string
@@ -48,7 +44,6 @@ final class SmartLinkClient extends AbstractClient implements SmartLinkClientInt
     /**
      * Get all Links from a SmartLink Object
      *
-     * @param int $id
      *
      * @return SmartLinkInterface[]
      * @throws EmptyResultException
@@ -65,7 +60,6 @@ final class SmartLinkClient extends AbstractClient implements SmartLinkClientInt
     /**
      * Get all link configurations from a SmartLink object
      *
-     * @param int $link_id
      *
      * @return SmartLinkConfigurationInterface[]
      * @throws EmptyResultException
@@ -82,10 +76,8 @@ final class SmartLinkClient extends AbstractClient implements SmartLinkClientInt
     /**
      * Updates all given link configurations from a SmartLink object
      *
-     * @param int $link_id
      * @param SmartLinkConfigurationInterface[] $configurations
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function setLinkConfigurations(int $link_id, array $configurations): bool
@@ -105,10 +97,8 @@ final class SmartLinkClient extends AbstractClient implements SmartLinkClientInt
     /**
      * Creates link configurations for a SmartLink object
      *
-     * @param int $link_id
      * @param SmartLinkConfigurationInterface[] $configurations
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function createLinkConfigurations(int $link_id, array $configurations): bool

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Generic;
 
 use DateTimeInterface;
@@ -16,62 +18,32 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatusInterface;
  */
 interface ResourceTraitInterface
 {
-    /**
-     * @param int $id
-     * @param int $folderId
-     *
-     * @return ResourceInformationInterface
-     */
     public function copy(int $id, int $folderId): ResourceInformationInterface;
 
-    /**
-     * @param int $id
-     *
-     * @return bool
-     */
     public function delete(int $id): bool;
 
     /**
-     * @param int $id
      *
      * @return ResourceInformationInterface[]
      */
     public function getListByMandatorId(int $id): array;
 
     /**
-     * @param int $id
      *
      * @return ResourceInformationInterface[]
      */
     public function getByFolderId(int $id): array;
 
-    /**
-     * @param string $id
-     *
-     * @return ResourceInformationInterface
-     */
     public function getByExternalId(string $id): ResourceInformationInterface;
 
-    /**
-     * @param int $id
-     *
-     * @return ResourceInformationInterface
-     */
     public function getById(int $id): ResourceInformationInterface;
 
     /**
-     * @param int $id
-     * @param int $mandatorId
      *
      * @return ResourceInformationInterface[]
      */
     public function getByTypeId(int $id, int $mandatorId): array;
 
-    /**
-     * @param int $id
-     *
-     * @return FolderInformationInterface
-     */
     public function getDefaultFolderByMandatorId(int $id): FolderInformationInterface;
 
     /**
@@ -80,34 +52,15 @@ interface ResourceTraitInterface
      */
     public function getTypeIds(): array;
 
-    /**
-     * @param int $id
-     * @param int $folderId
-     *
-     * @return ResourceInformationInterface
-     */
     public function move(int $id, int $folderId): ResourceInformationInterface;
 
-    /**
-     *
-     * @return ServiceStatusInterface
-     */
     public function getServiceAvailable(): ServiceStatusInterface;
 
-    /**
-     * @param int $id
-     * @param string $title
-     *
-     * @return ResourceInformationInterface
-     */
     public function updateTitle(int $id, string $title): ResourceInformationInterface;
 
     /**
      * Returns all items having a modification-date in the given time-range
      *
-     * @param DateTimeInterface $startDate
-     * @param DateTimeInterface $endDate
-     * @param int $mandator_id
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException

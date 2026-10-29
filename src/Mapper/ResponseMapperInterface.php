@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Mapper;
 
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
@@ -14,11 +16,7 @@ use Scn\EvalancheSoapStruct\Struct\StructInterface;
 interface ResponseMapperInterface
 {
     /**
-     * @param object $response
-     * @param string $responseProperty
-     * @param HydratorConfigInterface $hydratorConfig
      *
-     * @return StructInterface
      * @throws EmptyResultException
      */
     public function getObject(
@@ -28,8 +26,6 @@ interface ResponseMapperInterface
     ): StructInterface;
 
     /**
-     * @param object $response
-     * @param HydratorConfigInterface $hydratorConfig
      *
      * @return StructInterface
      * @throws EmptyResultException
@@ -37,17 +33,12 @@ interface ResponseMapperInterface
     public function getObjectDirectly(object $response, HydratorConfigInterface $hydratorConfig);
 
     /**
-     * @param object $response
-     * @param HydratorConfigInterface $hydratorConfig
      *
      * @return StructInterface[]
      */
     public function getObjectsDirectly(object $response, HydratorConfigInterface  $hydratorConfig);
 
     /**
-     * @param object $response
-     * @param string $responseProperty
-     * @param HydratorConfigInterface $hydratorConfig
      *
      * @return StructInterface[]
      * @throws EmptyResultException
@@ -59,10 +50,7 @@ interface ResponseMapperInterface
     ): array;
 
     /**
-     * @param object $response
-     * @param string $responseProperty
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function getBoolean(
@@ -71,10 +59,7 @@ interface ResponseMapperInterface
     ): bool;
 
     /**
-     * @param object $response
-     * @param string $responseProperty
      *
-     * @return string
      * @throws EmptyResultException
      */
     public function getString(
@@ -83,10 +68,7 @@ interface ResponseMapperInterface
     ): string;
 
     /**
-     * @param object $response
-     * @param string $responseProperty
      *
-     * @return array
      * @throws EmptyResultException
      */
     public function getArray(
@@ -95,10 +77,7 @@ interface ResponseMapperInterface
     ): array;
 
     /**
-     * @param object $response
-     * @param string $responseProperty
      *
-     * @return int
      * @throws EmptyResultException
      */
     public function getInteger(

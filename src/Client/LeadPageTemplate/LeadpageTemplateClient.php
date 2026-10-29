@@ -24,10 +24,7 @@ class LeadpageTemplateClient extends AbstractClient implements LeadpageTemplateC
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param string $title
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(
@@ -47,9 +44,7 @@ class LeadpageTemplateClient extends AbstractClient implements LeadpageTemplateC
     }
 
     /**
-     * @param int $id
      *
-     * @return TemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function getSources(int $id): TemplatesSourcesInterface
@@ -66,10 +61,7 @@ class LeadpageTemplateClient extends AbstractClient implements LeadpageTemplateC
     }
 
     /**
-     * @param int $id
-     * @param TemplatesSourcesInterface $configuration
      *
-     * @return TemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function setSources(
@@ -94,9 +86,7 @@ class LeadpageTemplateClient extends AbstractClient implements LeadpageTemplateC
     }
 
     /**
-     * @param int $id
      *
-     * @return LeadpageTemplateConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $id): LeadpageTemplateConfigurationInterface
@@ -113,8 +103,6 @@ class LeadpageTemplateClient extends AbstractClient implements LeadpageTemplateC
     }
 
     /**
-     * @param int $id
-     * @param LeadpageTemplateConfigurationInterface $configuration
      *
      * @return LeadpageTemplateConfiguration
      * @throws EmptyResultException

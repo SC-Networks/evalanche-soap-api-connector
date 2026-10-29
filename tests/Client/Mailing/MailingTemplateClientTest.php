@@ -99,8 +99,8 @@ class MailingTemplateClientTest extends TestCase
         $folderId = 123;
         $title = 'some title';
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(ResourceInformationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->createResult = $object;
@@ -137,8 +137,8 @@ class MailingTemplateClientTest extends TestCase
         $id = 123;
         $title = 'some title';
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(ResourceInformationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->renameResult = $object;
@@ -180,9 +180,9 @@ class MailingTemplateClientTest extends TestCase
             4,
         ];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingArticleInterface::class);
-        $otherObject = $this->createMock(MailingArticleInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingArticleInterface::class);
+        $otherObject = $this->createStub(MailingArticleInterface::class);
 
         $response = new stdClass();
         $response->removeArticlesResult = [
@@ -220,11 +220,11 @@ class MailingTemplateClientTest extends TestCase
     {
         $id = 1234;
         $articles = [
-            $this->createMock(MailingArticleInterface::class),
-            $this->createMock(MailingArticleInterface::class)
+            $this->createStub(MailingArticleInterface::class),
+            $this->createStub(MailingArticleInterface::class)
         ];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
 
         $response = new stdClass();
         $response->addArticlesResult = $articles;
@@ -277,9 +277,9 @@ class MailingTemplateClientTest extends TestCase
     {
         $id = 123;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingArticleInterface::class);
-        $otherObject = $this->createMock(MailingArticleInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingArticleInterface::class);
+        $otherObject = $this->createStub(MailingArticleInterface::class);
 
         $response = new stdClass();
         $response->getArticlesResult = [
@@ -356,8 +356,8 @@ class MailingTemplateClientTest extends TestCase
     {
         $id = 1234;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingTemplateConfigurationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingTemplateConfigurationInterface::class);
 
         $response = new stdClass();
         $response->getConfigurationResult = $object;
@@ -391,9 +391,9 @@ class MailingTemplateClientTest extends TestCase
     public function testSetConfigurationReturnsMailingTemplateConfiguration(): void
     {
         $id = 123;
-        $configuration = $this->createMock(MailingTemplateConfigurationInterface::class);
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingTemplateConfigurationInterface::class);
+        $configuration = $this->createStub(MailingTemplateConfigurationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingTemplateConfigurationInterface::class);
 
         $extractedData = [
             'some ' => 'data',
@@ -437,8 +437,8 @@ class MailingTemplateClientTest extends TestCase
     {
         $id = 1234;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingTemplatesSourcesInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingTemplatesSourcesInterface::class);
 
         $response = new stdClass();
         $response->getSourcesResult = $object;
@@ -472,9 +472,9 @@ class MailingTemplateClientTest extends TestCase
     public function testSetSourcesReturnsSources(): void
     {
         $id = 123;
-        $configuration = $this->createMock(MailingTemplatesSourcesInterface::class);
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingTemplatesSourcesInterface::class);
+        $configuration = $this->createStub(MailingTemplatesSourcesInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingTemplatesSourcesInterface::class);
         $overwrite = true;
 
         $extractedData = [
@@ -577,8 +577,8 @@ class MailingTemplateClientTest extends TestCase
     {
         $id = 1234;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingSlotConfigurationInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingSlotConfigurationInterface::class);
 
         $response = new stdClass();
         $response->getSlotConfigurationResult = $object;
@@ -614,8 +614,8 @@ class MailingTemplateClientTest extends TestCase
         $id = 1234;
         $slotNumber = 666;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingSlotInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingSlotInterface::class);
 
         $response = new stdClass();
         $response->addSlotResult = $object;
@@ -656,8 +656,8 @@ class MailingTemplateClientTest extends TestCase
         $sortTypeId = 444;
         $sortValue = 333;
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingSlotInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingSlotInterface::class);
 
         $response = new stdClass();
         $response->updateSlotResult = $object;
@@ -704,12 +704,12 @@ class MailingTemplateClientTest extends TestCase
     {
         $id = 1234;
         $slotId = 555;
-        $data = $this->createMock(HashMapInterface::class);
+        $data = $this->createStub(HashMapInterface::class);
         $articleTypeId = 666;
         $allowedTemplates = [];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingSlotItemInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingSlotItemInterface::class);
 
         $response = new stdClass();
         $response->addTemplatesToSlotResult = $object;
@@ -754,12 +754,12 @@ class MailingTemplateClientTest extends TestCase
     {
         $id = 1234;
         $slotId = 555;
-        $data = $this->createMock(HashMapInterface::class);
+        $data = $this->createStub(HashMapInterface::class);
         $articleTypeId = 666;
         $allowedTemplates = [];
 
-        $config = $this->createMock(HydratorConfigInterface::class);
-        $object = $this->createMock(MailingSlotItemInterface::class);
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MailingSlotItemInterface::class);
 
         $response = new stdClass();
         $response->updateSlotTemplatesResult = $object;

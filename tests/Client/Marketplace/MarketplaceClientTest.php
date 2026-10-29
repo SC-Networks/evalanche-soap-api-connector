@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Marketplace;
 
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Enum\LanguageEnum;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -39,9 +40,9 @@ class MarketplaceClientTest extends TestCase
     private $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var Stub&ExtractorInterface
      */
-    private $extractor;
+    private Stub $extractor;
 
     public function setUp(): void
     {
@@ -50,9 +51,9 @@ class MarketplaceClientTest extends TestCase
             'getProductList',
             'purchaseProduct',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createStub(ExtractorInterface::class);
 
         $this->subject = new MarketplaceClient(
             $this->soapClient,
@@ -68,10 +69,10 @@ class MarketplaceClientTest extends TestCase
 
         $result = new stdClass();
         $result->items = [
-            $this->getMockBuilder(CategoryInterface::class)->getMock(),
+            $this->createStub(CategoryInterface::class),
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
         $this->hydratorConfigFactory
             ->expects($this->once())
             ->method('createMarketplaceCategoryConfig')
@@ -101,10 +102,10 @@ class MarketplaceClientTest extends TestCase
 
         $result = new stdClass();
         $result->items = [
-            $this->getMockBuilder(ProductInterface::class)->getMock(),
+            $this->createStub(ProductInterface::class),
         ];
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
         $this->hydratorConfigFactory
             ->expects($this->once())
             ->method('createMarketplaceProductConfig')

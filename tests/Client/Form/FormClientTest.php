@@ -68,9 +68,9 @@ class FormClientTest extends TestCase
             'setConfiguration',
             'toggleHtmlTemplateMode',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createMock(ExtractorInterface::class);
 
         $this->subject = new FormClient(
             $this->soapClient,
@@ -129,8 +129,8 @@ class FormClientTest extends TestCase
         $title = 'some title';
         $folderId = 99;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->createAliasResult = $object;
@@ -157,9 +157,9 @@ class FormClientTest extends TestCase
     {
         $id = 456;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
+        $otherObject = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getAliasesResult = [
@@ -187,8 +187,8 @@ class FormClientTest extends TestCase
     {
         $id = 932;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->getFormByAliasResult = $object;
@@ -214,9 +214,9 @@ class FormClientTest extends TestCase
         $id = 932;
         $includeAliases = false;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(FormStatisticInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(FormStatisticInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(FormStatisticInterface::class);
+        $otherObject = $this->createStub(FormStatisticInterface::class);
 
         $response = new stdClass();
         $response->getStatisticsResult = [
@@ -286,8 +286,8 @@ class FormClientTest extends TestCase
         $id = 123;
         $templateHtml = '<p>some html</p>';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->updateTemplateResult = $object;
@@ -314,8 +314,8 @@ class FormClientTest extends TestCase
         $poolId = 999;
         $title = 'some title';
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(ResourceInformationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(ResourceInformationInterface::class);
 
         $response = new stdClass();
         $response->createResult = $object;
@@ -341,8 +341,8 @@ class FormClientTest extends TestCase
     {
         $id = 1234;
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(FormConfigurationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(FormConfigurationInterface::class);
 
         $response = new stdClass();
         $response->getConfigurationResult = $object;
@@ -377,10 +377,10 @@ class FormClientTest extends TestCase
     public function testSetConfigurationCanReturnInstanceOfMailingConfiguration()
     {
         $id = 123;
-        $configuration = $this->getMockBuilder(FormConfigurationInterface::class)->getMock();
+        $configuration = $this->createStub(FormConfigurationInterface::class);
 
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(FormConfigurationInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(FormConfigurationInterface::class);
 
         $extractedData = [
             'some ' => 'data',

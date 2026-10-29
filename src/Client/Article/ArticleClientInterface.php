@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Article;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -18,12 +20,7 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
 {
     /**
-     * @param int $id
-     * @param string $title
-     * @param int $folderId
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(
@@ -34,32 +31,24 @@ interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
     ): ResourceInformationInterface;
 
     /**
-     * @param int $id
      *
-     * @return HashMapInterface
      * @throws EmptyResultException
      */
     public function getDetailById(int $id): HashMapInterface;
 
     /**
-     * @param int $id
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function update(int $id, HashMapInterface $hashMap): ResourceInformationInterface;
 
     /**
-     * @param int $id
      *
-     * @return ArticleDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): ArticleDetailInterface;
 
     /**
-     * @param int $articleTypeId
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -70,7 +59,6 @@ interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
      * Return the article's individualization config
      *
      * @param int $id The article's id
-     * @return ArticleIndividualizationInterface
      */
     public function getIndividualization(int $id): ArticleIndividualizationInterface;
 
@@ -78,9 +66,6 @@ interface ArticleClientInterface extends ClientInterface, ResourceTraitInterface
      * Sets an article's individualization config
      *
      * @param int $id The article's id
-     * @param ArticleIndividualizationInterface $individualization
-     *
-     * @return bool
      */
     public function setIndividualization(
         int $id,

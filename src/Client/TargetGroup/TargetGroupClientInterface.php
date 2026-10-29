@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\TargetGroup;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -16,13 +18,7 @@ use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupDetailInterface;
 interface TargetGroupClientInterface extends ClientInterface, ResourceTraitInterface
 {
     /**
-     * @param int $id
-     * @param int $attributeId
-     * @param int $optionId
-     * @param int $folderId
-     * @param string $title
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function createByOption(
@@ -34,9 +30,7 @@ interface TargetGroupClientInterface extends ClientInterface, ResourceTraitInter
     ): ResourceInformationInterface;
 
     /**
-     * @param int $id
      *
-     * @return TargetGroupDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailById(int $id): TargetGroupDetailInterface;

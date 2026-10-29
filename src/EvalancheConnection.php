@@ -2,6 +2,65 @@
 
 namespace Scn\EvalancheSoapApiConnector;
 
+use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Account\AccountClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Account\AccountClient;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleClient;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleTemplateClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleTemplateClient;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleTypeClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Article\ArticleTypeClient;
+use Scn\EvalancheSoapApiConnector\Client\Folder\FolderClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Folder\FolderClient;
+use Scn\EvalancheSoapApiConnector\Client\Container\ContainerClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Container\ContainerClient;
+use Scn\EvalancheSoapApiConnector\Client\Container\ContainerTypeClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Container\ContainerTypeClient;
+use Scn\EvalancheSoapApiConnector\Client\Document\DocumentClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Document\DocumentClient;
+use Scn\EvalancheSoapApiConnector\Client\Form\FormClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Form\FormClient;
+use Scn\EvalancheSoapApiConnector\Client\TargetGroup\TargetGroupClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\TargetGroup\TargetGroupClient;
+use Scn\EvalancheSoapApiConnector\Client\Image\ImageClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Image\ImageClient;
+use Scn\EvalancheSoapApiConnector\Client\LeadPage\LeadpageClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\LeadPage\LeadpageClient;
+use Scn\EvalancheSoapApiConnector\Client\Mailing\MailingClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Mailing\MailingClient;
+use Scn\EvalancheSoapApiConnector\Client\Mailing\MailingTemplateClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Mailing\MailingTemplateClient;
+use Scn\EvalancheSoapApiConnector\Client\Mandator\MandatorClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Mandator\MandatorClient;
+use Scn\EvalancheSoapApiConnector\Client\Pool\PoolClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Pool\PoolClient;
+use Scn\EvalancheSoapApiConnector\Client\Pool\PoolDataMinerClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Pool\PoolDataMinerClient;
+use Scn\EvalancheSoapApiConnector\Client\Profile\ProfileClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Profile\ProfileClient;
+use Scn\EvalancheSoapApiConnector\Client\Report\ReportClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Report\ReportClient;
+use Scn\EvalancheSoapApiConnector\Client\Scoring\ScoringClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Scoring\ScoringClient;
+use Scn\EvalancheSoapApiConnector\Client\Smartlink\SmartLinkClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Smartlink\SmartLinkClient;
+use Scn\EvalancheSoapApiConnector\Client\User\UserClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\User\UserClient;
+use Scn\EvalancheSoapApiConnector\Client\Workflow\WorkflowClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Workflow\WorkflowClient;
+use Scn\EvalancheSoapApiConnector\Client\Blacklist\BlackListClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Blacklist\BlackListClient;
+use Scn\EvalancheSoapApiConnector\Client\Webhook\WebhookClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Webhook\WebhookClient;
+use Scn\EvalancheSoapApiConnector\Client\Milestone\MilestoneClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Milestone\MilestoneClient;
+use Scn\EvalancheSoapApiConnector\Client\Marketplace\MarketplaceClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\Marketplace\MarketplaceClient;
+use Scn\EvalancheSoapApiConnector\Client\CouponList\CouponListClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\CouponList\CouponListClient;
+use Scn\EvalancheSoapApiConnector\Client\LeadPageTemplate\LeadpageTemplateClientInterface;
+use Scn\EvalancheSoapApiConnector\Client\LeadPageTemplate\LeadpageTemplateClient;
 use Scn\EvalancheSoapApiConnector\Extractor\Extractor;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactory;
@@ -10,30 +69,10 @@ use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapper;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
 use Scn\Hydrator\Hydrator;
 
-final class EvalancheConnection implements EvalancheConnectionInterface
+final readonly class EvalancheConnection implements EvalancheConnectionInterface
 {
-    private $soapClientFactory;
-
-    private $config;
-
-    private $responseMapper;
-
-    private $hydratorConfigFactory;
-
-    private $extractor;
-
-    public function __construct(
-        EvalancheConfigInterface $config,
-        SoapClientFactoryInterface $soapClientFactory,
-        ResponseMapperInterface $responseMapper,
-        HydratorConfigFactoryInterface $hydratorConfigFactory,
-        ExtractorInterface $extractor
-    ) {
-        $this->config = $config;
-        $this->soapClientFactory = $soapClientFactory;
-        $this->responseMapper = $responseMapper;
-        $this->hydratorConfigFactory = $hydratorConfigFactory;
-        $this->extractor = $extractor;
+    public function __construct(private EvalancheConfigInterface $config, private SoapClientFactoryInterface $soapClientFactory, private ResponseMapperInterface $responseMapper, private HydratorConfigFactoryInterface $hydratorConfigFactory, private ExtractorInterface $extractor)
+    {
     }
 
     public static function create(
@@ -62,7 +101,7 @@ final class EvalancheConnection implements EvalancheConnectionInterface
         );
     }
 
-    private function createClient(string $clientClass): Client\ClientInterface
+    private function createClient(string $clientClass): ClientInterface
     {
         /* @var $clientClass Client\ClientInterface */
         $soapClient = $this->soapClientFactory->create($this->config, $clientClass::getWsdlUri());
@@ -70,148 +109,148 @@ final class EvalancheConnection implements EvalancheConnectionInterface
         return new $clientClass($soapClient, $this->responseMapper, $this->hydratorConfigFactory, $this->extractor);
     }
 
-    public function createAccountClient(): Client\Account\AccountClientInterface
+    public function createAccountClient(): AccountClientInterface
     {
-        return $this->createClient(Client\Account\AccountClient::class);
+        return $this->createClient(AccountClient::class);
     }
 
-    public function createArticleClient(): Client\Article\ArticleClientInterface
+    public function createArticleClient(): ArticleClientInterface
     {
-        return $this->createClient(Client\Article\ArticleClient::class);
+        return $this->createClient(ArticleClient::class);
     }
 
-    public function createArticleTemplateClient(): Client\Article\ArticleTemplateClientInterface
+    public function createArticleTemplateClient(): ArticleTemplateClientInterface
     {
-        return $this->createClient(Client\Article\ArticleTemplateClient::class);
+        return $this->createClient(ArticleTemplateClient::class);
     }
 
-    public function createArticleTypeClient(): Client\Article\ArticleTypeClientInterface
+    public function createArticleTypeClient(): ArticleTypeClientInterface
     {
-        return $this->createClient(Client\Article\ArticleTypeClient::class);
+        return $this->createClient(ArticleTypeClient::class);
     }
 
-    public function createFolderClient(): Client\Folder\FolderClientInterface
+    public function createFolderClient(): FolderClientInterface
     {
-        return $this->createClient(Client\Folder\FolderClient::class);
+        return $this->createClient(FolderClient::class);
     }
 
-    public function createContainerClient(): Client\Container\ContainerClientInterface
+    public function createContainerClient(): ContainerClientInterface
     {
-        return $this->createClient(Client\Container\ContainerClient::class);
+        return $this->createClient(ContainerClient::class);
     }
 
-    public function createContainerTypeClient(): Client\Container\ContainerTypeClientInterface
+    public function createContainerTypeClient(): ContainerTypeClientInterface
     {
-        return $this->createClient(Client\Container\ContainerTypeClient::class);
+        return $this->createClient(ContainerTypeClient::class);
     }
 
-    public function createDocumentClient(): Client\Document\DocumentClientInterface
+    public function createDocumentClient(): DocumentClientInterface
     {
-        return $this->createClient(Client\Document\DocumentClient::class);
+        return $this->createClient(DocumentClient::class);
     }
 
-    public function createFormClient(): Client\Form\FormClientInterface
+    public function createFormClient(): FormClientInterface
     {
-        return $this->createClient(Client\Form\FormClient::class);
+        return $this->createClient(FormClient::class);
     }
 
-    public function createTargetGroupClient(): Client\TargetGroup\TargetGroupClientInterface
+    public function createTargetGroupClient(): TargetGroupClientInterface
     {
-        return $this->createClient(Client\TargetGroup\TargetGroupClient::class);
+        return $this->createClient(TargetGroupClient::class);
     }
 
-    public function createImageClient(): Client\Image\ImageClientInterface
+    public function createImageClient(): ImageClientInterface
     {
-        return $this->createClient(Client\Image\ImageClient::class);
+        return $this->createClient(ImageClient::class);
     }
 
-    public function createLeadpageClient(): Client\LeadPage\LeadpageClientInterface
+    public function createLeadpageClient(): LeadpageClientInterface
     {
-        return $this->createClient(Client\LeadPage\LeadpageClient::class);
+        return $this->createClient(LeadpageClient::class);
     }
 
-    public function createMailingClient(): Client\Mailing\MailingClientInterface
+    public function createMailingClient(): MailingClientInterface
     {
-        return $this->createClient(Client\Mailing\MailingClient::class);
+        return $this->createClient(MailingClient::class);
     }
 
-    public function createMailingTemplateClient(): Client\Mailing\MailingTemplateClientInterface
+    public function createMailingTemplateClient(): MailingTemplateClientInterface
     {
-        return $this->createClient(Client\Mailing\MailingTemplateClient::class);
+        return $this->createClient(MailingTemplateClient::class);
     }
 
-    public function createMandatorClient(): Client\Mandator\MandatorClientInterface
+    public function createMandatorClient(): MandatorClientInterface
     {
-        return $this->createClient(Client\Mandator\MandatorClient::class);
+        return $this->createClient(MandatorClient::class);
     }
 
-    public function createPoolClient(): Client\Pool\PoolClientInterface
+    public function createPoolClient(): PoolClientInterface
     {
-        return $this->createClient(Client\Pool\PoolClient::class);
+        return $this->createClient(PoolClient::class);
     }
 
-    public function createPoolDataMinerClient(): Client\Pool\PoolDataMinerClientInterface
+    public function createPoolDataMinerClient(): PoolDataMinerClientInterface
     {
-        return $this->createClient(Client\Pool\PoolDataMinerClient::class);
+        return $this->createClient(PoolDataMinerClient::class);
     }
 
-    public function createProfileClient(): Client\Profile\ProfileClientInterface
+    public function createProfileClient(): ProfileClientInterface
     {
-        return $this->createClient(Client\Profile\ProfileClient::class);
+        return $this->createClient(ProfileClient::class);
     }
 
-    public function createReportClient(): Client\Report\ReportClientInterface
+    public function createReportClient(): ReportClientInterface
     {
-        return $this->createClient(Client\Report\ReportClient::class);
+        return $this->createClient(ReportClient::class);
     }
 
-    public function createScoringClient(): Client\Scoring\ScoringClientInterface
+    public function createScoringClient(): ScoringClientInterface
     {
-        return $this->createClient(Client\Scoring\ScoringClient::class);
+        return $this->createClient(ScoringClient::class);
     }
 
-    public function createSmartLinkClient(): Client\Smartlink\SmartLinkClientInterface
+    public function createSmartLinkClient(): SmartLinkClientInterface
     {
-        return $this->createClient(Client\Smartlink\SmartLinkClient::class);
+        return $this->createClient(SmartLinkClient::class);
     }
 
-    public function createUserClient(): Client\User\UserClientInterface
+    public function createUserClient(): UserClientInterface
     {
-        return $this->createClient(Client\User\UserClient::class);
+        return $this->createClient(UserClient::class);
     }
 
-    public function createWorkflowClient(): Client\Workflow\WorkflowClientInterface
+    public function createWorkflowClient(): WorkflowClientInterface
     {
-        return $this->createClient(Client\Workflow\WorkflowClient::class);
+        return $this->createClient(WorkflowClient::class);
     }
 
-    public function createBlackListClient(): Client\Blacklist\BlackListClientInterface
+    public function createBlackListClient(): BlackListClientInterface
     {
-        return $this->createClient(Client\Blacklist\BlackListClient::class);
+        return $this->createClient(BlackListClient::class);
     }
 
-    public function createWebhookClient(): Client\Webhook\WebhookClientInterface
+    public function createWebhookClient(): WebhookClientInterface
     {
-        return $this->createClient(Client\Webhook\WebhookClient::class);
+        return $this->createClient(WebhookClient::class);
     }
 
-    public function createMilestoneClient(): Client\Milestone\MilestoneClientInterface
+    public function createMilestoneClient(): MilestoneClientInterface
     {
-        return $this->createClient(Client\Milestone\MilestoneClient::class);
+        return $this->createClient(MilestoneClient::class);
     }
 
-    public function createMarketplaceClient(): Client\Marketplace\MarketplaceClientInterface
+    public function createMarketplaceClient(): MarketplaceClientInterface
     {
-        return $this->createClient(Client\Marketplace\MarketplaceClient::class);
+        return $this->createClient(MarketplaceClient::class);
     }
     
-    public function createCouponListClient(): Client\CouponList\CouponListClientInterface
+    public function createCouponListClient(): CouponListClientInterface
     {
-        return $this->createClient(Client\CouponList\CouponListClient::class);
+        return $this->createClient(CouponListClient::class);
     }
 
-    public function createLeadpageTemplateClient(): Client\LeadPageTemplate\LeadpageTemplateClientInterface
+    public function createLeadpageTemplateClient(): LeadpageTemplateClientInterface
     {
-        return $this->createClient(Client\LeadPageTemplate\LeadpageTemplateClient::class);
+        return $this->createClient(LeadpageTemplateClient::class);
     }
 }

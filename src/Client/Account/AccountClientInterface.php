@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client\Account;
 
 use Scn\EvalancheSoapApiConnector\Client\ClientInterface;
@@ -14,9 +16,7 @@ use Scn\EvalancheSoapStruct\Struct\Account\AccountInterface;
 interface AccountClientInterface extends ClientInterface
 {
     /**
-     * @param int $id
      *
-     * @return AccountInterface
      * @throws EmptyResultException
      */
     public function getAccountByMandatorId(int $id): AccountInterface;

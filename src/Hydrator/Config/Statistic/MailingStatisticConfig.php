@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic;
 
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ArrayValue;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\Statistic\MailingStatistic;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\HydratorPropertyValues\Property\IntegerValue;
@@ -15,17 +17,11 @@ use Scn\HydratorPropertyValues\Property\IntegerValue;
  */
 class MailingStatisticConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new MailingStatistic();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -41,15 +37,12 @@ class MailingStatisticConfig implements HydratorConfigInterface
             'unique_impressions' => IntegerValue::set('uniqueImpressionCount'),
             'clicks' => IntegerValue::set('clickCount'),
             'unique_clicks' => IntegerValue::set('uniqueClickCount'),
-            'media' => Property\ArrayValue::set('media'),
-            'articles' => Property\ArrayValue::set('articles'),
-            'links' => Property\ArrayValue::set('links'),
+            'media' => ArrayValue::set('media'),
+            'articles' => ArrayValue::set('articles'),
+            'links' => ArrayValue::set('links'),
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [
@@ -65,9 +58,9 @@ class MailingStatisticConfig implements HydratorConfigInterface
             'unique_impressions' => IntegerValue::get('uniqueImpressionCount'),
             'clicks' => IntegerValue::get('clickCount'),
             'unique_clicks' => IntegerValue::get('uniqueClickCount'),
-            'media' => Property\ArrayValue::get('media'),
-            'articles' => Property\ArrayValue::get('articles'),
-            'links' => Property\ArrayValue::get('links'),
+            'media' => ArrayValue::get('media'),
+            'articles' => ArrayValue::get('articles'),
+            'links' => ArrayValue::get('links'),
         ];
     }
 }

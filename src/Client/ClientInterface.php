@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Client;
 
 /**
@@ -14,9 +16,5 @@ interface ClientInterface
     const VERSION_V0 = 'v0';
     const VERSION_V1 = 'v1';
 
-    /**
-     *
-     * @return string
-     */
     public static function getWsdlUri(): string;
 }

@@ -17,13 +17,6 @@ final class BlackListClient extends AbstractClient implements BlackListClientInt
     const PORTNAME = 'blacklist/wsdl';
     const VERSION = ClientInterface::VERSION_V1;
 
-    /**
-     * @param int $mandatorId
-     * @param string $email
-     * @param string $description
-     *
-     * @return void
-     */
     public function add(int $mandatorId, string $email, string $description): void
     {
         $this->soapClient->add([
@@ -35,21 +28,13 @@ final class BlackListClient extends AbstractClient implements BlackListClientInt
         ]);
     }
 
-    /**
-     * @param int $mandatorId
-     * @param string $email
-     *
-     * @return void
-     */
     public function remove(int $mandatorId, string $email): void
     {
         $this->soapClient->remove(['CustomerId' => $mandatorId, 'Email' => $email]);
     }
 
     /**
-     * @param int $mandatorId
      *
-     * @return BlackListInterface
      * @throws EmptyResultException
      */
     public function get(int $mandatorId): BlackListInterface
@@ -60,12 +45,8 @@ final class BlackListClient extends AbstractClient implements BlackListClientInt
         );
     }
 
-    /**
-     *
-     * @return string
-     */
     public static function getWsdlUri(): string
     {
-        return sprintf(ClientInterface::WSDL_V1_URI, static::VERSION, static::PORTNAME);
+        return sprintf(ClientInterface::WSDL_V1_URI, self::VERSION, self::PORTNAME);
     }
 }

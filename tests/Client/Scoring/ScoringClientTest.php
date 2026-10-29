@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Scoring;
 
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
@@ -22,11 +23,6 @@ use stdClass;
 class ScoringClientTest extends TestCase
 {
     /**
-     * @var ScoringClient
-     */
-    private $subject;
-
-    /**
      * @var EvalancheSoapClient|MockObject
      */
     private $soapClient;
@@ -42,16 +38,16 @@ class ScoringClientTest extends TestCase
     private $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var Stub&ExtractorInterface
      */
-    private $extractor;
+    private Stub $extractor;
 
     public function setUp(): void
     {
         $this->soapClient = $this->getWsdlMock(['getGroups']);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createStub(ExtractorInterface::class);
 
         $this->subject = new ScoringClient(
             $this->soapClient,
@@ -61,9 +57,9 @@ class ScoringClientTest extends TestCase
         );
     }
 
-    public function testgetListByMandatorIdCanReturnArrayOfScoringInstance()
+    public function testGetListByMandatorIdCanReturnArrayOfScoringInstance()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->getMockBuilder(ScoringGroupDetailInterface::class);
         $otherObject = $this->getMockBuilder(ScoringGroupDetailInterface::class);
 
@@ -81,8 +77,8 @@ class ScoringClientTest extends TestCase
             $otherObject
         ]);
 
-        $this->containsOnlyInstancesOf(
-            ScoringGroupDetailInterface::class,
+        $this->assertSame(
+            [$object, $otherObject],
             $this->subject->getListByMandatorId(5)
         );
     }

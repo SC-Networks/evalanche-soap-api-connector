@@ -20,11 +20,7 @@ final class ImageClient extends AbstractClient implements ImageClientInterface
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param string $image
-     * @param string $title
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(string $image, string $title, int $folderId): ResourceInformationInterface

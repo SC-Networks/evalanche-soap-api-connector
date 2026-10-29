@@ -23,10 +23,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param int $poolAttributeId
      *
-     * @return int
      * @throws EmptyResultException
      */
     public function addAttribute(int $id, int $poolAttributeId): int
@@ -40,10 +37,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
-     * @param int $optionId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function addAttributeOption(int $id, int $optionId): bool
@@ -57,11 +51,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
-     * @param string $title
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function createAlias(int $id, string $title, int $folderId): ResourceInformationInterface
@@ -76,7 +66,6 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -93,9 +82,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function getFormByAlias(int $id): ResourceInformationInterface
@@ -110,8 +97,6 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
-     * @param bool $includeAliases
      *
      * @return FormStatisticInterface[]
      * @throws EmptyResultException
@@ -128,10 +113,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
-     * @param int $formAttributeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAttribute(int $id, int $formAttributeId): bool
@@ -145,10 +127,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
-     * @param int $optionId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAttributeOption(int $id, int $optionId): bool
@@ -162,10 +141,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
-     * @param string $templateHtml
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function updateTemplate(int $id, string $templateHtml): ResourceInformationInterface
@@ -191,10 +167,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
-     * @param FormConfigurationInterface $configuration
      *
-     * @return FormConfigurationInterface
      * @throws EmptyResultException
      */
     public function setConfiguration(
@@ -217,9 +190,7 @@ final class FormClient extends AbstractClient implements FormClientInterface
     }
 
     /**
-     * @param int $id
      *
-     * @return FormConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $id): FormConfigurationInterface

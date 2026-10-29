@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Mandator;
 
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
@@ -37,9 +38,9 @@ class MandatorClientTest extends TestCase
     private $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var Stub&ExtractorInterface
      */
-    private $extractor;
+    private Stub $extractor;
 
     public function setUp(): void
     {
@@ -49,9 +50,9 @@ class MandatorClientTest extends TestCase
             'create',
             'importScenario',
         ]);
-        $this->responseMapper = $this->getMockBuilder(ResponseMapperInterface::class)->getMock();
-        $this->hydratorConfigFactory = $this->getMockBuilder(HydratorConfigFactoryInterface::class)->getMock();
-        $this->extractor = $this->getMockBuilder(ExtractorInterface::class)->getMock();
+        $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
+        $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
+        $this->extractor = $this->createStub(ExtractorInterface::class);
 
         $this->subject = new MandatorClient(
             $this->soapClient,
@@ -63,8 +64,8 @@ class MandatorClientTest extends TestCase
 
     public function testGetByIdCanReturnMandatorInterface()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(MandatorInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MandatorInterface::class);
 
         $result = new stdClass();
         $result->getByIdResult = $object;
@@ -92,9 +93,9 @@ class MandatorClientTest extends TestCase
 
     public function testGetListCanReturnArrayOfMandatorInterface()
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(MandatorInterface::class)->getMock();
-        $otherObject = $this->getMockBuilder(MandatorInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MandatorInterface::class);
+        $otherObject = $this->createStub(MandatorInterface::class);
 
         $list = new stdClass();
         $list->item = [
@@ -127,8 +128,8 @@ class MandatorClientTest extends TestCase
 
     public function testCreateReturnsMandatorInstance(): void
     {
-        $config = $this->getMockBuilder(HydratorConfigInterface::class)->getMock();
-        $object = $this->getMockBuilder(MandatorInterface::class)->getMock();
+        $config = $this->createStub(HydratorConfigInterface::class);
+        $object = $this->createStub(MandatorInterface::class);
 
         $result = new stdClass();
         $result->createResult = $object;
@@ -174,7 +175,7 @@ class MandatorClientTest extends TestCase
 
     public function testImportScenarioImports(): void
     {
-        $object = $this->getMockBuilder(MandatorInterface::class)->getMock();
+        $object = $this->createStub(MandatorInterface::class);
 
         $result = new stdClass();
         $result->importScenarioResult = $object;

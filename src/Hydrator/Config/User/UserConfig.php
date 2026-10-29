@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\User;
 
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ArrayValue;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\Hydrator\Property;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 use Scn\EvalancheSoapStruct\Struct\User\User;
 use Scn\HydratorPropertyValues\Property\BooleanValue;
@@ -17,17 +19,11 @@ use Scn\HydratorPropertyValues\Property\StringValue;
  */
 class UserConfig implements HydratorConfigInterface
 {
-    /**
-     * @return StructInterface
-     */
     public function getObject(): StructInterface
     {
         return new User();
     }
 
-    /**
-     * @return array
-     */
     public function getHydratorProperties(): array
     {
         return [
@@ -40,15 +36,12 @@ class UserConfig implements HydratorConfigInterface
             'name' => StringValue::set('name'),
             'description' => StringValue::set('description'),
             'security_guideline_id' => IntegerValue::set('securityGuidelineId'),
-            'role_ids' => Property\ArrayValue::set('roleIds'),
+            'role_ids' => ArrayValue::set('roleIds'),
             'disabled' => BooleanValue::set('disabled'),
             'password' => StringValue::set('password'),
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getExtractorProperties(): array
     {
         return [
@@ -61,7 +54,7 @@ class UserConfig implements HydratorConfigInterface
             'name' => StringValue::get('name'),
             'description' => StringValue::get('description'),
             'security_guideline_id' => IntegerValue::get('securityGuidelineId'),
-            'role_ids' => Property\ArrayValue::get('roleIds'),
+            'role_ids' => ArrayValue::get('roleIds'),
             'disabled' => BooleanValue::get('disabled'),
             'password' => StringValue::get('password'),
         ];

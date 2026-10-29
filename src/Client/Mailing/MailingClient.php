@@ -37,8 +37,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
-     * @param array $articles
      *
      * @return MailingArticleInterface[]
      * @throws EmptyResultException
@@ -61,9 +59,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return ClientStatisticInterface
      * @throws EmptyResultException
      */
     public function getClientStatisticById(int $id): ClientStatisticInterface
@@ -78,12 +74,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param string $title
-     * @param int $templateId
-     * @param int $folderId
-     * @param null|int $typeId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function createDraft(
@@ -107,10 +98,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getAllArticleImpressionProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -128,10 +116,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getAllLinkClickProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -149,11 +134,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $articleId
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getArticleImpressionProfiles(int $id, int $articleId, array $attributeTitles): JobHandleInterface
@@ -172,7 +153,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      *
      * @return MailingArticleInterface[]
      * @throws EmptyResultException
@@ -189,7 +169,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      *
      * @return ArticleStatisticInterface[]
      * @throws EmptyResultException
@@ -208,10 +187,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeName
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getBounceProfiles(int $id, array $attributeName): JobHandleInterface
@@ -229,8 +205,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $mandatorId
      *
      * @return MailingDetailInterface[]
      * @throws EmptyResultException
@@ -250,10 +224,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getClickProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -271,9 +242,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return MailingClickInterface[]
      * @throws EmptyResultException
@@ -294,9 +262,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return MailingConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $id): MailingConfigurationInterface
@@ -313,9 +279,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return MailingDetailInterface
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): MailingDetailInterface
@@ -332,10 +296,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getHardbounceProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -353,10 +314,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getImpressionProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -374,9 +332,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $timestampStart
-     * @param int $timestampEnd
      *
      * @return MailingImpressionInterface[]
      * @throws EmptyResultException
@@ -397,9 +352,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param string $id
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getJobInformation(string $id): JobHandleInterface
@@ -416,11 +369,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $linkId
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getLinkClickProfiles(int $id, int $linkId, array $attributeTitles): JobHandleInterface
@@ -439,10 +388,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getMultipleClickProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -460,10 +406,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getMultipleImpressionProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -481,10 +424,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getRecipientsProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -502,9 +442,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param string $id
      *
-     * @return string
      * @throws EmptyResultException
      */
     public function getResultCursorByJobId(string $id): string
@@ -518,9 +456,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param string $id
      *
-     * @return JobResultInterface
      * @throws EmptyResultException
      */
     public function getResults(string $id): JobResultInterface
@@ -537,7 +473,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param bool $unSent
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -556,8 +491,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param bool $unSent
      *
      * @return ResourceInformationInterface[]
      * @throws EmptyResultException
@@ -577,10 +510,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getSoftbounceProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -598,9 +528,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return MailingStatisticInterface
      * @throws EmptyResultException
      */
     public function getStatisticsByMailingId(int $id): MailingStatisticInterface
@@ -617,8 +545,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $timeFrame
      * @param string[] $profileAttributes
      *
      * @return MailingStatusInterface[]
@@ -640,7 +566,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      *
      * @return MailingSubjectInterface[]
      * @throws EmptyResultException
@@ -659,10 +584,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param array $attributeTitles
      *
-     * @return JobHandleInterface
      * @throws EmptyResultException
      */
     public function getUnsubscriptionProfiles(int $id, array $attributeTitles): JobHandleInterface
@@ -680,9 +602,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAllArticles(int $id): bool
@@ -696,7 +616,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      * @param int[] $referenceIds
      *
      * @return MailingArticleInterface[]
@@ -717,7 +636,6 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      * @param int[] $profileIds
      *
      * @return int[]
@@ -737,12 +655,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param int $targetGroupId
-     * @param int $sendTime
-     * @param int $speed
      *
-     * @return MailingDetailInterface
      * @throws EmptyResultException
      */
     public function sendToTargetGroup(int $id, int $targetGroupId, int $sendTime, int $speed): MailingDetailInterface
@@ -762,10 +675,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
-     * @param MailingConfigurationInterface $configuration
      *
-     * @return MailingConfigurationInterface
      * @throws EmptyResultException
      */
     public function setConfiguration(
@@ -788,10 +698,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param string $id
-     * @param int $cursor
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function setResultCursor(string $id, int $cursor): bool
@@ -808,10 +715,8 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $id
      * @param string[] $subjects
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function setSubjects(int $id, array $subjects): bool
@@ -828,9 +733,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $mailingId
      *
-     * @return HashMapInterface
      * @throws EmptyResultException
      */
     public function getContentContainerData(int $mailingId): HashMapInterface
@@ -845,10 +748,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
     }
 
     /**
-     * @param int $mailingId
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function setContentContainerData(int $mailingId, HashMapInterface $hashMap): ResourceInformationInterface

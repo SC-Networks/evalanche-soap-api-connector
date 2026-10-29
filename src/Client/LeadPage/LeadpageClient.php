@@ -23,9 +23,7 @@ class LeadpageClient extends AbstractClient implements LeadpageClientInterface
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param int $id
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function getDetailsById(int $id): ResourceInformationInterface
@@ -42,9 +40,7 @@ class LeadpageClient extends AbstractClient implements LeadpageClientInterface
     }
 
     /**
-     * @param int $id
      *
-     * @return LeadpageConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $id): LeadpageConfigurationInterface
@@ -61,10 +57,7 @@ class LeadpageClient extends AbstractClient implements LeadpageClientInterface
     }
 
     /**
-     * @param int $id
-     * @param LeadpageConfigurationInterface $configuration
      *
-     * @return LeadpageConfigurationInterface
      * @throws EmptyResultException
      */
     public function setConfiguration(
@@ -87,9 +80,7 @@ class LeadpageClient extends AbstractClient implements LeadpageClientInterface
     }
 
     /**
-     * @param int $leadpageId
      *
-     * @return HashMapInterface
      * @throws EmptyResultException
      */
     public function getContentContainerData(int $leadpageId): HashMapInterface
@@ -104,10 +95,7 @@ class LeadpageClient extends AbstractClient implements LeadpageClientInterface
     }
 
     /**
-     * @param int $leadpageId
-     * @param HashMapInterface $hashMap
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function setContentContainerData(int $leadpageId, HashMapInterface $hashMap): ResourceInformationInterface

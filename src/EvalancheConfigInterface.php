@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Scn\EvalancheSoapApiConnector;
 
 /**
@@ -9,29 +11,12 @@ namespace Scn\EvalancheSoapApiConnector;
  */
 interface EvalancheConfigInterface
 {
-    /**
-     *
-     * @return string
-     */
     public function getUsername(): string;
 
-    /**
-     *
-     * @return string
-     */
     public function getPassword(): string;
 
-    /**
-     * @param string $wsdlUri
-     *
-     * @return string
-     */
     public function getWsdlServiceUrl(string $wsdlUri): string;
 
-    /**
-     *
-     * @return bool
-     */
     public function getDebugMode(): bool;
 
     /**

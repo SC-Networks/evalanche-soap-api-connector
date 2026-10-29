@@ -29,10 +29,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     const VERSION = ClientInterface::VERSION_V0;
 
     /**
-     * @param string $title
-     * @param int $folderId
      *
-     * @return ResourceInformationInterface
      * @throws EmptyResultException
      */
     public function create(
@@ -52,8 +49,6 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
-     * @param array $articles
      *
      * @return MailingArticleInterface[]
      * @throws EmptyResultException
@@ -76,9 +71,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeAllArticles(int $id): bool
@@ -92,7 +85,6 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
      * @param int[] $referenceIds
      *
      * @return MailingArticleInterface[]
@@ -113,7 +105,6 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
      *
      * @return MailingArticleInterface[]
      * @throws EmptyResultException
@@ -130,10 +121,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
-     * @param array $mailingIds
      *
-     * @return bool
      *
      * @throws EmptyResultException
      */
@@ -151,9 +139,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
      *
-     * @return MailingTemplateConfigurationInterface
      * @throws EmptyResultException
      */
     public function getConfiguration(int $id): MailingTemplateConfigurationInterface
@@ -170,10 +156,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
-     * @param MailingTemplateConfigurationInterface $configuration
      *
-     * @return MailingTemplateConfigurationInterface
      * @throws EmptyResultException
      */
     public function setConfiguration(
@@ -196,9 +179,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
      *
-     * @return MailingTemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function getSources(int $id): MailingTemplatesSourcesInterface
@@ -215,10 +196,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
-     * @param MailingTemplatesSourcesInterface $configuration
      *
-     * @return MailingTemplatesSourcesInterface
      * @throws EmptyResultException
      */
     public function setSources(
@@ -245,10 +223,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     /**
      * Removes an existing slot from a mailing template
      *
-     * @param int $id
-     * @param int $slotId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeSlot(int $id, int $slotId): bool
@@ -265,12 +240,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     /**
      * Removes an article template configuration for a certain template type from an existing slot
      *
-     * @param int $id
-     * @param int $slotId
-     * @param int $templateType
-     * @param int $articleTypeId
      *
-     * @return bool
      * @throws EmptyResultException
      */
     public function removeTemplateFromSlot(
@@ -291,9 +261,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     }
 
     /**
-     * @param int $id
      *
-     * @return MailingSlotConfigurationInterface
      * @throws EmptyResultException
      */
     public function getSlotConfiguration(int $id): MailingSlotConfigurationInterface
@@ -308,10 +276,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     /**
      * Adds a slot to the mailing template
      *
-     * @param int $id
-     * @param int $slotNumber
      *
-     * @return MailingSlotInterface
      * @throws EmptyResultException
      */
     public function addSlot(
@@ -331,14 +296,7 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     /**
      * Update a slot of the mailing template
      *
-     * @param int $id
-     * @param int $slotId
-     * @param int $slotNumber
-     * @param string $name
-     * @param int $sortTypeId
-     * @param int $sortValue
      *
-     * @return MailingSlotInterface
      * @throws EmptyResultException
      */
     public function updateSlot(
@@ -366,13 +324,8 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     /**
      * Adds a template config to an existing slot
      *
-     * @param int $id
-     * @param int $slotId
-     * @param HashMapInterface $config
-     * @param int $articleTypeId
      * @param MailingTemplateAllowedTemplatesInterface[] $allowed_templates
      *
-     * @return MailingSlotItemInterface
      * @throws EmptyResultException
      */
     public function addTemplatesToSlot(
@@ -401,13 +354,8 @@ class MailingTemplateClient extends AbstractClient implements MailingTemplateCli
     /**
      * Updates an existing template config of a slot
      *
-     * @param int $id
-     * @param int $slotId
-     * @param HashMapInterface $config
-     * @param int $articleTypeId
      * @param MailingTemplateAllowedTemplatesInterface[] $allowed_templates
      *
-     * @return MailingSlotItemInterface
      * @throws EmptyResultException
      */
     public function updateSlotTemplates(
