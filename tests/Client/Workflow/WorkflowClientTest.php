@@ -13,7 +13,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobStateInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfigurationInterface;
@@ -56,26 +56,7 @@ class WorkflowClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getAll',
-            'getByStartDateRange',
-            'getByEndDateRange',
-            'getDetails',
-            'pushProfilesIntoCampaign',
-            'createConfigured',
-            'export',
-            'setConfiguration',
-            'getConfiguration',
-            'activate',
-            'deactivate',
-            'getConfigurationVersions',
-            'copy',
-            'move',
-            'delete',
-            'rename',
-            'generateConfiguration',
-            'getByModificationDate',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -105,10 +86,15 @@ class WorkflowClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')
             ->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByStartDateRange')->with([
-            'from' => $timestampStart,
-            'to' => $timestampEnd
-        ])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByStartDateRange',
+                [[
+                    'from' => $timestampStart,
+                    'to' => $timestampEnd
+                ]]
+            )
+            ->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $result,
             'getByStartDateRangeResult',
@@ -138,10 +124,15 @@ class WorkflowClientTest extends TestCase
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')
             ->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByEndDateRange')->with([
-            'from' => $timestampStart,
-            'to' => $timestampEnd
-        ])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByEndDateRange',
+                [[
+                    'from' => $timestampStart,
+                    'to' => $timestampEnd
+                ]]
+            )
+            ->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $result,
             'getByEndDateRangeResult',
@@ -164,7 +155,14 @@ class WorkflowClientTest extends TestCase
         $result->getDetailsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createWorkflowDetailConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getDetails')->with(['resource_id' => $id])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getDetails',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObject')->with($result)->willReturn($object);
 
         self::assertInstanceOf(
@@ -185,10 +183,15 @@ class WorkflowClientTest extends TestCase
         $result = new stdClass();
         $result->pushProfilesIntoCampaignResult = true;
 
-        $this->soapClient->expects($this->once())->method('pushProfilesIntoCampaign')->with([
-            'resource_id' => $id,
-            'profile_id_list' => $profileIds
-        ])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'pushProfilesIntoCampaign',
+                [[
+                    'resource_id' => $id,
+                    'profile_id_list' => $profileIds
+                ]]
+            )
+            ->willReturn($result);
 
         $this->responseMapper->expects($this->once())->method('getBoolean')->with()->willReturn(true);
         $this->assertTrue($this->subject->pushProfilesIntoCampaign($id, $profileIds));
@@ -205,12 +208,17 @@ class WorkflowClientTest extends TestCase
         $result = new stdClass();
         $result->createResult = $resourceInformation;
 
-        $this->soapClient->expects($this->once())->method('createConfigured')->with([
-            'name' => $name,
-            'schema_version' => $schemaVersion,
-            'configuration' => $workflowConfiguration,
-            'category_id' => $categoryId,
-        ])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'createConfigured',
+                [[
+                    'name' => $name,
+                    'schema_version' => $schemaVersion,
+                    'configuration' => $workflowConfiguration,
+                    'category_id' => $categoryId,
+                ]]
+            )
+            ->willReturn($result);
 
         $resourceInformationConfig = $this->createStub(HydratorConfigInterface::class);
         $this->hydratorConfigFactory
@@ -237,11 +245,13 @@ class WorkflowClientTest extends TestCase
         $result_string = 'my result';
         $result = new stdClass();
 
-        $this->soapClient->expects($this->once())
-            ->method('export')
-            ->with([
-                'workflow_id' => $workflowId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'export',
+                [[
+                    'workflow_id' => $workflowId,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper
@@ -265,13 +275,15 @@ class WorkflowClientTest extends TestCase
         $resultString = 'my result';
         $result = new stdClass();
 
-        $this->soapClient->expects($this->once())
-            ->method('setConfiguration')
-            ->with([
-                'workflow_id' => $workflowId,
-                'config_version' => $configVersion,
-                'configuration' => $configuration,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setConfiguration',
+                [[
+                    'workflow_id' => $workflowId,
+                    'config_version' => $configVersion,
+                    'configuration' => $configuration,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper
@@ -294,11 +306,13 @@ class WorkflowClientTest extends TestCase
         $result = new stdClass();
         $configVersionsConfig = $this->createStub(HydratorConfigInterface::class);
 
-        $this->soapClient->expects($this->once())
-            ->method('getConfigurationVersions')
-            ->with([
-                'workflow_id' => $workflowId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getConfigurationVersions',
+                [[
+                    'workflow_id' => $workflowId,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper
@@ -325,11 +339,13 @@ class WorkflowClientTest extends TestCase
         $result = new stdClass();
         $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
-        $this->soapClient->expects($this->once())
-            ->method('activate')
-            ->with([
-                'workflow_id' => $workflowId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'activate',
+                [[
+                    'workflow_id' => $workflowId,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper
@@ -356,11 +372,13 @@ class WorkflowClientTest extends TestCase
         $result = new stdClass();
         $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
-        $this->soapClient->expects($this->once())
-            ->method('deactivate')
-            ->with([
-                'workflow_id' => $workflowId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'deactivate',
+                [[
+                    'workflow_id' => $workflowId,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper
@@ -387,11 +405,13 @@ class WorkflowClientTest extends TestCase
         $result = new stdClass();
         $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
-        $this->soapClient->expects($this->once())
-            ->method('getConfiguration')
-            ->with([
-                'workflow_id' => $workflowId,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getConfiguration',
+                [[
+                    'workflow_id' => $workflowId,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper
@@ -420,12 +440,14 @@ class WorkflowClientTest extends TestCase
         $configResult = $this->createStub(JobStateInterface::class);
         $hydratorConfig = $this->createStub(HydratorConfigInterface::class);
 
-        $this->soapClient->expects($this->once())
-            ->method('generateConfiguration')
-            ->with([
-                'workflow_id' => $workflowId,
-                'prompt' => $prompt,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'generateConfiguration',
+                [[
+                    'workflow_id' => $workflowId,
+                    'prompt' => $prompt,
+                ]]
+            )
             ->willReturn($result);
 
         $this->responseMapper

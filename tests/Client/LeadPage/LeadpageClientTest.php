@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\LeadPage;
 
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -36,31 +36,7 @@ class LeadpageClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getByTypeId',
-            'getConfiguration',
-            'getDetails',
-            'getTypeIds',
-            'move',
-            'rename',
-            'setConfiguration',
-            'delete',
-            'copy',
-            'getAll',
-            'getByCategory',
-            'getById',
-            'getResourceDefaultCategory',
-            'getByModificationDate',
-            'getByExternalId',
-            'getContentContainerData',
-            'setContentContainerData',
-            'updateModuleTypes',
-            'retrieveModuleTypes',
-            'removeAllArticles',
-            'removeArticles',
-            'getArticles',
-            'addArticles',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -90,10 +66,15 @@ class LeadpageClientTest extends TestCase
 
         $this->extractor->expects($this->once())->method('extract')->with($config, $configuration)->willReturn($extractedData);
         $this->hydratorConfigFactory->expects($this->exactly(2))->method('createLeadpageConfigurationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('setConfiguration')->with([
-            'leadpage_id' => $id,
-            'configuration' => $extractedData,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setConfiguration',
+                [[
+                    'leadpage_id' => $id,
+                    'configuration' => $extractedData,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'setConfigurationResult',
@@ -120,10 +101,15 @@ class LeadpageClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByTypeId')->with([
-            'type_id' => $id,
-            'mandator_id' => $mandatorId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByTypeId',
+                [[
+                    'type_id' => $id,
+                    'mandator_id' => $mandatorId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getByTypeIdResult',
@@ -147,9 +133,14 @@ class LeadpageClientTest extends TestCase
         $response->getConfigurationResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createLeadpageConfigurationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getConfiguration')->with([
-            'leadpage_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getConfiguration',
+                [[
+                    'leadpage_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getConfigurationResult',
@@ -173,9 +164,14 @@ class LeadpageClientTest extends TestCase
         $response->getDetailsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getDetails')->with([
-            'leadpage_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getDetails',
+                [[
+                    'leadpage_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getDetailsResult',
@@ -200,10 +196,15 @@ class LeadpageClientTest extends TestCase
         $response->renameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('rename')->with([
-            'resource_id' => $id,
-            'name' => $title,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'rename',
+                [[
+                    'resource_id' => $id,
+                    'name' => $title,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'renameResult',
@@ -228,7 +229,9 @@ class LeadpageClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceTypeInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getTypeIds')->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with('getTypeIds', [])
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getTypeIdsResult',
@@ -255,7 +258,14 @@ class LeadpageClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByCategory')->with(['category_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByCategory',
+                [[
+                    'category_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getByCategoryResult',
@@ -279,7 +289,14 @@ class LeadpageClientTest extends TestCase
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getById')->with(['resource_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getById',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getByIdResult',
@@ -303,7 +320,14 @@ class LeadpageClientTest extends TestCase
         $response->getResourceDefaultCategoryResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getResourceDefaultCategory')->with(['customer_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getResourceDefaultCategory',
+                [[
+                    'customer_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getResourceDefaultCategoryResult',
@@ -327,7 +351,14 @@ class LeadpageClientTest extends TestCase
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByExternalId')->with(['external_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByExternalId',
+                [[
+                    'external_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getByExternalIdResult',
@@ -354,9 +385,14 @@ class LeadpageClientTest extends TestCase
             ->method('createHashMapConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getContentContainerData')
-            ->with(['resource_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getContentContainerData',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
             ->method('getObject')
@@ -400,12 +436,15 @@ class LeadpageClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($resourceInformationConfig);
 
-        $this->soapClient->expects($this->once())
-            ->method('setContentContainerData')
-            ->with([
-                'resource_id' => $id,
-                'data' => $extractedData
-            ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setContentContainerData',
+                [[
+                    'resource_id' => $id,
+                    'data' => $extractedData
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
             ->method('getObject')
@@ -438,10 +477,15 @@ class LeadpageClientTest extends TestCase
         $response = new stdClass();
         $response->updateModuleTypesResult = true;
 
-        $this->soapClient->expects($this->once())->method('updateModuleTypes')->with([
-            'resource_id' => $id,
-            'module_type_content' => $moduleTypeContent
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateModuleTypes',
+                [[
+                    'resource_id' => $id,
+                    'module_type_content' => $moduleTypeContent
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'updateModuleTypesResult'
@@ -458,9 +502,14 @@ class LeadpageClientTest extends TestCase
         $response = new stdClass();
         $response->retrieveModuleTypesResult = 'some-thing';
 
-        $this->soapClient->expects($this->once())->method('retrieveModuleTypes')->with([
-            'resource_id' => $id
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'retrieveModuleTypes',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getString')->with(
             $response,
             'retrieveModuleTypesResult'
@@ -477,11 +526,13 @@ class LeadpageClientTest extends TestCase
         $response = new stdClass();
         $response->removeAllArticleResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('removeAllArticles')
-            ->with([
-                'leadpage_id' => $id
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAllArticles',
+                [[
+                    'leadpage_id' => $id
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -507,12 +558,14 @@ class LeadpageClientTest extends TestCase
 
         $config = $this->createStub(HydratorConfigInterface::class);
 
-        $this->soapClient->expects($this->once())
-            ->method('removeArticles')
-            ->with([
-                'leadpage_id' => $id,
-                'reference_ids' => $referenceIds,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeArticles',
+                [[
+                    'leadpage_id' => $id,
+                    'reference_ids' => $referenceIds,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -564,12 +617,14 @@ class LeadpageClientTest extends TestCase
             ->method('createLeadpageArticleConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('addArticles')
-            ->with([
-                'leadpage_id' => $id,
-                'articles' => $extractedData
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addArticles',
+                [[
+                    'leadpage_id' => $id,
+                    'articles' => $extractedData
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -603,11 +658,13 @@ class LeadpageClientTest extends TestCase
             ->method('createLeadpageArticleConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('getArticles')
-            ->with([
-                'leadpage_id' => $id,
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getArticles',
+                [[
+                    'leadpage_id' => $id,
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())

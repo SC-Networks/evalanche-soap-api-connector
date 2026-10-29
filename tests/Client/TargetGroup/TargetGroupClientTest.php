@@ -12,7 +12,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupDetailInterface;
 use stdClass;
@@ -52,16 +52,7 @@ class TargetGroupClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getAll',
-            'getByModificationDate',
-            'createByOption',
-            'getInformation',
-            'move',
-            'copy',
-            'delete',
-            'rename',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -89,13 +80,18 @@ class TargetGroupClientTest extends TestCase
         $response->createByOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('createByOption')->with([
-            'pool_id' => $id,
-            'attribute_id' => $attributeId,
-            'option_id' => $optionId,
-            'category_id' => $folderId,
-            'name' => $title,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'createByOption',
+                [[
+                    'pool_id' => $id,
+                    'attribute_id' => $attributeId,
+                    'option_id' => $optionId,
+                    'category_id' => $folderId,
+                    'name' => $title,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createByOptionResult',
@@ -119,9 +115,14 @@ class TargetGroupClientTest extends TestCase
         $response->createByOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createTargetGroupDetailConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getInformation')->with([
-            'targetgroup_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getInformation',
+                [[
+                    'targetgroup_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getInformationResult',

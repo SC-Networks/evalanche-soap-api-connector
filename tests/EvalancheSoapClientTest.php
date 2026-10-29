@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector;
 
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapApiConnector\Exception\DebugRequestException;
 use Scn\EvalancheSoapApiConnector\Exception\RequestException;
 

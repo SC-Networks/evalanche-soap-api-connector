@@ -12,7 +12,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use stdClass;
 
@@ -51,14 +51,7 @@ class PoolDataMinerClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getAll',
-            'getByModificationDate',
-            'rename',
-            'copy',
-            'delete',
-            'move',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -83,10 +76,15 @@ class PoolDataMinerClientTest extends TestCase
         $resonse->renameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('rename')->with([
-            'resource_id' => $id,
-            'name' => $title
-        ])->willReturn($resonse);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'rename',
+                [[
+                    'resource_id' => $id,
+                    'name' => $title
+                ]]
+            )
+            ->willReturn($resonse);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $resonse,
             'renameResult',

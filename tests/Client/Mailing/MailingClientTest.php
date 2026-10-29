@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\JobHandleInterface;
@@ -63,65 +63,7 @@ class MailingClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'addArticles',
-            'getClientStatistics',
-            'createDraft',
-            'getAllArticleImpressionProfiles',
-            'getAllLinkClickProfiles',
-            'getArticleStatistics',
-            'getBounceProfiles',
-            'getByTypeId',
-            'getClickProfiles',
-            'getClicks',
-            'getConfiguration',
-            'getDetails',
-            'getHardbounceProfiles',
-            'getImpressionProfiles',
-            'getImpressions',
-            'getJobInformation',
-            'getLinkClickProfiles',
-            'getMultipleClickProfiles',
-            'getMultipleImpressionProfiles',
-            'getRecipientsProfiles',
-            'getResultCursor',
-            'getResults',
-            'getSendableDrafts',
-            'getSendableDraftsByMandatorId',
-            'getSoftbounceProfiles',
-            'getStatistics',
-            'getStatus',
-            'getSubjects',
-            'getTypeIds',
-            'getUnsubscriptionProfiles',
-            'isAlive',
-            'move',
-            'removeAllArticles',
-            'removeArticles',
-            'rename',
-            'sendToProfiles',
-            'sendToTargetgroup',
-            'setConfiguration',
-            'setResultCursor',
-            'setSubjects',
-            'getArticleImpressionProfiles',
-            'getArticles',
-            'delete',
-            'copy',
-            'getAll',
-            'getByCategory',
-            'getById',
-            'getResourceDefaultCategory',
-            'getByExternalId',
-            'getContentContainerData',
-            'setContentContainerData',
-            'updateModuleTypes',
-            'retrieveModuleTypes',
-            'runContentGeneration',
-            'getJobState',
-            'getContentGenerationVariables',
-            'getByModificationDate',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -145,7 +87,14 @@ class MailingClientTest extends TestCase
         $response->getClientStatisticsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createClientStatisticConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getClientStatistics')->with(['mailing_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getClientStatistics',
+                [[
+                    'mailing_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getClientStatisticsResult',
@@ -169,9 +118,14 @@ class MailingClientTest extends TestCase
         $response->getStatisticsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingStatisticConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getStatistics')->with([
-            'mailing_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getStatistics',
+                [[
+                    'mailing_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getStatisticsResult',
@@ -204,11 +158,16 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingStatusConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getStatus')->with([
-            'mailing_id' => $id,
-            'timeframe' => $timeFrame,
-            'profile_attributes' => $profileAttributes,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getStatus',
+                [[
+                    'mailing_id' => $id,
+                    'timeframe' => $timeFrame,
+                    'profile_attributes' => $profileAttributes,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getStatusResult',
@@ -238,11 +197,16 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingImpressionConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getImpressions')->with([
-            'mailing_id' => $id,
-            'start_timestamp' => $timestampStart,
-            'end_timestamp' => $timestampEnd,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getImpressions',
+                [[
+                    'mailing_id' => $id,
+                    'start_timestamp' => $timestampStart,
+                    'end_timestamp' => $timestampEnd,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getImpressionsResult',
@@ -264,7 +228,9 @@ class MailingClientTest extends TestCase
         $response->isAliveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createServiceStatusConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('isAlive')->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with('isAlive', [])
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'isAliveResult',
@@ -294,10 +260,15 @@ class MailingClientTest extends TestCase
 
         $this->extractor->expects($this->once())->method('extract')->with($config, $configuration)->willReturn($extractedData);
         $this->hydratorConfigFactory->expects($this->exactly(2))->method('createMailingConfigurationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('setConfiguration')->with([
-            'mailing_id' => $id,
-            'configuration' => $extractedData,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setConfiguration',
+                [[
+                    'mailing_id' => $id,
+                    'configuration' => $extractedData,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'setConfigurationResult',
@@ -321,10 +292,15 @@ class MailingClientTest extends TestCase
         $response = new stdClass();
         $response->setSubjectsResult = true;
 
-        $this->soapClient->expects($this->once())->method('setSubjects')->with([
-            'mailing_id' => $id,
-            'subjects' => ['item' => $subjects],
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setSubjects',
+                [[
+                    'mailing_id' => $id,
+                    'subjects' => ['item' => $subjects],
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'setSubjectsResult'
@@ -347,10 +323,15 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingDetailConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByTypeId')->with([
-            'type_id' => $id,
-            'mandator_id' => $mandatorId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByTypeId',
+                [[
+                    'type_id' => $id,
+                    'mandator_id' => $mandatorId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getByTypeIdResult',
@@ -378,9 +359,14 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getSendableDrafts')->with([
-            'unsent' => $unSent,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSendableDrafts',
+                [[
+                    'unsent' => $unSent,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getSendableDraftsResult',
@@ -407,12 +393,17 @@ class MailingClientTest extends TestCase
         $response->sendToTargetgroupResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingDetailConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('sendToTargetgroup')->with([
-            'mailing_id' => $id,
-            'targetgroup_id' => $targetGroupId,
-            'send_time' => $sendTime,
-            'speed' => $speed,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'sendToTargetgroup',
+                [[
+                    'mailing_id' => $id,
+                    'targetgroup_id' => $targetGroupId,
+                    'send_time' => $sendTime,
+                    'speed' => $speed,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'sendToTargetgroupResult',
@@ -440,10 +431,15 @@ class MailingClientTest extends TestCase
         $response->getAllArticleImpressionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAllArticleImpressionProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAllArticleImpressionProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getAllArticleImpressionProfilesResult',
@@ -467,9 +463,14 @@ class MailingClientTest extends TestCase
         $response->getConfigurationResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingConfigurationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getConfiguration')->with([
-            'mailing_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getConfiguration',
+                [[
+                    'mailing_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getConfigurationResult',
@@ -497,10 +498,15 @@ class MailingClientTest extends TestCase
         $response->getBounceProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getBounceProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getBounceProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getBounceProfilesResult',
@@ -528,9 +534,14 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingSubjectConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getSubjects')->with([
-            'mailing_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSubjects',
+                [[
+                    'mailing_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getSubjectsResult',
@@ -564,10 +575,15 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingArticleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('removeArticles')->with([
-            'mailing_id' => $id,
-            'reference_ids' => $referenceIds,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeArticles',
+                [[
+                    'mailing_id' => $id,
+                    'reference_ids' => $referenceIds,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'removeArticlesResult',
@@ -596,11 +612,16 @@ class MailingClientTest extends TestCase
         $response->getLinkClickProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getLinkClickProfiles')->with([
-            'mailing_id' => $id,
-            'link_id' => $linkId,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getLinkClickProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'link_id' => $linkId,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getLinkClickProfilesResult',
@@ -628,9 +649,14 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingArticleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getArticles')->with([
-            'mailing_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getArticles',
+                [[
+                    'mailing_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getArticlesResult',
@@ -658,10 +684,15 @@ class MailingClientTest extends TestCase
         $response->getClickProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getClickProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getClickProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getClickProfilesResult',
@@ -689,9 +720,14 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createArticleStatisticConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getArticleStatistics')->with([
-            'mailing_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getArticleStatistics',
+                [[
+                    'mailing_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getArticleStatisticsResult',
@@ -720,10 +756,15 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getSendableDraftsByMandatorId')->with([
-            'mandator_id' => $id,
-            'unsent' => $unSent,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSendableDraftsByMandatorId',
+                [[
+                    'mandator_id' => $id,
+                    'unsent' => $unSent,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getSendableDraftsByMandatorIdResult',
@@ -743,7 +784,14 @@ class MailingClientTest extends TestCase
         $response = new stdClass();
         $response->removeAllArticlesResult = true;
 
-        $this->soapClient->expects($this->once())->method('removeAllArticles')->with(['mailing_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'removeAllArticles',
+                [[
+                    'mailing_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->willReturn($response->removeAllArticlesResult);
 
         $this->assertTrue($this->subject->removeAllArticles($id));
@@ -765,14 +813,17 @@ class MailingClientTest extends TestCase
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn(
             $config
         );
-        $this->soapClient->expects($this->once())->method('createDraft')->with(
-            [
-                'name' => $title,
-                'template_id' => $templateId,
-                'category_id' => $folderId,
-                'type_id' => $typeId
-            ]
-        )->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'createDraft',
+                [[
+                    'name' => $title,
+                    'template_id' => $templateId,
+                    'category_id' => $folderId,
+                    'type_id' => $typeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createDraftResult',
@@ -800,10 +851,15 @@ class MailingClientTest extends TestCase
         $response->getSoftbounceProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getSoftbounceProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getSoftbounceProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getSoftbounceProfilesResult',
@@ -824,12 +880,15 @@ class MailingClientTest extends TestCase
         $response = new stdClass();
         $response->setResultCursorResult = false;
 
-        $this->soapClient->expects($this->once())->method('setResultCursor')->with(
-            [
-                'job_id' => $id,
-                'cursor' => $cursor,
-            ]
-        )->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setResultCursor',
+                [[
+                    'job_id' => $id,
+                    'cursor' => $cursor,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'setResultCursorResult'
@@ -853,10 +912,15 @@ class MailingClientTest extends TestCase
         $response->getImpressionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getImpressionProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getImpressionProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getImpressionProfilesResult',
@@ -884,10 +948,15 @@ class MailingClientTest extends TestCase
         $response->getRecipientsProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getRecipientsProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getRecipientsProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getRecipientsProfilesResult',
@@ -911,9 +980,14 @@ class MailingClientTest extends TestCase
         $response->getResultsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobResultConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getResults')->with([
-            'job_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getResults',
+                [[
+                    'job_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getResultsResult',
@@ -941,10 +1015,15 @@ class MailingClientTest extends TestCase
         $response->getMultipleImpressionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getMultipleImpressionProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getMultipleImpressionProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getMultipleImpressionProfilesResult',
@@ -972,10 +1051,15 @@ class MailingClientTest extends TestCase
         $response->getAllLinkClickProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAllLinkClickProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAllLinkClickProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getAllLinkClickProfilesResult',
@@ -1015,10 +1099,15 @@ class MailingClientTest extends TestCase
             $articles
         )->willReturn($extractedData);
         $this->hydratorConfigFactory->expects($this->exactly(2))->method('createMailingArticleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('addArticles')->with([
-            'mailing_id' => $id,
-            'articles' => $extractedData
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addArticles',
+                [[
+                    'mailing_id' => $id,
+                    'articles' => $extractedData
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'addArticlesResult',
@@ -1046,10 +1135,15 @@ class MailingClientTest extends TestCase
         $response->getHardbounceProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getHardbounceProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getHardbounceProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getHardbounceProfilesResult',
@@ -1077,10 +1171,15 @@ class MailingClientTest extends TestCase
         $response->getMultipleClickProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getMultipleClickProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getMultipleClickProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getMultipleClickProfilesResult',
@@ -1109,11 +1208,16 @@ class MailingClientTest extends TestCase
         $response->getArticleImpressionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getArticleImpressionProfiles')->with([
-            'mailing_id' => $id,
-            'article_id' => $article_id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getArticleImpressionProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'article_id' => $article_id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getArticleImpressionProfilesResult',
@@ -1141,10 +1245,15 @@ class MailingClientTest extends TestCase
         $response->getUnsubscriptionProfilesResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getUnsubscriptionProfiles')->with([
-            'mailing_id' => $id,
-            'attribute_names' => $attributeTitles,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getUnsubscriptionProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'attribute_names' => $attributeTitles,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getUnsubscriptionProfilesResult',
@@ -1169,10 +1278,15 @@ class MailingClientTest extends TestCase
         $response = new stdClass();
         $response->sendToProfilesResult = $profileIds;
 
-        $this->soapClient->expects($this->once())->method('sendToProfiles')->with([
-            'mailing_id' => $id,
-            'profile_ids' => $profileIds,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'sendToProfiles',
+                [[
+                    'mailing_id' => $id,
+                    'profile_ids' => $profileIds,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getArray')->with(
             $response,
             'sendToProfilesResult'
@@ -1195,9 +1309,14 @@ class MailingClientTest extends TestCase
         $response->getDetailsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingDetailConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getDetails')->with([
-            'mailing_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getDetails',
+                [[
+                    'mailing_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getDetailsResult',
@@ -1221,9 +1340,14 @@ class MailingClientTest extends TestCase
         $response->getJobInformationResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createJobHandleConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getJobInformation')->with([
-            'job_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getJobInformation',
+                [[
+                    'job_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getJobInformationResult',
@@ -1243,7 +1367,14 @@ class MailingClientTest extends TestCase
         $response = new stdClass();
         $response->getResultCursorResult = 'some return string';
 
-        $this->soapClient->expects($this->once())->method('getResultCursor')->with(['job_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getResultCursor',
+                [[
+                    'job_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getString')->with(
             $response,
             'getResultCursorResult'
@@ -1267,10 +1398,15 @@ class MailingClientTest extends TestCase
         $response->renameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('rename')->with([
-            'resource_id' => $id,
-            'name' => $title,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'rename',
+                [[
+                    'resource_id' => $id,
+                    'name' => $title,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'renameResult',
@@ -1300,11 +1436,16 @@ class MailingClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createMailingClickConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getClicks')->with([
-            'mailing_id' => $id,
-            'start_timestamp' => $timestampStart,
-            'end_timestamp' => $timestampEnd,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getClicks',
+                [[
+                    'mailing_id' => $id,
+                    'start_timestamp' => $timestampStart,
+                    'end_timestamp' => $timestampEnd,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getClicksResult',
@@ -1329,7 +1470,9 @@ class MailingClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceTypeInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getTypeIds')->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with('getTypeIds', [])
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getTypeIdsResult',
@@ -1356,7 +1499,14 @@ class MailingClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByCategory')->with(['category_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByCategory',
+                [[
+                    'category_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getByCategoryResult',
@@ -1380,7 +1530,14 @@ class MailingClientTest extends TestCase
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getById')->with(['resource_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getById',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getByIdResult',
@@ -1404,7 +1561,14 @@ class MailingClientTest extends TestCase
         $response->getResourceDefaultCategoryResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getResourceDefaultCategory')->with(['customer_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getResourceDefaultCategory',
+                [[
+                    'customer_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getResourceDefaultCategoryResult',
@@ -1428,7 +1592,14 @@ class MailingClientTest extends TestCase
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByExternalId')->with(['external_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByExternalId',
+                [[
+                    'external_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getByExternalIdResult',
@@ -1455,9 +1626,14 @@ class MailingClientTest extends TestCase
             ->method('createHashMapConfig')
             ->willReturn($config);
         
-        $this->soapClient->expects($this->once())
-            ->method('getContentContainerData')
-            ->with(['resource_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getContentContainerData',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         
         $this->responseMapper->expects($this->once())
             ->method('getObject')
@@ -1501,12 +1677,15 @@ class MailingClientTest extends TestCase
             ->method('createResourceInformationConfig')
             ->willReturn($resourceInformationConfig);
 
-        $this->soapClient->expects($this->once())
-            ->method('setContentContainerData')
-            ->with([
-                'resource_id' => $id,
-                'data' => $extractedData
-            ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setContentContainerData',
+                [[
+                    'resource_id' => $id,
+                    'data' => $extractedData
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
             ->method('getObject')
@@ -1539,10 +1718,15 @@ class MailingClientTest extends TestCase
         $response = new stdClass();
         $response->updateModuleTypesResult = true;
 
-        $this->soapClient->expects($this->once())->method('updateModuleTypes')->with([
-            'resource_id' => $id,
-            'module_type_content' => $moduleTypeContent
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateModuleTypes',
+                [[
+                    'resource_id' => $id,
+                    'module_type_content' => $moduleTypeContent
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getBoolean')->with(
             $response,
             'updateModuleTypesResult'
@@ -1559,9 +1743,14 @@ class MailingClientTest extends TestCase
         $response = new stdClass();
         $response->retrieveModuleTypesResult = 'some-thing';
 
-        $this->soapClient->expects($this->once())->method('retrieveModuleTypes')->with([
-            'resource_id' => $id
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'retrieveModuleTypes',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getString')->with(
             $response,
             'retrieveModuleTypesResult'
@@ -1591,12 +1780,15 @@ class MailingClientTest extends TestCase
             ->method('createJobStateConfig')
             ->willReturn($hydrator);
 
-        $this->soapClient->expects($this->once())
-            ->method('runContentGeneration')
-            ->with([
-                'resource_id' => $id,
-                'variables' => $extractedData
-            ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'runContentGeneration',
+                [[
+                    'resource_id' => $id,
+                    'variables' => $extractedData
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
             ->method('getObject')
@@ -1635,11 +1827,14 @@ class MailingClientTest extends TestCase
             ->method('createJobStateConfig')
             ->willReturn($hydrator);
 
-        $this->soapClient->expects($this->once())
-            ->method('getJobState')
-            ->with([
-                'job_id' => $id,
-            ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getJobState',
+                [[
+                    'job_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
             ->method('getObject')
@@ -1670,11 +1865,14 @@ class MailingClientTest extends TestCase
             ->method('createContentGenerationVariableConfig')
             ->willReturn($hydrator);
 
-        $this->soapClient->expects($this->once())
-            ->method('getContentGenerationVariables')
-            ->with([
-                'resource_id' => $id,
-            ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getContentGenerationVariables',
+                [[
+                    'resource_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
             ->method('getObjects')

@@ -12,7 +12,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
@@ -54,22 +54,7 @@ class ImageClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'create',
-            'copy',
-            'delete',
-            'getAll',
-            'getByModificationDate',
-            'getByCategory',
-            'getByExternalId',
-            'getById',
-            'getByTypeId',
-            'getResourceDefaultCategory',
-            'getTypeIds',
-            'move',
-            'isAlive',
-            'rename',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -95,11 +80,16 @@ class ImageClientTest extends TestCase
         $response->createResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('create')->with([
-            'name' => $title,
-            'category_id' => $folderId,
-            'image_base64' => $image
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'name' => $title,
+                    'category_id' => $folderId,
+                    'image_base64' => $image
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createResult',
@@ -127,7 +117,14 @@ class ImageClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByCategory')->with(['category_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByCategory',
+                [[
+                    'category_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getByCategoryResult',
@@ -151,7 +148,14 @@ class ImageClientTest extends TestCase
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByExternalId')->with(['external_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByExternalId',
+                [[
+                    'external_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getByExternalIdResult',
@@ -175,7 +179,14 @@ class ImageClientTest extends TestCase
         $response->getByExternalIdResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getById')->with(['resource_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getById',
+                [[
+                    'resource_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getByIdResult',
@@ -203,10 +214,15 @@ class ImageClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByTypeId')->with([
-            'type_id' => $id,
-            'mandator_id' => $mandatorId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByTypeId',
+                [[
+                    'type_id' => $id,
+                    'mandator_id' => $mandatorId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getByTypeIdResult',
@@ -230,7 +246,14 @@ class ImageClientTest extends TestCase
         $response->getResourceDefaultCategoryResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createFolderInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getResourceDefaultCategory')->with(['customer_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getResourceDefaultCategory',
+                [[
+                    'customer_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'getResourceDefaultCategoryResult',
@@ -255,7 +278,9 @@ class ImageClientTest extends TestCase
             $otherObject
         ];
         $this->hydratorConfigFactory->expects($this->once())->method('createResourceTypeInformationConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getTypeIds')->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with('getTypeIds', [])
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getTypeIdsResult',
@@ -277,7 +302,9 @@ class ImageClientTest extends TestCase
         $response->isAliveResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createServiceStatusConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('isAlive')->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with('isAlive', [])
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'isAliveResult',

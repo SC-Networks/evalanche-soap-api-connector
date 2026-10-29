@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Hydrator\Config\MailingTemplate;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\MailingTemplate\MailingTemplateAllowedTemplatesConfig;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateAllowedTemplatesInterface;
 
 class MailingTemplateAllowedTemplatesConfigTest extends TestCase

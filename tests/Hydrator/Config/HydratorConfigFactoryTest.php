@@ -74,7 +74,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowConfiguration
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowConfigVersionConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowDetailConfig;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Workflow\WorkflowStateChangeResultConfig;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class HydratorConfigFactoryTest extends TestCase
 {

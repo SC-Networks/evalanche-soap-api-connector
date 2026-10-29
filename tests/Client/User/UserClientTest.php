@@ -10,7 +10,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
 use stdClass;
 
@@ -48,7 +48,7 @@ class UserClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock(['getByUsername', 'getAll', 'update']);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -70,7 +70,14 @@ class UserClientTest extends TestCase
         $result->getByUsernameResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createUserConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getByUsername')->with(['username' => 'some username'])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getByUsername',
+                [[
+                    'username' => 'some username'
+                ]]
+            )
+            ->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $result,
             'getByUsernameResult',
@@ -99,7 +106,14 @@ class UserClientTest extends TestCase
         $result->getAllResult = $list;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createUserConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAll')->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAll',
+                [[
+                    'mandator_id' => 123
+                ]]
+            )
+            ->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObjects')
             ->with($result, 'getAllResult', $config)
             ->willReturn([$object, $otherObject]);
@@ -127,7 +141,14 @@ class UserClientTest extends TestCase
             $config,
             $object
         )->willReturn($expectedExtractor);
-        $this->soapClient->expects($this->once())->method('update')->with(['user' => $expectedExtractor])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'update',
+                [[
+                    'user' => $expectedExtractor
+                ]]
+            )
+            ->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getObject')
             ->with($result, 'updateResult', $config)
             ->willReturn($object);

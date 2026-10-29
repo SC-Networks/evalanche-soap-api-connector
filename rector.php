@@ -7,6 +7,7 @@ use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPrivateMethodRector;
 use Rector\PHPUnit\CodeQuality\Rector\MethodCall\AssertSameTrueFalseToAssertTrueFalseRector;
 use Rector\PHPUnit\CodeQuality\Rector\MethodCall\UseSpecificWillMethodRector;
+use Rector\PHPUnit\PHPUnit120\Rector\Class_\PropertyCreateMockToCreateStubRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 
 return RectorConfig::configure()
@@ -22,6 +23,9 @@ return RectorConfig::configure()
         PHPUnitSetList::COMPOSER_BASED,
     ])
     ->withSkip([
+        PropertyCreateMockToCreateStubRector::class => [
+            __DIR__ . '/tests/Client/Report/ReportClientTest.php'
+        ],
         NewStaticToNewSelfRector::class => [
             __DIR__ . '/src/Hydrator/Property/ArrayOfObjectValue.php',
             __DIR__ . '/src/Hydrator/Property/ArrayValue.php',

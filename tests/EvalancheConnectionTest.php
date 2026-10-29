@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector;
 
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\Stub;
 use Scn\EvalancheSoapApiConnector\Client\Account\AccountClientInterface;
 use Scn\EvalancheSoapApiConnector\Client\Article\ArticleClientInterface;

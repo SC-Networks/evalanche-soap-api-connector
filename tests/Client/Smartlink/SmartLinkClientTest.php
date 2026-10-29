@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\SmartLink\SmartLinkConfigurationInterface;
 use Scn\EvalancheSoapStruct\Struct\SmartLink\SmartLinkInterface;
 use stdClass;
@@ -51,19 +51,7 @@ class SmartLinkClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getAll',
-            'getByModificationDate',
-            'createLink',
-            'getTrackingUrls',
-            'getLinkConfigurations',
-            'setLinkConfigurations',
-            'createLinkConfigurations',
-            'copy',
-            'rename',
-            'move',
-            'delete',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createMock(ExtractorInterface::class);
@@ -87,11 +75,16 @@ class SmartLinkClientTest extends TestCase
         $result = new stdClass();
         $result->createLinkResult = $result_string;
 
-        $this->soapClient->expects($this->once())->method('createLink')->with([
-            'smartlink_id' => $id,
-            'link_name' => $title,
-            'link_url' => $url
-        ])->willReturn($result);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'createLink',
+                [[
+                    'smartlink_id' => $id,
+                    'link_name' => $title,
+                    'link_url' => $url
+                ]]
+            )
+            ->willReturn($result);
         $this->responseMapper->expects($this->once())->method('getString')->with(
             $result,
             'createLinkResult'
@@ -115,7 +108,14 @@ class SmartLinkClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createSmartLinkConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getTrackingUrls')->with(['smartlink_id' => $id])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getTrackingUrls',
+                [[
+                    'smartlink_id' => $id
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getTrackingUrlsResult',
@@ -146,10 +146,13 @@ class SmartLinkClientTest extends TestCase
             ->expects($this->once())
             ->method('createSmartLinkConfigurationConfig')
             ->willReturn($config);
-        $this->soapClient
-            ->expects($this->once())
-            ->method('getLinkConfigurations')
-            ->with(['smartlink_link_id' => $link_id])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getLinkConfigurations',
+                [[
+                    'smartlink_link_id' => $link_id
+                ]]
+            )
             ->willReturn($response);
         $this->responseMapper
             ->expects($this->once())
@@ -202,12 +205,14 @@ class SmartLinkClientTest extends TestCase
             ->method('createSmartLinkConfigurationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('setLinkConfigurations')
-            ->with([
-                'smartlink_link_id' => $link_id,
-                'items' => $extractedData
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'setLinkConfigurations',
+                [[
+                    'smartlink_link_id' => $link_id,
+                    'items' => $extractedData
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
@@ -259,12 +264,14 @@ class SmartLinkClientTest extends TestCase
             ->method('createSmartLinkConfigurationConfig')
             ->willReturn($config);
 
-        $this->soapClient->expects($this->once())
-            ->method('createLinkConfigurations')
-            ->with([
-                'smartlink_link_id' => $link_id,
-                'items' => $extractedData
-            ])
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'createLinkConfigurations',
+                [[
+                    'smartlink_link_id' => $link_id,
+                    'items' => $extractedData
+                ]]
+            )
             ->willReturn($response);
 
         $this->responseMapper->expects($this->once())

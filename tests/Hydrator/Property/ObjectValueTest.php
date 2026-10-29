@@ -6,7 +6,7 @@ namespace Scn\EvalancheSoapApiConnector\Hydrator\Property;
 
 use Closure;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\Statistic\MailClientStatisticItemConfig;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Statistic\MailClientStatisticItemInterface;
 use stdClass;
 

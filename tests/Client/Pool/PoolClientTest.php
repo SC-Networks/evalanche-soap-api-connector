@@ -11,7 +11,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Pool\PoolAttributeInterface;
 use stdClass;
 
@@ -49,16 +49,7 @@ class PoolClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'getAll',
-            'getByModificationDate',
-            'addAttribute',
-            'addAttributeOptions',
-            'deleteAttribute',
-            'deleteAttributeOption',
-            'getAttributes',
-            'updateAttributeOption'
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -85,12 +76,17 @@ class PoolClientTest extends TestCase
         $response->addAttributeResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('addAttribute')->with([
-            'pool_id' => $id,
-            'name' => $title,
-            'label' => $label,
-            'type_id' => $typeId
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addAttribute',
+                [[
+                    'pool_id' => $id,
+                    'name' => $title,
+                    'label' => $label,
+                    'type_id' => $typeId
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'addAttributeResult',
@@ -119,11 +115,16 @@ class PoolClientTest extends TestCase
         $response->addAttributeOptionsResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('addAttributeOptions')->with([
-            'pool_id' => $id,
-            'attribute_id' => $attributeId,
-            'labels' => $label,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'addAttributeOptions',
+                [[
+                    'pool_id' => $id,
+                    'attribute_id' => $attributeId,
+                    'labels' => $label,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'addAttributeOptionsResult',
@@ -144,12 +145,15 @@ class PoolClientTest extends TestCase
         $response = new stdClass();
         $response->deleteAttributeResult = true;
 
-        $this->soapClient->expects($this->once())
-            ->method('deleteAttribute')
-            ->with([
-                'pool_id' => $id,
-                'attribute_id' => $attributeId
-            ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'deleteAttribute',
+                [[
+                    'pool_id' => $id,
+                    'attribute_id' => $attributeId
+                ]]
+            )
+            ->willReturn($response);
 
         $this->responseMapper->expects($this->once())
             ->method('getBoolean')
@@ -172,11 +176,16 @@ class PoolClientTest extends TestCase
         $response->deleteAttributeOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('deleteAttributeOption')->with([
-            'pool_id' => $id,
-            'attribute_id' => $attributeId,
-            'option_id' => $optionId,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'deleteAttributeOption',
+                [[
+                    'pool_id' => $id,
+                    'attribute_id' => $attributeId,
+                    'option_id' => $optionId,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'deleteAttributeOptionResult',
@@ -204,9 +213,14 @@ class PoolClientTest extends TestCase
         ];
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('getAttributes')->with([
-            'pool_id' => $id,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'getAttributes',
+                [[
+                    'pool_id' => $id,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObjects')->with(
             $response,
             'getAttributesResult',
@@ -233,12 +247,17 @@ class PoolClientTest extends TestCase
         $response->updateAttributeOptionResult = $object;
 
         $this->hydratorConfigFactory->expects($this->once())->method('createPoolAttributeConfig')->willReturn($config);
-        $this->soapClient->expects($this->once())->method('updateAttributeOption')->with([
-            'pool_id' => $id,
-            'attribute_id' => $attributeId,
-            'option_id' => $optionId,
-            'label' => $label
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'updateAttributeOption',
+                [[
+                    'pool_id' => $id,
+                    'attribute_id' => $attributeId,
+                    'option_id' => $optionId,
+                    'label' => $label
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'updateAttributeOptionResult',

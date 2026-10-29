@@ -12,7 +12,7 @@ use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigFactoryInterface;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\EvalancheSoapApiConnector\Mapper\ResponseMapperInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use stdClass;
 
@@ -51,22 +51,7 @@ class MilestoneClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->soapClient = $this->getWsdlMock([
-            'create',
-            'copy',
-            'delete',
-            'getAll',
-            'getByCategory',
-            'getByExternalId',
-            'getById',
-            'getByTypeId',
-            'getResourceDefaultCategory',
-            'getTypeIds',
-            'move',
-            'rename',
-            'isAlive',
-            'getByModificationDate',
-        ]);
+        $this->soapClient = $this->createMock(EvalancheSoapClient::class);
         $this->responseMapper = $this->createMock(ResponseMapperInterface::class);
         $this->hydratorConfigFactory = $this->createMock(HydratorConfigFactoryInterface::class);
         $this->extractor = $this->createStub(ExtractorInterface::class);
@@ -94,10 +79,15 @@ class MilestoneClientTest extends TestCase
             ->expects($this->once())
             ->method('createResourceInformationConfig')
             ->willReturn($config);
-        $this->soapClient->expects($this->once())->method('create')->with([
-            'title' => $title,
-            'folder_id' => $folderId,
-        ])->willReturn($response);
+        $this->soapClient->expects($this->once())->method('__call')
+            ->with(
+                'create',
+                [[
+                    'title' => $title,
+                    'folder_id' => $folderId,
+                ]]
+            )
+            ->willReturn($response);
         $this->responseMapper->expects($this->once())->method('getObject')->with(
             $response,
             'createResult',

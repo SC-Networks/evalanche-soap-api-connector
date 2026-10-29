@@ -7,7 +7,7 @@ namespace Scn\EvalancheSoapApiConnector\Mapper;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
-use Scn\EvalancheSoapApiConnector\TestCase;
+use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
 use Scn\Hydrator\HydratorInterface;
 use stdClass;
