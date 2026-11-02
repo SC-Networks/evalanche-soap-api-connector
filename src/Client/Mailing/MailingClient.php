@@ -81,7 +81,7 @@ final class MailingClient extends AbstractClient implements MailingClientInterfa
         string $title,
         int $templateId,
         int $folderId,
-        ?int $typeId = null
+        null|int $typeId = null
     ): ResourceInformationInterface {
         return $this->responseMapper->getObject(
             $this->soapClient->createDraft(

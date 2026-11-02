@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Image;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -24,28 +25,26 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Image
  */
+#[AllowMockObjectsWithoutExpectations]
 class ImageClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var ImageClient
-     */
-    private $subject;
+    private ImageClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -67,7 +66,7 @@ class ImageClientTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnInstanceOfResourceInformation()
+    public function testCreateCanReturnInstanceOfResourceInformation(): void
     {
         $image = base64_encode('some image');
         $title = 'some title';
@@ -103,7 +102,7 @@ class ImageClientTest extends TestCase
     }
 
 
-    public function testGetByFolderIdCanReturnArrayOfResourceInformation()
+    public function testGetByFolderIdCanReturnArrayOfResourceInformation(): void
     {
         $id = 456;
 
@@ -137,7 +136,7 @@ class ImageClientTest extends TestCase
         );
     }
 
-    public function testGetByExternalIdCanReturnInstanceOfResourceInformation()
+    public function testGetByExternalIdCanReturnInstanceOfResourceInformation(): void
     {
         $id = 'some id';
 
@@ -168,7 +167,7 @@ class ImageClientTest extends TestCase
         );
     }
 
-    public function testGetByIdCanReturnInstanceOfResourceInformation()
+    public function testGetByIdCanReturnInstanceOfResourceInformation(): void
     {
         $id = 123;
 
@@ -199,7 +198,7 @@ class ImageClientTest extends TestCase
         );
     }
 
-    public function testGetByTypeIdCanReturnArrayOfResourceInformation()
+    public function testGetByTypeIdCanReturnArrayOfResourceInformation(): void
     {
         $id = 456;
         $mandatorId = 76;
@@ -235,7 +234,7 @@ class ImageClientTest extends TestCase
         );
     }
 
-    public function testGetDefaultFolderByMandatorIdCanReturnInstanceOfFolderInformation()
+    public function testGetDefaultFolderByMandatorIdCanReturnInstanceOfFolderInformation(): void
     {
         $id = 456;
 
@@ -266,7 +265,7 @@ class ImageClientTest extends TestCase
         );
     }
 
-    public function testGetTypeIdsCanReturnArrayOfResourceTypeInformation()
+    public function testGetTypeIdsCanReturnArrayOfResourceTypeInformation(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(ResourceTypeInformationInterface::class);
@@ -293,7 +292,7 @@ class ImageClientTest extends TestCase
         );
     }
 
-    public function testGetServiceAvailableCanReturnInstanceOfServiceStatus()
+    public function testGetServiceAvailableCanReturnInstanceOfServiceStatus(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(ServiceStatusInterface::class);

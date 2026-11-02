@@ -12,12 +12,9 @@ class PoolAttributeOptionConfigTest extends TestCase
     /**
      * @var PoolAttributeConfig
      */
-    private $subject;
+    private PoolAttributeOptionConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'value',
     ];
@@ -27,7 +24,7 @@ class PoolAttributeOptionConfigTest extends TestCase
         $this->subject = new PoolAttributeOptionConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             PoolAttributeOptionInterface::class,
@@ -35,14 +32,14 @@ class PoolAttributeOptionConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

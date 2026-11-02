@@ -36,8 +36,6 @@ use Scn\EvalancheSoapApiConnector\Client\LeadPageTemplate\LeadpageTemplateClient
 
 interface EvalancheConnectionInterface
 {
-    public static function create(string $hostname, string $username, string $password): EvalancheConnectionInterface;
-
     public function createAccountClient(): AccountClientInterface;
 
     public function createArticleClient(): ArticleClientInterface;

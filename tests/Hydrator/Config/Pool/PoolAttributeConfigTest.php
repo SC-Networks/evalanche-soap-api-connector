@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Pool\PoolAttributeInterface;
  */
 class PoolAttributeConfigTest extends TestCase
 {
-    /**
-     * @var PoolAttributeConfig
-     */
-    private $subject;
+    private PoolAttributeConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'label',
@@ -37,7 +31,7 @@ class PoolAttributeConfigTest extends TestCase
         $this->subject = new PoolAttributeConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             PoolAttributeInterface::class,
@@ -45,14 +39,14 @@ class PoolAttributeConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

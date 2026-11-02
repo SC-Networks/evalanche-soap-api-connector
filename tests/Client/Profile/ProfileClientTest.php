@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Profile;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
@@ -28,32 +29,30 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Profile
  */
+#[AllowMockObjectsWithoutExpectations]
 class ProfileClientTest extends TestCase
 {
-    /**
-     * @var ProfileClient
-     */
-    private $subject;
+    private ProfileClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var MockObject&ExtractorInterface
      */
-    private $extractor;
+    private MockObject $extractor;
 
     public function setUp(): void
     {
@@ -70,7 +69,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testAddScore()
+    public function testAddScore(): void
     {
         $profileId = 123;
         $scoringGroupId = 45;
@@ -99,7 +98,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->addScore($profileId, $scoringGroupId, $score, $title));
     }
 
-    public function testCreateCanReturnInteger()
+    public function testCreateCanReturnInteger(): void
     {
         $id = 123;
         $hashMap = $this->createStub(HashMapInterface::class);
@@ -135,7 +134,7 @@ class ProfileClientTest extends TestCase
         self::assertSame(345, $this->subject->create($id, $hashMap));
     }
 
-    public function testGetByPoolCanReturnInstanceOfJobHandle()
+    public function testGetByPoolCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $poolAttributeList = [
@@ -171,7 +170,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testGetScoresByIdCanReturnInstanceOfProfileGroupScore()
+    public function testGetScoresByIdCanReturnInstanceOfProfileGroupScore(): void
     {
         $id = 'some id';
 
@@ -206,7 +205,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testUpdateByPoolId()
+    public function testUpdateByPoolId(): void
     {
         $id = 234;
         $hashMap = $this->createStub(HashMapInterface::class);
@@ -244,7 +243,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->updateByPoolId($id, $hashMap));
     }
 
-    public function testGetBouncesCanReturnArrayOfProfileBounceStatus()
+    public function testGetBouncesCanReturnArrayOfProfileBounceStatus(): void
     {
         $id = 4;
         $timestampStart = 1533038842;
@@ -289,7 +288,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testGetUnsubscriptionsCanReturnArrayOfHashMap()
+    public function testGetUnsubscriptionsCanReturnArrayOfHashMap(): void
     {
         $id = 4;
         $timestampStart = 1533038842;
@@ -334,7 +333,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testMergeByTargetGroupIdCanReturnBoolean()
+    public function testMergeByTargetGroupIdCanReturnBoolean(): void
     {
         $id = 234;
         $hashMap = $this->createStub(HashMapInterface::class);
@@ -372,7 +371,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->mergeByTargetGroupId($id, $hashMap));
     }
 
-    public function testMergeByIdCanReturnBoolean()
+    public function testMergeByIdCanReturnBoolean(): void
     {
         $id = 234;
         $hashMap = $this->createStub(HashMapInterface::class);
@@ -410,7 +409,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->mergeById((string) $id, $hashMap));
     }
 
-    public function testGetResultCursorByJobIdCanReturnString()
+    public function testGetResultCursorByJobIdCanReturnString(): void
     {
         $id = 'some job id';
 
@@ -436,7 +435,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testIsInTargetgroupsCanReturnArrayOfTargetGroupMemberShip()
+    public function testIsInTargetgroupsCanReturnArrayOfTargetGroupMemberShip(): void
     {
         $id = 123;
         $targetGroupIds = [
@@ -476,7 +475,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testGetGrantedPermissionsCanReturnArrayOfHashMap()
+    public function testGetGrantedPermissionsCanReturnArrayOfHashMap(): void
     {
         $id = 123;
         $attributes = [
@@ -521,7 +520,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testRevokeTrackingCanReturnBoolean()
+    public function testRevokeTrackingCanReturnBoolean(): void
     {
         $id = 8;
 
@@ -544,7 +543,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->revokeTracking($id));
     }
 
-    public function testGetByTargetGroupCanReturnInstanceOfJobHandle()
+    public function testGetByTargetGroupCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $poolAttributeList = [
@@ -580,7 +579,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testMergeByKeyCanReturnBoolean()
+    public function testMergeByKeyCanReturnBoolean(): void
     {
         $id = 234;
         $key = 'some key';
@@ -622,7 +621,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->mergeByKey($id, $key, $value, $hashMap));
     }
 
-    public function testGrantPermission()
+    public function testGrantPermission(): void
     {
         $id = 8;
 
@@ -645,7 +644,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->grantPermission($id));
     }
 
-    public function testUpdateByTargetGroupId()
+    public function testUpdateByTargetGroupId(): void
     {
         $id = 234;
         $hashMap = $this->createStub(HashMapInterface::class);
@@ -683,7 +682,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->updateByTargetGroupId($id, $hashMap));
     }
 
-    public function testMassUpdateCanReturnInstanceOfMassUpdateResult()
+    public function testMassUpdateCanReturnInstanceOfMassUpdateResult(): void
     {
         $id = 4;
         $keyAttributeTitle = 's-o-m-e t-i-t-l-e';
@@ -733,7 +732,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testUpdateByKeyCanReturnBoolean()
+    public function testUpdateByKeyCanReturnBoolean(): void
     {
         $id = 234;
         $key = 'some key';
@@ -775,7 +774,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->updateByKey($id, $key, $value, $hashMap));
     }
 
-    public function testSetResultCursorCanReturnBoolean()
+    public function testSetResultCursorCanReturnBoolean(): void
     {
         $id = 'some Id';
         $cursor = 5;
@@ -800,7 +799,7 @@ class ProfileClientTest extends TestCase
         $this->assertFalse($this->subject->setResultCursor($id, $cursor));
     }
 
-    public function testUpdateByIdCanReturnBoolean()
+    public function testUpdateByIdCanReturnBoolean(): void
     {
         $id = 234;
         $hashMap = $this->createStub(HashMapInterface::class);
@@ -838,7 +837,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->updateById($id, $hashMap));
     }
 
-    public function testGetByKeyCanReturnArrayOfHashMap()
+    public function testGetByKeyCanReturnArrayOfHashMap(): void
     {
         $id = 4;
         $key = 'some key';
@@ -883,7 +882,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testGetMailingStatusCanReturnArrayOfMailingStatus()
+    public function testGetMailingStatusCanReturnArrayOfMailingStatus(): void
     {
         $id = 123;
         $mailingId = 45;
@@ -920,7 +919,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testGetJobInformationByJobIdCanReturnInstanceOfJobHandle()
+    public function testGetJobInformationByJobIdCanReturnInstanceOfJobHandle(): void
     {
         $id = 'some id';
 
@@ -951,7 +950,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testGetModifiedProfilesCanReturnArrayOfHashMap()
+    public function testGetModifiedProfilesCanReturnArrayOfHashMap(): void
     {
         $id = 123;
         $attributes = [
@@ -996,7 +995,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testMergeByPoolId()
+    public function testMergeByPoolId(): void
     {
         $id = 234;
         $hashMap = $this->createStub(HashMapInterface::class);
@@ -1029,7 +1028,7 @@ class ProfileClientTest extends TestCase
         $this->assertNull($this->subject->mergeByPoolId($id, $hashMap));
     }
 
-    public function testGetResultByJobIdCanReturnInstanceOfJobResult()
+    public function testGetResultByJobIdCanReturnInstanceOfJobResult(): void
     {
         $id = 'some id';
 
@@ -1060,7 +1059,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testRevokePermissionCanReturnBoolean()
+    public function testRevokePermissionCanReturnBoolean(): void
     {
         $id = 8;
 
@@ -1083,7 +1082,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->revokePermission($id));
     }
 
-    public function testDeleteCanReturnBoolean()
+    public function testDeleteCanReturnBoolean(): void
     {
         $profileIds = [
             1,
@@ -1112,7 +1111,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->delete($profileIds));
     }
 
-    public function testGetActivityScoringHistoryCanREturnArrayOfProfileActivityScore()
+    public function testGetActivityScoringHistoryCanREturnArrayOfProfileActivityScore(): void
     {
         $id = 123;
         $scoringGroupId = 2345;
@@ -1158,7 +1157,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testGetByIdCanReturnInstanceOfHashMap()
+    public function testGetByIdCanReturnInstanceOfHashMap(): void
     {
         $id = 123;
 
@@ -1190,7 +1189,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testUnTagWithOptionCanReturnBoolean()
+    public function testUnTagWithOptionCanReturnBoolean(): void
     {
         $id = 234;
         $key = 'some key';
@@ -1223,7 +1222,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->unTagWithOption($id, $values, $key, $doUpdate));
     }
 
-    public function testTagWithOptionCanReturnBoolean()
+    public function testTagWithOptionCanReturnBoolean(): void
     {
         $id = 234;
         $key = 'some key';
@@ -1256,7 +1255,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->tagWithOption($id, $values, $key, $doUpdate));
     }
 
-    public function testGetTrackingHistoryCanReturnArrayOfProfileTrackingHistory()
+    public function testGetTrackingHistoryCanReturnArrayOfProfileTrackingHistory(): void
     {
         $profileId = 333;
         $timestampStart = 123456;
@@ -1296,7 +1295,7 @@ class ProfileClientTest extends TestCase
         );
     }
 
-    public function testSetMilestoneCanReturnBoolean()
+    public function testSetMilestoneCanReturnBoolean(): void
     {
         $profileId = 333;
         $milestoneId = 444;
@@ -1322,7 +1321,7 @@ class ProfileClientTest extends TestCase
         $this->assertTrue($this->subject->setMilestone($profileId, $milestoneId));
     }
 
-    public function testHasMilestoneCanReturnBoolean()
+    public function testHasMilestoneCanReturnBoolean(): void
     {
         $profileId = 333;
         $milestoneId = 444;

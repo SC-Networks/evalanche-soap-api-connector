@@ -11,14 +11,18 @@ use Rector\PHPUnit\PHPUnit120\Rector\Class_\PropertyCreateMockToCreateStubRector
 use Rector\PHPUnit\Set\PHPUnitSetList;
 
 return RectorConfig::configure()
-    ->withPreparedSets(deadCode: true, codeQuality: true)
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true,
+        typeDeclarations: true,
+    )
     ->withIndent()
     ->withImportNames()
     ->withPaths([
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-    ->withPhpSets(php83: true)
+    ->withPhpSets(php84: true)
     ->withSets([
         PHPUnitSetList::COMPOSER_BASED,
     ])

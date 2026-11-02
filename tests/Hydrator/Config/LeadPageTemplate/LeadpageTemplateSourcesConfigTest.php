@@ -9,10 +9,9 @@ use Scn\EvalancheSoapStruct\Struct\LeadPageTemplate\TemplatesSourcesInterface;
 
 class LeadpageTemplateSourcesConfigTest extends TestCase
 {
-    /** @var LeadpageTemplateSourcesConfig|null */
-    private $subject;
+    private LeadpageTemplateSourcesConfig $subject;
 
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'web',
         'landingpage',
     ];

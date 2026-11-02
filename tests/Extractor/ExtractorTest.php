@@ -17,15 +17,12 @@ use Scn\Hydrator\HydratorInterface;
  */
 class ExtractorTest extends TestCase
 {
-    /**
-     * @var Extractor
-     */
-    private $subject;
+    private Extractor $subject;
 
     /**
-     * @var HydratorInterface|MockObject
+     * @var MockObject&HydratorInterface
      */
-    private $hydrator;
+    private MockObject $hydrator;
 
     public function setUp(): void
     {
@@ -35,7 +32,7 @@ class ExtractorTest extends TestCase
         );
     }
 
-    public function testExtractCanReturnArray()
+    public function testExtractCanReturnArray(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $user = $this->createStub(UserInterface::class);
@@ -60,7 +57,7 @@ class ExtractorTest extends TestCase
         ));
     }
 
-    public function testExtractArrayCanReturnArray()
+    public function testExtractArrayCanReturnArray(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $user = $this->createStub(UserInterface::class);

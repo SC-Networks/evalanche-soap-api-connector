@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Generic\HashMapInterface;
  */
 class HashMapConfigTest extends TestCase
 {
-    /**
-     * @var HashMapConfig
-     */
-    private $subject;
+    private HashMapConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'items',
     ];
 
@@ -31,7 +25,7 @@ class HashMapConfigTest extends TestCase
         $this->subject = new HashMapConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             HashMapInterface::class,
@@ -39,14 +33,14 @@ class HashMapConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

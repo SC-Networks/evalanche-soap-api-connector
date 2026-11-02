@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Report;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -18,23 +19,21 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Report
  */
+#[AllowMockObjectsWithoutExpectations]
 class ReportClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var ReportClient
-     */
-    private $subject;
+    private ReportClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     protected MockObject&HydratorConfigFactoryInterface $hydratorConfigFactory;
 
@@ -55,7 +54,7 @@ class ReportClientTest extends TestCase
         );
     }
 
-    public function testAddResourceToReportCanReturnBoolean()
+    public function testAddResourceToReportCanReturnBoolean(): void
     {
         $id = 123;
         $reportId = 555;

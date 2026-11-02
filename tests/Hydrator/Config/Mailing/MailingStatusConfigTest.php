@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingStatusInterface;
  */
 class MailingStatusConfigTest extends TestCase
 {
-    /**
-     * @var MailingStatusConfig
-     */
-    private $subject;
+    private MailingStatusConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'profile_id',
         'newsletter_id',
         'last_status_change',
@@ -36,7 +30,7 @@ class MailingStatusConfigTest extends TestCase
         $this->subject = new MailingStatusConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfMailingStatusConfig()
+    public function testGetObjectCanReturnInstanceOfMailingStatusConfig(): void
     {
         self::assertInstanceOf(
             MailingStatusInterface::class,
@@ -44,14 +38,14 @@ class MailingStatusConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         self::assertSame([], $this->subject->getExtractorProperties());
     }

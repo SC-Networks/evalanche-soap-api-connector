@@ -85,7 +85,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateAccountClientCanReturnInstanceOfAccountClient()
+    public function testCreateAccountClientCanReturnInstanceOfAccountClient(): void
     {
         self::assertInstanceOf(
             AccountClientInterface::class,
@@ -93,7 +93,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateArticleClientCanReturnInstanceOfArticleClient()
+    public function testCreateArticleClientCanReturnInstanceOfArticleClient(): void
     {
         self::assertInstanceOf(
             ArticleClientInterface::class,
@@ -101,7 +101,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateArticleTemplateClientCanReturnInstanceOfArticleTemplateClient()
+    public function testCreateArticleTemplateClientCanReturnInstanceOfArticleTemplateClient(): void
     {
         self::assertInstanceOf(
             ArticleTemplateClientInterface::class,
@@ -109,7 +109,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateArticleTypeClientCanReturnInstanceOfArticleTypeClient()
+    public function testCreateArticleTypeClientCanReturnInstanceOfArticleTypeClient(): void
     {
         self::assertInstanceOf(
             ArticleTypeClientInterface::class,
@@ -117,7 +117,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateFolderClientCanReturnInstanceOfCategoryClient()
+    public function testCreateFolderClientCanReturnInstanceOfCategoryClient(): void
     {
         self::assertInstanceOf(
             FolderClientInterface::class,
@@ -125,7 +125,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateContainerClientCanReturnInstanceOfContainerClient()
+    public function testCreateContainerClientCanReturnInstanceOfContainerClient(): void
     {
         self::assertInstanceOf(
             ContainerClientInterface::class,
@@ -133,7 +133,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateContainerTypeClientCanReturnInstanceOfContainerTypeClient()
+    public function testCreateContainerTypeClientCanReturnInstanceOfContainerTypeClient(): void
     {
         self::assertInstanceOf(
             ContainerTypeClientInterface::class,
@@ -141,7 +141,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateDocumentClientCanReturnInstanceOfDocumentClient()
+    public function testCreateDocumentClientCanReturnInstanceOfDocumentClient(): void
     {
         self::assertInstanceOf(
             DocumentClientInterface::class,
@@ -149,7 +149,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateFormClientCanReturnInstanceOfFormClient()
+    public function testCreateFormClientCanReturnInstanceOfFormClient(): void
     {
         self::assertInstanceOf(
             FormClientInterface::class,
@@ -157,7 +157,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateTargetGroupClientCanReturnInstanceOfTargetGroupClient()
+    public function testCreateTargetGroupClientCanReturnInstanceOfTargetGroupClient(): void
     {
         self::assertInstanceOf(
             TargetGroupClientInterface::class,
@@ -165,7 +165,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateImageClientCanReturnInstanceOfImageClient()
+    public function testCreateImageClientCanReturnInstanceOfImageClient(): void
     {
         self::assertInstanceOf(
             ImageClientInterface::class,
@@ -173,7 +173,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateMailingclientCanReturnInstanceOfMailingClient()
+    public function testCreateMailingclientCanReturnInstanceOfMailingClient(): void
     {
         self::assertInstanceOf(
             MailingClientInterface::class,
@@ -181,7 +181,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateMailingTemplateClientCanReturnInstanceOfMailingTemplateClient()
+    public function testCreateMailingTemplateClientCanReturnInstanceOfMailingTemplateClient(): void
     {
         self::assertInstanceOf(
             MailingTemplateClientInterface::class,
@@ -189,7 +189,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateMandatorClientCanReturnInstanceOfMandatorClient()
+    public function testCreateMandatorClientCanReturnInstanceOfMandatorClient(): void
     {
         self::assertInstanceOf(
             MandatorClientInterface::class,
@@ -197,7 +197,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreatePoolClientCanReturnInstanceOfPoolClient()
+    public function testCreatePoolClientCanReturnInstanceOfPoolClient(): void
     {
         self::assertInstanceOf(
             PoolClientInterface::class,
@@ -205,7 +205,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreatePoolDataMinerClientCanReturnInstanceOfPoolDataMinerClient()
+    public function testCreatePoolDataMinerClientCanReturnInstanceOfPoolDataMinerClient(): void
     {
         self::assertInstanceOf(
             PoolDataMinerClientInterface::class,
@@ -213,7 +213,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateProfileClientCanReturnInstanceOfProfileClient()
+    public function testCreateProfileClientCanReturnInstanceOfProfileClient(): void
     {
         self::assertInstanceOf(
             ProfileClientInterface::class,
@@ -221,7 +221,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateReportClientCanReturnInstanceOfReportClient()
+    public function testCreateReportClientCanReturnInstanceOfReportClient(): void
     {
         self::assertInstanceOf(
             ReportClientInterface::class,
@@ -229,7 +229,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateScoringClientCanReturnInstanceOfScoringClient()
+    public function testCreateScoringClientCanReturnInstanceOfScoringClient(): void
     {
         self::assertInstanceOf(
             ScoringClientInterface::class,
@@ -237,7 +237,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateSmartLinkClientCanReturnInstanceOfSmartLinkClient()
+    public function testCreateSmartLinkClientCanReturnInstanceOfSmartLinkClient(): void
     {
         self::assertInstanceOf(
             SmartLinkClientInterface::class,
@@ -245,7 +245,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateUserClientCanReturnInstanceOfUserClient()
+    public function testCreateUserClientCanReturnInstanceOfUserClient(): void
     {
         self::assertInstanceOf(
             UserClientInterface::class,
@@ -253,7 +253,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateWorkflowClientCanReturnInstanceOfWorkflowClient()
+    public function testCreateWorkflowClientCanReturnInstanceOfWorkflowClient(): void
     {
         self::assertInstanceOf(
             WorkflowClientInterface::class,
@@ -261,7 +261,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnInstanceOfEvalancheConnection()
+    public function testCreateCanReturnInstanceOfEvalancheConnection(): void
     {
         self::assertInstanceOf(
             EvalancheConnectionInterface::class,
@@ -269,7 +269,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateBlackListClientCanReturnInstanceOfBlackListClient()
+    public function testCreateBlackListClientCanReturnInstanceOfBlackListClient(): void
     {
         self::assertInstanceOf(
             BlackListClient::class,
@@ -277,7 +277,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateWebhookClientCanReturnInstanceOfWebhookClient()
+    public function testCreateWebhookClientCanReturnInstanceOfWebhookClient(): void
     {
         self::assertInstanceOf(
             WebhookClient::class,
@@ -285,7 +285,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateMilestoneClientCanReturnInstanceOfMileStoneClient()
+    public function testCreateMilestoneClientCanReturnInstanceOfMileStoneClient(): void
     {
         self::assertInstanceOf(
             MilestoneClient::class,
@@ -293,7 +293,7 @@ class EvalancheConnectionTest extends TestCase
         );
     }
 
-    public function testCreateMarketplaceClientCanReturnInstanceOfMarketplaceClient()
+    public function testCreateMarketplaceClientCanReturnInstanceOfMarketplaceClient(): void
     {
         self::assertInstanceOf(
             MarketplaceClient::class,

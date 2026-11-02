@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Container;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -23,33 +24,31 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Container
  */
+#[AllowMockObjectsWithoutExpectations]
 class ContainerTypeClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var ContainerTypeClient
-     */
-    private $subject;
+    private ContainerTypeClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var MockObject&ExtractorInterface
      */
-    private $extractor;
+    private MockObject $extractor;
 
     public function setUp(): void
     {
@@ -66,7 +65,7 @@ class ContainerTypeClientTest extends TestCase
         );
     }
 
-    public function testAddAttributeCanReturnIsntanceOfContainerAttributeInterface()
+    public function testAddAttributeCanReturnIsntanceOfContainerAttributeInterface(): void
     {
         $id = 23;
         $title = 'some title';
@@ -106,7 +105,7 @@ class ContainerTypeClientTest extends TestCase
         );
     }
 
-    public function testAddAttributeGroupCanReturnInstanceOfContainerAttributeInterface()
+    public function testAddAttributeGroupCanReturnInstanceOfContainerAttributeInterface(): void
     {
         $id = 23;
         $title = 'some title';
@@ -139,7 +138,7 @@ class ContainerTypeClientTest extends TestCase
         );
     }
 
-    public function testUpdateAttributeTypeCanReturnBoolean()
+    public function testUpdateAttributeTypeCanReturnBoolean(): void
     {
         $id = 23;
         $attributeId = 55;
@@ -167,7 +166,7 @@ class ContainerTypeClientTest extends TestCase
         $this->assertFalse($this->subject->updateAttributeType($id, $attributeId, $typeId));
     }
 
-    public function testAddAttributeOptionCanReturnInstanceOfContainerAttributeOptionInterface()
+    public function testAddAttributeOptionCanReturnInstanceOfContainerAttributeOptionInterface(): void
     {
         $id = 23;
         $attributeId = 234;
@@ -202,7 +201,7 @@ class ContainerTypeClientTest extends TestCase
         );
     }
 
-    public function testGetAttributeGroupsByResourceIdCanReturnArrayOfContainerAttributeGroup()
+    public function testGetAttributeGroupsByResourceIdCanReturnArrayOfContainerAttributeGroup(): void
     {
         $id = 213;
 
@@ -237,7 +236,7 @@ class ContainerTypeClientTest extends TestCase
         );
     }
 
-    public function testGetAttributeOptionsByResourceIdAndAttributeIdCanReturnArrayOfContainerAttributeOption()
+    public function testGetAttributeOptionsByResourceIdAndAttributeIdCanReturnArrayOfContainerAttributeOption(): void
     {
         $id = 8;
         $attributeId = 9;
@@ -274,7 +273,7 @@ class ContainerTypeClientTest extends TestCase
         );
     }
 
-    public function testGetAttributesByResourceIdCanReturnArrayOfContainerAttribute()
+    public function testGetAttributesByResourceIdCanReturnArrayOfContainerAttribute(): void
     {
         $id = 12;
 
@@ -309,7 +308,7 @@ class ContainerTypeClientTest extends TestCase
         );
     }
 
-    public function testRemoveAttributeCanReturnBoolean()
+    public function testRemoveAttributeCanReturnBoolean(): void
     {
         $id = 123;
         $attributeId = 543;
@@ -334,7 +333,7 @@ class ContainerTypeClientTest extends TestCase
         $this->assertTrue($this->subject->removeAttribute($id, $attributeId));
     }
 
-    public function testRemoveAttributeGroupCanReturnBoolean()
+    public function testRemoveAttributeGroupCanReturnBoolean(): void
     {
         $id = 123;
         $attributeGroupId = 543;
@@ -359,7 +358,7 @@ class ContainerTypeClientTest extends TestCase
         $this->assertTrue($this->subject->removeAttributeGroup($id, $attributeGroupId));
     }
 
-    public function testRemoveAttributeOptionCanReturnBoolean()
+    public function testRemoveAttributeOptionCanReturnBoolean(): void
     {
         $id = 123;
         $attributeId = 543;
@@ -386,7 +385,7 @@ class ContainerTypeClientTest extends TestCase
         $this->assertTrue($this->subject->removeAttributeOption($id, $attributeId, $optionId));
     }
 
-    public function testUpdateAttributeCanReturnInstanceOfContainerAttribute()
+    public function testUpdateAttributeCanReturnInstanceOfContainerAttribute(): void
     {
         $id = 34;
         $attributeId = 324;

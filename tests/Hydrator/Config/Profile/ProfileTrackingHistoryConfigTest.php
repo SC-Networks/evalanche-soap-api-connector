@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Profile\ProfileTrackingHistoryInterface;
  */
 class ProfileTrackingHistoryConfigTest extends TestCase
 {
-    /**
-     * @var ProfileTrackingHistoryConfig
-     */
-    private $subject;
+    private ProfileTrackingHistoryConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'resource_id',
         'resource_name',
@@ -42,7 +36,7 @@ class ProfileTrackingHistoryConfigTest extends TestCase
         $this->subject = new ProfileTrackingHistoryConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ProfileTrackingHistoryInterface::class,
@@ -50,14 +44,14 @@ class ProfileTrackingHistoryConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

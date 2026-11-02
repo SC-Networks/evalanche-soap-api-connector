@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Mailing;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -32,34 +33,32 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\ClientStatisticInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\MailingStatisticInterface;
 use stdClass;
 
+#[AllowMockObjectsWithoutExpectations]
 class MailingClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
 
-    /**
-     * @var MailingClient
-     */
-    private $subject;
+    private MailingClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var MockObject&ExtractorInterface
      */
-    private $extractor;
+    private MockObject $extractor;
 
     public function setUp(): void
     {
@@ -76,7 +75,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetClientStatisticByIdCanReturnInstanceOfClientStatistic()
+    public function testGetClientStatisticByIdCanReturnInstanceOfClientStatistic(): void
     {
         $id = 2234;
 
@@ -107,7 +106,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetStatisticsByMailingIdCanReturnInstanceOfMailingStatistic()
+    public function testGetStatisticsByMailingIdCanReturnInstanceOfMailingStatistic(): void
     {
         $id = 1234;
 
@@ -138,7 +137,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetStatusCanReturnArrayOfMailingStatus()
+    public function testGetStatusCanReturnArrayOfMailingStatus(): void
     {
         $id = 123;
         $timeFrame = 123123123;
@@ -180,7 +179,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetImpressionsCanReturnArrayOfMailingImpression()
+    public function testGetImpressionsCanReturnArrayOfMailingImpression(): void
     {
         $id = 123;
         $timestampStart = 123123123;
@@ -219,7 +218,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetServiceAvailableCanReturnInstanceOfServiceStatus()
+    public function testGetServiceAvailableCanReturnInstanceOfServiceStatus(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(ServiceStatusInterface::class);
@@ -243,7 +242,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testSetConfigurationCanReturnInstanceOfMailingConfiguration()
+    public function testSetConfigurationCanReturnInstanceOfMailingConfiguration(): void
     {
         $id = 123;
         $configuration = $this->createStub(MailingConfigurationInterface::class);
@@ -281,7 +280,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testSetSubjectsCanReturnBoolean()
+    public function testSetSubjectsCanReturnBoolean(): void
     {
         $id = 123;
         $subjects = [
@@ -309,7 +308,7 @@ class MailingClientTest extends TestCase
         $this->assertTrue($this->subject->setSubjects($id, $subjects));
     }
 
-    public function testGetByTypeIdCanReturnArrayOfResourceInformation()
+    public function testGetByTypeIdCanReturnArrayOfResourceInformation(): void
     {
         $id = 456;
         $mandatorId = 76;
@@ -344,7 +343,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetSendableDraftsCanReturnArrayOfResourceInformation()
+    public function testGetSendableDraftsCanReturnArrayOfResourceInformation(): void
     {
         $unSent = true;
 
@@ -379,7 +378,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testSendToTargetGroupCanReturnInstanceOfMailingDetail()
+    public function testSendToTargetGroupCanReturnInstanceOfMailingDetail(): void
     {
         $id = 123;
         $targetGroupId = 123123123;
@@ -416,7 +415,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetAllArticleImpressionProfilesCanReturnInstanceOfJobHandle()
+    public function testGetAllArticleImpressionProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -452,7 +451,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetConfigurationCanReturnInstanceOfMailingConfiguration()
+    public function testGetConfigurationCanReturnInstanceOfMailingConfiguration(): void
     {
         $id = 1234;
 
@@ -483,7 +482,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetBounceProfilesCanReturnInstanceOfJobHandle()
+    public function testGetBounceProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -519,7 +518,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetSubjectsByMailingIdCanReturnArrayOfMailingSubject()
+    public function testGetSubjectsByMailingIdCanReturnArrayOfMailingSubject(): void
     {
         $id = 1234;
 
@@ -554,7 +553,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testRemoveArticlesCanReturnArrayOfMailingArticle()
+    public function testRemoveArticlesCanReturnArrayOfMailingArticle(): void
     {
         $id = 1234;
         $referenceIds = [
@@ -596,7 +595,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetLinkClickProfilesCanReturnInstanceOfJobHandle()
+    public function testGetLinkClickProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $linkId = 445;
@@ -634,7 +633,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetArticlesByMailingIdCanReturnArrayOfMailingArticle()
+    public function testGetArticlesByMailingIdCanReturnArrayOfMailingArticle(): void
     {
         $id = 123;
 
@@ -669,7 +668,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetClickProfiles()
+    public function testGetClickProfiles(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -705,7 +704,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetArticleStatisticsCanReturnArrayOfArticleStatistic()
+    public function testGetArticleStatisticsCanReturnArrayOfArticleStatistic(): void
     {
         $id = 123;
 
@@ -740,7 +739,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetSendableDraftsByMandatorIdCanReturnArrayOfResourceInformation()
+    public function testGetSendableDraftsByMandatorIdCanReturnArrayOfResourceInformation(): void
     {
         $id = 1234;
         $unSent = true;
@@ -777,7 +776,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testRemoveAllArticlesCanReturnBoolean()
+    public function testRemoveAllArticlesCanReturnBoolean(): void
     {
         $id = 123;
 
@@ -797,7 +796,7 @@ class MailingClientTest extends TestCase
         $this->assertTrue($this->subject->removeAllArticles($id));
     }
 
-    public function testCreateDraft()
+    public function testCreateDraft(): void
     {
         $title = 'some title';
         $templateId = 32;
@@ -836,7 +835,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetSoftbounceProfilesCanReturnInstanceOfJobHandle()
+    public function testGetSoftbounceProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -872,7 +871,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testSetResultCursorCanReturnBoolean()
+    public function testSetResultCursorCanReturnBoolean(): void
     {
         $id = 'some Id';
         $cursor = 5;
@@ -897,7 +896,7 @@ class MailingClientTest extends TestCase
         $this->assertFalse($this->subject->setResultCursor($id, $cursor));
     }
 
-    public function testGetImpressionProfilesCanReturnInstanceOfJobHandle()
+    public function testGetImpressionProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -933,7 +932,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetRecipientsProfilesCanReturnInstanceOfJobHandle()
+    public function testGetRecipientsProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -969,7 +968,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetResultsCanReturnInstanceOfJobResult()
+    public function testGetResultsCanReturnInstanceOfJobResult(): void
     {
         $id = '123';
 
@@ -1000,7 +999,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetMultipleImpressionProfilesCanReturnInstanceOfJobHandle()
+    public function testGetMultipleImpressionProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -1036,7 +1035,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetAllLinkClickProfilesCanReturnInstanceOfJobHandle()
+    public function testGetAllLinkClickProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -1072,7 +1071,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testAddArticles()
+    public function testAddArticles(): void
     {
         $id = 1234;
         $articles = [
@@ -1120,7 +1119,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetHardbounceProfilesCanReturnInstanceOfJobHandle()
+    public function testGetHardbounceProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -1156,7 +1155,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetMultipleClickProfilesCanReturnInstanceOfJobHandle()
+    public function testGetMultipleClickProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -1192,7 +1191,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetArticleImpressionProfilesCanReturnInstanceOfJobHandle()
+    public function testGetArticleImpressionProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $article_id = 354;
@@ -1230,7 +1229,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetUnsubscriptionProfilesCanReturnInstanceOfJobHandle()
+    public function testGetUnsubscriptionProfilesCanReturnInstanceOfJobHandle(): void
     {
         $id = 123;
         $attributeTitles = [
@@ -1266,7 +1265,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testSendToProfiles()
+    public function testSendToProfiles(): void
     {
         $id = 1234;
         $profileIds = [
@@ -1298,7 +1297,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetDetailsByIdCanReturnIsntanceOfMailingDetail()
+    public function testGetDetailsByIdCanReturnIsntanceOfMailingDetail(): void
     {
         $id = 1234;
 
@@ -1329,7 +1328,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetJobInformationCanReturnInstanceOfJobHandle()
+    public function testGetJobInformationCanReturnInstanceOfJobHandle(): void
     {
         $id = '123';
 
@@ -1360,7 +1359,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetResultCursor()
+    public function testGetResultCursor(): void
     {
         $id = '234';
 
@@ -1386,7 +1385,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testUpdateTitleCanReturnInstanceOfResourceInformationInterface()
+    public function testUpdateTitleCanReturnInstanceOfResourceInformationInterface(): void
     {
         $id = 123;
         $title = 'some title';
@@ -1419,7 +1418,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetClicksCanReturnInstanceOfMailingClick()
+    public function testGetClicksCanReturnInstanceOfMailingClick(): void
     {
         $id = 123;
         $timestampStart = 123123123;
@@ -1458,7 +1457,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetTypeIdsCanReturnArrayOfResourceInformation()
+    public function testGetTypeIdsCanReturnArrayOfResourceInformation(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(ResourceTypeInformationInterface::class);
@@ -1485,7 +1484,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetByFolderIdCanReturnArrayOfResourceInformation()
+    public function testGetByFolderIdCanReturnArrayOfResourceInformation(): void
     {
         $id = 456;
 
@@ -1519,7 +1518,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetByIdCanReturnInstanceOfResourceInformation()
+    public function testGetByIdCanReturnInstanceOfResourceInformation(): void
     {
         $id = 123;
 
@@ -1550,7 +1549,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetDefaultFolderByMandatorIdCanReturnInstanceOfFolderInformation()
+    public function testGetDefaultFolderByMandatorIdCanReturnInstanceOfFolderInformation(): void
     {
         $id = 456;
 
@@ -1581,7 +1580,7 @@ class MailingClientTest extends TestCase
         );
     }
 
-    public function testGetByExternalIdCanReturnInstanceOfResourceInformation()
+    public function testGetByExternalIdCanReturnInstanceOfResourceInformation(): void
     {
         $id = 'some id';
 

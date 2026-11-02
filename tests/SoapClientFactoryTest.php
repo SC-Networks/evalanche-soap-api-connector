@@ -15,17 +15,14 @@ use SoapFault;
  */
 class SoapClientFactoryTest extends TestCase
 {
-    /**
-     * @var SoapClientFactory
-     */
-    private $subject;
+    private SoapClientFactory $subject;
 
     public function setUp(): void
     {
         $this->subject = new SoapClientFactory();
     }
 
-    public function testCreateCanReturnThrowException()
+    public function testCreateCanReturnThrowException(): void
     {
         $portname = 'evalanche.wsdl';
 
@@ -36,7 +33,7 @@ class SoapClientFactoryTest extends TestCase
         $this->subject->create($config, $portname);
     }
 
-    public function testCreateCanReturnReturnInstanceOfSoap()
+    public function testCreateCanReturnReturnInstanceOfSoap(): void
     {
         $portname = 'evalanche.wsdl';
         $config = $this->createMock(EvalancheConfigInterface::class);
@@ -51,7 +48,7 @@ class SoapClientFactoryTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnReturnInstanceOfSoapWithDebugSettings()
+    public function testCreateCanReturnReturnInstanceOfSoapWithDebugSettings(): void
     {
         $portname = 'evalanche.wsdl';
         $config = $this->createMock(EvalancheConfigInterface::class);

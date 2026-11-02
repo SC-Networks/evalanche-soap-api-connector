@@ -16,7 +16,7 @@ use stdClass;
  */
 trait CommonResourceMethodsTestTrait
 {
-    public function testUpdateTitleCanReturnInstanceOfResourceInformationInterface()
+    public function testUpdateTitleCanReturnInstanceOfResourceInformationInterface(): void
     {
         $id = 123;
         $title = 'some title';
@@ -49,7 +49,7 @@ trait CommonResourceMethodsTestTrait
         );
     }
 
-    public function testMoveCanReturnInstanceOfResourceInformation()
+    public function testMoveCanReturnInstanceOfResourceInformation(): void
     {
         $id = 456;
         $folderId = 34;
@@ -82,7 +82,7 @@ trait CommonResourceMethodsTestTrait
         );
     }
 
-    public function testDeleteCanReturnBoolean()
+    public function testDeleteCanReturnBoolean(): void
     {
         $id = 56;
 
@@ -105,7 +105,7 @@ trait CommonResourceMethodsTestTrait
         $this->assertTrue($this->subject->delete($id));
     }
 
-    public function testCopyCanReturnInstanceOfResourceInformation()
+    public function testCopyCanReturnInstanceOfResourceInformation(): void
     {
         $id = 456;
         $folderId = 123;

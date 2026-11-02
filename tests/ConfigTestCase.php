@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class ConfigTestCase extends TestCase
 {
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         $subject = $this->getSubject();
         
@@ -17,7 +17,7 @@ abstract class ConfigTestCase extends TestCase
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         $subject = $this->getSubject();
         

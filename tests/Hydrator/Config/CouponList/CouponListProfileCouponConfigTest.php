@@ -7,10 +7,9 @@ use Scn\EvalancheSoapStruct\Struct\CouponList\ProfileCouponInterface;
 
 class CouponListProfileCouponConfigTest extends TestCase
 {
-    /** @var CouponListProfileCouponConfig|null */
-    private $subject;
+    private CouponListProfileCouponConfig $subject;
 
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'code',
         'profile_id',

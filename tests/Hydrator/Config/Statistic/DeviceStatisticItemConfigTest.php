@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\DeviceStatisticItemInterface;
  */
 class DeviceStatisticItemConfigTest extends TestCase
 {
-    /**
-     * @var DeviceStatisticItemConfig
-     */
-    private $subject;
+    private DeviceStatisticItemConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'description',
         'count',
     ];
@@ -32,7 +26,7 @@ class DeviceStatisticItemConfigTest extends TestCase
         $this->subject = new DeviceStatisticItemConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             DeviceStatisticItemInterface::class,
@@ -40,14 +34,14 @@ class DeviceStatisticItemConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

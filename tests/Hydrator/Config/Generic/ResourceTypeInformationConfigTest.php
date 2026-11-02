@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceTypeInformationInterface;
  */
 class ResourceTypeInformationConfigTest extends TestCase
 {
-    /**
-     * @var ResourceTypeInformationConfig
-     */
-    private $subject;
+    private ResourceTypeInformationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'description',
     ];
@@ -32,7 +26,7 @@ class ResourceTypeInformationConfigTest extends TestCase
         $this->subject = new ResourceTypeInformationConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ResourceTypeInformationInterface::class,
@@ -40,14 +34,14 @@ class ResourceTypeInformationConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

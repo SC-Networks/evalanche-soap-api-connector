@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\MediaStatisticItemInterface;
  */
 class MediaStatisticItemConfigTest extends TestCase
 {
-    /**
-     * @var MediaStatisticItemConfig
-     */
-    private $subject;
+    private MediaStatisticItemConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'clicks',
         'unique_clicks',
@@ -33,7 +27,7 @@ class MediaStatisticItemConfigTest extends TestCase
         $this->subject = new MediaStatisticItemConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             MediaStatisticItemInterface::class,
@@ -41,14 +35,14 @@ class MediaStatisticItemConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

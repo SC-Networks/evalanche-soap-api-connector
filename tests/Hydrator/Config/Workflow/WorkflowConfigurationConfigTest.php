@@ -9,15 +9,9 @@ use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowConfiguration;
 
 class WorkflowConfigurationConfigTest extends TestCase
 {
-    /**
-     * @var WorkflowConfigurationConfig
-     */
-    private $subject;
+    private WorkflowConfigurationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'config_version',
         'configuration',
     ];

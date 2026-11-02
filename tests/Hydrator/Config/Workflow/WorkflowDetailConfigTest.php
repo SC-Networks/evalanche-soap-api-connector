@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowDetailInterface;
  */
 class WorkflowDetailConfigTest extends TestCase
 {
-    /**
-     * @var WorkflowDetailConfig
-     */
-    private $subject;
+    private WorkflowDetailConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'date_start',
@@ -39,7 +33,7 @@ class WorkflowDetailConfigTest extends TestCase
         $this->subject = new WorkflowDetailConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfWorkflowDetail()
+    public function testGetObjectCanReturnInstanceOfWorkflowDetail(): void
     {
         self::assertInstanceOf(
             WorkflowDetailInterface::class,
@@ -47,14 +41,14 @@ class WorkflowDetailConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

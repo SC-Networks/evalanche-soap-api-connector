@@ -71,10 +71,18 @@ use Scn\Hydrator\Hydrator;
 
 final readonly class EvalancheConnection implements EvalancheConnectionInterface
 {
-    public function __construct(private EvalancheConfigInterface $config, private SoapClientFactoryInterface $soapClientFactory, private ResponseMapperInterface $responseMapper, private HydratorConfigFactoryInterface $hydratorConfigFactory, private ExtractorInterface $extractor)
-    {
+    public function __construct(
+        private EvalancheConfigInterface $config,
+        private SoapClientFactoryInterface $soapClientFactory,
+        private ResponseMapperInterface $responseMapper,
+        private HydratorConfigFactoryInterface $hydratorConfigFactory,
+        private ExtractorInterface $extractor
+    ) {
     }
 
+    /**
+     * Create a new connector-instance
+     */
     public static function create(
         string $hostname,
         string $username,
@@ -101,12 +109,21 @@ final readonly class EvalancheConnection implements EvalancheConnectionInterface
         );
     }
 
+    /**
+     * @template TClientType of ClientInterface
+     *
+     * @param class-string<TClientType> $clientClass
+     *
+     * @return TClientType
+     */
     private function createClient(string $clientClass): ClientInterface
     {
-        /* @var $clientClass Client\ClientInterface */
-        $soapClient = $this->soapClientFactory->create($this->config, $clientClass::getWsdlUri());
-
-        return new $clientClass($soapClient, $this->responseMapper, $this->hydratorConfigFactory, $this->extractor);
+        return new $clientClass(
+            $this->soapClientFactory->create($this->config, $clientClass::getWsdlUri()),
+            $this->responseMapper,
+            $this->hydratorConfigFactory,
+            $this->extractor
+        );
     }
 
     public function createAccountClient(): AccountClientInterface

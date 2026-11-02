@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\User;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
 use Scn\EvalancheSoapApiConnector\Extractor\ExtractorInterface;
@@ -19,32 +20,30 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\User
  */
+#[AllowMockObjectsWithoutExpectations]
 class UserClientTest extends TestCase
 {
-    /**
-     * @var UserClient
-     */
-    private $subject;
+    private UserClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var MockObject&ExtractorInterface
      */
-    private $extractor;
+    private MockObject $extractor;
 
     public function setUp(): void
     {
@@ -61,7 +60,7 @@ class UserClientTest extends TestCase
         );
     }
 
-    public function testGetByUsernameCanReturnInstanceOfUserInterface()
+    public function testGetByUsernameCanReturnInstanceOfUserInterface(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(UserInterface::class);
@@ -90,7 +89,7 @@ class UserClientTest extends TestCase
         );
     }
 
-    public function testGetListByMandatorIdCanReturnArrayOfUserInterface()
+    public function testGetListByMandatorIdCanReturnArrayOfUserInterface(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(UserInterface::class);
@@ -124,7 +123,7 @@ class UserClientTest extends TestCase
         );
     }
 
-    public function testUpdateUserCanReturnInstanceOfUserInterface()
+    public function testUpdateUserCanReturnInstanceOfUserInterface(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(UserInterface::class);

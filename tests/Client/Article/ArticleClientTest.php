@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Article;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -23,33 +24,31 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Article
  */
+#[AllowMockObjectsWithoutExpectations]
 class ArticleClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var ArticleClient
-     */
-    private $subject;
+    private ArticleClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var MockObject&ExtractorInterface
      */
-    private $extractor;
+    private MockObject $extractor;
 
     public function setUp(): void
     {
@@ -66,7 +65,7 @@ class ArticleClientTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnInstanceOfResourceInformation()
+    public function testCreateCanReturnInstanceOfResourceInformation(): void
     {
         $id = 456;
         $title = 'some title';
@@ -115,7 +114,7 @@ class ArticleClientTest extends TestCase
         );
     }
 
-    public function testGetDetailByIdCanReturnInstanceOfHashMap()
+    public function testGetDetailByIdCanReturnInstanceOfHashMap(): void
     {
         $id = 123;
 
@@ -146,7 +145,7 @@ class ArticleClientTest extends TestCase
         );
     }
 
-    public function testUpdateCanReturnInstanceOfResourceInformation()
+    public function testUpdateCanReturnInstanceOfResourceInformation(): void
     {
         $id = 12;
         $hashMap = $this->createStub(HashMapInterface::class);
@@ -191,7 +190,7 @@ class ArticleClientTest extends TestCase
         );
     }
 
-    public function testGetDetailsByIdCanReturnInstanceOfContainerDetail()
+    public function testGetDetailsByIdCanReturnInstanceOfContainerDetail(): void
     {
         $id = 123;
 
@@ -223,7 +222,7 @@ class ArticleClientTest extends TestCase
         );
     }
 
-    public function testGetByArticleTypeIdCanReturnInstancesOfResourceInformation()
+    public function testGetByArticleTypeIdCanReturnInstancesOfResourceInformation(): void
     {
         $articleTypeId = 123;
 

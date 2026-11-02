@@ -13,17 +13,17 @@ final class ArrayValue implements PropertyInterface
 {
     public static function get(string $propertyName): Closure
     {
-        return (new static())->createGetter($propertyName);
+        return new static()->createGetter($propertyName);
     }
 
     private function createGetter(string $propertyName): Closure
     {
-        return fn (): ?array => $this->$propertyName;
+        return fn (): null|array => $this->$propertyName;
     }
 
     public static function set(string $propertyName): Closure
     {
-        return (new static())->createSetter($propertyName);
+        return new static()->createSetter($propertyName);
     }
 
     private function createSetter(string $propertyName): Closure

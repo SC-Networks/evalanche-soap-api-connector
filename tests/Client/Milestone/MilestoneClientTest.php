@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Milestone;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -21,28 +22,26 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Milestone
  */
+#[AllowMockObjectsWithoutExpectations]
 class MilestoneClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var MilestoneClient
-     */
-    private $subject;
+    private MilestoneClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -64,7 +63,7 @@ class MilestoneClientTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnInstanceOfResourceInformation()
+    public function testCreateCanReturnInstanceOfResourceInformation(): void
     {
         $title = 'some title';
         $folderId = 123;

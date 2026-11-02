@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Container\ContainerAttributeRoleTypeInterface
  */
 class ContainerAttributeRoleTypeConfigTest extends TestCase
 {
-    /**
-     * @var ContainerAttributeRoleTypeConfig
-     */
-    private $subject;
+    private ContainerAttributeRoleTypeConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
     ];
@@ -32,7 +26,7 @@ class ContainerAttributeRoleTypeConfigTest extends TestCase
         $this->subject = new ContainerAttributeRoleTypeConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ContainerAttributeRoleTypeInterface::class,
@@ -40,14 +34,14 @@ class ContainerAttributeRoleTypeConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

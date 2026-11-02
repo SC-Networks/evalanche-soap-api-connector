@@ -9,15 +9,9 @@ use Scn\EvalancheSoapStruct\Struct\Article\ArticleIndividualizationInterface;
 
 class ArticleIndividualizationConfigTest extends TestCase
 {
-    /**
-     * @var ArticleIndividualizationConfig
-     */
-    private $subject;
+    private ArticleIndividualizationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'has_fallback',
         'individualization_items',
     ];
@@ -35,14 +29,14 @@ class ArticleIndividualizationConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

@@ -4,33 +4,34 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eaa7183edb15ccfbb22bb28d4d000ea1",
+    "content-hash": "df0807d8223a88a5e419017de36f82e8",
     "packages": [
         {
             "name": "scn/evalanche-soap-api-struct",
-            "version": "2.8.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SC-Networks/evalanche-soap-api-struct.git",
-                "reference": "3a815113b1508a2a8c7a8ccf483df9f6810d9a75"
+                "reference": "aaa348d4ee7abff6c41cd53955aad34574c73f4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SC-Networks/evalanche-soap-api-struct/zipball/3a815113b1508a2a8c7a8ccf483df9f6810d9a75",
-                "reference": "3a815113b1508a2a8c7a8ccf483df9f6810d9a75",
+                "url": "https://api.github.com/repos/SC-Networks/evalanche-soap-api-struct/zipball/aaa348d4ee7abff6c41cd53955aad34574c73f4c",
+                "reference": "aaa348d4ee7abff6c41cd53955aad34574c73f4c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2"
+                "php": "^8.3||^8.4||^8.5||^8.6"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.53",
-                "php": ">=8.2",
-                "phpstan/phpstan": "^1.10",
-                "phpstan/phpstan-strict-rules": "^1.5",
-                "phpunit/phpunit": "^11.1",
-                "rector/rector": "^1.0"
+                "php": "^8.3||^8.4||^8.5||^8.6",
+                "phpstan/phpstan": "^2.2",
+                "phpstan/phpstan-strict-rules": "^2",
+                "phpunit/phpunit": "^12",
+                "rector/rector": "^2"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -61,9 +62,9 @@
             ],
             "support": {
                 "issues": "https://github.com/SC-Networks/evalanche-soap-api-struct/issues",
-                "source": "https://github.com/SC-Networks/evalanche-soap-api-struct/tree/2.8.1"
+                "source": "https://github.com/SC-Networks/evalanche-soap-api-struct/tree/master"
             },
-            "time": "2026-07-21T10:00:37+00:00"
+            "time": "2026-11-02T10:32:38+00:00"
         },
         {
             "name": "scn/hydrator",
@@ -300,16 +301,16 @@
         },
         {
             "name": "composer/semver",
-            "version": "3.5.2",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "9dfce66f1e97360ea5e6d3e38ab14277e4cc591e"
+                "reference": "d92543b7ede9c4ec6b59853cefb061e39866d2cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/9dfce66f1e97360ea5e6d3e38ab14277e4cc591e",
-                "reference": "9dfce66f1e97360ea5e6d3e38ab14277e4cc591e",
+                "url": "https://api.github.com/repos/composer/semver/zipball/d92543b7ede9c4ec6b59853cefb061e39866d2cf",
+                "reference": "d92543b7ede9c4ec6b59853cefb061e39866d2cf",
                 "shasum": ""
             },
             "require": {
@@ -361,7 +362,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/semver/issues",
-                "source": "https://github.com/composer/semver/tree/3.5.2"
+                "source": "https://github.com/composer/semver/tree/3.6.0"
             },
             "funding": [
                 {
@@ -373,7 +374,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-22T15:37:26+00:00"
+            "time": "2026-10-29T09:13:34+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -1024,16 +1025,16 @@
         },
         {
             "name": "phpstan/phpstan-strict-rules",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-strict-rules.git",
-                "reference": "24ec51589f896f048d0d36de373d993b5cf71786"
+                "reference": "fe4a0afae773eedf178fab17ed9361c0061d2804"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/24ec51589f896f048d0d36de373d993b5cf71786",
-                "reference": "24ec51589f896f048d0d36de373d993b5cf71786",
+                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/fe4a0afae773eedf178fab17ed9361c0061d2804",
+                "reference": "fe4a0afae773eedf178fab17ed9361c0061d2804",
                 "shasum": ""
             },
             "require": {
@@ -1070,9 +1071,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-strict-rules/issues",
-                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/2.1.0"
+                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/2.1.1"
             },
-            "time": "2026-10-01T21:30:37+00:00"
+            "time": "2026-11-02T08:16:15+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1433,16 +1434,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.5.42",
+            "version": "12.5.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1d6dbe748c079e5d2b03bca1be69d0f4cc52a578"
+                "reference": "1d5a4a3c98fa1ca3a51402c74b66c2c8df85e0bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1d6dbe748c079e5d2b03bca1be69d0f4cc52a578",
-                "reference": "1d6dbe748c079e5d2b03bca1be69d0f4cc52a578",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1d5a4a3c98fa1ca3a51402c74b66c2c8df85e0bb",
+                "reference": "1d5a4a3c98fa1ca3a51402c74b66c2c8df85e0bb",
                 "shasum": ""
             },
             "require": {
@@ -1511,7 +1512,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.42"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.43"
             },
             "funding": [
                 {
@@ -1519,7 +1520,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-10-27T04:15:03+00:00"
+            "time": "2026-11-02T07:10:00+00:00"
         },
         {
             "name": "psr/container",
@@ -4809,11 +4810,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "scn/evalanche-soap-api-struct": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.3||^8.4||^8.5||^8.6",
+        "php": "^8.4||^8.5||^8.6",
         "ext-soap": "*"
     },
     "platform-dev": {},

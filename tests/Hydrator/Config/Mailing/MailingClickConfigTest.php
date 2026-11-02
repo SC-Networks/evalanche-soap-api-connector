@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingClickInterface;
  */
 class MailingClickConfigTest extends TestCase
 {
-    /**
-     * @var MailingClickConfig
-     */
-    private $subject;
+    private MailingClickConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'profile_id',
         'timestamp',
@@ -36,7 +30,7 @@ class MailingClickConfigTest extends TestCase
         $this->subject = new MailingClickConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             MailingClickInterface::class,
@@ -44,14 +38,14 @@ class MailingClickConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

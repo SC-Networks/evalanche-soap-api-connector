@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Smartlink;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -21,33 +22,31 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Smartlink
  */
+#[AllowMockObjectsWithoutExpectations]
 class SmartLinkClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var SmartLinkClient
-     */
-    private $subject;
+    private SmartLinkClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var MockObject&ExtractorInterface
      */
-    private $extractor;
+    private MockObject $extractor;
 
     public function setUp(): void
     {
@@ -64,7 +63,7 @@ class SmartLinkClientTest extends TestCase
         );
     }
 
-    public function testCreateLinkCanReturnString()
+    public function testCreateLinkCanReturnString(): void
     {
         $id = 45;
         $title = 'some title';
@@ -93,7 +92,7 @@ class SmartLinkClientTest extends TestCase
         self::assertSame($result_string, $this->subject->createLink($id, $title, $url));
     }
 
-    public function testGetTrackingUrlsCanReturnArrayOfSmartLink()
+    public function testGetTrackingUrlsCanReturnArrayOfSmartLink(): void
     {
         $id = 123;
 
@@ -128,7 +127,7 @@ class SmartLinkClientTest extends TestCase
         );
     }
 
-    public function testGetLinkConfigurations()
+    public function testGetLinkConfigurations(): void
     {
         $link_id = 123;
 
@@ -170,7 +169,7 @@ class SmartLinkClientTest extends TestCase
         );
     }
 
-    public function testSetLinkConfigurations()
+    public function testSetLinkConfigurations(): void
     {
         $link_id = 1234;
         $configurations = [
@@ -229,7 +228,7 @@ class SmartLinkClientTest extends TestCase
         );
     }
 
-    public function testCreateLinkConfigurations()
+    public function testCreateLinkConfigurations(): void
     {
         $link_id = 1234;
         $configurations = [

@@ -12,8 +12,9 @@ use Scn\Hydrator\HydratorInterface;
  */
 final readonly class Extractor implements ExtractorInterface
 {
-    public function __construct(private HydratorInterface $hydrator)
-    {
+    public function __construct(
+        private HydratorInterface $hydrator
+    ) {
     }
 
     /**
@@ -37,6 +38,6 @@ final readonly class Extractor implements ExtractorInterface
 
     private function filterArray(array $array): array
     {
-        return array_filter($array, fn ($value) => $value !== null && $value !== false);
+        return array_filter($array, fn ($value): bool => $value !== null && $value !== false);
     }
 }

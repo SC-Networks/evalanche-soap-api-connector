@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Mandator\MandatorInterface;
  */
 class MandatorConfigTest extends TestCase
 {
-    /**
-     * @var MandatorConfig
-     */
-    private $subject;
+    private MandatorConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'domain'
@@ -33,7 +27,7 @@ class MandatorConfigTest extends TestCase
         $this->subject = new MandatorConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             MandatorInterface::class,
@@ -41,14 +35,14 @@ class MandatorConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

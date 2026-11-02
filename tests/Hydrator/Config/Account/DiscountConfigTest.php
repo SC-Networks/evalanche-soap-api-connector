@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Account\DiscountInterface;
  */
 class DiscountConfigTest extends TestCase
 {
-    /**
-     * @var DiscountConfig
-     */
-    private $subject;
+    private DiscountConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'Description',
         'Percent',
         'Price'
@@ -33,7 +27,7 @@ class DiscountConfigTest extends TestCase
         $this->subject = new DiscountConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             DiscountInterface::class,
@@ -41,14 +35,14 @@ class DiscountConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

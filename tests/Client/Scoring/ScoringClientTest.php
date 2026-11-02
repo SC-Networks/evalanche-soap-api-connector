@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Scoring;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -20,27 +21,30 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Scoring
  */
+#[AllowMockObjectsWithoutExpectations]
 class ScoringClientTest extends TestCase
 {
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
      */
     private Stub $extractor;
+
+    private ScoringClient $subject;
 
     public function setUp(): void
     {
@@ -57,7 +61,7 @@ class ScoringClientTest extends TestCase
         );
     }
 
-    public function testGetListByMandatorIdCanReturnArrayOfScoringInstance()
+    public function testGetListByMandatorIdCanReturnArrayOfScoringInstance(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->getMockBuilder(ScoringGroupDetailInterface::class);

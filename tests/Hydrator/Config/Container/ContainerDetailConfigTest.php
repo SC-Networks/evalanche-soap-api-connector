@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Container\ContainerDetailInterface;
  */
 class ContainerDetailConfigTest extends TestCase
 {
-    /**
-     * @var ContainerDetailConfig
-     */
-    private $subject;
+    private ContainerDetailConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'url',
@@ -37,7 +31,7 @@ class ContainerDetailConfigTest extends TestCase
         $this->subject = new ContainerDetailConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ContainerDetailInterface::class,
@@ -45,14 +39,14 @@ class ContainerDetailConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

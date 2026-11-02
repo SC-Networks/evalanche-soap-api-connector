@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Account;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -19,27 +20,25 @@ use Scn\EvalancheSoapStruct\Struct\Account\AccountInterface;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Account
  */
+#[AllowMockObjectsWithoutExpectations]
 class AccountClientTest extends TestCase
 {
-    /**
-     * @var AccountClient
-     */
-    private $subject;
+    private AccountClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -61,7 +60,7 @@ class AccountClientTest extends TestCase
         );
     }
 
-    public function testGetAccountByMandatorIdCanReturnInstanceAccountInterface()
+    public function testGetAccountByMandatorIdCanReturnInstanceAccountInterface(): void
     {
         $mandatorId = 523;
 
@@ -90,7 +89,7 @@ class AccountClientTest extends TestCase
         );
     }
 
-    public function testGetWsdlUriCanReturnString()
+    public function testGetWsdlUriCanReturnString(): void
     {
         self::assertSame('api/soap/v1/accounting/wsdl', $this->subject->getWsdlUri());
     }

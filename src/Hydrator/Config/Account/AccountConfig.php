@@ -4,6 +4,7 @@ namespace Scn\EvalancheSoapApiConnector\Hydrator\Config\Account;
 
 use Scn\EvalancheSoapApiConnector\Hydrator\Property\ArrayOfObjectValue;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
+use Scn\EvalancheSoapApiConnector\Hydrator\Property\ObjectValue;
 use Scn\EvalancheSoapStruct\Struct\Account\Account;
 use Scn\EvalancheSoapStruct\Struct\StructInterface;
 
@@ -22,16 +23,16 @@ class AccountConfig implements HydratorConfigInterface
     public function getHydratorProperties(): array
     {
         return [
+            'Discount' => ObjectValue::set('discount', new DiscountConfig()),
             'AccountingTypes' => ArrayOfObjectValue::set('accountingTypes', new AccountingTypeConfig()),
-            'Discount' => ArrayOfObjectValue::set('discount', new DiscountConfig()),
         ];
     }
 
     public function getExtractorProperties(): array
     {
         return [
+            'Discount' => ObjectValue::get('discount'),
             'AccountingTypes' => ArrayOfObjectValue::get('accountingTypes'),
-            'Discount' => ArrayOfObjectValue::get('discount'),
         ];
     }
 }

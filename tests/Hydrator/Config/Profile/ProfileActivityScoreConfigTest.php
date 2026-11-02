@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Profile\ProfileActivityScoreInterface;
  */
 class ProfileActivityScoreConfigTest extends TestCase
 {
-    /**
-     * @var ProfileActivityScoreConfig
-     */
-    private $subject;
+    private ProfileActivityScoreConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'scoring_group_id',
         'scoring_type_id',
@@ -36,7 +30,7 @@ class ProfileActivityScoreConfigTest extends TestCase
         $this->subject = new ProfileActivityScoreConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ProfileActivityScoreInterface::class,
@@ -44,14 +38,14 @@ class ProfileActivityScoreConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

@@ -9,15 +9,9 @@ use Scn\EvalancheSoapStruct\Struct\Workflow\WorkflowStateChangeResultError;
 
 class WorkflowStateChangeResultErrorConfigTest extends TestCase
 {
-    /**
-     * @var WorkflowStateChangeResultErrorConfig
-     */
-    private $subject;
+    private WorkflowStateChangeResultErrorConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'type',
         'node',
         'param',

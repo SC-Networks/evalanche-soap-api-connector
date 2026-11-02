@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\SmartLink\SmartLinkPoolConfigurationInterface
  */
 class SmartLinkPoolConfigurationConfigTest extends TestCase
 {
-    /**
-     * @var SmartLinkPoolConfigurationConfig
-     */
-    private $subject;
+    private SmartLinkPoolConfigurationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'pool_id',
         'pool_attribute_id',
@@ -35,7 +29,7 @@ class SmartLinkPoolConfigurationConfigTest extends TestCase
         $this->subject = new SmartLinkPoolConfigurationConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             SmartLinkPoolConfigurationInterface::class,
@@ -43,14 +37,14 @@ class SmartLinkPoolConfigurationConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

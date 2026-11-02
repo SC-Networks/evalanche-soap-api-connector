@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Mandator;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -15,27 +16,25 @@ use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Mandator\MandatorInterface;
 use stdClass;
 
+#[AllowMockObjectsWithoutExpectations]
 class MandatorClientTest extends TestCase
 {
-    /**
-     * @var MandatorClient
-     */
-    private $subject;
+    private MandatorClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -57,7 +56,7 @@ class MandatorClientTest extends TestCase
         );
     }
 
-    public function testGetByIdCanReturnMandatorInterface()
+    public function testGetByIdCanReturnMandatorInterface(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(MandatorInterface::class);
@@ -89,7 +88,7 @@ class MandatorClientTest extends TestCase
         );
     }
 
-    public function testGetListCanReturnArrayOfMandatorInterface()
+    public function testGetListCanReturnArrayOfMandatorInterface(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(MandatorInterface::class);

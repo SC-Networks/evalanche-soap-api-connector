@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Blacklist\BlackListItemInterface;
  */
 class BlackListItemConfigTest extends TestCase
 {
-    /**
-     * @var BlackListItemConfig
-     */
-    private $subject;
+    private BlackListItemConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'Email',
         'Description',
     ];
@@ -32,7 +26,7 @@ class BlackListItemConfigTest extends TestCase
         $this->subject = new BlackListItemConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             BlackListItemInterface::class,
@@ -40,14 +34,14 @@ class BlackListItemConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

@@ -2,6 +2,7 @@
 
 namespace Scn\EvalancheSoapApiConnector\Hydrator\Property;
 
+use stdClass;
 use Closure;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
 use Scn\Hydrator\Hydrator;
@@ -13,21 +14,21 @@ use Scn\Hydrator\Hydrator;
  */
 final class ArrayOfObjectValue implements PropertyObjectInterface
 {
-    public static function get(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
+    public static function get(string $propertyName, null|HydratorConfigInterface $hydratorConfig = null): Closure
     {
-        return (new static())->createGetter($propertyName, $hydratorConfig);
+        return new static()->createGetter($propertyName, $hydratorConfig);
     }
 
-    private function createGetter(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
+    private function createGetter(string $propertyName, null|HydratorConfigInterface $hydratorConfig = null): Closure
     {
-        return function () use ($propertyName, $hydratorConfig): ?array {
+        return function () use ($propertyName, $hydratorConfig): null|array {
             $items = $this->$propertyName;
 
             if ($hydratorConfig instanceof HydratorConfigInterface) {
                 $hydrator = new Hydrator();
 
                 $items = array_map(
-                    fn ($item) => (object) $hydrator->extract(
+                    fn ($item): stdClass => (object) $hydrator->extract(
                         $hydratorConfig,
                         $item
                     ),
@@ -39,12 +40,12 @@ final class ArrayOfObjectValue implements PropertyObjectInterface
         };
     }
 
-    public static function set(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
+    public static function set(string $propertyName, null|HydratorConfigInterface $hydratorConfig = null): Closure
     {
-        return (new static())->createSetter($propertyName, $hydratorConfig);
+        return new static()->createSetter($propertyName, $hydratorConfig);
     }
 
-    private function createSetter(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure
+    private function createSetter(string $propertyName, null|HydratorConfigInterface $hydratorConfig = null): Closure
     {
         return function ($value) use ($propertyName, $hydratorConfig): void {
             $items = [];
@@ -68,7 +69,7 @@ final class ArrayOfObjectValue implements PropertyObjectInterface
                     $hydrator->hydrate(
                         $hydratorConfig,
                         $object,
-                        (array)$item,
+                        (array) $item,
                         Hydrator::NO_STRICT_KEYS,
                     );
 

@@ -19,8 +19,11 @@ class EvalancheSoapClient extends SoapClient
      *
      * @throws SoapFault
      */
-    public function __construct(string $wsdl, array $options, private bool $debugMode = false)
-    {
+    public function __construct(
+        string $wsdl,
+        array $options,
+        private bool $debugMode = false
+    ) {
         @parent::__construct($wsdl, $options);
     }
 

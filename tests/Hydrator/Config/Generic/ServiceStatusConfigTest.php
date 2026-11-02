@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ServiceStatusInterface;
  */
 class ServiceStatusConfigTest extends TestCase
 {
-    /**
-     * @var ServiceStatusConfig
-     */
-    private $subject;
+    private ServiceStatusConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'status',
         'message',
     ];
@@ -32,7 +26,7 @@ class ServiceStatusConfigTest extends TestCase
         $this->subject = new ServiceStatusConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ServiceStatusInterface::class,
@@ -40,14 +34,14 @@ class ServiceStatusConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

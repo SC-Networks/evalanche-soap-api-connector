@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSubjectInterface;
  */
 class MailingSubjectConfigTest extends TestCase
 {
-    /**
-     * @var MailingSubjectConfig
-     */
-    private $subject;
+    private MailingSubjectConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'targetgroup_id',
         'subjectline',
     ];
@@ -32,7 +26,7 @@ class MailingSubjectConfigTest extends TestCase
         $this->subject = new MailingSubjectConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             MailingSubjectInterface::class,
@@ -40,14 +34,14 @@ class MailingSubjectConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

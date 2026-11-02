@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
  */
 class FormStatisticConfigTest extends TestCase
 {
-    /**
-     * @var FormStatisticConfig
-     */
-    private $subject;
+    private FormStatisticConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'is_alias',
@@ -39,7 +33,7 @@ class FormStatisticConfigTest extends TestCase
         $this->subject = new FormStatisticConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             FormStatisticInterface::class,
@@ -47,14 +41,14 @@ class FormStatisticConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

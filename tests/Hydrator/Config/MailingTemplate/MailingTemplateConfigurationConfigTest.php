@@ -9,15 +9,9 @@ use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateConfigurationI
 
 class MailingTemplateConfigurationConfigTest extends TestCase
 {
-    /**
-     * @var MailingTemplateConfigurationConfig
-     */
-    private $subject;
+    private MailingTemplateConfigurationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'external_trackingcode',
         'campaign_id',
         'externalxml_url',
@@ -70,7 +64,7 @@ class MailingTemplateConfigurationConfigTest extends TestCase
         $this->subject = new MailingTemplateConfigurationConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             MailingTemplateConfigurationInterface::class,
@@ -78,14 +72,14 @@ class MailingTemplateConfigurationConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());
