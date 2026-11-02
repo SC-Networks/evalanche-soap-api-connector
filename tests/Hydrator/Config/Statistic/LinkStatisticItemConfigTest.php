@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\LinkStatisticItem;
  */
 class LinkStatisticItemConfigTest extends TestCase
 {
-    /**
-     * @var LinkStatisticItemConfig
-     */
-    private $subject;
+    private LinkStatisticItemConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'url',
@@ -35,7 +29,7 @@ class LinkStatisticItemConfigTest extends TestCase
         $this->subject = new LinkStatisticItemConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             LinkStatisticItem::class,
@@ -43,14 +37,14 @@ class LinkStatisticItemConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

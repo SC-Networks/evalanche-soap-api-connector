@@ -9,10 +9,9 @@ use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplatesSourcesInterf
 
 class MailingTemplateSourcesConfigTest extends TestCase
 {
-    /** @var MailingTemplateSourcesConfig|null */
-    private $subject;
+    private MailingTemplateSourcesConfig $subject;
 
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'email',
         'text',
         'web',

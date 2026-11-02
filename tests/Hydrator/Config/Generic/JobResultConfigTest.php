@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Generic\JobResultInterface;
  */
 class JobResultConfigTest extends TestCase
 {
-    /**
-     * @var JobResultConfig
-     */
-    private $subject;
+    private JobResultConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'status',
         'status_description',
@@ -40,7 +34,7 @@ class JobResultConfigTest extends TestCase
         $this->subject = new JobResultConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             JobResultInterface::class,
@@ -48,14 +42,14 @@ class JobResultConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

@@ -14,7 +14,7 @@ use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
  */
 interface PropertyObjectInterface
 {
-    public static function get(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure;
+    public static function get(string $propertyName, null|HydratorConfigInterface $hydratorConfig = null): Closure;
 
-    public static function set(string $propertyName, ?HydratorConfigInterface $hydratorConfig = null): Closure;
+    public static function set(string $propertyName, null|HydratorConfigInterface $hydratorConfig = null): Closure;
 }

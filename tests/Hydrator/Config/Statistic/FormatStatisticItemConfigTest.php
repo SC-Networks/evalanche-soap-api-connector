@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\FormatStatisticItemInterface;
  */
 class FormatStatisticItemConfigTest extends TestCase
 {
-    /**
-     * @var FormatStatisticItemConfig
-     */
-    private $subject;
+    private FormatStatisticItemConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'clicks',
         'unique_clicks',
         'clickrate',
@@ -36,7 +30,7 @@ class FormatStatisticItemConfigTest extends TestCase
         $this->subject = new FormatStatisticItemConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             FormatStatisticItemInterface::class,
@@ -44,14 +38,14 @@ class FormatStatisticItemConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

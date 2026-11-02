@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\BrowserStatisticItemInterface;
  */
 class BrowserStatisticItemConfigTest extends TestCase
 {
-    /**
-     * @var BrowserStatisticItemConfig
-     */
-    private $subject;
+    private BrowserStatisticItemConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'description',
         'version',
         'count',
@@ -33,7 +27,7 @@ class BrowserStatisticItemConfigTest extends TestCase
         $this->subject = new BrowserStatisticItemConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             BrowserStatisticItemInterface::class,
@@ -41,14 +35,14 @@ class BrowserStatisticItemConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

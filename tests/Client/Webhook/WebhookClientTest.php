@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Webhook;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -17,17 +18,15 @@ use PHPUnit\Framework\TestCase;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Webhook
  */
+#[AllowMockObjectsWithoutExpectations]
 class WebhookClientTest extends TestCase
 {
-    /**
-     * @var WebhookClient
-     */
-    private $subject;
+    private WebhookClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
      * @var Stub&ResponseMapperInterface
@@ -59,7 +58,7 @@ class WebhookClientTest extends TestCase
         );
     }
 
-    public function testTriggerCanTrigger()
+    public function testTriggerCanTrigger(): void
     {
         $hookId = 234;
         $profileId = 423;

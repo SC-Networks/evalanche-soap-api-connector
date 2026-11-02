@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Pool;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -20,27 +21,25 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Pool
  */
+#[AllowMockObjectsWithoutExpectations]
 class PoolClientTest extends TestCase
 {
-    /**
-     * @var PoolClient
-     */
-    private $subject;
+    private PoolClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -62,7 +61,7 @@ class PoolClientTest extends TestCase
         );
     }
 
-    public function testAddAttributeCanReturnInstanceOfPoolAttribute()
+    public function testAddAttributeCanReturnInstanceOfPoolAttribute(): void
     {
         $id = 213;
         $title = 'some title';
@@ -99,7 +98,7 @@ class PoolClientTest extends TestCase
         );
     }
 
-    public function testAddAttributeOptionsCanReturnInstanceOfPoolAttribute()
+    public function testAddAttributeOptionsCanReturnInstanceOfPoolAttribute(): void
     {
         $id = 213;
         $attributeId = 777;
@@ -137,7 +136,7 @@ class PoolClientTest extends TestCase
         );
     }
 
-    public function testDeleteAttributeCanReturnBool()
+    public function testDeleteAttributeCanReturnBool(): void
     {
         $id = 345;
         $attributeId = 456;
@@ -163,7 +162,7 @@ class PoolClientTest extends TestCase
         $this->assertIsBool($this->subject->deleteAttribute($id, $attributeId));
     }
 
-    public function testDeleteAttributeOptionCanReturnInstanceOfPoolAttribute()
+    public function testDeleteAttributeOptionCanReturnInstanceOfPoolAttribute(): void
     {
         $id = 213;
         $attributeId = 95654;
@@ -198,7 +197,7 @@ class PoolClientTest extends TestCase
         );
     }
 
-    public function testGetAttributesByPoolCanReturnArrayOfPoolAttribute()
+    public function testGetAttributesByPoolCanReturnArrayOfPoolAttribute(): void
     {
         $id = 654;
 
@@ -233,7 +232,7 @@ class PoolClientTest extends TestCase
         );
     }
 
-    public function testUpdateAttributeOptionCanReturnInstanceOfPoolAttribute()
+    public function testUpdateAttributeOptionCanReturnInstanceOfPoolAttribute(): void
     {
         $id = 5234;
         $attributeId = 123;

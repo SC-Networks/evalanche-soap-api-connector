@@ -59,7 +59,7 @@ interface MailingClientInterface extends
         string $title,
         int $templateId,
         int $folderId,
-        ?int $typeId = null
+        null|int $typeId = null
     ): ResourceInformationInterface;
 
     /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\LeadPage;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -20,13 +21,17 @@ use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageArticleInterface;
 use Scn\EvalancheSoapStruct\Struct\LeadPage\LeadpageConfigurationInterface;
 use \stdClass;
 
+#[AllowMockObjectsWithoutExpectations]
 class LeadpageClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
 
     private LeadpageClientInterface $subject;
 
-    private EvalancheSoapClient|MockObject $soapClient;
+    /**
+     * @var MockObject&EvalancheSoapClient
+     */
+    private MockObject $soapClient;
 
     private ResponseMapperInterface&MockObject $responseMapper;
 
@@ -49,7 +54,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testSetConfigurationCanReturnInstanceOfLeadpageConfiguration()
+    public function testSetConfigurationCanReturnInstanceOfLeadpageConfiguration(): void
     {
         $id = 123;
         $configuration = $this->createStub(LeadpageConfigurationInterface::class);
@@ -87,7 +92,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testGetByTypeIdCanReturnArrayOfResourceInformation()
+    public function testGetByTypeIdCanReturnArrayOfResourceInformation(): void
     {
         $id = 456;
         $mandatorId = 76;
@@ -122,7 +127,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testGetConfigurationCanReturnInstanceOfLeadpageConfiguration()
+    public function testGetConfigurationCanReturnInstanceOfLeadpageConfiguration(): void
     {
         $id = 1234;
 
@@ -153,7 +158,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testGetDetailsByIdCanReturnIsntanceOfResourceInformation()
+    public function testGetDetailsByIdCanReturnIsntanceOfResourceInformation(): void
     {
         $id = 1234;
 
@@ -184,7 +189,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testUpdateTitleCanReturnInstanceOfResourceInformationInterface()
+    public function testUpdateTitleCanReturnInstanceOfResourceInformationInterface(): void
     {
         $id = 123;
         $title = 'some title';
@@ -217,7 +222,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testGetTypeIdsCanReturnArrayOfResourceInformation()
+    public function testGetTypeIdsCanReturnArrayOfResourceInformation(): void
     {
         $config = $this->createStub(HydratorConfigInterface::class);
         $object = $this->createStub(ResourceTypeInformationInterface::class);
@@ -244,7 +249,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testGetByFolderIdCanReturnArrayOfResourceInformation()
+    public function testGetByFolderIdCanReturnArrayOfResourceInformation(): void
     {
         $id = 456;
 
@@ -278,7 +283,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testGetByIdCanReturnInstanceOfResourceInformation()
+    public function testGetByIdCanReturnInstanceOfResourceInformation(): void
     {
         $id = 123;
 
@@ -309,7 +314,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testGetDefaultFolderByMandatorIdCanReturnInstanceOfFolderInformation()
+    public function testGetDefaultFolderByMandatorIdCanReturnInstanceOfFolderInformation(): void
     {
         $id = 456;
 
@@ -340,7 +345,7 @@ class LeadpageClientTest extends TestCase
         );
     }
 
-    public function testGetByExternalIdCanReturnInstanceOfResourceInformation()
+    public function testGetByExternalIdCanReturnInstanceOfResourceInformation(): void
     {
         $id = 'some id';
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Article;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -24,28 +25,26 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Article
  */
+#[AllowMockObjectsWithoutExpectations]
 class ArticleTypeClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var ArticleTypeClient
-     */
-    private $subject;
+    private ArticleTypeClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -67,7 +66,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testAddAttributeCanReturnInstanceOfContainerAttribute()
+    public function testAddAttributeCanReturnInstanceOfContainerAttribute(): void
     {
         $id = 12;
         $title = 'some title';
@@ -106,7 +105,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testAddAttributeGroupCanReturnInstanceOfCOntainerAttributeGroup()
+    public function testAddAttributeGroupCanReturnInstanceOfCOntainerAttributeGroup(): void
     {
         $id = 55;
         $title = 'some title';
@@ -139,7 +138,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testAssignRoleToAttributeCanReturnBoolean()
+    public function testAssignRoleToAttributeCanReturnBoolean(): void
     {
         $id = 123;
         $attributeId = 456;
@@ -166,7 +165,7 @@ class ArticleTypeClientTest extends TestCase
         $this->assertTrue($this->subject->assignRoleToAttribute($id, $attributeId, $roleTypeId));
     }
 
-    public function testChangeAttributeTypeCanReturnBoolean()
+    public function testChangeAttributeTypeCanReturnBoolean(): void
     {
         $id = 45;
         $attributeId = 23;
@@ -193,7 +192,7 @@ class ArticleTypeClientTest extends TestCase
         $this->assertTrue($this->subject->changeAttributeType($id, $attributeId, $typeId));
     }
 
-    public function testCreateAttributeOptionCanReturnInstanceOfContainerAttributeOption()
+    public function testCreateAttributeOptionCanReturnInstanceOfContainerAttributeOption(): void
     {
         $id = 123;
         $attributeId = 55;
@@ -228,7 +227,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testGetApplicableRoleTypesCanReturnArrayOfContainerAttributeRoleType()
+    public function testGetApplicableRoleTypesCanReturnArrayOfContainerAttributeRoleType(): void
     {
         $id = 9;
         $attributeId = 23;
@@ -264,7 +263,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testGetAssignedRoleTypesCanReturnArrayOfContainerAttributeRoleType()
+    public function testGetAssignedRoleTypesCanReturnArrayOfContainerAttributeRoleType(): void
     {
         $id = 9;
         $attributeId = 23;
@@ -300,7 +299,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testGetAttributeGroupsCanReturnArrayOfContainerAttributeGroup()
+    public function testGetAttributeGroupsCanReturnArrayOfContainerAttributeGroup(): void
     {
         $id = 10;
 
@@ -335,7 +334,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testGetAttributeOptionsCanReturnArrayOfContainerAttributeOption()
+    public function testGetAttributeOptionsCanReturnArrayOfContainerAttributeOption(): void
     {
         $id = 18;
         $attributeId = 99;
@@ -372,7 +371,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testGetAttributesCanReturnArrayOfContainerAttribute()
+    public function testGetAttributesCanReturnArrayOfContainerAttribute(): void
     {
         $id = 213;
 
@@ -407,7 +406,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testRemoveAttributeCanReturnBoolean()
+    public function testRemoveAttributeCanReturnBoolean(): void
     {
         $id = 234;
         $attributeId = 334;
@@ -434,7 +433,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testRemoveAttributeGroupCanReturnBoolean()
+    public function testRemoveAttributeGroupCanReturnBoolean(): void
     {
         $id = 234;
         $attributeGroupId = 334;
@@ -461,7 +460,7 @@ class ArticleTypeClientTest extends TestCase
         );
     }
 
-    public function testRemoveAttributeOptionCanReturnBoolean()
+    public function testRemoveAttributeOptionCanReturnBoolean(): void
     {
         $id = 234;
         $attributeId = 556;

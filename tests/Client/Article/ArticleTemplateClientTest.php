@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Article;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -16,28 +17,26 @@ use PHPUnit\Framework\TestCase;
 use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use stdClass;
 
+#[AllowMockObjectsWithoutExpectations]
 class ArticleTemplateClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var ArticleTemplateClient
-     */
-    private $subject;
+    private ArticleTemplateClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -59,7 +58,7 @@ class ArticleTemplateClientTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnInstanceOfResourceInformation()
+    public function testCreateCanReturnInstanceOfResourceInformation(): void
     {
         $title = 'some title';
         $typeId = ArticleTemplateClientInterface::ARTICLE_TEMPLATE_HTML;
@@ -100,7 +99,7 @@ class ArticleTemplateClientTest extends TestCase
         );
     }
 
-    public function testUpdateCanReturnInstanceOfResourceInformation()
+    public function testUpdateCanReturnInstanceOfResourceInformation(): void
     {
         $templateId = 3345;
         $template = 'some template';

@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\ClientStatisticInterface;
  */
 class ClientStatisticConfigTest extends TestCase
 {
-    /**
-     * @var ClientStatisticConfig
-     */
-    private $subject;
+    private ClientStatisticConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'mail_clients',
         'browsers',
         'devices',
@@ -33,7 +27,7 @@ class ClientStatisticConfigTest extends TestCase
         $this->subject = new ClientStatisticConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ClientStatisticInterface::class,
@@ -41,14 +35,14 @@ class ClientStatisticConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

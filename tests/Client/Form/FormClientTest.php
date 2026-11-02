@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Form;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -17,33 +18,31 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ResourceInformationInterface;
 use Scn\EvalancheSoapStruct\Struct\Statistic\FormStatisticInterface;
 use stdClass;
 
+#[AllowMockObjectsWithoutExpectations]
 class FormClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var FormClient
-     */
-    private $subject;
+    private FormClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
-     * @var ExtractorInterface|MockObject
+     * @var MockObject&ExtractorInterface
      */
-    private $extractor;
+    private MockObject $extractor;
 
     public function setUp(): void
     {
@@ -60,7 +59,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testAddAttributeCanReturnInteger()
+    public function testAddAttributeCanReturnInteger(): void
     {
         $id = 123;
         $poolAttributeId = 653;
@@ -88,7 +87,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testAddAttributeOptionCanReturnBoolean()
+    public function testAddAttributeOptionCanReturnBoolean(): void
     {
         $id = 45;
         $optionId = 555;
@@ -113,7 +112,7 @@ class FormClientTest extends TestCase
         $this->assertTrue($this->subject->addAttributeOption($id, $optionId));
     }
 
-    public function testCreateAliasCanReturnInstanceOfResourceInformation()
+    public function testCreateAliasCanReturnInstanceOfResourceInformation(): void
     {
         $id = 123;
         $title = 'some title';
@@ -148,7 +147,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testGetAliasesCanReturnArrayOfResourceInformation()
+    public function testGetAliasesCanReturnArrayOfResourceInformation(): void
     {
         $id = 456;
 
@@ -183,7 +182,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testGetFormByAliasCanReturnInstanceOfResourceInformation()
+    public function testGetFormByAliasCanReturnInstanceOfResourceInformation(): void
     {
         $id = 932;
 
@@ -214,7 +213,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testGetStatisticsCanReturnInstanceOfFormStatistic()
+    public function testGetStatisticsCanReturnInstanceOfFormStatistic(): void
     {
         $id = 932;
         $includeAliases = false;
@@ -251,7 +250,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testRemoteAttributeCanReturnBoolean()
+    public function testRemoteAttributeCanReturnBoolean(): void
     {
         $id = 123;
         $formAttributeId = 44;
@@ -276,7 +275,7 @@ class FormClientTest extends TestCase
         $this->assertFalse($this->subject->removeAttribute($id, $formAttributeId));
     }
 
-    public function testRemoteAttributeOptionCanReturnBoolean()
+    public function testRemoteAttributeOptionCanReturnBoolean(): void
     {
         $id = 123;
         $optionId = 44;
@@ -301,7 +300,7 @@ class FormClientTest extends TestCase
         $this->assertFalse($this->subject->removeAttributeOption($id, $optionId));
     }
 
-    public function testUpdateTemplateCanReturnInstanceOfResourceInformation()
+    public function testUpdateTemplateCanReturnInstanceOfResourceInformation(): void
     {
         $id = 123;
         $templateHtml = '<p>some html</p>';
@@ -334,7 +333,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnInstanceOfResourceInformation()
+    public function testCreateCanReturnInstanceOfResourceInformation(): void
     {
         $poolId = 999;
         $title = 'some title';
@@ -367,7 +366,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testGetConfigurationCanReturnInstanceOfFormConfiguration()
+    public function testGetConfigurationCanReturnInstanceOfFormConfiguration(): void
     {
         $id = 1234;
 
@@ -405,7 +404,7 @@ class FormClientTest extends TestCase
         );
     }
 
-    public function testSetConfigurationCanReturnInstanceOfMailingConfiguration()
+    public function testSetConfigurationCanReturnInstanceOfMailingConfiguration(): void
     {
         $id = 123;
         $configuration = $this->createStub(FormConfigurationInterface::class);

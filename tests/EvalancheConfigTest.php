@@ -13,11 +13,10 @@ use PHPUnit\Framework\TestCase;
  */
 class EvalancheConfigTest extends TestCase
 {
-    /** @var EvalancheConfig */
-    private $subject;
+    private EvalancheConfig $subject;
 
     /** @var array<string, mixed> */
-    private $soapSettings = ['some' => 'setting'];
+    private array $soapSettings = ['some' => 'setting'];
 
     public function setUp(): void
     {
@@ -30,17 +29,17 @@ class EvalancheConfigTest extends TestCase
         );
     }
 
-    public function testGetUsernameCanReturnUsername()
+    public function testGetUsernameCanReturnUsername(): void
     {
         self::assertSame('some username', $this->subject->getUsername());
     }
 
-    public function testGetPasswordCanReturnPassword()
+    public function testGetPasswordCanReturnPassword(): void
     {
         self::assertSame('some password', $this->subject->getPassword());
     }
 
-    public function testGetWsdlServiceUrlCanReturnWsdlUrl()
+    public function testGetWsdlServiceUrlCanReturnWsdlUrl(): void
     {
         $wsdlUri = 'some wsdl uri';
 
@@ -50,7 +49,7 @@ class EvalancheConfigTest extends TestCase
         );
     }
 
-    public function testGetDebugModeCanReturnBoolean()
+    public function testGetDebugModeCanReturnBoolean(): void
     {
         $this->assertTrue($this->subject->getDebugMode());
     }

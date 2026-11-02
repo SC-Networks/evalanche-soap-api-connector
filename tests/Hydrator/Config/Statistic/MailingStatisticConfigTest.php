@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\MailingStatisticInterface;
  */
 class MailingStatisticConfigTest extends TestCase
 {
-    /**
-     * @var MailingStatisticConfig
-     */
-    private $subject;
+    private MailingStatisticConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'addressees',
         'recipients',
         'duplicates',
@@ -45,7 +39,7 @@ class MailingStatisticConfigTest extends TestCase
         $this->subject = new MailingStatisticConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             MailingStatisticInterface::class,
@@ -53,14 +47,14 @@ class MailingStatisticConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Marketplace;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Enum\LanguageEnum;
@@ -17,27 +18,25 @@ use Scn\EvalancheSoapStruct\Struct\Marketplace\CategoryInterface;
 use Scn\EvalancheSoapStruct\Struct\Marketplace\ProductInterface;
 use stdClass;
 
+#[AllowMockObjectsWithoutExpectations]
 class MarketplaceClientTest extends TestCase
 {
-    /**
-     * @var MarketplaceClient
-     */
-    private $subject;
+    private MarketplaceClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -148,8 +147,8 @@ class MarketplaceClientTest extends TestCase
                 'purchaseProduct',
                 [[
                     'ProductId' => $productId,
-                                        'MandatorId' => $mandatorId,
-                                        'LanguageId' => $languageId
+                    'MandatorId' => $mandatorId,
+                    'LanguageId' => $languageId
                 ]]
             )
             ->willReturn($result);

@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\SmartLink\SmartLinkInterface;
  */
 class SmartLinkConfigTest extends TestCase
 {
-    /**
-     * @var SmartLinkConfig
-     */
-    private $subject;
+    private SmartLinkConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'tracking_url',
@@ -33,7 +27,7 @@ class SmartLinkConfigTest extends TestCase
         $this->subject = new SmartLinkConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             SmartLinkInterface::class,
@@ -41,14 +35,14 @@ class SmartLinkConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

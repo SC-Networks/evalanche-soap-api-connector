@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Mapper;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Exception\EmptyResultException;
 use Scn\EvalancheSoapApiConnector\Hydrator\Config\HydratorConfigInterface;
@@ -12,17 +13,15 @@ use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
 use Scn\Hydrator\HydratorInterface;
 use stdClass;
 
+#[AllowMockObjectsWithoutExpectations]
 class ResponseMapperTest extends TestCase
 {
-    /**
-     * @var ResponseMapper
-     */
-    private $subject;
+    private ResponseMapper $subject;
 
     /**
-     * @var HydratorInterface|MockObject
+     * @var MockObject&HydratorInterface
      */
-    private $hydrator;
+    private MockObject $hydrator;
 
     public function setUp(): void
     {
@@ -32,7 +31,7 @@ class ResponseMapperTest extends TestCase
         );
     }
 
-    public function testGetIntegerCanReturnInteger()
+    public function testGetIntegerCanReturnInteger(): void
     {
         $responseProperty = 'someThing';
         $response = new stdClass();
@@ -41,13 +40,13 @@ class ResponseMapperTest extends TestCase
         self::assertSame(5, $this->subject->getInteger($response, $responseProperty));
     }
 
-    public function testGetIntegerCanThrowException()
+    public function testGetIntegerCanThrowException(): void
     {
         $this->expectException(EmptyResultException::class);
         $this->subject->getInteger(new stdClass(), 'something');
     }
 
-    public function testGetBooleanCanReturnBool()
+    public function testGetBooleanCanReturnBool(): void
     {
         $responseProperty = 'someThing';
         $response = new stdClass();
@@ -56,13 +55,13 @@ class ResponseMapperTest extends TestCase
         $this->assertTrue($this->subject->getBoolean($response, $responseProperty));
     }
 
-    public function testGetBooleanCanThrowException()
+    public function testGetBooleanCanThrowException(): void
     {
         $this->expectException(EmptyResultException::class);
         $this->subject->getBoolean(new stdClass(), 'something');
     }
 
-    public function testGetStringCanReturnString()
+    public function testGetStringCanReturnString(): void
     {
         $responseProperty = 'someThing';
         $response = new stdClass();
@@ -71,13 +70,13 @@ class ResponseMapperTest extends TestCase
         self::assertSame('some string', $this->subject->getString($response, $responseProperty));
     }
 
-    public function testGetStringCanThrowException()
+    public function testGetStringCanThrowException(): void
     {
         $this->expectException(EmptyResultException::class);
         $this->subject->getString(new stdClass(), 'something');
     }
 
-    public function testGetArrayCanReturnArray()
+    public function testGetArrayCanReturnArray(): void
     {
         $responseProperty = 'someThing';
         $response = new stdClass();
@@ -89,13 +88,13 @@ class ResponseMapperTest extends TestCase
         self::assertSame($response->$responseProperty, $this->subject->getArray($response, $responseProperty));
     }
 
-    public function testGetArrayCanThrowException()
+    public function testGetArrayCanThrowException(): void
     {
         $this->expectException(EmptyResultException::class);
         $this->subject->getArray(new stdClass(), 'something');
     }
 
-    public function testGetObjectCanReturnObject()
+    public function testGetObjectCanReturnObject(): void
     {
         $responseObject = new stdClass();
         $responseObject->id = 1;
@@ -112,7 +111,7 @@ class ResponseMapperTest extends TestCase
             ->willReturn($someUser);
 
         $this->hydrator->expects($this->once())->method('hydrate')
-            ->with($hydratorConfig, $someUser, (array)$responseObject);
+            ->with($hydratorConfig, $someUser, (array) $responseObject);
 
         self::assertInstanceOf(
             UserInterface::class,
@@ -124,7 +123,7 @@ class ResponseMapperTest extends TestCase
         );
     }
 
-    public function testGetObjectCanThrowException()
+    public function testGetObjectCanThrowException(): void
     {
         $this->expectException(EmptyResultException::class);
         $this->subject->getObject(
@@ -134,7 +133,7 @@ class ResponseMapperTest extends TestCase
         );
     }
 
-    public function testGetObjectsCanReturnObjects()
+    public function testGetObjectsCanReturnObjects(): void
     {
         $firstResponseObject = new stdClass();
         $firstResponseObject->id = 1;
@@ -162,8 +161,8 @@ class ResponseMapperTest extends TestCase
 
         $this->hydrator->expects($this->exactly(2))->method('hydrate')
             ->willReturnOnConsecutiveCalls(
-                [$hydratorConfig, $someUser, (array)$firstResponseObject],
-                [$hydratorConfig, $someUser, (array)$secondResponseObject]
+                [$hydratorConfig, $someUser, (array) $firstResponseObject],
+                [$hydratorConfig, $someUser, (array) $secondResponseObject]
             );
 
         self::assertContainsOnlyInstancesOf(
@@ -176,7 +175,7 @@ class ResponseMapperTest extends TestCase
         );
     }
 
-    public function testGetObjectsCanReturnEmptyArray()
+    public function testGetObjectsCanReturnEmptyArray(): void
     {
         $firstResponseObject = new stdClass();
         $firstResponseObject->id = 1;
@@ -208,7 +207,7 @@ class ResponseMapperTest extends TestCase
         );
     }
 
-    public function testGetObjectsCanReturnSingleObject()
+    public function testGetObjectsCanReturnSingleObject(): void
     {
         $firstResponseObject = new stdClass();
         $firstResponseObject->id = 1;
@@ -232,7 +231,7 @@ class ResponseMapperTest extends TestCase
             ->willReturn($someUser);
 
         $this->hydrator->expects($this->once())->method('hydrate')
-            ->with($hydratorConfig, $someUser, (array)$firstResponseObject);
+            ->with($hydratorConfig, $someUser, (array) $firstResponseObject);
 
         self::assertContainsOnlyInstancesOf(
             UserInterface::class,
@@ -244,7 +243,7 @@ class ResponseMapperTest extends TestCase
         );
     }
 
-    public function testGetObjectsCanThrowException()
+    public function testGetObjectsCanThrowException(): void
     {
         $this->expectException(EmptyResultException::class);
         $this->subject->getObjects(
@@ -254,7 +253,7 @@ class ResponseMapperTest extends TestCase
         );
     }
 
-    public function testGetObjectDirectlyCanReturnObject()
+    public function testGetObjectDirectlyCanReturnObject(): void
     {
         $responseObject = new stdClass();
         $responseObject->id = 1;
@@ -269,7 +268,7 @@ class ResponseMapperTest extends TestCase
             ->willReturn($someUser);
 
         $this->hydrator->expects($this->once())->method('hydrate')
-            ->with($hydratorConfig, $someUser, (array)$responseObject);
+            ->with($hydratorConfig, $someUser, (array) $responseObject);
 
         self::assertInstanceOf(
             UserInterface::class,
@@ -280,7 +279,7 @@ class ResponseMapperTest extends TestCase
         );
     }
 
-    public function testGetObjectsDirectyCanReturnArrayOfObjects()
+    public function testGetObjectsDirectyCanReturnArrayOfObjects(): void
     {
         $firstResponseObject = new stdClass();
         $firstResponseObject->id = 1;
@@ -304,8 +303,8 @@ class ResponseMapperTest extends TestCase
 
         $this->hydrator->expects($this->exactly(2))->method('hydrate')
             ->willReturnOnConsecutiveCalls(
-                [$hydratorConfig, $someUser, (array)$firstResponseObject],
-                [$hydratorConfig, $someUser, (array)$secondResponseObject]
+                [$hydratorConfig, $someUser, (array) $firstResponseObject],
+                [$hydratorConfig, $someUser, (array) $secondResponseObject]
             );
 
         self::assertContainsOnlyInstancesOf(

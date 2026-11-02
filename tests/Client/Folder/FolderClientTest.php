@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Folder;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -20,27 +21,25 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Folder
  */
+#[AllowMockObjectsWithoutExpectations]
 class FolderClientTest extends TestCase
 {
-    /**
-     * @var FolderClient
-     */
-    private $subject;
+    private FolderClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -62,7 +61,7 @@ class FolderClientTest extends TestCase
         );
     }
 
-    public function testCreateCanReturnInstanceOfFolderInformation()
+    public function testCreateCanReturnInstanceOfFolderInformation(): void
     {
         $title = 'some title';
         $folderId = 123;
@@ -95,7 +94,7 @@ class FolderClientTest extends TestCase
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $id = 56;
 
@@ -122,7 +121,7 @@ class FolderClientTest extends TestCase
         $this->assertTrue($this->subject->delete($id));
     }
 
-    public function testGetSubCategoriesCanReturnArrayOfFolderInformation()
+    public function testGetSubCategoriesCanReturnArrayOfFolderInformation(): void
     {
         $id = 523;
 
@@ -158,7 +157,7 @@ class FolderClientTest extends TestCase
         );
     }
 
-    public function testGetCanReturnInstanceOfFolderInformation()
+    public function testGetCanReturnInstanceOfFolderInformation(): void
     {
         $id = 123;
 

@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Scoring\ScoringGroupDetailInterface;
  */
 class ScoringGroupDetailConfigTest extends TestCase
 {
-    /**
-     * @var ScoringGroupDetailConfig
-     */
-    private $subject;
+    private ScoringGroupDetailConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'mandator_id',
@@ -33,7 +27,7 @@ class ScoringGroupDetailConfigTest extends TestCase
         $this->subject = new ScoringGroupDetailConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ScoringGroupDetailInterface::class,
@@ -41,14 +35,14 @@ class ScoringGroupDetailConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

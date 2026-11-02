@@ -78,10 +78,7 @@ use PHPUnit\Framework\TestCase;
 
 class HydratorConfigFactoryTest extends TestCase
 {
-    /**
-     * @var HydratorConfigFactory
-     */
-    private $subject;
+    private HydratorConfigFactory $subject;
 
     public function setUp(): void
     {
@@ -89,7 +86,7 @@ class HydratorConfigFactoryTest extends TestCase
     }
 
     #[DataProvider('factoryDataProvider')]
-    public function testFactoryMethods($method, $expectedClass, array $parameter = [])
+    public function testFactoryMethods(string $method, string $expectedClass, array $parameter = []): void
     {
         self::assertInstanceOf(
             $expectedClass,
@@ -97,7 +94,7 @@ class HydratorConfigFactoryTest extends TestCase
         );
     }
 
-    public static function factoryDataProvider()
+    public static function factoryDataProvider(): array
     {
         return [
             ['createWorkflowDetailConfig', WorkflowDetailConfig::class],

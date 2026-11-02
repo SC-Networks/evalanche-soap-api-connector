@@ -9,8 +9,7 @@ use Scn\EvalancheSoapStruct\Struct\Mailing\MailingSlot;
 
 class MailingSlotConfigTest extends ConfigTestCase
 {
-    /** @var MailingSlotConfig|null */
-    private $subject;
+    private MailingSlotConfig $subject;
     
     public function setUp(): void
     {
@@ -37,7 +36,7 @@ class MailingSlotConfigTest extends ConfigTestCase
         ];
     }
 
-    protected function getSubject()
+    protected function getSubject(): MailingSlotConfig
     {
         return $this->subject;
     }

@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Generic\FolderInformationInterface;
  */
 class FolderInformationConfigTest extends TestCase
 {
-    /**
-     * @var FolderInformationConfig
-     */
-    private $subject;
+    private FolderInformationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'parent_id'
@@ -33,7 +27,7 @@ class FolderInformationConfigTest extends TestCase
         $this->subject = new FolderInformationConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfFolderInformation()
+    public function testGetObjectCanReturnInstanceOfFolderInformation(): void
     {
         self::assertInstanceOf(
             FolderInformationInterface::class,
@@ -41,14 +35,14 @@ class FolderInformationConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

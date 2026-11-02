@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Pool;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -21,28 +22,26 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Pool
  */
+#[AllowMockObjectsWithoutExpectations]
 class PoolDataMinerClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var PoolDataMinerClient
-     */
-    private $subject;
+    private PoolDataMinerClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -64,7 +63,7 @@ class PoolDataMinerClientTest extends TestCase
         );
     }
 
-    public function testUpdateTitleCanReturnInstanceOfResourceInformation()
+    public function testUpdateTitleCanReturnInstanceOfResourceInformation(): void
     {
         $id = 123;
         $title = 'some title';

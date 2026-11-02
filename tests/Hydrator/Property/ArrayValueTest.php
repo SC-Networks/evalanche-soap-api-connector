@@ -15,7 +15,7 @@ use stdClass;
  */
 class ArrayValueTest extends TestCase
 {
-    public function testEverything()
+    public function testEverything(): void
     {
         $testValue = new stdClass();
         $testValue->item = [
@@ -30,7 +30,7 @@ class ArrayValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }
@@ -50,7 +50,7 @@ class ArrayValueTest extends TestCase
         self::assertSame($testValue->item, $get('value'));
     }
 
-    public function testEverythingIfItemNotArray()
+    public function testEverythingIfItemNotArray(): void
     {
         $testValue = new stdClass();
         $testValue->item = 'fine';
@@ -63,7 +63,7 @@ class ArrayValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }
@@ -84,7 +84,7 @@ class ArrayValueTest extends TestCase
     }
 
 
-    public function testEverythingInvalidInputType()
+    public function testEverythingInvalidInputType(): void
     {
         $testValue = mt_rand(1, PHP_INT_MAX);
         $dummy = new class {
@@ -95,7 +95,7 @@ class ArrayValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }

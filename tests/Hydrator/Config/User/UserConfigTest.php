@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\User\UserInterface;
  */
 class UserConfigTest extends TestCase
 {
-    /**
-     * @var UserConfig
-     */
-    private $subject;
+    private UserConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'mandator_id',
         'username',
@@ -42,7 +36,7 @@ class UserConfigTest extends TestCase
         $this->subject = new UserConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             UserInterface::class,
@@ -50,14 +44,14 @@ class UserConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

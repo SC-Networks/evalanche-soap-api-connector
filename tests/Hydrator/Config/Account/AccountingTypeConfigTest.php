@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Account\AccountingTypeInterface;
  */
 class AccountingTypeConfigTest extends TestCase
 {
-    /**
-     * @var AccountingTypeConfig
-     */
-    private $subject;
+    private AccountingTypeConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'TypeId',
         'Amount',
         'Price',
@@ -35,7 +29,7 @@ class AccountingTypeConfigTest extends TestCase
         $this->subject = new AccountingTypeConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             AccountingTypeInterface::class,
@@ -43,14 +37,14 @@ class AccountingTypeConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

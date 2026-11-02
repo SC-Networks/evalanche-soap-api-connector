@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\TargetGroup;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\Client\CommonResourceMethodsTestTrait;
@@ -22,28 +23,26 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\TargetGroup
  */
+#[AllowMockObjectsWithoutExpectations]
 class TargetGroupClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var TargetGroupClient
-     */
-    private $subject;
+    private TargetGroupClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -65,7 +64,7 @@ class TargetGroupClientTest extends TestCase
         );
     }
 
-    public function testCreateByOptionCanReturnInstanceOfResourceInformation()
+    public function testCreateByOptionCanReturnInstanceOfResourceInformation(): void
     {
         $id = 123;
         $attributeId = 556;
@@ -104,7 +103,7 @@ class TargetGroupClientTest extends TestCase
         );
     }
 
-    public function testGetDetailByIdCanReturnInstanceOfTargetGroupDetailInterface()
+    public function testGetDetailByIdCanReturnInstanceOfTargetGroupDetailInterface(): void
     {
         $id = 234;
 

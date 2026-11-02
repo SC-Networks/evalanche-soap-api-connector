@@ -12,12 +12,9 @@ class WorkflowConfigVersionTest extends TestCase
     /**
      * @var WorkflowConfigVersion
      */
-    private $subject;
+    private WorkflowConfigVersionConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'config_version',
         'create_date',
         'latest',

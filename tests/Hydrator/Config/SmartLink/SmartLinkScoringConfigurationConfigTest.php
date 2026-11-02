@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\SmartLink\SmartLinkScoringConfigurationInterf
  */
 class SmartLinkScoringConfigurationConfigTest extends TestCase
 {
-    /**
-     * @var SmartLinkScoringConfigurationConfig
-     */
-    private $subject;
+    private SmartLinkScoringConfigurationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'name',
         'value',
@@ -36,7 +30,7 @@ class SmartLinkScoringConfigurationConfigTest extends TestCase
         $this->subject = new SmartLinkScoringConfigurationConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             SmartLinkScoringConfigurationInterface::class,
@@ -44,14 +38,14 @@ class SmartLinkScoringConfigurationConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

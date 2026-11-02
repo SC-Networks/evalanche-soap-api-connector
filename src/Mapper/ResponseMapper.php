@@ -10,8 +10,9 @@ use Scn\Hydrator\HydratorInterface;
 
 final readonly class ResponseMapper implements ResponseMapperInterface
 {
-    public function __construct(private HydratorInterface $hydrator)
-    {
+    public function __construct(
+        private HydratorInterface $hydrator
+    ) {
     }
 
     /**
@@ -23,7 +24,7 @@ final readonly class ResponseMapper implements ResponseMapperInterface
         string $responseProperty
     ): int {
         if (property_exists($response, $responseProperty)) {
-            return (int)$response->$responseProperty;
+            return (int) $response->$responseProperty;
         }
 
         throw new EmptyResultException('Empty Result');
@@ -38,7 +39,7 @@ final readonly class ResponseMapper implements ResponseMapperInterface
         string $responseProperty
     ): bool {
         if (property_exists($response, $responseProperty)) {
-            return (bool)$response->$responseProperty;
+            return (bool) $response->$responseProperty;
         }
 
         throw new EmptyResultException('Empty Result');
@@ -53,7 +54,7 @@ final readonly class ResponseMapper implements ResponseMapperInterface
         string $responseProperty
     ): string {
         if (property_exists($response, $responseProperty)) {
-            return (string)$response->$responseProperty;
+            return (string) $response->$responseProperty;
         }
 
         throw new EmptyResultException('Empty Result');
@@ -68,7 +69,7 @@ final readonly class ResponseMapper implements ResponseMapperInterface
         string $responseProperty
     ): array {
         if (property_exists($response, $responseProperty)) {
-            return (array)$response->$responseProperty;
+            return (array) $response->$responseProperty;
         }
 
         throw new EmptyResultException('Empty Result');
@@ -90,11 +91,7 @@ final readonly class ResponseMapper implements ResponseMapperInterface
         throw new EmptyResultException('Empty Result');
     }
 
-    /**
-     *
-     * @return StructInterface
-     */
-    public function getObjectDirectly(object $response, HydratorConfigInterface $hydratorConfig)
+    public function getObjectDirectly(object $response, HydratorConfigInterface $hydratorConfig): StructInterface
     {
         return $this->mapSingleObject($response, $hydratorConfig);
     }
@@ -103,7 +100,7 @@ final readonly class ResponseMapper implements ResponseMapperInterface
      *
      * @return StructInterface[]
      */
-    public function getObjectsDirectly(object $response, HydratorConfigInterface  $hydratorConfig)
+    public function getObjectsDirectly(object $response, HydratorConfigInterface  $hydratorConfig): array
     {
         return $this->mapListOfObjects($this->getListFromResponse($response), $hydratorConfig);
     }
@@ -115,7 +112,7 @@ final readonly class ResponseMapper implements ResponseMapperInterface
         $this->hydrator->hydrate(
             $hydratorConfig,
             $object,
-            (array)$objectResponse,
+            (array) $objectResponse,
             Hydrator::NO_STRICT_KEYS
         );
 

@@ -9,15 +9,9 @@ use Scn\EvalancheSoapStruct\Struct\Marketplace\ProductInterface;
 
 class ProductConfigTest extends TestCase
 {
-    /**
-     * @var ProductConfig
-     */
-    private $subject;
+    private ProductConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'Id',
         'Title',
         'Text',
@@ -29,7 +23,7 @@ class ProductConfigTest extends TestCase
         $this->subject = new ProductConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfProduct()
+    public function testGetObjectCanReturnInstanceOfProduct(): void
     {
         self::assertInstanceOf(
             ProductInterface::class,
@@ -37,14 +31,14 @@ class ProductConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

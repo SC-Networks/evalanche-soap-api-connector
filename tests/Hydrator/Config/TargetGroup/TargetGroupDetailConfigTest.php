@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\TargetGroup\TargetGroupDetailInterface;
  */
 class TargetGroupDetailConfigTest extends TestCase
 {
-    /**
-     * @var TargetGroupDetailConfig
-     */
-    private $subject;
+    private TargetGroupDetailConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'name',
         'profile_count',
     ];
@@ -32,7 +26,7 @@ class TargetGroupDetailConfigTest extends TestCase
         $this->subject = new TargetGroupDetailConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             TargetGroupDetailInterface::class,
@@ -40,14 +34,14 @@ class TargetGroupDetailConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

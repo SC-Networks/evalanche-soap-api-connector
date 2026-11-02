@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Account\AccountingItemInterface;
  */
 class AccountingItemConfigTest extends TestCase
 {
-    /**
-     * @var AccountingItemConfig
-     */
-    private $subject;
+    private AccountingItemConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'Description',
         'CustomerId',
         'AccountingDate',
@@ -34,7 +28,7 @@ class AccountingItemConfigTest extends TestCase
         $this->subject = new AccountingItemConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             AccountingItemInterface::class,
@@ -42,14 +36,14 @@ class AccountingItemConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

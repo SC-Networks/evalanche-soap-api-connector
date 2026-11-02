@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Generic\MassUpdateResultInterface;
  */
 class MassUpdateResultConfigTest extends TestCase
 {
-    /**
-     * @var MassUpdateResultConfig
-     */
-    private $subject;
+    private MassUpdateResultConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'updated',
         'created',
         'ignored',
@@ -34,7 +28,7 @@ class MassUpdateResultConfigTest extends TestCase
         $this->subject = new MassUpdateResultConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             MassUpdateResultInterface::class,
@@ -42,14 +36,14 @@ class MassUpdateResultConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

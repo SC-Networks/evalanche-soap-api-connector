@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Form\FormConfigurationInterface;
  */
 class FormConfigurationConfigTest extends TestCase
 {
-    /**
-     * @var FormConfigurationConfig
-     */
-    private $subject;
+    private FormConfigurationConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'unique_entry_criteria_id',
         'block_duplicates',
         'do_not_reset_unsubscription',
@@ -52,7 +46,7 @@ class FormConfigurationConfigTest extends TestCase
         $this->subject = new FormConfigurationConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             FormConfigurationInterface::class,
@@ -60,14 +54,14 @@ class FormConfigurationConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

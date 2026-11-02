@@ -17,7 +17,7 @@ use stdClass;
  */
 class ArrayOfObjectValueTest extends TestCase
 {
-    public function testEverything()
+    public function testEverything(): void
     {
         $testValue = new stdClass();
         $testValue->item = [
@@ -32,7 +32,7 @@ class ArrayOfObjectValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }
@@ -52,7 +52,7 @@ class ArrayOfObjectValueTest extends TestCase
         self::assertSame($testValue->item, $get('value'));
     }
 
-    public function testEverythingIfItemNotArray()
+    public function testEverythingIfItemNotArray(): void
     {
         $testValue = new stdClass();
         $testValue->item = 'fine';
@@ -65,7 +65,7 @@ class ArrayOfObjectValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }
@@ -86,7 +86,7 @@ class ArrayOfObjectValueTest extends TestCase
     }
 
 
-    public function testEverythingInvalidInputType()
+    public function testEverythingInvalidInputType(): void
     {
         $testValue = mt_rand(1, PHP_INT_MAX);
         $dummy = new class {
@@ -97,7 +97,7 @@ class ArrayOfObjectValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }
@@ -117,7 +117,7 @@ class ArrayOfObjectValueTest extends TestCase
         self::assertSame([], $get('value'));
     }
 
-    public function testContainsHydratedObjects()
+    public function testContainsHydratedObjects(): void
     {
         $firstObject = new stdClass();
         $firstObject->description = 'some thing';
@@ -138,7 +138,7 @@ class ArrayOfObjectValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }
@@ -157,7 +157,7 @@ class ArrayOfObjectValueTest extends TestCase
         self::assertContainsOnlyInstancesOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
 
-    public function testContainsHydratedObjectsIfValueIsArray()
+    public function testContainsHydratedObjectsIfValueIsArray(): void
     {
         $firstObject = new stdClass();
         $firstObject->description = 'some thing';
@@ -177,7 +177,7 @@ class ArrayOfObjectValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }
@@ -196,7 +196,7 @@ class ArrayOfObjectValueTest extends TestCase
         self::assertContainsOnlyInstancesOf(MailClientStatisticItemInterface::class, $dummy->getValue());
     }
 
-    public function testGetWithHydratorContainsHydratedObjectsIfValueIsArray()
+    public function testGetWithHydratorContainsHydratedObjectsIfValueIsArray(): void
     {
         $firstObject = new stdClass();
         $firstObject->description = 'some thing';
@@ -216,7 +216,7 @@ class ArrayOfObjectValueTest extends TestCase
                 return $this->value;
             }
 
-            public function setValue($value)
+            public function setValue($value): void
             {
                 $this->value = $value;
             }

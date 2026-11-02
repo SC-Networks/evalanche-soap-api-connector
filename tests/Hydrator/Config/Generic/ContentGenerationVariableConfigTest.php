@@ -9,15 +9,9 @@ use Scn\EvalancheSoapStruct\Struct\Generic\ContentGenerationVariableInterface;
 
 class ContentGenerationVariableConfigTest extends TestCase
 {
-    /**
-     * @var ContentGenerationVariableConfig
-     */
-    private $subject;
+    private ContentGenerationVariableConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'name',
         'default_value',
         'label',
@@ -37,14 +31,14 @@ class ContentGenerationVariableConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

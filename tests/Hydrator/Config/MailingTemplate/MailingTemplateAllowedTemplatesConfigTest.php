@@ -10,15 +10,9 @@ use Scn\EvalancheSoapStruct\Struct\MailingTemplate\MailingTemplateAllowedTemplat
 
 class MailingTemplateAllowedTemplatesConfigTest extends TestCase
 {
-    /**
-     * @var MailingTemplateAllowedTemplatesConfig
-     */
-    private $subject;
+    private MailingTemplateAllowedTemplatesConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'template_type',
         'template_ids',
     ];
@@ -28,7 +22,7 @@ class MailingTemplateAllowedTemplatesConfigTest extends TestCase
         $this->subject = new MailingTemplateAllowedTemplatesConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             MailingTemplateAllowedTemplatesInterface::class,
@@ -36,14 +30,14 @@ class MailingTemplateAllowedTemplatesConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

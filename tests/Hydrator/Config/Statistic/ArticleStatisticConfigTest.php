@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Statistic\ArticleStatisticInterface;
  */
 class ArticleStatisticConfigTest extends TestCase
 {
-    /**
-     * @var ArticleStatisticConfig
-     */
-    private $subject;
+    private ArticleStatisticConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'id',
         'reference_id',
         'name',
@@ -39,7 +33,7 @@ class ArticleStatisticConfigTest extends TestCase
         $this->subject = new ArticleStatisticConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ArticleStatisticInterface::class,
@@ -47,14 +41,14 @@ class ArticleStatisticConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

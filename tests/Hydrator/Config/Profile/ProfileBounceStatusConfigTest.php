@@ -14,15 +14,9 @@ use Scn\EvalancheSoapStruct\Struct\Profile\ProfileBounceStatusInterface;
  */
 class ProfileBounceStatusConfigTest extends TestCase
 {
-    /**
-     * @var ProfileBounceStatusConfig
-     */
-    private $subject;
+    private ProfileBounceStatusConfig $subject;
 
-    /**
-     * @var array
-     */
-    private $arrayKeys = [
+    private array $arrayKeys = [
         'profile_id',
         'mailing_id',
         'status',
@@ -35,7 +29,7 @@ class ProfileBounceStatusConfigTest extends TestCase
         $this->subject = new ProfileBounceStatusConfig();
     }
 
-    public function testGetObjectCanReturnInstanceOfUser()
+    public function testGetObjectCanReturnInstanceOfUser(): void
     {
         self::assertInstanceOf(
             ProfileBounceStatusInterface::class,
@@ -43,14 +37,14 @@ class ProfileBounceStatusConfigTest extends TestCase
         );
     }
 
-    public function testGetHydratorPropertiesCanReturnArray()
+    public function testGetHydratorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getHydratorProperties());
         }
     }
 
-    public function testGetExtractorPropertiesCanReturnArray()
+    public function testGetExtractorPropertiesCanReturnArray(): void
     {
         foreach ($this->arrayKeys as $arrayKey) {
             self::assertArrayHasKey($arrayKey, $this->subject->getExtractorProperties());

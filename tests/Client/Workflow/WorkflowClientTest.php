@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Workflow;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -26,28 +27,26 @@ use stdClass;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Workflow
  */
+#[AllowMockObjectsWithoutExpectations]
 class WorkflowClientTest extends TestCase
 {
     use CommonResourceMethodsTestTrait;
-    /**
-     * @var WorkflowClient
-     */
-    private $subject;
+    private WorkflowClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -69,7 +68,7 @@ class WorkflowClientTest extends TestCase
         );
     }
 
-    public function testGetByStartRangeCanReturnArrayOfResourceInformation()
+    public function testGetByStartRangeCanReturnArrayOfResourceInformation(): void
     {
         $timestampStart = 1532610558;
         $timestampEnd = 1532610558;
@@ -107,7 +106,7 @@ class WorkflowClientTest extends TestCase
         );
     }
 
-    public function testGetByEndDateRangeCanReturnArrayOfResourceInformation()
+    public function testGetByEndDateRangeCanReturnArrayOfResourceInformation(): void
     {
         $timestampStart = 1532610558;
         $timestampEnd = 1532610558;
@@ -145,7 +144,7 @@ class WorkflowClientTest extends TestCase
         );
     }
 
-    public function testGetDetailByIdCanReturnInstanceOfWorkflowDetail()
+    public function testGetDetailByIdCanReturnInstanceOfWorkflowDetail(): void
     {
         $id = 55;
         $config = $this->createStub(HydratorConfigInterface::class);
@@ -171,7 +170,7 @@ class WorkflowClientTest extends TestCase
         );
     }
 
-    public function testPushProfilesIntoCampaignCanReturnBoolean()
+    public function testPushProfilesIntoCampaignCanReturnBoolean(): void
     {
         $id = 5;
         $profileIds = [
@@ -197,7 +196,7 @@ class WorkflowClientTest extends TestCase
         $this->assertTrue($this->subject->pushProfilesIntoCampaign($id, $profileIds));
     }
 
-    public function testCreateConfiguredReturnsResourceInformation()
+    public function testCreateConfiguredReturnsResourceInformation(): void
     {
         $name = 'some-name';
         $schemaVersion = 1;
@@ -238,7 +237,7 @@ class WorkflowClientTest extends TestCase
         );
     }
 
-    public function testExportReturnString()
+    public function testExportReturnString(): void
     {
         $workflowId = 42;
 

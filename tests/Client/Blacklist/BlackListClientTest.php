@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Scn\EvalancheSoapApiConnector\Client\Blacklist;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\MockObject\MockObject;
 use Scn\EvalancheSoapApiConnector\EvalancheSoapClient;
@@ -19,27 +20,25 @@ use Scn\EvalancheSoapStruct\Struct\Blacklist\BlackListInterface;
  *
  * @package Scn\EvalancheSoapApiConnector\Client\Blacklist
  */
+#[AllowMockObjectsWithoutExpectations]
 class BlackListClientTest extends TestCase
 {
-    /**
-     * @var BlackListClient
-     */
-    private $subject;
+    private BlackListClient $subject;
 
     /**
-     * @var EvalancheSoapClient|MockObject
+     * @var MockObject&EvalancheSoapClient
      */
-    private $soapClient;
+    private MockObject $soapClient;
 
     /**
-     * @var ResponseMapperInterface|MockObject
+     * @var MockObject&ResponseMapperInterface
      */
-    private $responseMapper;
+    private MockObject $responseMapper;
 
     /**
-     * @var HydratorConfigFactoryInterface|MockObject
+     * @var MockObject&HydratorConfigFactoryInterface
      */
-    private $hydratorConfigFactory;
+    private MockObject $hydratorConfigFactory;
 
     /**
      * @var Stub&ExtractorInterface
@@ -61,22 +60,22 @@ class BlackListClientTest extends TestCase
         );
     }
 
-    public function testGetWsdlUriCanReturnString()
+    public function testGetWsdlUriCanReturnString(): void
     {
         self::assertSame('api/soap/v1/blacklist/wsdl', $this->subject->getWsdlUri());
     }
 
-    public function testAdd()
+    public function testAdd(): void
     {
         $this->assertNull($this->subject->add(1, 'some@email.de', 'some description'));
     }
 
-    public function testRemove()
+    public function testRemove(): void
     {
         $this->assertNull($this->subject->remove(1, 'some@email.de'));
     }
 
-    public function testGetCanReturnInstanceOfBlackList()
+    public function testGetCanReturnInstanceOfBlackList(): void
     {
         $mandatorId = 523;
 

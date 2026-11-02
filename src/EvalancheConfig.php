@@ -14,8 +14,13 @@ class EvalancheConfig implements EvalancheConfigInterface
     /**
      * @param array<string, mixed> $soapClientOptions
      */
-    public function __construct(private readonly string $hostname, private readonly string $username, private readonly string $password, private readonly bool $debugMode = false, private readonly array $soapClientOptions = [])
-    {
+    public function __construct(
+        private readonly string $hostname,
+        private readonly string $username,
+        private readonly string $password,
+        private readonly bool $debugMode = false,
+        private readonly array $soapClientOptions = []
+    ) {
     }
 
     public function getUsername(): string

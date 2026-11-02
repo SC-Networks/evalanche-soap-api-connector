@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.0] - 2026-11-xx
+### ADDED
+- Support for newer PHP versions
+- New clients and methods. Please find a complete list of all additions/changes within the [release notes](https://github.com/SC-Networks/evalanche-soap-api-connector/releases/tag/v1.13.2)
+
+### CHANGED
+- Drop support for PHP versions prior to 8.3
+- Replace most docblock type-hints by native ones
+- Remove the `v`-prefix from the version number
+
+### FIXED
+- Apply some refactorings to avoid deprecation notices in newer PHP versions
+- `AccountConfig` now hydrates the discount correctly
+
 ## [1.13.0] - 2023-11-10
 ### ADDED
 - Add support to define the allowed templates when configuring slot items
